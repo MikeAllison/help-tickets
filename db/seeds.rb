@@ -7,11 +7,30 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Employee.create([
-	{last_name: 'Van Allen', first_name: 'Jennifer'},
-	{last_name: 'Souza', first_name: 'Carlos'},
-	{last_name: 'Peyatt', first_name: 'Justin'},
-	{last_name: 'Kokkinos', first_name: 'Chris'},
-	{last_name: 'Soto', first_name: 'Eddie'},
-	{last_name: 'Reid', first_name: 'Bonnie'},
-	{last_name: 'Fox', first_name: 'Michelle'}
+	{last_name: 'Van Allen', first_name: 'Jennifer', office_id: 1},
+	{last_name: 'Souza', first_name: 'Carlos', office_id: 2},
+	{last_name: 'Peyatt', first_name: 'Justin', office_id: 1},
+	{last_name: 'Kokkinos', first_name: 'Chris', office_id: 3},
+	{last_name: 'Soto', first_name: 'Eddie', office_id: 2},
+	{last_name: 'Reid', first_name: 'Bonnie', office_id: 3},
+	{last_name: 'Fox', first_name: 'Michelle', office_id: 1}
+])
+
+Topic.create([
+	{system: 'Computer'},
+	{system: 'Monitor'},
+	{system: 'Mouse/Keyboard'},
+	{system: 'Docking Station'},
+	{system: 'Telephone'},
+	{system: 'Other Peripheral'},
+	{system: 'Operating System'},
+	{system: 'Outlook'},
+	{system: 'Office'},
+	{system: 'Browser'}
+])
+
+Office.create([
+	{name: 'Orlando'},
+	{name: 'San Francisco'},
+	{name: 'Austin'}
 ])
