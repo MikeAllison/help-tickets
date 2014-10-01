@@ -1,3 +1,10 @@
+<div class="notice"><%= flash[:notice] %></div>
+
 <% @tickets.each do |ticket| %>
-	<%= ticket.id %><br>
+	<div>
+		<%= ticket.id %>
+		<%= ticket.employee.last_first %>
+		<%= ticket.topic.system %>
+		<%= ticket.description %>
+	</div>
 <% end %>

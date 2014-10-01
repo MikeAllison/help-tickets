@@ -1,0 +1,8 @@
+<%= simple_form_for @ticket, html: { class: "form-horizontal" } do |f| %>
+	
+	<%= f.association :employee, label_method: :last_first, prompt: "Choose an Employee" %>
+	<%= f.association :topic, label_method: :system, prompt: "Choose a Topic" %>
+	<%= f.input :description %>
+	
+	<%= f.submit %>
+<% end %>
