@@ -7,13 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Employee.create([
-	{last_name: 'Van Allen', first_name: 'Jennifer', office_id: 1},
-	{last_name: 'Souza', first_name: 'Carlos', office_id: 2},
-	{last_name: 'Peyatt', first_name: 'Justin', office_id: 1},
-	{last_name: 'Kokkinos', first_name: 'Chris', office_id: 3},
-	{last_name: 'Soto', first_name: 'Eddie', office_id: 2},
-	{last_name: 'Reid', first_name: 'Bonnie', office_id: 3},
-	{last_name: 'Fox', first_name: 'Michelle', office_id: 1}
+	{last_name: 'Van Allen', first_name: 'Jennifer', user_name: 'jvanallen', password: 'passwordj', password_confirmation: 'passwordj', office_id: 1},
+	{last_name: 'Souza', first_name: 'Carlos', user_name: 'csouza', password: 'passwordc', password_confirmation: 'passwordc', office_id: 2},
+	{last_name: 'Peyatt', first_name: 'Justin', user_name: 'jpeyatt', password: 'passwordj', password_confirmation: 'passwordj', office_id: 1},
+	{last_name: 'Kokkinos', first_name: 'Chris', user_name: 'ckokkinos', password: 'passwordc', password_confirmation: 'passwordc', office_id: 3},
+	{last_name: 'Soto', first_name: 'Eddie', user_name: 'esoto', password: 'passworde', password_confirmation: 'passworde', office_id: 2},
+	{last_name: 'Reid', first_name: 'Bonnie', user_name: 'breid', password: 'passwordb', password_confirmation: 'passwordb', office_id: 3},
+	{last_name: 'Fox', first_name: 'Michelle', user_name: 'mfox', password: 'passwordm', password_confirmation: 'passwordm', office_id: 1}
 ])
 
 Topic.create([

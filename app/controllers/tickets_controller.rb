@@ -11,8 +11,8 @@ class TicketsController < ApplicationController
 	  @ticket = Ticket.new(ticket_params)
 	  
 	  if @ticket.save
-	    flash[:notice] = 'Ticket was successfully submitted!'
-	    redirect_to tickets_path
+	    flash[:success] = 'Ticket was successfully submitted!'
+	    redirect_to employee_tickets_path
 	  else
 	    render :new
 	  end
