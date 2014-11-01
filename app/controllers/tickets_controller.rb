@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 	def index
-		@tickets = Ticket.all
+		@tickets = current_employee.tickets.all
 	end
 	
 	def new
