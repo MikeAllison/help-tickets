@@ -34,3 +34,11 @@ Office.create([
 	{name: 'San Francisco'},
 	{name: 'Austin'}
 ])
+
+Ticket.create([
+  {description: 'Mouse not working', employee_id: '1', topic_id: '3'},
+  {description: 'Keyboard not working', employee_id: '2', topic_id: '3'},
+  {description: 'Monitor not working', employee_id: '3', topic_id: '2'},
+  {description: 'Outlook not working', employee_id: '1', topic_id: '8'},
+  {description: 'Install IE11', employee_id: '4', topic_id: '10'}
+])

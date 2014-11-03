@@ -1,1 +1,8 @@
-<div></div>
+
+	<% @tickets.each do |ticket| %>
+		<div>
+			<%= ticket.id %>
+			<%= ticket.topic.system %>
+			<%= ticket.description %>
+		</div>
+	<% end %>

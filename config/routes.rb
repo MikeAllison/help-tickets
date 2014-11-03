@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   
   root    'sessions#new'
-  get     'login'   => 'sessions#new'
+  get     'login'   => 'sessions#new',     as: :login
   post    'login'   => 'sessions#create'
-  delete  'logout'  => 'sessions#destroy'
+  get     'logout'  => 'sessions#destroy', as: :logout
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :employees do
     resources :tickets
   end
-
+  
   # Example resource route with options:
   #   resources :products do
   #     member do
