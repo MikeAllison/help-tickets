@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
 	def index
-	  # Broken
-		@tickets = Ticket.find_by(id: params[:employee_id])
+		@tickets = Ticket.all
 	end
 	
 	def new
