@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   def new
   end
-<<<<<<< HEAD
-=======
   
   def create
     employee = Employee.find_by(user_name: params[:session][:user_name].downcase)
@@ -21,5 +19,5 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
->>>>>>> sessions
+
 end

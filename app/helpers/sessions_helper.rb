@@ -1,7 +1,5 @@
 module SessionsHelper
-<<<<<<< HEAD
-=======
-  
+
   def log_in(employee)
     session[:employee_id] = employee.id
   end
@@ -18,5 +16,5 @@ module SessionsHelper
     session.delete(:employee_id)
     @current_employee = nil
   end
->>>>>>> sessions
+
 end
