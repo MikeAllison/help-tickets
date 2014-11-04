@@ -12,6 +12,13 @@ module SessionsHelper
     !current_employee.nil?
   end
   
+  def require_login
+    unless logged_in?
+      flash[:danger] = "Please sign in."
+      redirect_to login_url
+    end
+  end
+  
   def log_out
     session.delete(:employee_id)
     @current_employee = nil
