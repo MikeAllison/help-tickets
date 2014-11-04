@@ -3,7 +3,7 @@ class Employee < ActiveRecord::Base
   
   has_many :tickets
   
-  scope :admin, -> { where(admin: true) }
+  #scope :admin, -> { where(admin: true) }
 
 	def last_first
 		last_name + ', ' + first_name
