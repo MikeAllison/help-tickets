@@ -1,9 +1,19 @@
-
-	<% @tickets.each do |ticket| %>
-		<div>
-			<%= ticket.id %>
-			<%= ticket.employee.last_first %>
-			<%= ticket.topic.system %>
-			<%= ticket.description %>
-		</div>
-	<% end %>
+<table class="table table-striped">
+	<thead>
+		<th>Ticket &#35;</th>
+		<th>Requested For</th>
+		<th>Topic</th>
+		<th>Description</th>
+		<th>Status</th>
+	</thead>
+	<tbody>
+		<% @tickets.each do |ticket| %>
+			<tr>
+				<td><%= ticket.id %></td>
+				<td><%= ticket.employee.last_first %></td>
+				<td><%= ticket.topic.system %></td>
+				<td><%= ticket.description %></td>
+				<td><%= ticket.status.state %></td>
+			</tr>
+		<% end %>
+</table>

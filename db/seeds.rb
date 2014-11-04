@@ -37,9 +37,16 @@ Office.create([
 ])
 
 Ticket.create([
-  {description: 'Mouse not working', employee_id: '1', topic_id: '3'},
-  {description: 'Keyboard not working', employee_id: '2', topic_id: '3'},
-  {description: 'Monitor not working', employee_id: '3', topic_id: '2'},
-  {description: 'Outlook not working', employee_id: '1', topic_id: '8'},
-  {description: 'Install IE11', employee_id: '4', topic_id: '10'}
+  {description: 'Mouse not working', employee_id: '1', topic_id: '3', status_id: '2'},
+  {description: 'Keyboard not working', employee_id: '2', topic_id: '3', status_id: '3'},
+  {description: 'Monitor not working', employee_id: '3', topic_id: '2', status_id: '2'},
+  {description: 'Outlook not working', employee_id: '1', topic_id: '8', status_id: '1'},
+  {description: 'Install IE11', employee_id: '4', topic_id: '10', status_id: '4'}
+])
+
+Status.create([
+  {state: 'Unassigned'},
+  {state: 'Work in Progress'},
+  {state: 'On Hold'},
+  {state: 'Closed'}
 ])
