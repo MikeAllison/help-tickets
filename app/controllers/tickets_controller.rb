@@ -4,6 +4,22 @@ class TicketsController < ApplicationController
 	  @tickets = Ticket.all
 	end
 	
+	def unassigned
+	  @tickets = Ticket.unassigned
+	end
+	
+	def work_in_progress
+	  @tickets = Ticket.work_in_progress
+	end
+	
+	def on_hold
+	  @tickets = Ticket.on_hold
+	end
+	
+	def closed
+	  @tickets = Ticket.closed
+	end
+	
 	def new
 	  @ticket = Ticket.new
 	end
