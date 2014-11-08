@@ -5,6 +5,8 @@
 		<th>Topic</th>
 		<th>Description</th>
 		<th>Status</th>
+		<th>Created</th>
+		<th>Updated</th>
 	</thead>
 	<tbody>
 		<% @tickets.each do |ticket| %>
@@ -14,6 +16,8 @@
 				<td><%= ticket.topic.system %></td>
 				<td><%= ticket.description %></td>
 				<td><%= ticket.status.state %></td>
+				<td><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+				<td><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 			</tr>
 		<% end %>
 </table>

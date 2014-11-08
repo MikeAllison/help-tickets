@@ -4,6 +4,11 @@ class TicketsController < ApplicationController
 	  @tickets = Ticket.all
 	end
 	
+	def my_tickets
+	  @tickets = Ticket.where('employee_id = ?', @current_employee.id)
+	  #@tickets = Ticket.my_tickets
+	end
+	
 	def unassigned
 	  @tickets = Ticket.unassigned
 	end

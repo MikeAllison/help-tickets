@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
     if employee && employee.authenticate(params[:session][:password])
       log_in employee
       flash[:success] = "You are logged in!"
-      redirect_to tickets_path
+      
+      if employee.admin?
+        redirect_to tickets_path
+      else
+        redirect_to tickets_my_tickets_path
+      end
     else
       flash.now[:danger] = 'Invalid credentials!'
       render 'new'
