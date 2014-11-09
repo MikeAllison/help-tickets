@@ -15,3 +15,4 @@ To-Do:
 * Validations
 * Indexes
 * 404s
+* Check admin functionality

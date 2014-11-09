@@ -42,7 +42,11 @@ class TicketsController < ApplicationController
 	  
 	  if @ticket.save
 	    flash[:success] = 'Ticket was successfully submitted!'
-	    redirect_to tickets_my_tickets_path
+	    if current_employee.admin?
+	    	redirect_to tickets_open_path
+	    else
+				redirect_to tickets_my_tickets_path
+	  	end
 	  else
 	    render :new
 	  end

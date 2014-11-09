@@ -4,7 +4,7 @@
 			<a class="navbar-brand" href="#">Help Desk</a>
 		</div> <!-- Brand -->
 		
-		<% if logged_in? %>
+		<% if logged_in? && admin? %>
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="dropdown">
@@ -20,6 +20,12 @@
 	            <li><%= link_to "Closed", tickets_closed_path %></li>
 	          </ul>
 	        </li>
+				</ul>
+			</div>
+		<% elsif logged_in? && !admin? %>
+			<div>
+				<ul class="nav navbar-nav">
+					<li><%= link_to "Create Ticket", new_ticket_path %></li>
 				</ul>
 			</div>
 		<% end %> <!-- Left Menu -->
