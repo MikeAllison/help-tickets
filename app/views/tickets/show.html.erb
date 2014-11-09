@@ -1,7 +1,16 @@
-<div>Ticket &#35; <%= @ticket.id %></div>
-<div>Requested For <%= @ticket.employee.last_first %></div>
-<div>Topic <%= @ticket.topic.system %></div>
-<div>Status <%= @ticket.status.state %></div>
-<div>Created <%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></div>
-<div>Updated <%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></div>
-<div>Descrption <%= @ticket.description %></div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Ticket &#35; <%= @ticket.id %></h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-unstyled">
+    	<li><strong>Requested For: </strong><%= @ticket.employee.last_first %></li>
+			<li><strong>Topic: </strong><%= @ticket.topic.system %></li>
+			<li><strong>Status: </strong><%= @ticket.status.state %></li>
+			<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
+			<li><strong>Updated: </strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
+			<li><strong>Descrption: </strong><%= @ticket.description %></li>
+  	</ul>
+  </div>
+</div>
+
