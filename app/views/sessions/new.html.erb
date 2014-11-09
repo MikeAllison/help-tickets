@@ -1,13 +1,33 @@
-<div>
-	<%= form_for(:session, url: login_path) do |f| %>
-	
-		<%= f.label :user_name %>
-		<%= f.text_field :user_name %>
-		
-		<%= f.label :password %>
-		<%= f.password_field :password %>
-		
-		<%= f.submit "Log In" %>
-		
-	<% end %>
+<div class="jumbotron">
+  <h1>Welcome to the Help Desk System!</h1>
+  <p>Please log in to continue.</p>
+  <!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
 </div>
+
+
+
+<!-- Login Modal -->
+<%= form_for(:session, url: login_path) do |f| %>
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="loginModalLabel">Log In</h4>
+	      </div>
+	      <div class="modal-body">		
+						<%= f.label :user_name %>
+						<%= f.text_field :user_name %>
+			
+						<%= f.label :password %>
+						<%= f.password_field :password %>				
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <%= f.submit "Log In", class: 'btn btn-primary' %>
+	      </div>
+	    </div>
+	  </div>
+	</div>	
+<% end %>

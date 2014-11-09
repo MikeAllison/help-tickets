@@ -1,11 +1,13 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createTicket">
-  Create a Ticket
-</button>
+<div class="jumbotron">
+  <h1>Create a New Ticket</h1>
+  <p>Please be as descriptive as possible.</p>
+  <!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createTicketModal">Create a Ticket</button>
+</div>
 
-<!-- Modal -->
+<!-- New Ticket Modal -->
 <%= simple_form_for @ticket, html: { class: "form-horizontal" } do |f| %>
-	<div class="modal fade" id="createTicket" tabindex="-1" role="dialog" aria-labelledby="createTicketLabel" aria-hidden="true">
+	<div class="modal fade" id="createTicketModal" tabindex="-1" role="dialog" aria-labelledby="createTicketLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -26,3 +28,4 @@
 	  </div>
 	</div>
 <% end %>
+
