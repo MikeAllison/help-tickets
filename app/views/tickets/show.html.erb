@@ -1,0 +1,7 @@
+<div>Ticket &#35; <%= @ticket.id %></div>
+<div>Requested For <%= @ticket.employee.last_first %></div>
+<div>Topic <%= @ticket.topic.system %></div>
+<div>Status <%= @ticket.status.state %></div>
+<div>Created <%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></div>
+<div>Updated <%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></div>
+<div>Descrption <%= @ticket.description %></div>

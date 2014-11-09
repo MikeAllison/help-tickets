@@ -3,10 +3,10 @@
 		<th>Ticket &#35;</th>
 		<th>Requested For</th>
 		<th>Topic</th>
-		<th>Description</th>
 		<th>Status</th>
 		<th>Created</th>
 		<th>Updated</th>
+		<th></th>
 	</thead>
 	<tbody>
 		<% @tickets.each do |ticket| %>
@@ -14,10 +14,10 @@
 				<td><%= ticket.id %></td>
 				<td><%= ticket.employee.last_first %></td>
 				<td><%= ticket.topic.system %></td>
-				<td><%= ticket.description %></td>
 				<td><%= ticket.status.state %></td>
 				<td><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 				<td><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+				<td><%= link_to 'Details', ticket_path(ticket) %></td>
 			</tr>
 		<% end %>
 </table>

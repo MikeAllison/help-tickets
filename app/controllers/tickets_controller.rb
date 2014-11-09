@@ -4,6 +4,10 @@ class TicketsController < ApplicationController
 	  @tickets = Ticket.all
 	end
 
+	def show
+		@ticket = Ticket.find(params[:id])
+	end
+
 	def open
 		@tickets = Ticket.open
 	end
