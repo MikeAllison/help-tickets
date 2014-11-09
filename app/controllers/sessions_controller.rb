@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash[:success] = "You are logged in!"
       
       if employee.admin?
-        redirect_to tickets_path
+        redirect_to tickets_open_path
       else
         redirect_to tickets_my_tickets_path
       end

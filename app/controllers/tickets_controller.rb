@@ -3,6 +3,10 @@ class TicketsController < ApplicationController
 	def index
 	  @tickets = Ticket.all
 	end
+
+	def open
+		@tickets = Ticket.open
+	end
 	
 	def my_tickets
 	  @tickets = Ticket.where('employee_id = ?', @current_employee.id)
