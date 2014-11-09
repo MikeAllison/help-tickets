@@ -1,8 +1,28 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createTicket">
+  Create a Ticket
+</button>
+
+<!-- Modal -->
 <%= simple_form_for @ticket, html: { class: "form-horizontal" } do |f| %>
-	
-	<%= f.association :employee, label_method: :last_first, prompt: "Choose an Employee" %>
-	<%= f.association :topic, label_method: :system, prompt: "Choose a Topic" %>
-	<%= f.input :description %>
-	
-	<%= f.submit %>
+	<div class="modal fade" id="createTicket" tabindex="-1" role="dialog" aria-labelledby="createTicketLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="createTicketLabel">Create a Ticket</h4>
+	      </div>
+	      <div class="modal-body">
+						<%= f.association :employee, label_method: :last_first, prompt: "Employee" %>
+						<%= f.association :topic, label_method: :system, prompt: "Topic" %>
+						<%= f.association :status, label_method: :state, prompt: "State" %>
+						<%= f.input :description %>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <%= f.button :submit, class: 'btn btn-primary' %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 <% end %>

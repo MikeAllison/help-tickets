@@ -38,7 +38,7 @@ class TicketsController < ApplicationController
 	  
 	  if @ticket.save
 	    flash[:success] = 'Ticket was successfully submitted!'
-	    redirect_to employee_tickets_path
+	    redirect_to tickets_my_tickets_path
 	  else
 	    render :new
 	  end
@@ -47,6 +47,6 @@ class TicketsController < ApplicationController
 	private
 	
 	 def ticket_params
-	   params.require(:ticket).permit(:employee_id, :topic_id, :description)
+	   params.require(:ticket).permit(:employee_id, :topic_id, :description, :status_id)
 	 end
 end
