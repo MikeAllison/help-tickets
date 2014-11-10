@@ -45,6 +45,7 @@ end
 end
 
 Topic.create([
+  {system: 'Misc'},
 	{system: 'Computer'},
 	{system: 'Monitor'},
 	{system: 'Mouse/Keyboard'},

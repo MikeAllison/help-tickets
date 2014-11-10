@@ -1,23 +1,25 @@
 class Ticket < ActiveRecord::Base
 	
-	before_save :set_topic, :set_status
+	before_save :set_status
 
   belongs_to :employee
   belongs_to :topic
   belongs_to :status
 
-  validates :description, presence: true
+  validates :description, :topic, presence: true
 
   scope :open, -> { joins(:status).where.not('state = ?', 'Closed') }
   scope :unassigned, -> { joins(:status).where('state = ?', 'Unassigned') }
   scope :work_in_progress, -> { joins(:status).where('state = ?', 'Work in Progress') }
   scope :on_hold, -> { joins(:status).where('state = ?', 'On Hold') }
   scope :closed, -> { joins(:status).where('state = ?', 'Closed') }
-
-  def set_topic
-  end
-
+  
+  # Sets default ticket status to 'Unassigned'
+  # Will break if statuses are renamed
   def set_status
+    if status_id.nil?
+      self.status_id = 1
+    end
   end
 
 end
