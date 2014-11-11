@@ -25,3 +25,10 @@ To-Do:
 * Ticket comments
 * Office City/State Model
 * Use Ajax to add topics and offices right from index view
+* Create and admin section to change settings?
+* Pagination
+* Search
+* Ability to sort
+* Color-coding based on ticket state
+* Auto-select current user when creating new ticket
+* Escalations
