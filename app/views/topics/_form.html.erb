@@ -1,4 +1,4 @@
-<%= simple_form_for @topic do |f| %>
-	<%= f.input :system %>
-	<%= f.button :submit, class: 'btn btn-primary' %>
+<%= form_for @topic do |f| %>
+	<%= f.text_field :system %>
+	<%= f.submit %>
 <% end %>

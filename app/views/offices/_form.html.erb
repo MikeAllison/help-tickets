@@ -1,4 +1,6 @@
-<%= simple_form_for @office do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+<%= form_for @office do |f| %>
+	<%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.submit %>
 <% end %>

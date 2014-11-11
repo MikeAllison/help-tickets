@@ -1,7 +1,15 @@
-<%= simple_form_for @ticket do |f| %>
-	<%= f.association :employee, collection: Employee.all.order(:last_name), label_method: :last_first, prompt: 'Select Employee' %>
-	<%= f.association :topic, label_method: :system, prompt: 'Select Topic' %>
-	<%= f.association :status, label_method: :state, prompt: 'Select Ticket State' %>
-	<%= f.input :description %>
-	<%= f.button :submit, class: 'btn btn-primary' %>
+<%= form_for @ticket do |f| %>
+	<%= f.label :employee_id %>
+	<%= f.collection_select(:employee_id, Employee.all.order(:last_name), :id, :last_first) %>
+	
+	<%= f.label :topic_id %>
+	<%= f.collection_select(:topic_id, Topic.all.order(:system), :id, :system) %>
+	
+	<%= f.label :status_id %>
+	<%= f.collection_select(:status_id, Status.all, :id, :state)  %>
+	
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	
+	<%= f.submit %>
 <% end %>
