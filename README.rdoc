@@ -32,3 +32,5 @@ To-Do:
 * Color-coding based on ticket state
 * Auto-select current user when creating new ticket
 * Escalations
+* Email notices
+* Responsivene design
