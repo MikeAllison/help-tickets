@@ -1,4 +1,11 @@
-<%= simple_form_for @office do |f| %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add an Office</h3>
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for @office do |f| %>
+		  <%= f.input :name %>
+		  <%= f.button :submit %>
+		<% end %>
+  </div>
+</div>

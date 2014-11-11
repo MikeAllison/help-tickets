@@ -1,4 +1,11 @@
-<%= simple_form_for @topic do |f| %>
-  <%= f.input :system %>
-  <%= f.button :submit %>
-<% end %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Add a Topic</h3>
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for @topic do |f| %>
+  		<%= f.input :system %>
+  		<%= f.button :submit %>
+		<% end %>
+  </div>
+</div>

@@ -4,7 +4,7 @@
   </div>
   <div class="panel-body">
     <%= simple_form_for @ticket, html: { class: "form-horizontal" } do |f| %>
-    	<%= f.association :employee, label_method: :last_first, prompt: 'Select Employee' %>
+    	<%= f.association :employee, collection: Employee.all.order(:last_name), label_method: :last_first, prompt: 'Select Employee' %>
 			<%= f.association :topic, label_method: :system, prompt: 'Select Topic' %>
 			<%= f.association :status, label_method: :state, prompt: 'Select Ticket State' %>
 			<%= f.input :description %>

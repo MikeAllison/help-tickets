@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
 	before_action :find_employee, only: [:edit, :update, :destroy]
 
 	def index
-		@employees = Employee.all
+		@employees = Employee.all.order(:last_name)
 	end
 
 	def new
