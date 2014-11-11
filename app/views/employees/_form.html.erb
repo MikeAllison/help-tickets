@@ -1,17 +1,10 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Add an Employee</h3>
-  </div>
-  <div class="panel-body">
-    <%= simple_form_for @employee do |f| %>
-		  <%= f.input :first_name %>
-		  <%= f.input :last_name %>
-		  <%= f.input :user_name %>
-		  <%= f.input :password %>
-		  <%= f.input :password_confirmation %>
-		  <%= f.association :office, label_method: :name, prompt: 'Select Office' %>
-		  <%= f.input :admin %>
-		  <%= f.button :submit %>
-		<% end %>
-  </div>
-</div>
+<%= simple_form_for @employee do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :user_name %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.association :office, collection: Office.all.order(:name), label_method: :name, prompt: 'Select Office' %>
+  <%= f.input :admin %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= simple_form_for @ticket do |f| %>
+	<%= f.association :employee, collection: Employee.all.order(:last_name), label_method: :last_first, prompt: 'Select Employee' %>
+	<%= f.association :topic, label_method: :system, prompt: 'Select Topic' %>
+	<%= f.association :status, label_method: :state, prompt: 'Select Ticket State' %>
+	<%= f.input :description %>
+	<%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
