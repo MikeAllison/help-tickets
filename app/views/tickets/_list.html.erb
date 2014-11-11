@@ -1,27 +1,31 @@
-<table class="table table-striped">
-	<thead>
-		<th>Ticket &#35;</th>
-		<th>Requested For</th>
-		<th>Topic</th>
-		<th>Created</th>
-		<th>Updated</th>
-		<% if params[:action] == 'index' %>
-			<th>Status</th>
-		<% end %>
-		<th></th>
-	</thead>
-	<tbody>
-		<% @tickets.each do |ticket| %>
-			<tr>
-				<td><%= ticket.id %></td>
-				<td><%= ticket.employee.last_first %></td>
-				<td><%= ticket.topic.system %></td>
-				<td><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
-				<td><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-striped">
+			<thead>
+				<th>Ticket &#35;</th>
+				<th>Requested For</th>
+				<th>Topic</th>
+				<th>Created</th>
+				<th>Updated</th>
 				<% if params[:action] == 'index' %>
-					<td><%= ticket.status.state %></td>
+					<th>Status</th>
 				<% end %>
-				<td><%= link_to 'Details', ticket_path(ticket) %></td>
-			</tr>
-		<% end %>
-</table>
+				<th></th>
+			</thead>
+			<tbody>
+				<% @tickets.each do |ticket| %>
+					<tr>
+						<td><%= ticket.id %></td>
+						<td><%= ticket.employee.last_first %></td>
+						<td><%= ticket.topic.system %></td>
+						<td><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<td><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<% if params[:action] == 'index' %>
+							<td><%= ticket.status.state %></td>
+						<% end %>
+						<td><%= link_to 'Details', ticket_path(ticket) %></td>
+					</tr>
+				<% end %>
+		</table>
+	</div>
+</div>

@@ -16,6 +16,7 @@ class Ticket < ActiveRecord::Base
   
   # Sets default ticket status to 'Unassigned'
   # Will break if statuses are renamed
+  # Check Hartl 4.4.5
   def set_status
     if status_id.nil?
       self.status_id = 1

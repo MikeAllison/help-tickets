@@ -34,3 +34,4 @@ To-Do:
 * Escalations
 * Email notices
 * Responsivene design
+* Active/inactive employees
