@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+	
 	before_action :find_employee, only: [:edit, :update, :destroy]
 
 	def index
@@ -17,7 +18,7 @@ class EmployeesController < ApplicationController
 
 		if @employee.save
 			flash[:success] = "Employee created!"
-			redirect_to @employee
+			redirect_to employees_path
 		else
 			render 'new'
 		end
@@ -26,7 +27,7 @@ class EmployeesController < ApplicationController
 	def update
 		if @employee.update_attributes(employee_params)
 			flash[:success] = "Employee profile updated!"
-			redirect_to @employee
+			redirect_to employees_path
 		else
 			render 'edit'
 		end

@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+	
 	before_action :find_ticket, only: [:show, :edit, :update, :destroy]
   
 	def index

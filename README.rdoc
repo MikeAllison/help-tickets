@@ -23,3 +23,5 @@ To-Do:
 * Method to set employee user name
 * Assigning tickets to admins
 * Ticket comments
+* Office City/State Model
+* Use Ajax to add topics and offices right from index view
