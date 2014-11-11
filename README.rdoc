@@ -13,6 +13,13 @@ Ideas:
 To-Do:
 
 * Validations
+* Custom validation error messages
 * Indexes
 * 404s
 * Check admin functionality
+* Allow employees to update their passwords
+* Allow admins to update employee info without requiring a password change
+* Employee show?
+* Method to set employee user name
+* Assigning tickets to admins
+* Ticket comments

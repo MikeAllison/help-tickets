@@ -1,11 +1,11 @@
 class TicketsController < ApplicationController
+	before_action :find_ticket, only: [:show, :edit, :update, :destroy]
   
 	def index
 	  @tickets = Ticket.all
 	end
 
 	def show
-		@ticket = Ticket.find(params[:id])
 	end
 
 	def open
@@ -41,7 +41,7 @@ class TicketsController < ApplicationController
 	  @ticket = Ticket.new(ticket_params)
 	  
 	  if @ticket.save
-	    flash[:success] = 'Ticket was successfully submitted!'
+	    flash[:success] = "Ticket was successfully submitted!"
 	    if current_employee.admin?
 	    	redirect_to tickets_open_path
 	    else
@@ -53,8 +53,12 @@ class TicketsController < ApplicationController
 	end
 	
 	private
-	
-	 def ticket_params
-	   params.require(:ticket).permit(:employee_id, :topic_id, :description, :status_id)
-	 end
+		
+		def find_ticket
+			@ticket = Ticket.find(params[:id])
+		end
+
+		def ticket_params
+	  	params.require(:ticket).permit(:employee_id, :topic_id, :description, :status_id)
+	 	end
 end

@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
         redirect_to tickets_my_tickets_path
       end
     else
-      flash.now[:danger] = 'Invalid credentials!'
+      flash.now[:danger] = "Invalid credentials!"
       render 'new'
     end
   end

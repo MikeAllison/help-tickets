@@ -1,0 +1,10 @@
+<%= simple_form_for @employee do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :user_name %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.association :office, label_method: :name, prompt: 'Select Office' %>
+  <%= f.input :admin %>
+  <%= f.button :submit %>
+<% end %>
