@@ -1,4 +1,6 @@
 <%= form_for @topic do |f| %>
+	<%= f.label :system %>
 	<%= f.text_field :system %>
-	<%= f.submit %>
+	
+	<%= f.submit "Add Topic" %>
 <% end %>
