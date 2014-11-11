@@ -41,3 +41,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'simple_form', '~> 3.0.2'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'faker', '~> 1.4.3'
+gem 'jquery-turbolinks', '~> 0.2.1'
