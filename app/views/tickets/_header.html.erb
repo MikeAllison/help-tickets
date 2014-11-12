@@ -1,16 +1,8 @@
-<%
-	status = params[:action].split('_')
-	status.map { |item| item.capitalize! }
-	status = status.join(' ')
-	
-	status = 'All' if status == 'Index'
-%>
-
 <div class="row">
 	<div class="col-xs-12">
 		<div class="panel panel-default">
 		  <div class="panel-heading">
-		    <h3><%= status %> Tickets (<%= @tickets.size %>)</h3>
+		    <h3><%= action_name %> Tickets (<%= @tickets.size %>)</h3>
 		  </div>
 		  <div class="panel-body">
 		    <%= render 'filter' %>
