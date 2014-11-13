@@ -2,28 +2,28 @@
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
-				<th>Ticket &#35;</th>
-				<th>Requested For</th>
-				<th>Topic</th>
-				<th>Created</th>
-				<th>Updated</th>
+				<th class="col-xs-1">Ticket &#35;</th>
+				<th class="col-xs-2">Requested For</th>
+				<th class="col-xs-2">Topic</th>
+				<th class="col-xs-2 hidden-xs">Created</th>
+				<th class="col-xs-2 hidden-xs">Updated</th>
 				<% if params[:action] == 'index' %>
-					<th>Status</th>
+					<th class="col-xs-2">Status</th>
 				<% end %>
-				<th></th>
+				<th class="col-xs-1"></th>
 			</thead>
 			<tbody>
 				<% @tickets.each do |ticket| %>
 					<tr>
-						<td><%= ticket.id %></td>
-						<td><%= ticket.employee.last_first %></td>
-						<td><%= ticket.topic.system %></td>
-						<td><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
-						<td><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<td class="col-xs-1"><%= ticket.id %></td>
+						<td class="col-xs-2"><%= ticket.employee.last_first %></td>
+						<td class="col-xs-2"><%= ticket.topic.system %></td>
+						<td class="col-xs-2 hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<td class="col-xs-2 hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 						<% if params[:action] == 'index' %>
-							<td><%= ticket.status.state %></td>
+							<td class="col-xs-2"><%= ticket.status.state %></td>
 						<% end %>
-						<td><%= link_to 'Details', ticket_path(ticket) %></td>
+						<td class="col-xs-1"><%= link_to 'Details', ticket_path(ticket) %></td>
 					</tr>
 				<% end %>
 		</table>
