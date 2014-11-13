@@ -42,3 +42,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'faker', '~> 1.4.3'
 gem 'jquery-turbolinks', '~> 0.2.1'
+gem 'will_paginate', '~> 3.0'
