@@ -3,6 +3,7 @@ class Employee < ActiveRecord::Base
   before_save { self.user_name = user_name.downcase }
   
   has_many :tickets
+  has_many :comments
   belongs_to :office
   
   validates :first_name, :last_name, :office_id, presence: true

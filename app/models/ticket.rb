@@ -2,6 +2,7 @@ class Ticket < ActiveRecord::Base
 	
 	before_save :set_status
 
+  has_many :comments
   belongs_to :employee
   belongs_to :topic
   belongs_to :status
