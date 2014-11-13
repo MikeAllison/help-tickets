@@ -46,10 +46,11 @@ class TicketsController < ApplicationController
 	    if current_employee.admin?
 	    	redirect_to tickets_open_path
 	    else
-				redirect_to tickets_my_tickets_path
+        redirect_to tickets_my_ticket_path
 	  	end
 	  else
-	    render :new
+	    flash.now[:danger] = "There was a problem submitting the ticket."
+	    render 'new'
 	  end
 	end
 	

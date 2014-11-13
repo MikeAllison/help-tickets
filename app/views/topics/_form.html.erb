@@ -1,6 +1,7 @@
-<%= form_for @topic, html: { role: 'form' } do |f| %>
-	<%= f.label :system %>
-	<%= f.text_field :system %>
-	
-	<%= f.submit "Add Topic" %>
+<%= form_for @topic, html: { role: "form" } do |f| %>
+	<div class="form-group">
+		<%= f.label :system, "System Name" %>
+		<%= f.text_field :system, class: "form-control", placeholder: "Enter System Name" %>
+	</div>	
+	<%= f.submit "Add Topic", class: "btn btn-primary" %>
 <% end %>

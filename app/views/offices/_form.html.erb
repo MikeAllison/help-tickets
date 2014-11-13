@@ -1,6 +1,7 @@
-<%= form_for @office, html: { role: 'form' } do |f| %>
-	<%= f.label :name %>
-  <%= f.text_field :name %>
-  
-  <%= f.submit "Add Office" %>
+<%= form_for @office, html: { role: "form" } do |f| %>
+	<div class="form-group">
+		<%= f.label :name, "Office Name" %>
+  	<%= f.text_field :name, class: "form-control", placeholder: "Enter Office Name" %>
+	</div>  
+  <%= f.submit "Add Office", class: "btn btn-primary" %>
 <% end %>

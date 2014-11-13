@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 	
-	before_action :find_employee, only: [:edit, :update, :destroy]
+	before_action :find_employee, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@employees = Employee.all.order(:last_name)
@@ -20,6 +20,7 @@ class EmployeesController < ApplicationController
 			flash[:success] = "Employee created!"
 			redirect_to employees_path
 		else
+		  flash.now[:danger] = "There was a problem adding the employee."
 			render 'new'
 		end
 	end
@@ -29,6 +30,7 @@ class EmployeesController < ApplicationController
 			flash[:success] = "Employee profile updated!"
 			redirect_to employees_path
 		else
+		  flash.now[:danger] = "There was a problem updating the employee."
 			render 'edit'
 		end
 	end

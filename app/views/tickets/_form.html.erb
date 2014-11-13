@@ -1,15 +1,19 @@
-<%= form_for @ticket, html: { role: 'form' } do |f| %>
-	<%= f.label :employee_id %>
-	<%= f.collection_select(:employee_id, Employee.all.order(:last_name), :id, :last_first) %>
-	
-	<%= f.label :topic_id %>
-	<%= f.collection_select(:topic_id, Topic.all.order(:system), :id, :system) %>
-	
-	<%= f.label :status_id %>
-	<%= f.collection_select(:status_id, Status.all, :id, :state)  %>
-	
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	
-	<%= f.submit "Submit Ticket" %>
+<%= form_for @ticket, html: { role: "form" } do |f| %>
+	<div class="form-group">
+		<%= f.label :employee_id, "Select Employee" %>
+		<%= f.collection_select(:employee_id, Employee.all.order(:last_name), :id, :last_first, {}, { class: "form-control" }) %>
+	</div>
+	<div class="form-group">
+		<%= f.label :topic_id, "Select Topic" %>
+		<%= f.collection_select(:topic_id, Topic.all.order(:system), :id, :system, {}, { class: "form-control" }) %>
+	</div>
+	<div class="form-group">	
+		<%= f.label :status_id, "Select Status" %>
+		<%= f.collection_select(:status_id, Status.all, :id, :state, {}, { class: "form-control" })  %>
+	</div>
+	<div class="form-group">	
+		<%= f.label :description, "Describe the Problem" %>
+		<%= f.text_area :description, class: "form-control" %>
+	</div>
+	<%= f.submit "Submit Ticket", class: "btn btn-primary" %>
 <% end %>

@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
 	
-	before_action :find_office, only: [:edit, :update, :destroy]
+	before_action :find_office, only: [:show, :edit, :update, :destroy]
 	
 	def index
 		@offices = Office.all
@@ -20,6 +20,7 @@ class OfficesController < ApplicationController
 			flash[:success] = "Office created!"
 			redirect_to offices_path
 		else
+      flash.now[:danger] = "There was a problem adding the office."
 			render 'new'
 		end
 	end
@@ -29,6 +30,7 @@ class OfficesController < ApplicationController
 			flash[:success] = "Office information updated!"
 			redirect_to offices_path
 		else
+      flash.now[:danger] = "There was a problem updating the office."
 			render 'edit'
 		end
 	end

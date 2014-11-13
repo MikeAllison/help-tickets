@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 	
-	before_action :find_topic, only: [:edit, :update, :destroy]
+	before_action :find_topic, only: [:show, :edit, :update, :destroy]
 	
 	def index
 		@topics = Topic.all
@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
 			flash[:success] = "Topic created!"
 			redirect_to topics_path
 		else
+      flash.now[:danger] = "There was a problem adding the topic."
 			render 'new'
 		end
 	end
@@ -29,6 +30,7 @@ class TopicsController < ApplicationController
 			flash[:success] = "Topic updated!"
 			redirect_to topics_path
 		else
+      flash.now[:danger] = "There was a problem updating the topic."
 			render 'edit'
 		end
 	end
