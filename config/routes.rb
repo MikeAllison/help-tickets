@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   resources :topics
   resources :offices
   resources :employees
-  resources :tickets
+  resources :tickets do
+    resources :comments
+  end
 
   # Example resource route with options:
   #   resources :products do

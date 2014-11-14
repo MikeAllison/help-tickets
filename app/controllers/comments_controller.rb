@@ -1,46 +1,23 @@
 class CommentsController < ApplicationController
     
-  before_action :find_comment, only: [:edit, :update, :destroy]
+  before_action :find_ticket
   
-  def index
-    @comments = Comment.all
-  end
-
-  def new
-    @comment = Comment.new
-  end
-
-  def edit
-  end
-
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @ticket.comments.new(comment_params)
 
     if @comment.save
       flash[:success] = "Comment created!"
-      redirect_to comments_path
+      redirect_to @ticket
     else
+      flash.now[:danger] = "There was a problem adding the comment."
       render 'new'
     end
   end
 
-  def update
-    if @comment.update_attributes(comment_params)
-      flash[:success] = "Comment updated!"
-      redirect_to comments_path
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @comment.destroy
-  end
-
   private
 
-    def find_comment
-      @comment = Comment.find(params[:id])
+    def find_ticket
+      @ticket = Ticket.find(params[:ticket_id])
     end
 
     def comment_params

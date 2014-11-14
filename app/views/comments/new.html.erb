@@ -1,0 +1,7 @@
+<%= form_for ([@ticket, @ticket.comments.new]), html: { role: "form" } do |f| %>
+	<div class="form-group">
+  	<%= f.text_field :body, class: "form-control", placeholder: "Enter Comment" %>
+	</div>
+	<%= f.hidden_field :employee_id %>
+  <%= f.submit "Add Comment", class: "btn btn-primary" %>
+<% end %>

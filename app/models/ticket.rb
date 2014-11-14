@@ -2,7 +2,7 @@ class Ticket < ActiveRecord::Base
 	
 	before_save :set_status
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :employee
   belongs_to :topic
   belongs_to :status
@@ -25,6 +25,6 @@ class Ticket < ActiveRecord::Base
   end
   
   # Set will_paginate
-  self.per_page = 10
+  self.per_page = 20
 
 end

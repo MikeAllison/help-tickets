@@ -4,5 +4,5 @@ class Comment < ActiveRecord::Base
   belongs_to :employee
   
   validates :body, presence: true
-  
+
 end

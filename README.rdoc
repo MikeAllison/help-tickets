@@ -33,5 +33,7 @@ To-Do:
 * Auto-select current user when creating new ticket
 * Escalations
 * Email notices
-* Responsivene design
+* Responsive design
 * Active/inactive employees
+* Toggle between pagination and listing all tickets with a filter option
+* Employee search for new tickets
