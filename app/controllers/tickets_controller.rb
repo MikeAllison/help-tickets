@@ -3,35 +3,35 @@ class TicketsController < ApplicationController
 	before_action :find_ticket, only: [:show, :edit, :update, :destroy]
   
 	def index
-	  @tickets = Ticket.all.order(:created_at)
+	  @tickets = Ticket.all.order(:created_at).paginate(:page => params[:page])
 	end
 
 	def show
 	end
 
 	def open
-		@tickets = Ticket.open.order(:created_at)
+		@tickets = Ticket.open.order(:created_at).paginate(:page => params[:page])
 	end
 	
 	def my_tickets
-	  @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(:created_at)
+	  @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(:created_at).paginate(:page => params[:page])
 	  #@tickets = Ticket.my_tickets
 	end
 	
 	def unassigned
-	  @tickets = Ticket.unassigned.order(:created_at)
+	  @tickets = Ticket.unassigned.order(:created_at).paginate(:page => params[:page])
 	end
 	
 	def work_in_progress
-	  @tickets = Ticket.work_in_progress.order(:created_at)
+	  @tickets = Ticket.work_in_progress.order(:created_at).paginate(:page => params[:page])
 	end
 	
 	def on_hold
-	  @tickets = Ticket.on_hold.order(:created_at)
+	  @tickets = Ticket.on_hold.order(:created_at).paginate(:page => params[:page])
 	end
 	
 	def closed
-	  @tickets = Ticket.closed.order(:created_at)
+	  @tickets = Ticket.closed.order(:created_at).paginate(:page => params[:page])
 	end
 	
 	def new

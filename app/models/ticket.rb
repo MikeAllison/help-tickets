@@ -23,5 +23,8 @@ class Ticket < ActiveRecord::Base
       self.status_id = 1
     end
   end
+  
+  # Set will_paginate
+  self.per_page = 10
 
 end
