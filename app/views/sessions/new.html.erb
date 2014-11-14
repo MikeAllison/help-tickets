@@ -14,15 +14,15 @@
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	        <h4 class="modal-title" id="loginModalLabel">Log In</h4>
 	      </div>
-	      <div class="modal-body text-center">
-	      	<p>
+	      <div class="modal-body">
+	      	<div class="form-group">
 						<%= f.label :user_name, "User Name" %>
-						<%= f.text_field :user_name %>
-					</p>
-					<p>
+						<%= f.text_field :user_name, class: "form-control", placeholder: "Enter User Name" %>
+					</div>
+					<div class="form-group">
 						<%= f.label :password %>
-						<%= f.password_field :password %>
-					</p>				
+						<%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+					</div>				
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
