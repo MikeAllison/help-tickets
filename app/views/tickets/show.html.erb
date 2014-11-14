@@ -15,5 +15,32 @@
 		  	</ul>
 		  </div>
 		</div>
+	</div>		
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Comments</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<% @ticket.comments.each do |comment| %>
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h4>
+			    	<%= comment.created_at.strftime('%m/%d/%Y %I:%M %p') %>
+			    	&nbsp;&#45;&nbsp;
+			    	<%= comment.employee.last_first %>
+			    </h4>
+			  </div>
+			  <div class="panel-body">
+			    <ul class="list-unstyled">
+			    	<li><%= comment.body %></li>
+			  	</ul>
+			  </div>
+			</div>
+		<% end %>		
 	</div>
 </div>

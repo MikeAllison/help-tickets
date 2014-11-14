@@ -79,6 +79,19 @@ Office.create([
                 updated_at: time)
 end
 
+250.times do
+  body = Faker::Hacker.say_something_smart
+  employee_id = rand(1..10)
+  ticket_id = rand(1..100)
+  time = Faker::Time.between(7.days.ago, Time.now)
+  
+  Comment.create(body: body,
+                 employee_id: employee_id,
+                 ticket_id: ticket_id,
+                 created_at: time,
+                 updated_at: time)
+end
+
 Status.create([
   {state: 'Unassigned'},
   {state: 'Work in Progress'},
