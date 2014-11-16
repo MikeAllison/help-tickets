@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = @ticket.comments.new(comment_params)
+    @comment.employee_id = current_employee.id
 
     if @comment.save
       flash[:success] = "Comment created!"
