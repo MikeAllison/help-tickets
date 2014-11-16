@@ -15,16 +15,18 @@ class Ticket < ActiveRecord::Base
   scope :on_hold, -> { joins(:status).where('state = ?', 'On Hold') }
   scope :closed, -> { joins(:status).where('state = ?', 'Closed') }
   
-  # Sets default ticket status to 'Unassigned'
-  # Will break if statuses are renamed
-  # Check Hartl 4.4.5
-  def set_status
-    if status_id.nil?
-      self.status_id = 1
-    end
-  end
+  private
   
-  # Set will_paginate
-  self.per_page = 20
+    # Sets default ticket status to 'Unassigned'
+    # Will break if statuses are renamed
+    # Check Hartl 4.4.5
+    def set_status
+      if status_id.nil?
+        self.status_id = 1
+      end
+    end
+    
+    # Set will_paginate
+    self.per_page = 20
 
 end
