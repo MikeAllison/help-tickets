@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
 	end
 
 	def open
-		@tickets = Ticket.open.order(created_at: :desc).paginate(:page => params[:page])
+		@tickets = Ticket.open.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def my_tickets
@@ -19,19 +19,19 @@ class TicketsController < ApplicationController
 	end
 	
 	def unassigned
-	  @tickets = Ticket.unassigned.order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.unassigned.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def work_in_progress
-	  @tickets = Ticket.work_in_progress.order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.work_in_progress.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def on_hold
-	  @tickets = Ticket.on_hold.order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.on_hold.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def closed
-	  @tickets = Ticket.closed.order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.closed.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def new
