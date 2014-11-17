@@ -2,13 +2,13 @@
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-xs-1"><%= sortable "id", "ID" %></th>
-				<th class="col-xs-2">Requested For</th>
-				<th class="col-xs-2">Topic</th>
-				<th class="col-xs-2 hidden-xs"><%= sortable "created_at", "Created" %></th>
-				<th class="col-xs-2 hidden-xs"><%= sortable "updated_at", "Updated" %></th>
+				<th class="col-xs-1"><%= sort_column "ID", "id" %></th>
+				<th class="col-xs-2"><%= sort_column "Requested For", "employees.last_name", "employee" %></th>
+				<th class="col-xs-2"><%= sort_column "Topic", "topics.system", "topic" %></th>
+				<th class="col-xs-2 hidden-xs"><%= sort_column "Created", "created_at" %></th>
+				<th class="col-xs-2 hidden-xs"><%= sort_column "Updated", "updated_at" %></th>
 				<% if params[:action] == 'index' %>
-					<th class="col-xs-2">Status</th>
+					<th class="col-xs-2"><%= sort_column "Status", "statuses.state", "status" %></th>
 				<% end %>
 				<th class="col-xs-1"></th>
 			</thead>
