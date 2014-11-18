@@ -3,11 +3,12 @@ class OfficesController < ApplicationController
 	before_action :find_office, only: [:show, :edit, :update, :destroy]
 	
 	def index
-		@offices = Office.all
+		@offices = Office.order(:name).paginate(:page => params[:page])
+		@office = Office.new
 	end
 
 	def new
-		@office = Office.new
+	  redirect_to offices_path
 	end
 
 	def edit

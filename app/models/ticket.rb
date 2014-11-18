@@ -26,7 +26,7 @@ class Ticket < ActiveRecord::Base
       end
     end
     
-    # Set will_paginate
+    # # Set pagination for will_paginate
     self.per_page = 20
 
 end

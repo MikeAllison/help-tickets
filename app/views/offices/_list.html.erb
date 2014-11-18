@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-striped">
+			<thead>
+				<th class="col-xs-3">Office Name</th>
+				<th class="col-xs-3">City</th>
+				<th class="col-xs-3">State</th>
+				<th class="col-xs-3 hidden-xs">Employees</th>
+			</thead>
+			<tbody>
+				<% @offices.each do |office| %>
+					<tr>
+						<td class="col-xs-3"><%= office.name %></td>
+						<td class="col-xs-3">CityName</td>
+						<td class="col-xs-3">StateAbbr</td>
+						<td class="col-xs-3 hidden-xs"><%= office.employees.count %></td>
+					</tr>
+				<% end %>
+		</table>
+	</div>
+</div>
