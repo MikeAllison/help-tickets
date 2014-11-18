@@ -17,7 +17,7 @@
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>
 						<td class="col-xs-1"><%= link_to "Edit", edit_topic_path(topic) %></td>
-						<td class="col-xs-1"><%= link_to "Delete" %></td>
+						<td class="col-xs-1"><%= link_to "Delete", topic, method: :delete, data: { confirm: 'Delete topic?' } %></td>
 					</tr>
 				<% end %>
 		</table>

@@ -6,6 +6,6 @@
 	<% if params[:action] == "edit" %>
 		<%= f.submit "Update Topic", class: "btn btn-primary" %>
 	<% else %>
-		<%= f.submit "Add Topic", class: "btn btn-primary" %>
+		<%= f.submit "Add Topic", class: "btn btn-primary", remote: true %>
 	<% end %>	
 <% end %>
