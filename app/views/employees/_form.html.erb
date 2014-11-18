@@ -1,31 +1,41 @@
 <%= form_for @employee, html: { role: "form" } do |f| %>
-	<div class="form-group">
-		<%= f.label :first_name, "First Name" %>
-	  <%= f.text_field :first_name, class: "form-control", placeholder: "Enter First Name" %>
+	<div class="row">
+		<div class="form-group col-xs-4">
+			<%= f.label :first_name, "First Name" %>
+		  <%= f.text_field :first_name, class: "form-control", placeholder: "Enter First Name" %>
+		</div>
+		<div class="form-group col-xs-4">
+		  <%= f.label :last_name, "Last Name" %>
+		  <%= f.text_field :last_name, class: "form-control", placeholder: "Enter Last Name" %>
+		</div>
+		<div class="form-group col-xs-4">	  
+		  <%= f.label :user_name, "User Name" %>
+		  <%= f.text_field :user_name, class: "form-control", placeholder: "Enter User Name" %>
+		</div>
 	</div>
-	<div class="form-group">
-	  <%= f.label :last_name, "Last Name" %>
-	  <%= f.text_field :last_name, class: "form-control", placeholder: "Enter Last Name" %>
+	<div class="row">
+		<div class="form-group col-xs-4"> 
+		  <%= f.label :password %>
+		  <%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+		</div>
+		<div class="form-group col-xs-4"> 
+		  <%= f.label :password_confirmation, "Password Confirmation" %>
+		  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Again" %>
+		</div>
+		<div class="form-group col-xs-4">  
+		  <%= f.label :office_id %>
+		  <%= f.collection_select(:office_id, Office.all.order(:name), :id, :name, {}, { class: "form-control" }) %>
+		</div>
 	</div>
-	<div class="form-group">	  
-	  <%= f.label :user_name, "User Name" %>
-	  <%= f.text_field :user_name, class: "form-control", placeholder: "Enter User Name" %>
+	<div class="row">
+		<div class="form-group col-xs-12">  
+		  <%= f.label :admin, "Administrative User?" %>
+		  <%= f.check_box :admin %>
+	  </div>
 	</div>
-	<div class="form-group"> 
-	  <%= f.label :password %>
-	  <%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
+	<div class="row">
+		<div class="col-xs-12">
+	  	<%= f.submit "Add Employee", class: "btn btn-primary" %>
+	  </div>
 	</div>
-	<div class="form-group"> 
-	  <%= f.label :password_confirmation, "Password Confirmation" %>
-	  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Again" %>
-	</div>
-	<div class="form-group">  
-	  <%= f.label :office_id %>
-	  <%= f.collection_select(:office_id, Office.all.order(:name), :id, :name, {}, { class: "form-control" }) %>
-	</div>
-	<div class="form-group">  
-	  <%= f.label :admin %>
-	  <%= f.check_box :admin %>
-  </div>
-  <%= f.submit "Add Employee", class: "btn btn-primary" %>
 <% end %>

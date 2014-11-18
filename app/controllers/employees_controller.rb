@@ -3,11 +3,12 @@ class EmployeesController < ApplicationController
 	before_action :find_employee, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@employees = Employee.all.order(:last_name)
+		@employees = Employee.all.order(:last_name).paginate(:page => params[:page])
+		@employee = Employee.new
 	end
 
 	def new
-		@employee = Employee.new
+		redirect_to employees_path
 	end
 
 	def edit

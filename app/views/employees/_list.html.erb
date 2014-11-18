@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-striped">
+			<thead>
+				<th class="col-xs-3">Name</th>
+				<th class="col-xs-3">User Name</th>
+				<th class="col-xs-3">Office</th>
+				<th class="col-xs-3 hidden-xs">Total Tickets</th>
+			</thead>
+			<tbody>
+				<% @employees.each do |employee| %>
+					<tr>
+						<td class="col-xs-3"><%= employee.last_first %></td>
+						<td class="col-xs-3"><%= employee.user_name %></td>
+						<td class="col-xs-3"><%= employee.office.name %></td>
+						<td class="col-xs-3 hidden-xs"><%= employee.tickets.count %></td>
+					</tr>
+				<% end %>
+		</table>
+	</div>
+</div>
