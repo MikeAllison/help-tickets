@@ -37,3 +37,4 @@ To-Do:
 * Active/inactive employees
 * Toggle between pagination and listing all tickets with a filter option
 * Employee search for new tickets
+* Check responsiveness for forms
