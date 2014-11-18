@@ -3,5 +3,10 @@
 		<%= f.label :name, "Office Name" %>
   	<%= f.text_field :name, class: "form-control", placeholder: "Enter Office Name" %>
 	</div>  
-  <%= f.submit "Add Office", class: "btn btn-primary" %>
+  <% if params[:action] == "edit" %>
+		<%= f.submit "Update Office", class: "btn btn-primary" %>
+		<%= link_to "Cancel", new_office_path, class: "btn btn-default" %>
+	<% else %>
+		<%= f.submit "Add Office", class: "btn btn-primary" %>
+	<% end %>
 <% end %>

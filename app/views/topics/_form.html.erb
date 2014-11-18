@@ -5,7 +5,8 @@
 	</div>
 	<% if params[:action] == "edit" %>
 		<%= f.submit "Update Topic", class: "btn btn-primary" %>
+		<%= link_to "Cancel", new_topic_path, class: "btn btn-default" %>
 	<% else %>
-		<%= f.submit "Add Topic", class: "btn btn-primary", remote: true %>
-	<% end %>	
+		<%= f.submit "Add Topic", class: "btn btn-primary" %>
+	<% end %>
 <% end %>

@@ -2,18 +2,22 @@
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-xs-3">Office Name</th>
-				<th class="col-xs-3">City</th>
-				<th class="col-xs-3">State</th>
-				<th class="col-xs-3 hidden-xs">Employees</th>
+				<th class="col-xs-4">Office Name</th>
+				<th class="col-xs-2">City</th>
+				<th class="col-xs-2">State</th>
+				<th class="col-xs-2 hidden-xs">Employees</th>
+				<th class="col-xs-1"></th>
+				<th class="col-xs-1"></th>
 			</thead>
 			<tbody>
 				<% @offices.each do |office| %>
 					<tr>
-						<td class="col-xs-3"><%= office.name %></td>
-						<td class="col-xs-3">CityName</td>
-						<td class="col-xs-3">StateAbbr</td>
-						<td class="col-xs-3 hidden-xs"><%= office.employees.count %></td>
+						<td class="col-xs-4"><%= office.name %></td>
+						<td class="col-xs-2">CityName</td>
+						<td class="col-xs-2">StateAbbr</td>
+						<td class="col-xs-2 hidden-xs"><%= office.employees.count %></td>
+						<td class="col-xs-1"><%= link_to "Edit", edit_office_path(office) %></td>
+						<td class="col-xs-1"><%= link_to "Delete", office, method: :delete %></td>
 					</tr>
 				<% end %>
 		</table>

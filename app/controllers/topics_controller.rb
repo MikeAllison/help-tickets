@@ -4,11 +4,11 @@ class TopicsController < ApplicationController
 	
 	def index
 		@topics = Topic.all.order(:system).paginate(:page => params[:page])
-		@topic = Topic.new
 	end
 
 	def new
-		redirect_to topics_path
+		@topic = Topic.new
+		@topics = Topic.all.order(:system).paginate(:page => params[:page])
 	end
 
 	def edit
@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
 
 		if @topic.save
 			flash[:success] = "Topic created!"
-			redirect_to topics_path
+			redirect_to new_topic_path
 		else
       flash.now[:danger] = "There was a problem adding the topic."
 			render 'new'
@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
 	def update
 		if @topic.update_attributes(topic_params)
 			flash[:success] = "Topic updated!"
-			redirect_to topics_path
+			redirect_to new_topic_path
 		else
       flash.now[:danger] = "There was a problem updating the topic."
 			render 'edit'
@@ -38,7 +38,8 @@ class TopicsController < ApplicationController
 
 	def destroy
 		@topic.destroy
-		redirect_to topics_path
+		flash[:success] = "Topic deleted!"
+		redirect_to new_topic_path
 	end
 
 	private

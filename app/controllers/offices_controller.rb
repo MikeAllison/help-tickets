@@ -4,11 +4,11 @@ class OfficesController < ApplicationController
 	
 	def index
 		@offices = Office.order(:name).paginate(:page => params[:page])
-		@office = Office.new
 	end
 
 	def new
-	  redirect_to offices_path
+	  @office = Office.new
+	  @offices = Office.order(:name).paginate(:page => params[:page])
 	end
 
 	def edit
@@ -19,7 +19,7 @@ class OfficesController < ApplicationController
 
 		if @office.save
 			flash[:success] = "Office created!"
-			redirect_to offices_path
+			redirect_to new_office_path
 		else
       flash.now[:danger] = "There was a problem adding the office."
 			render 'new'
@@ -29,7 +29,7 @@ class OfficesController < ApplicationController
 	def update
 		if @office.update_attributes(office_params)
 			flash[:success] = "Office information updated!"
-			redirect_to offices_path
+			redirect_to new_office_path
 		else
       flash.now[:danger] = "There was a problem updating the office."
 			render 'edit'
@@ -38,6 +38,8 @@ class OfficesController < ApplicationController
 
 	def destroy
 		@office.destroy
+		flash[:success] = "Office deleted!"
+		redirect_to new_office_path
 	end
 
 	private

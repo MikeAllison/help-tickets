@@ -4,11 +4,11 @@ class EmployeesController < ApplicationController
 
 	def index
 		@employees = Employee.all.order(:last_name).paginate(:page => params[:page])
-		@employee = Employee.new
 	end
 
 	def new
-		redirect_to employees_path
+		@employee = Employee.new
+		@employees = Employee.all.order(:last_name).paginate(:page => params[:page])
 	end
 
 	def edit
@@ -19,7 +19,7 @@ class EmployeesController < ApplicationController
 
 		if @employee.save
 			flash[:success] = "Employee created!"
-			redirect_to employees_path
+			redirect_to new_employee_path
 		else
 		  flash.now[:danger] = "There was a problem adding the employee."
 			render 'new'
@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
 	def update
 		if @employee.update_attributes(employee_params)
 			flash[:success] = "Employee profile updated!"
-			redirect_to employees_path
+			redirect_to new_employee_path
 		else
 		  flash.now[:danger] = "There was a problem updating the employee."
 			render 'edit'
@@ -38,6 +38,8 @@ class EmployeesController < ApplicationController
 
 	def destroy
 		@employee.destroy
+		flash[:success] = "Employee deleted!"
+		redirect_to new_employee_path
 	end
 
 	private

@@ -35,7 +35,12 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12">
-	  	<%= f.submit "Add Employee", class: "btn btn-primary" %>
+	  	<% if params[:action] == "edit" %>
+				<%= f.submit "Update Employee", class: "btn btn-primary" %>
+				<%= link_to "Cancel", new_employee_path, class: "btn btn-default" %>
+			<% else %>
+				<%= f.submit "Add Employee", class: "btn btn-primary" %>
+			<% end %>
 	  </div>
 	</div>
 <% end %>
