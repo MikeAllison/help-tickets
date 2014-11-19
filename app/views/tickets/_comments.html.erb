@@ -17,20 +17,24 @@
 <div class="row">
 	<div class="col-xs-12">
 		<% @ticket.comments.order('created_at DESC').each do |comment| %>
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h4>
-			    	<%= comment.created_at.strftime('%m/%d/%Y %I:%M %p') %>
-			    	&nbsp;&#45;&nbsp;
-			    	<%= comment.employee.last_first %>
-			    </h4>
-			  </div>
-			  <div class="panel-body">
-			    <ul class="list-unstyled">
-			    	<li><%= comment.body %></li>
-			  	</ul>
-			  </div>
-			</div>
+			<% if comment.closing_comment == true %>
+				<div class="panel panel-success">
+			<% else %>
+				<div class="panel panel-default">
+			<% end %>
+				  <div class="panel-heading">
+				    <h4>
+				    	<%= comment.created_at.strftime('%m/%d/%Y %I:%M %p') %>
+				    	&nbsp;&#45;&nbsp;
+				    	<%= comment.employee.last_first %>
+				    </h4>
+				  </div>
+				  <div class="panel-body">
+				    <ul class="list-unstyled">
+				    	<li><%= comment.body %></li>
+				  	</ul>
+				  </div>
+				</div>
 		<% end %>		
 	</div>
 </div>
