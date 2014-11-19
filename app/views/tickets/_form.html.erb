@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="form-group col-xs-4">
 		<%= f.label :employee_id, "Select Employee" %>
-		<%= f.collection_select(:employee_id, Employee.all.order(:last_name), :id, :last_first, {}, { class: "form-control" }) %>
+		<%= f.collection_select(:employee_id, Employee.all.order(:last_name), :id, :last_first, { selected: @current_employee.id }, { class: "form-control" }) %>
 		</div>
 		<div class="form-group col-xs-4">
 			<%= f.label :topic_id, "Select Topic" %>
