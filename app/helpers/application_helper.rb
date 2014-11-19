@@ -11,12 +11,19 @@ module ApplicationHelper
     action_name = action_name.join(' ')
     controller_name = controller_name.join(' ')
     
-    if action_name == 'Index'
+    case action_name
+    when 'Index'
       action_name = 'All'
-    elsif action_name == 'New' || 'Edit'
+    when 'My Tickets'
+      action_name = 'My'
+    when 'New'
+      action_name = 'Add'
       controller_name.chop!
+      if controller_name == 'Ticket'
+        action_name = 'Create'
+      end
     end
-    # Need to add count to end of header
+        
     action_name + ' ' + controller_name
   end
   
