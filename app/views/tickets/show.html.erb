@@ -11,8 +11,12 @@
 					<li><strong>Status: </strong><%= @ticket.status.state %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>Updated: </strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-					<li><strong>Descrption: </strong><%= @ticket.description %></li>
+					<li><strong>Description: </strong><%= @ticket.description %></li>
 		  	</ul>
+		  	<div>
+		  		<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
+					<%= link_to "Close Ticket", ticket_path, class: "btn btn-success" %>
+		  	</div>
 		  </div>
 		</div>
 	</div>		

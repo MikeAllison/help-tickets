@@ -54,6 +54,16 @@ class TicketsController < ApplicationController
 	  end
 	end
 	
+	def update
+	  if @ticket.update_attributes(ticket_params)
+	    flash[:success] = "Ticket was successfully updated!"
+	    redirect_to ticket_path
+	  else
+	    flash.now[:danger] = "There was a problem updating the ticket."
+	    render 'edit'
+	  end
+	end
+	
 	private
     
     # Converts join table to symbol for use in .joins method	
