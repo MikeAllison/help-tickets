@@ -5,4 +5,21 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
   before_action :require_login
+  
+  private
+  
+  # Converts join table to symbol for use in .joins method  
+    def join_table
+      params[:joins].to_sym unless params[:joins].nil?
+    end
+    
+    # Set default column to sort
+    def sort_by
+      params[:sort_by] || "created_at"
+    end
+    
+    # Set default sort direction
+    def sort_direction
+      params[:direction] || "DESC"
+    end
 end
