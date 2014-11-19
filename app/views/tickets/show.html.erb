@@ -15,7 +15,9 @@
 		  	</ul>
 		  	<div>
 		  		<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
-					<%= link_to "Close Ticket", close_ticket_path(@ticket), class: "btn btn-success" %>
+		  		<% if @ticket.status.state != 'Closed' %>
+		  			<%= link_to "Close Ticket", close_ticket_path(@ticket), class: "btn btn-success" %>
+		  		<% end %>
 		  	</div>
 		  </div>
 		</div>

@@ -65,8 +65,9 @@ class TicketsController < ApplicationController
 	end
 	
 	def close_ticket
+	  # Sets ticket.status.state to 'Closed'
 	  @ticket.update_attribute(:status_id, 4)
-	  redirect_to tickets_path
+	  redirect_to tickets_open_path
 	end
 	
 	private
