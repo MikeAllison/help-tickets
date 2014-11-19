@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 	
-	before_action :find_ticket, only: [:show, :edit, :update, :destroy]
+	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :destroy]
 	
 	def index
 	  @tickets = Ticket.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
@@ -62,6 +62,11 @@ class TicketsController < ApplicationController
 	    flash.now[:danger] = "There was a problem updating the ticket."
 	    render 'edit'
 	  end
+	end
+	
+	def close_ticket
+	  @ticket.update_attribute(:status_id, 4)
+	  redirect_to tickets_path
 	end
 	
 	private
