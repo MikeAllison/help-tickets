@@ -9,8 +9,8 @@
 Employee.create(last_name: 'Allison', 
                 first_name: 'Mike', 
                 user_name: 'mallison', 
-                password: 'password1', 
-                password_confirmation: 'password1', 
+                password: 'password', 
+                password_confirmation: 'password', 
                 office_id: 1, 
                 admin: true)
 
@@ -23,8 +23,8 @@ Employee.create(last_name: 'Allison',
   Employee.create(last_name: last_name, 
                   first_name: first_name, 
                   user_name: user_name, 
-                  password: 'password1', 
-                  password_confirmation: 'password1', 
+                  password: 'password', 
+                  password_confirmation: 'password', 
                   office_id: office_id, 
                   admin: true)
 end
