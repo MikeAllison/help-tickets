@@ -24,7 +24,7 @@
 			<% if params[:action] == 'new' %>
 				<%= f.submit "Submit Ticket", class: "btn btn-primary" %>
 				<% if current_employee.admin? %>
-					<%= link_to "Cancel", tickets_path, class: "btn btn-default" %>
+					<%= link_to "Cancel", tickets_open_path, class: "btn btn-default" %>
 				<% else %>
 					<%= link_to "Cancel", tickets_my_tickets_path, class: "btn btn-default" %>
 				<% end %>

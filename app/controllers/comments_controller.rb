@@ -6,12 +6,20 @@ class CommentsController < ApplicationController
     @comment = @ticket.comments.new(comment_params)
     @comment.employee_id = current_employee.id
 
-    if @comment.save
-      flash[:success] = "Comment created!"
-      redirect_to @ticket
+    if @comment.save 
+      if @comment.closing_comment == true
+        redirect_to close_ticket_path(@ticket)
+      else
+        flash[:success] = "Comment created!"
+        redirect_to @ticket
+      end
     else
-      flash.now[:danger] = "There was a problem adding the comment."
-      render 'new'
+      flash[:danger] = "There was a problem adding the comment."
+      if @comment.closing_comment == true
+        redirect_to @ticket
+      else
+        redirect_to @ticket
+      end
     end
   end
 
@@ -22,7 +30,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:ticket_id, :employee_id, :body)
+      params.require(:comment).permit(:ticket_id, :employee_id, :body, :closing_comment)
     end
     
 end
