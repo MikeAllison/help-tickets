@@ -3,12 +3,12 @@ class TopicsController < ApplicationController
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
 	
 	def index
-		@topics = Topic.all.order(:system).paginate(:page => params[:page])
+		@topics = Topic.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def new
 		@topic = Topic.new
-		@topics = Topic.all.order(:system).paginate(:page => params[:page])
+		@topics = Topic.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def edit
