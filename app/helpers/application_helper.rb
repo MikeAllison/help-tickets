@@ -1,6 +1,7 @@
 module ApplicationHelper
   
   def panel_header
+    # Could probably be moved into an array to remove duplicate code
     action_name = params[:action].split('_')
     controller_name = params[:controller].split('_')
     
@@ -12,7 +13,7 @@ module ApplicationHelper
     
     if action_name == 'Index'
       action_name = 'All'
-    elsif action_name == 'New'
+    elsif action_name == 'New' || 'Edit'
       controller_name.chop!
     end
     # Need to add count to end of header
