@@ -1,29 +1,38 @@
 module ApplicationHelper
   
   def panel_header
-    # Could probably be moved into an array to remove duplicate code
-    action = action_name.split('_')
-    controller = controller_name.split('_')
-   
-    action.map { |item| item.capitalize! }
-    controller.map { |item| item.capitalize! }
+    status = params[:status]
+    action = action_name
+    controller = controller_name.capitalize
     
-    action = action.join(' ')
-    controller = controller.join(' ')
+    if status.nil?
+      # Use the action name
+      action
+    else
+      # Use the status name
+      # Split into array, capitalize each word, convert to string
+      action = status
+      action = action.split('_')
+      action = action.map { |item| item.capitalize! }
+      action = action.join(' ')
+    end
     
-    case action
-    when 'Index'
+    # Change 'index' to 'All' and 'new' to 'Add'
+    # Un-pluralize controller name on new views
+    if action == 'index'
       action = 'All'
-    when 'My Tickets'
-      action = 'My'
-    when 'New'
+    elsif action == 'new'
       action = 'Add'
       controller.chop!
-      if controller == 'Ticket'
-        action = 'Create'
-      end
+    else
+      action
     end
-        
+    
+    # Change 'Add Ticket' to 'Create Ticket'
+    if action == 'Add' && controller == 'Ticket'
+      action = 'Create'
+    end
+      
     action + ' ' + controller
   end
   

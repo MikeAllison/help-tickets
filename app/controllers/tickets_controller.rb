@@ -3,35 +3,27 @@ class TicketsController < ApplicationController
 	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :destroy]
 	
 	def index
-	  @tickets = Ticket.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+	  status = params[:status]
+	  
+	  case status
+	  when 'open'
+	    @tickets = Ticket.open.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    when 'my_tickets'
+      @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
+    when 'unassigned'
+      @tickets = Ticket.unassigned.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    when 'work_in_progress'
+      @tickets = Ticket.work_in_progress.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    when 'on_hold'
+      @tickets = Ticket.on_hold.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    when 'closed'
+      @tickets = Ticket.closed.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    else
+      @tickets = Ticket.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+	  end
 	end
 
 	def show
-	end
-
-	def open
-		@tickets = Ticket.open.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-	end
-	
-	def my_tickets
-	  @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
-	  #@tickets = Ticket.my_tickets
-	end
-	
-	def unassigned
-	  @tickets = Ticket.unassigned.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-	end
-	
-	def work_in_progress
-	  @tickets = Ticket.work_in_progress.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-	end
-	
-	def on_hold
-	  @tickets = Ticket.on_hold.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-	end
-	
-	def closed
-	  @tickets = Ticket.closed.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def new
