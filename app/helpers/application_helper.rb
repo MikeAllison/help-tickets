@@ -2,29 +2,29 @@ module ApplicationHelper
   
   def panel_header
     # Could probably be moved into an array to remove duplicate code
-    action_name = params[:action].split('_')
-    controller_name = params[:controller].split('_')
+    action = action_name.split('_')
+    controller = controller_name.split('_')
+   
+    action.map { |item| item.capitalize! }
+    controller.map { |item| item.capitalize! }
     
-    action_name.map { |item| item.capitalize! }
-    controller_name.map { |item| item.capitalize! }
+    action = action.join(' ')
+    controller = controller.join(' ')
     
-    action_name = action_name.join(' ')
-    controller_name = controller_name.join(' ')
-    
-    case action_name
+    case action
     when 'Index'
-      action_name = 'All'
+      action = 'All'
     when 'My Tickets'
-      action_name = 'My'
+      action = 'My'
     when 'New'
-      action_name = 'Add'
-      controller_name.chop!
-      if controller_name == 'Ticket'
-        action_name = 'Create'
+      action = 'Add'
+      controller.chop!
+      if controller == 'Ticket'
+        action = 'Create'
       end
     end
         
-    action_name + ' ' + controller_name
+    action + ' ' + controller
   end
   
   # Creates a link for table headers with params to sort 
