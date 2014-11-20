@@ -31,6 +31,7 @@ class TicketsController < ApplicationController
 	end
 	
 	def create
+	  # @ticket.status_id set to 1 (Unassigned) by default
 	  @ticket = Ticket.new(ticket_params)
 	  
 	  if @ticket.save
@@ -38,7 +39,7 @@ class TicketsController < ApplicationController
 	    if current_employee.admin?
 	    	redirect_to tickets_open_path
 	    else
-        redirect_to tickets_my_ticket_path
+        redirect_to tickets_my_tickets_path
 	  	end
 	  else
 	    flash.now[:danger] = "There was a problem submitting the ticket."
