@@ -14,7 +14,7 @@ class Ticket < ActiveRecord::Base
   scope :work_in_progress, -> { joins(:status).where('state = ?', 'Work in Progress') }
   scope :on_hold, -> { joins(:status).where('state = ?', 'On Hold') }
   scope :closed, -> { joins(:status).where('state = ?', 'Closed') }
-  
+    
   private
   
     # Sets default ticket status to 'Unassigned'

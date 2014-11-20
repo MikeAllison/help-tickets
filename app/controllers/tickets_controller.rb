@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 	
-	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :destroy]
+	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
 	
 	def index
 	  status = params[:status]
@@ -61,7 +61,21 @@ class TicketsController < ApplicationController
 	  # Sets ticket.status.state to 'Closed'
 	  flash[:success] = "Ticket closed!"
 	  @ticket.update_attribute(:status_id, 4)
-	  redirect_to tickets_open_path
+	  if current_employee.admin?
+      redirect_to tickets_open_path
+    else
+      redirect_to tickets_my_tickets_path
+    end
+	end
+	
+	def reopen_ticket
+	  flash[:success] = "Ticket re-opened!"
+	  @ticket.update_attribute(:status_id, 1)
+	  if current_employee.admin?
+	    redirect_to tickets_open_path
+	  else
+	    redirect_to tickets_my_tickets_path
+	  end
 	end
 	
 	private

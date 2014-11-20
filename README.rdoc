@@ -38,3 +38,4 @@ To-Do:
 * Toggle between pagination and listing all tickets with a filter option
 * Employee search for new tickets
 * Check responsiveness for forms
+* Reset all closing_comments to false on ticket re-open.
