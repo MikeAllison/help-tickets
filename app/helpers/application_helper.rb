@@ -17,10 +17,12 @@ module ApplicationHelper
       action = action.join(' ')
     end
     
-    # Change 'index' to 'All' and 'new' to 'Add'
+    # Change 'index' to 'All', 'My Tickets' to 'My', and 'new' to 'Add'
     # Un-pluralize controller name on new views
     if action == 'index'
       action = 'All'
+    elsif action == 'My Tickets'
+      action = 'My'
     elsif action == 'new'
       action = 'Add'
       controller.chop!
