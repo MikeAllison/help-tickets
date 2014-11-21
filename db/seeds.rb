@@ -29,7 +29,15 @@ Employee.create(last_name: 'Allison',
                   admin: true)
 end
 
-100.times do
+Employee.create(last_name: 'Van Allen', 
+                first_name: 'Pooks', 
+                user_name: 'pooks', 
+                password: 'password', 
+                password_confirmation: 'password', 
+                office_id: 1, 
+                admin: false)
+
+99.times do
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
   user_name = Faker::Internet.user_name
