@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-striped">
+			<thead>
+				<th class="col-xs-5"><%= sort_column "City Name", "name" %></th>
+				<th class="col-xs-5">State</th>
+				<th class="col-xs-1"></th>
+				<th class="col-xs-1"></th>
+			</thead>
+			<tbody>
+				<% @cities.each do |city| %>
+					<tr>
+						<td class="col-xs-5"><%= city.name %></td>
+						<td class="col-xs-5"><%= city.state.name %></td>
+						<td class="col-xs-1"><%= link_to "Edit", edit_city_path(city) %></td>
+						<td class="col-xs-1"><%= link_to "Delete", city, method: :delete %></td>
+					</tr>
+				<% end %>
+		</table>
+	</div>
+</div>

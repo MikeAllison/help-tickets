@@ -25,6 +25,8 @@ module ApplicationHelper
     
     if a_name == 'Add' && c_name == 'Ticket'
       a_name = 'Create'
+    elsif c_name == 'Citie'
+      c_name = 'City'
     end
       
     a_name + ' ' + c_name

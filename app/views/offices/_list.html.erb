@@ -13,8 +13,8 @@
 				<% @offices.each do |office| %>
 					<tr>
 						<td class="col-xs-4"><%= office.name %></td>
-						<td class="col-xs-2">CityName</td>
-						<td class="col-xs-2">StateAbbr</td>
+						<td class="col-xs-2"><%= office.city.name %></td>
+						<td class="col-xs-2"><%= office.city.state.abbreviation %></td>
 						<td class="col-xs-2 hidden-xs"><%= office.employees.count %></td>
 						<td class="col-xs-1"><%= link_to "Edit", edit_office_path(office) %></td>
 						<td class="col-xs-1"><%= link_to "Delete", office, method: :delete %></td>

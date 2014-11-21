@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   resources :topics
   resources :offices
   resources :employees
+  resources :cities
+  resources :states
   resources :tickets do
     resources :comments
   end
