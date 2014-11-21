@@ -39,3 +39,5 @@ To-Do:
 * Employee search for new tickets
 * Check responsiveness for forms
 * Reset all closing_comments to false on ticket re-open.
+* Attachements
+* Ajax on offices/new
