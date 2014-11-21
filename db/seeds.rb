@@ -66,9 +66,9 @@ Office.create([
 ])
 
 City.create([
-  {name: 'Orlando', state_id: 1},
-  {name: 'San Francisco', state_id: 2},
-  {name: 'Austin', state_id: 3}
+  {name: 'Orlando', state_id: 10},
+  {name: 'San Francisco', state_id: 5},
+  {name: 'Austin', state_id: 45}
 ])
 
 State.create([
