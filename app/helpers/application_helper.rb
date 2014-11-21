@@ -1,41 +1,33 @@
 module ApplicationHelper
   
   def panel_header
-    status = params[:status]
-    action = action_name
-    controller = controller_name.capitalize
+    c_name = controller_name.capitalize
     
-    if status.nil?
-      # Use the action name
-      action
+    if params[:status].nil?
+      a_name = action_name.capitalize
     else
-      # Use the status name
-      # Split into array, capitalize each word, convert to string
-      action = status
-      action = action.split('_')
-      action = action.map { |item| item.capitalize! }
-      action = action.join(' ')
+      a_name = params[:status].split('_')
+      a_name.map { |item| item.capitalize! }
+      a_name = a_name.join(' ')
     end
     
-    # Change 'index' to 'All', 'My Tickets' to 'My', and 'new' to 'Add'
-    # Un-pluralize controller name on new views
-    if action == 'index'
-      action = 'All'
-    elsif action == 'My Tickets'
-      action = 'My'
-    elsif action == 'new'
-      action = 'Add'
-      controller.chop!
-    else
-      action
+    case a_name
+    when 'Index'
+      a_name = 'All'
+    when 'New'
+      a_name = 'Add'
+      c_name.chop!
+    when 'Edit'
+      c_name.chop!
+    when 'My Tickets'
+      a_name = 'My'
     end
     
-    # Change 'Add Ticket' to 'Create Ticket'
-    if action == 'Add' && controller == 'Ticket'
-      action = 'Create'
+    if a_name == 'Add' && c_name == 'Ticket'
+      a_name = 'Create'
     end
       
-    action + ' ' + controller
+    a_name + ' ' + c_name
   end
   
   # Creates a link for table headers with params to sort 
