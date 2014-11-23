@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-    
+   
+  before_filter :restrict_access 
   before_action :find_ticket
   
   def create

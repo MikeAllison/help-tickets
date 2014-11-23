@@ -1,5 +1,6 @@
 class CitiesController < ApplicationController
-  
+
+  before_filter :restrict_access
   before_action :find_city, only: [:show, :edit, :update, :destroy]
   before_action :all_cities, only: [:index, :new, :create]
   

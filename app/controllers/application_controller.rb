@@ -7,8 +7,14 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   
   private
+    
+    def restrict_access
+      unless @current_employee.admin?
+        redirect_to tickets_my_tickets_path
+      end
+    end
   
-  # Converts join table to symbol for use in .joins method  
+    # Converts join table to symbol for use in .joins method  
     def join_table
       params[:joins].to_sym unless params[:joins].nil?
     end

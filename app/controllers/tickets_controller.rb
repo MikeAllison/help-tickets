@@ -8,8 +8,8 @@ class TicketsController < ApplicationController
 	  case status
 	  when 'open'
 	    @tickets = Ticket.open.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-    when 'my_tickets'
-      @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
+	  when 'my_tickets'
+	  	@tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
     when 'unassigned'
       @tickets = Ticket.unassigned.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
     when 'work_in_progress'
