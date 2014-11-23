@@ -1,14 +1,13 @@
 class CitiesController < ApplicationController
   
   before_action :find_city, only: [:show, :edit, :update, :destroy]
+  before_action :all_cities, only: [:index, :new, :create]
   
   def index
-    @cities = City.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
   end
 
   def new
     @city = City.new
-    @cities = City.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
   end
 
   def edit
@@ -47,6 +46,11 @@ class CitiesController < ApplicationController
     def find_city
       @city = City.find(params[:id])
     end
+
+    def all_cities
+      @cities = City.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+    end
+
     
     def city_params
       params.require(:city).permit(:name, :state_id)
