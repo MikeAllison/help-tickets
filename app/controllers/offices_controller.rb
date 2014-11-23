@@ -1,14 +1,13 @@
 class OfficesController < ApplicationController
 	
 	before_action :find_office, only: [:show, :edit, :update, :destroy]
+	before_action :all_offices, only: [:index, :new, :create]
 	
 	def index
-		@offices = Office.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def new
 	  @office = Office.new
-	  @offices = Office.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def edit
@@ -46,6 +45,10 @@ class OfficesController < ApplicationController
 
 		def find_office
 			@office = Office.find(params[:id])
+		end
+
+		def all_offices
+			@offices = Office.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 
 		def office_params

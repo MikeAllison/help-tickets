@@ -1,14 +1,13 @@
 class EmployeesController < ApplicationController
 	
 	before_action :find_employee, only: [:show, :edit, :update, :destroy]
+	before_action :all_employees, only: [:index, :new, :create]
 
 	def index
-		@employees = Employee.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def new
 		@employee = Employee.new
-		@employees = Employee.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def edit
@@ -46,6 +45,10 @@ class EmployeesController < ApplicationController
 
 		def find_employee
 			@employee = Employee.find(params[:id])
+		end
+
+		def all_employees
+			@employees = Employee.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 
 		def employee_params
