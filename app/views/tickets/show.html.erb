@@ -14,8 +14,8 @@
 					<li><strong>Description: </strong><%= @ticket.description %></li>
 		  	</ul>
 		  	<div>
-		  		<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
 		  		<% if @ticket.status.state != 'Closed' %>
+		  			<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
 		  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>	
 		  		<% else %>
 		  			<%= link_to "Re-Open Ticket", reopen_ticket_path(@ticket), class: "btn btn-warning" %>
@@ -27,4 +27,7 @@
 </div>
 
 <%= render 'comments' %>
-<%= render 'close_ticket_modal' %>
+
+<% if @ticket.status.state != 'Closed' %>
+	<%= render 'close_ticket_modal' %>
+<% end %>

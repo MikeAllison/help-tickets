@@ -3,6 +3,7 @@ module ApplicationHelper
   def panel_header
     c_name = controller_name.capitalize
     
+    # params[:status] set in routes
     if params[:status].nil?
       a_name = action_name.capitalize
     else

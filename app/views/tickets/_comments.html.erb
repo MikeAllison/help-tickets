@@ -4,15 +4,17 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-		  <div class="panel-body">
-		  	<%= render :file => 'comments/new' %>
-		  </div>
+<% if @ticket.status.state != 'Closed' %>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			  	<%= render :file => 'comments/new' %>
+			  </div>
+			</div>
 		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="row">
 	<div class="col-xs-12">
