@@ -10,6 +10,8 @@ class CommentsController < ApplicationController
     if @comment.save 
       if @comment.closing_comment == true
         redirect_to close_ticket_path(@ticket)
+      elsif @comment.reopening_comment == true
+        redirect_to reopen_ticket_path(@ticket)
       else
         flash[:success] = "Comment created!"
         redirect_to @ticket
@@ -31,7 +33,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:ticket_id, :employee_id, :body, :closing_comment)
+      params.require(:comment).permit(:ticket_id, :employee_id, :body, :closing_comment, :reopening_comment)
     end
     
 end

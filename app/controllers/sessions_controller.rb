@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       if employee.admin?
         redirect_to tickets_open_path
       else
-        redirect_to tickets_my_tickets_path
+        redirect_to tickets_my_path
       end
     else
       flash.now[:danger] = "Invalid credentials!"

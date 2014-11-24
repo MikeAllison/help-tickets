@@ -139,7 +139,7 @@ State.create([
   employee_id = rand(1..100)
   topic_id = rand(1..10)
   status_id = rand(1..4)
-  time = Faker::Time.between(7.days.ago, Time.now)
+  time = Faker::Time.between(7.days.ago, 5.days.ago)
   
   Ticket.create(description: description,
                 employee_id: employee_id,
@@ -149,15 +149,30 @@ State.create([
                 updated_at: time)
 end
 
-250.times do
+150.times do
   body = Faker::Hacker.say_something_smart
   employee_id = rand(1..10)
   ticket_id = rand(1..100)
-  time = Faker::Time.between(7.days.ago, Time.now)
+  time = Faker::Time.between(4.days.ago, 3.days.ago)
   
   Comment.create(body: body,
                  employee_id: employee_id,
                  ticket_id: ticket_id,
+                 created_at: time,
+                 updated_at: time)
+end
+
+# Set reopening comment on some tickets
+50.times do |i|
+  body = Faker::Hacker.say_something_smart
+  employee_id = rand(1..10)
+  ticket_id = i
+  time = Faker::Time.between(2.days.ago, Time.now)
+  
+  Comment.create(body: body,
+                 employee_id: employee_id,
+                 ticket_id: ticket_id,
+                 reopening_comment: true,
                  created_at: time,
                  updated_at: time)
 end

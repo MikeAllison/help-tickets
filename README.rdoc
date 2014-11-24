@@ -42,3 +42,4 @@ To-Do:
 * Attachents
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
+* Bug with admins being able to see status dropdown on tickets/edit form
