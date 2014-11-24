@@ -23,7 +23,11 @@
 						<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
 							<td class="col-xs-2"><%= ticket.status.state %></td>
 						<% end %>
-						<td class="col-xs-1"><%= link_to 'Details', ticket_path(ticket) %></td>
+						<td class="col-xs-1">
+							<%= link_to ticket_path(ticket) do %>
+								<span class="glyphicon glyphicon-info-sign"></span>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 		</table>

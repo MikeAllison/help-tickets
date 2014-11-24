@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
 	
-	before_filter :restrict_access
+	before_action :restrict_access
 	before_action :find_office, only: [:show, :edit, :update, :destroy]
 	before_action :all_offices, only: [:index, :new, :create]
 	

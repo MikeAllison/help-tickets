@@ -20,6 +20,11 @@
 		  		<% else %>
 		  			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reopenTicketModal">Reopen Ticket</button>
 		  		<% end %>
+		  		<% if admin? %>
+		  			<%= link_to "Cancel", tickets_open_path, class: "btn btn-default" %>
+		  		<% else %>
+		  			<%= link_to "Cancel", tickets_my_path, class: "btn btn-default" %>
+		  		<% end %>
 		  	</div>
 		  </div>
 		</div>

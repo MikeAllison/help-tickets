@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 	
-	before_filter :restrict_access, only: [:index]
+	before_action :restrict_access, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
 	
 	def index

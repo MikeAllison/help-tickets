@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 	
-	before_filter :restrict_access
+	before_action :restrict_access
 	before_action :find_employee, only: [:show, :edit, :update, :destroy]
 	before_action :all_employees, only: [:index, :new, :create]
 

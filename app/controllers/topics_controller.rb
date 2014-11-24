@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 	
-	before_filter :restrict_access
+	before_action :restrict_access
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
 	before_action :all_topics, only: [:index, :new, :create]
 	
