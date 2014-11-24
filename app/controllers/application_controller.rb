@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   private
     
     def restrict_access
-      unless @current_employee.admin?
+      unless admin?
         flash[:danger] = "You are not authorized to view that page!"
-        redirect_to tickets_my_tickets_path
+        redirect_to tickets_my_path
       end
     end
   

@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
 	end
 
 	def show
-	  if current_employee.admin? || @ticket.employee_id == current_employee.id
+	  if admin? || @ticket.employee_id == current_employee.id
       render 'show'
 	  else
 	    flash[:danger] = "You are not authorized to view that ticket!"
@@ -45,7 +45,7 @@ class TicketsController < ApplicationController
 	  
 	  if @ticket.save
 	    flash[:success] = "Ticket was successfully submitted!"
-	    if current_employee.admin?
+	    if admin?
 	    	redirect_to tickets_open_path
 	    else
         redirect_to tickets_my_path
@@ -70,7 +70,7 @@ class TicketsController < ApplicationController
 	  # Sets ticket.status.state to 'Closed'
 	  flash[:success] = "Ticket closed!"
 	  @ticket.update_attribute(:status_id, 4)
-	  if current_employee.admin?
+	  if admin?
       redirect_to tickets_open_path
     else
       redirect_to tickets_my_path
@@ -80,7 +80,7 @@ class TicketsController < ApplicationController
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
 	  @ticket.update_attribute(:status_id, 1)
-	  if current_employee.admin?
+	  if admin?
       redirect_to tickets_open_path
     else
       redirect_to tickets_my_path

@@ -5,7 +5,7 @@
 		    <h3><%= panel_header %></h3>
 		  </div>
 		  <div class="panel-body">
-		  	<% if logged_in? && admin? %>
+		  	<% if admin? %>
 		  		<%= render 'form_admin' %>
 		  	<% else %>
 		  		<%= render 'form' %>
