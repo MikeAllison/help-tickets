@@ -32,7 +32,7 @@ To-Do:
 * Color-coding based on ticket state
 * Auto-select current user when creating new ticket
 * Escalations
-* Email notices
+* Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
 * Responsive design
 * Active/inactive employees
 * Toggle between pagination and listing all tickets with a filter option
