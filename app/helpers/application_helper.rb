@@ -20,8 +20,6 @@ module ApplicationHelper
       c_name.chop!
     when 'Edit'
       c_name.chop!
-    when 'My Tickets'
-      a_name = 'My'
     end
     
     if a_name == 'Add' && c_name == 'Ticket'

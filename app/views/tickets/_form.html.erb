@@ -19,7 +19,7 @@
 		<div class="form-group col-xs-12">
 			<% if action_name == 'new' %>
 				<%= f.submit "Submit Ticket", class: "btn btn-primary" %>
-				<%= link_to "Cancel", tickets_my_tickets_path, class: "btn btn-default" %>
+				<%= link_to "Cancel", tickets_my_path, class: "btn btn-default" %>
 			<% elsif action_name == 'edit' %>
 				<%= f.submit "Update Ticket", class: "btn btn-primary" %>
 				<%= link_to "Cancel", ticket_path, class: "btn btn-default" %>

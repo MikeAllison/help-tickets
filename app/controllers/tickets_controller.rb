@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
 	
+	before_filter :restrict_access, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
 	
 	def index
@@ -21,11 +22,17 @@ class TicketsController < ApplicationController
 	  end
 	end
 	
-	def my_tickets
+	def my
 	  @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
 	end
 
 	def show
+	  if current_employee.admin? || @ticket.employee_id == current_employee.id
+      render 'show'
+	  else
+	    flash[:danger] = "You are not authorized to view that ticket!"
+	    redirect_to tickets_my_path
+	  end
 	end
 	
 	def new
@@ -41,7 +48,7 @@ class TicketsController < ApplicationController
 	    if current_employee.admin?
 	    	redirect_to tickets_open_path
 	    else
-        redirect_to tickets_my_tickets_path
+        redirect_to tickets_my_path
 	  	end
 	  else
 	    flash.now[:danger] = "There was a problem submitting the ticket."
@@ -63,13 +70,21 @@ class TicketsController < ApplicationController
 	  # Sets ticket.status.state to 'Closed'
 	  flash[:success] = "Ticket closed!"
 	  @ticket.update_attribute(:status_id, 4)
-    redirect_to tickets_open_path
+	  if current_employee.admin?
+      redirect_to tickets_open_path
+    else
+      redirect_to tickets_my_path
+    end
 	end
 	
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
 	  @ticket.update_attribute(:status_id, 1)
-	  redirect_to tickets_open_path
+	  if current_employee.admin?
+      redirect_to tickets_open_path
+    else
+      redirect_to tickets_my_path
+    end
 	end
 	
 	private
