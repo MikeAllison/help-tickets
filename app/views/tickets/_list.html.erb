@@ -21,11 +21,15 @@
 						<td class="col-xs-2 hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 						<td class="col-xs-2 hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 						<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
-							<td class="col-xs-2"><%= ticket.status.state %></td>
+							<td class="col-xs-2">
+								<%= status_icon(ticket.status.state) %>
+								<%= ticket.status.state %>
+							</td>
 						<% end %>
 						<td class="col-xs-1">
 							<%= link_to ticket_path(ticket) do %>
-								<span class="glyphicon glyphicon-info-sign"></span>
+								<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
+								<span class="sr-only">Details</span>
 							<% end %>
 						</td>
 					</tr>
