@@ -22,7 +22,7 @@
 						<td class="col-xs-2 hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 						<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
 							<td class="col-xs-2">
-								<%= status_icon(ticket.status.state) %>
+								<%= ticket_status_icon(ticket.status.state) %>
 								<%= ticket.status.state %>
 							</td>
 						<% end %>

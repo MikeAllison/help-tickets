@@ -1,7 +1,7 @@
 module TicketsHelper
   
   # Sets color of flag icon in tickets/list partial
-  def status_icon(state)
+  def ticket_status_icon(state)
     icon = 'glyphicon glyphicon-'
     
     case state 

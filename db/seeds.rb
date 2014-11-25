@@ -11,13 +11,15 @@ Employee.create(last_name: 'Allison',
                 user_name: 'mallison', 
                 password: 'password', 
                 password_confirmation: 'password', 
-                office_id: 1, 
+                office_id: 1,
+                active: true, 
                 admin: true)
 
-9.times do
+# Create active admin users (admin1-6)
+6.times do |i|
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = Faker::Internet.user_name
+  user_name = 'admin' + i.to_s
   office_id = rand(1..3)
   
   Employee.create(last_name: last_name, 
@@ -25,7 +27,25 @@ Employee.create(last_name: 'Allison',
                   user_name: user_name, 
                   password: 'password', 
                   password_confirmation: 'password', 
-                  office_id: office_id, 
+                  office_id: office_id,
+                  active: true,
+                  admin: true)
+end
+
+# Create inactive admin users (admin 7-9)
+3.times do |i|
+  last_name = Faker::Name.last_name
+  first_name = Faker::Name.first_name
+  user_name = 'admin' + (i + 3).to_s
+  office_id = rand(1..3)
+  
+  Employee.create(last_name: last_name, 
+                  first_name: first_name, 
+                  user_name: user_name, 
+                  password: 'password', 
+                  password_confirmation: 'password', 
+                  office_id: office_id,
+                  active: false, 
                   admin: true)
 end
 
@@ -34,13 +54,15 @@ Employee.create(last_name: 'Van Allen',
                 user_name: 'pooks', 
                 password: 'password', 
                 password_confirmation: 'password', 
-                office_id: 1, 
+                office_id: 1,
+                active: true, 
                 admin: false)
 
-99.times do
+# Create active employees
+100.times do
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = Faker::Internet.user_name
+  user_name = first_name.slice(0) + last_name
   office_id = rand(1..4)
   
   Employee.create(last_name: last_name, 
@@ -48,7 +70,25 @@ Employee.create(last_name: 'Van Allen',
                   user_name: user_name, 
                   password: 'password', 
                   password_confirmation: 'password', 
-                  office_id: office_id, 
+                  office_id: office_id,
+                  active: true,
+                  admin: false)
+end
+
+# Create inactive employees
+50.times do
+  last_name = Faker::Name.last_name
+  first_name = Faker::Name.first_name
+  user_name = first_name.slice(0) + last_name + rand(1..9).to_s
+  office_id = rand(1..4)
+  
+  Employee.create(last_name: last_name, 
+                  first_name: first_name, 
+                  user_name: user_name, 
+                  password: 'password', 
+                  password_confirmation: 'password', 
+                  office_id: office_id,
+                  active: false,
                   admin: false)
 end
 

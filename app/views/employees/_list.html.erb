@@ -12,7 +12,11 @@
 			<tbody>
 				<% @employees.each do |employee| %>
 					<tr>
-						<td class="col-xs-4"><%= employee.last_first %></td>
+						<td class="col-xs-4">
+							<%= employee_status_icon(employee.active) %>
+							&nbsp;
+							<%= employee.last_first %>
+						</td>
 						<td class="col-xs-2"><%= employee.user_name %></td>
 						<td class="col-xs-2"><%= employee.office.name %></td>
 						<td class="col-xs-2 hidden-xs"><%= employee.tickets.count %></td>
