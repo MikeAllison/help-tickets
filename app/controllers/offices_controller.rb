@@ -1,10 +1,14 @@
 class OfficesController < ApplicationController
 	
 	before_action :restrict_access
-	before_action :find_office, only: [:show, :edit, :update, :destroy]
+	before_action :find_office, only: [:edit, :update, :destroy]
 	before_action :all_offices, only: [:index, :new, :create]
 	
 	def index
+	end
+	
+	def show
+	  redirect_to new_office_path
 	end
 
 	def new

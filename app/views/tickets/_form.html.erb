@@ -17,13 +17,8 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-xs-12">
-			<% if action_name == 'new' %>
-				<%= f.submit "Submit Ticket", class: "btn btn-primary" %>
-				<%= link_to "Cancel", tickets_my_path, class: "btn btn-default" %>
-			<% elsif action_name == 'edit' || params[:action] == "update" %>
-				<%= f.submit "Update Ticket", class: "btn btn-primary" %>
-				<%= link_to "Cancel", ticket_path, class: "btn btn-default" %>
-			<% end %>
-		</div>
+			<%= submit_button %>
+			<%= cancel_button %>
+		</div>	
 	</div>	
 <% end %>

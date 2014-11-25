@@ -6,6 +6,10 @@ class CitiesController < ApplicationController
   
   def index
   end
+  
+  def show
+    redirect_to new_city_path
+  end
 
   def new
     @city = City.new

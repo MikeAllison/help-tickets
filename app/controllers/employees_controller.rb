@@ -6,6 +6,10 @@ class EmployeesController < ApplicationController
 
 	def index
 	end
+	
+	def show
+    redirect_to new_employee_path
+  end
 
 	def new
 		@employee = Employee.new

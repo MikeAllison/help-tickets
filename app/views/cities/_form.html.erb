@@ -11,12 +11,8 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-xs-12">
-			<% if params[:action] == "edit" || params[:action] == "update" %>
-				<%= f.submit "Update City", class: "btn btn-primary" %>
-				<%= link_to "Cancel", new_city_path, class: "btn btn-default" %>
-			<% else %>
-				<%= f.submit "Add City", class: "btn btn-primary" %>
-			<% end %>
+			<%= submit_button %>
+			<%= cancel_button %>
 		</div>	
 	</div>
 <% end %>

@@ -6,6 +6,10 @@ class TopicsController < ApplicationController
 	
 	def index
 	end
+	
+	def show
+    redirect_to new_topic_path
+  end
 
 	def new
 		@topic = Topic.new
