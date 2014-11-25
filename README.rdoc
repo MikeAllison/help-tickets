@@ -43,3 +43,5 @@ To-Do:
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
 * Bug with admins being able to see status dropdown on tickets/edit form
+* Automatically close tickets for employees made inactive
+* Be able to toggle between viewing active/inactive employees
