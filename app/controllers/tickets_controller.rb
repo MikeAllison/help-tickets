@@ -45,11 +45,7 @@ class TicketsController < ApplicationController
 	  
 	  if @ticket.save
 	    flash[:success] = "Ticket was successfully submitted!"
-	    if admin?
-	    	redirect_to tickets_open_path
-	    else
-        redirect_to tickets_my_path
-	  	end
+	    default_tickets_redirect
 	  else
 	    flash.now[:danger] = "There was a problem submitting the ticket."
 	    render 'new'
@@ -70,21 +66,13 @@ class TicketsController < ApplicationController
 	  # Sets ticket.status.state to 'Closed'
 	  flash[:success] = "Ticket closed!"
 	  @ticket.update_attribute(:status_id, 4)
-	  if admin?
-      redirect_to tickets_open_path
-    else
-      redirect_to tickets_my_path
-    end
+	  default_tickets_redirect
 	end
 	
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
 	  @ticket.update_attribute(:status_id, 1)
-	  if admin?
-      redirect_to tickets_open_path
-    else
-      redirect_to tickets_my_path
-    end
+	  default_tickets_redirect
 	end
 	
 	private

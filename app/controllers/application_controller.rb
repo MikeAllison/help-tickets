@@ -14,6 +14,14 @@ class ApplicationController < ActionController::Base
         redirect_to tickets_my_path
       end
     end
+    
+    def default_tickets_redirect
+      if admin?
+        redirect_to tickets_open_path
+      else
+        redirect_to tickets_my_path
+      end
+    end
   
     # Converts join table to symbol for use in .joins method  
     def join_table
