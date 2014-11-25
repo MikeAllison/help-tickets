@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124182514) do
+ActiveRecord::Schema.define(version: 20141125181132) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141124182514) do
     t.string   "user_name"
     t.string   "password_digest"
     t.boolean  "admin",           default: false
+    t.boolean  "active",          default: false
   end
 
   add_index "employees", ["admin"], name: "index_employees_on_admin"

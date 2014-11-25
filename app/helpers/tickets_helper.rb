@@ -4,14 +4,15 @@ module TicketsHelper
   def status_icon(state)
     icon = 'glyphicon glyphicon-'
     
-    if state == 'Unassigned'
-      icon = icon + 'thumbs-down alert-danger'
-    elsif state == 'Work in Progress'
-      icon = icon + 'wrench alert-warning'
-    elsif state == 'On Hold'
-      icon = icon + 'pause alert-warning'
-    elsif state == 'Closed'
-      icon = icon + 'thumbs-up alert-success'
+    case state 
+    when 'Unassigned'
+      icon += 'thumbs-down alert-danger'
+    when 'Work in Progress'
+      icon += 'wrench alert-warning'
+    when 'On Hold'
+      icon += 'pause alert-warning'
+    when 'Closed'
+      icon += 'thumbs-up alert-success'
     end
     
     content_tag :span, '', class: icon
