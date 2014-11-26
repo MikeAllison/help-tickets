@@ -23,18 +23,20 @@ class ApplicationController < ActionController::Base
       end
     end
   
-    # Converts join table to symbol for use in .joins method  
+    # Converts join table to symbol for use with sort_column in ApplicationHelper 
     def join_table
-      params[:joins].to_sym unless params[:joins].nil?
+      join_table = params[:join_table] || nil
+      join_table.to_sym if !join_table.nil?
     end
     
-    # Set default column to sort
-    def sort_by
-      params[:sort_by] || "created_at"
+    # Set default sorting column with sort_column in ApplicationHelper
+    def sort_column
+      params[:sort_column] || 'last_name'
     end
     
-    # Set default sort direction
+    # Set default sorting direction with sort_column in ApplicationHelper
     def sort_direction
-      params[:direction] || "DESC"
+      params[:sort_direction] || 'ASC'
     end
+    
 end

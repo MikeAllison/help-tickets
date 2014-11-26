@@ -53,8 +53,8 @@ class EmployeesController < ApplicationController
 		end
 
 		def all_employees
-			@employees = Employee.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
-		end
+		  @employees = Employee.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+	  end
 
 		def employee_params
 			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :admin, :active)

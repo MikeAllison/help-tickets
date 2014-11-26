@@ -63,14 +63,17 @@ module ApplicationHelper
     a_name + ' ' + c_name
   end
   
-  # Creates a link for table headers with params to sort 
-  def sort_column(title, column, join_table = nil)
-    if column == params[:sort_by] && params[:direction] == 'ASC'
+  # Creates a link for table headers with params to sort
+  # :join_table is converted to symbol in ApplicationController
+  # Default sorting is set in ApplicationController 
+  def sort_column(title, column, joins = nil)
+    if column == params[:sort_column] && params[:sort_direction] == 'ASC'
       direction = 'DESC'
     else
       direction = 'ASC'
     end
-    link_to title, :sort_by => column, :joins => join_table, :direction => direction
+    
+    link_to title, :sort_column => column, :sort_direction => direction, :join_table => joins
   end
   
 end
