@@ -14,27 +14,27 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="form-group col-xs-4"> 
-		  <%= f.label :password %>
-		  <%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
-		</div>
-		<div class="form-group col-xs-4"> 
-		  <%= f.label :password_confirmation, "Password Confirmation" %>
-		  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Again" %>
-		</div>
 		<div class="form-group col-xs-4">  
 		  <%= f.label :office_id %>
 		  <%= f.collection_select(:office_id, Office.all.order(:name), :id, :office_city_state_abbr, { prompt: true }, { class: "form-control" }) %>
 		</div>
-	</div>
-	<div class="row">
-		<div class="form-group col-xs-4">  
-		  <%= f.label :active, "Active?" %>
-		  <%= f.check_box :active %>
-	  </div>
-		<div class="form-group col-xs-4">  
-		  <%= f.label :admin, "Admin?" %>
-		  <%= f.check_box :admin %>
+		<div class="form-group col-xs-4">
+			<%= f.label :active, "Account Status" %>
+			<br />
+			<%= f.radio_button(:active, 0, checked: @employee.active == false) %>
+			Inactive
+			<br />
+			<%= f.radio_button(:active, 1, checked: @employee.active == true) %>
+			Active
+		</div>
+		<div class="form-group col-xs-4">
+			<%= f.label :admin, "User Rights" %>
+			<br />
+			<%= f.radio_button(:admin, 0, checked: @employee.admin == false) %>
+			Non-Admin
+			<br />
+			<%= f.radio_button(:admin, 1, checked: @employee.admin == true) %>
+			Admin
 	  </div>
 	</div>
 	<div class="row">

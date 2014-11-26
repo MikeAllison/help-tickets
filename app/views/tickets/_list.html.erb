@@ -27,9 +27,9 @@
 							</td>
 						<% end %>
 						<td class="col-xs-1">
-							<%= link_to ticket_path(ticket) do %>
+							<%= link_to ticket_path(ticket), title: 'Details' do %>
 								<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
-								<span class="sr-only">Details</span>
+								<span class="sr-only" title="Details">Details</span>
 							<% end %>
 						</td>
 					</tr>

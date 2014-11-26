@@ -45,3 +45,5 @@ To-Do:
 * Bug with admins being able to see status dropdown on tickets/edit form
 * Automatically close tickets for employees made inactive
 * Be able to toggle between viewing active/inactive employees
+* Link titles
+* Fix bug with updating user info without resetting password

@@ -20,8 +20,18 @@
 						<td class="col-xs-2"><%= employee.user_name %></td>
 						<td class="col-xs-2"><%= employee.office.name %></td>
 						<td class="col-xs-2 hidden-xs"><%= employee.tickets.count %></td>
-						<td class="col-xs-1"><%= link_to "Edit", edit_employee_path(employee) %></td>
-						<td class="col-xs-1"><%= link_to "Delete", employee, method: :delete %></td>
+						<td class="col-xs-1">
+							<%= link_to edit_employee_path(employee), title: 'Edit' do %>
+								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+								<span class="sr-only" title="Edit">Edit</span>
+							<% end %>
+						</td>
+						<td class="col-xs-1">
+							<%= link_to employee, method: :delete, title: 'Delete' do %>
+								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
+								<span class="sr-only" title="Delete">Edit</span>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 		</table>

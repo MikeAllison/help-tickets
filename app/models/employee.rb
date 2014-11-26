@@ -16,6 +16,6 @@ class Employee < ActiveRecord::Base
 	end
 	
 	has_secure_password
-	validates :password, length: { minimum: 8 }
+	#validates :password, length: { minimum: 8 }
 
 end
