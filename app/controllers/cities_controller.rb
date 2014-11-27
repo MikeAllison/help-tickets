@@ -53,7 +53,7 @@ class CitiesController < ApplicationController
     end
 
     def all_cities
-      @cities = City.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @cities = City.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     end
 
     

@@ -8,17 +8,17 @@ class TicketsController < ApplicationController
 	  
 	  case status
 	  when 'open'
-	    @tickets = Ticket.open.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page]) 	
+	    @tickets = Ticket.open.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]) 	
     when 'unassigned'
-      @tickets = Ticket.unassigned.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @tickets = Ticket.unassigned.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     when 'work_in_progress'
-      @tickets = Ticket.work_in_progress.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @tickets = Ticket.work_in_progress.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     when 'on_hold'
-      @tickets = Ticket.on_hold.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @tickets = Ticket.on_hold.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     when 'closed'
-      @tickets = Ticket.closed.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @tickets = Ticket.closed.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     else
-      @tickets = Ticket.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+      @tickets = Ticket.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 	  end
 	end
 	

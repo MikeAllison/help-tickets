@@ -31,7 +31,20 @@ class ApplicationController < ActionController::Base
     
     # Set default sorting column with sort_column in ApplicationHelper
     def sort_column
-      params[:sort_column] || 'last_name'
+      case controller_name
+      when 'tickets'
+        sort_column = 'created_at'
+      when 'employees'
+        sort_column = 'last_name'
+      when 'offices'
+        sort_column = 'name'
+      when 'topics'
+        sort_column = 'system'
+      when 'cities'
+        sort_column = 'name'
+      end
+      
+      params[:sort_column] || sort_column
     end
     
     # Set default sorting direction with sort_column in ApplicationHelper

@@ -53,7 +53,7 @@ class OfficesController < ApplicationController
 		end
 
 		def all_offices
-			@offices = Office.joins(join_table).order(sort_by + ' ' + sort_direction).paginate(:page => params[:page])
+			@offices = Office.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 
 		def office_params
