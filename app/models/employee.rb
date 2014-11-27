@@ -8,6 +8,9 @@ class Employee < ActiveRecord::Base
   
   validates :first_name, :last_name, :office_id, presence: true
   validates :user_name, presence: true, uniqueness: true
+  
+  scope :active,    -> { where(active: true) }
+  scope :inactive,  -> { where(active: false) }
 
   # Method to set user name
 

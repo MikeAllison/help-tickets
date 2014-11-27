@@ -49,7 +49,14 @@ class ApplicationController < ActionController::Base
     
     # Set default sorting direction with sort_column in ApplicationHelper
     def sort_direction
-      params[:sort_direction] || 'ASC'
+      case controller_name
+      when 'tickets'
+        sort_direction = 'DESC'
+      else
+        sort_direction = 'ASC'
+      end
+      
+      params[:sort_direction] || sort_direction
     end
     
 end
