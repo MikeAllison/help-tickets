@@ -2,9 +2,19 @@ class EmployeesController < ApplicationController
 	
 	before_action :restrict_access, except: [:edit, :update]
 	before_action :find_employee, only: [:show, :edit, :update, :destroy]
-	before_action :all_employees, only: [:index, :new, :create]
+	before_action :all_employees, only: [:new, :create]
 
 	def index
+	  status = params[:status]
+	  
+	  case status
+	  when 'active'
+	    @employees = Employee.active.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+	  when 'inactive'
+	    @employees = Employee.inactive.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+	  else
+	    all_employees
+	  end
 	end
 	
 	def show
