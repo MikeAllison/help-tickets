@@ -2,9 +2,16 @@ class TopicsController < ApplicationController
 	
 	before_action :restrict_access
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
-	before_action :all_topics, only: [:index, :new, :create]
+	before_action :all_topics_paginated, only: [:new, :create]
 	
 	def index
+	  filter = params[:filter]
+	  
+	  if filter == 'true'
+	    @topics = Topic.joins(join_table).order(sort_column + ' ' + sort_direction)
+	  else
+	    all_topics_paginated
+	  end
 	end
 	
 	def show
@@ -52,7 +59,7 @@ class TopicsController < ApplicationController
 			@topic = Topic.find(params[:id])
 		end
 
-		def all_topics
+		def all_topics_paginated
 			@topics = Topic.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 

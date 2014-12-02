@@ -76,4 +76,8 @@ module ApplicationHelper
     link_to title, :sort_column => column, :sort_direction => direction, :join_table => joins
   end
   
+  def filter_link
+    link_to 'Filter', { :filter => true }, { class: 'btn btn-default ' }
+  end
+  
 end

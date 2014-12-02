@@ -2,9 +2,16 @@ class CitiesController < ApplicationController
 
   before_action :restrict_access
   before_action :find_city, only: [:show, :edit, :update, :destroy]
-  before_action :all_cities, only: [:index, :new, :create]
+  before_action :all_cities_paginated, only: [:new, :create]
   
   def index
+    filter = params[:filter]
+    
+    if filter == 'true'
+      @cities = City.joins(join_table).order(sort_column + ' ' + sort_direction)
+    else
+      all_cities_paginated
+    end
   end
   
   def show
@@ -52,7 +59,7 @@ class CitiesController < ApplicationController
       @city = City.find(params[:id])
     end
 
-    def all_cities
+    def all_cities_paginated
       @cities = City.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     end
 

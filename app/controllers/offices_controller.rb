@@ -2,9 +2,16 @@ class OfficesController < ApplicationController
 	
 	before_action :restrict_access
 	before_action :find_office, only: [:edit, :update, :destroy]
-	before_action :all_offices, only: [:index, :new, :create]
+	before_action :all_offices_paginated, only: [:new, :create]
 	
 	def index
+	  filter = params[:filter]
+	  
+	  if filter == 'true'
+	    @offices = Office.joins(join_table).order(sort_column + ' ' + sort_direction)
+	  else
+	    all_offices_paginated
+	  end
 	end
 	
 	def show
@@ -52,7 +59,7 @@ class OfficesController < ApplicationController
 			@office = Office.find(params[:id])
 		end
 
-		def all_offices
+		def all_offices_paginated
 			@offices = Office.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 

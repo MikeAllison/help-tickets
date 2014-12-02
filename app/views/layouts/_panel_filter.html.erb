@@ -8,8 +8,10 @@
 		    <form>
 					<label for="filterText">Filter:&nbsp;</label>
 					<input type="text" id="filterText">
+					<%= link_to "Cancel", :back, class: 'btn btn-default' %>
 				</form>
 		  </div>
+		  <%= render 'list' %>
 		</div>		
 	</div>
 </div>

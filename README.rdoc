@@ -48,3 +48,4 @@ To-Do:
 * Link titles
 * Fix bug with updating user info without resetting password - DONE
 * Cancel button has a bug after flash error
+* Add clear button to filter

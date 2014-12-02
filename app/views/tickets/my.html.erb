@@ -1,3 +1,6 @@
-<%= render 'panel_filter' %>
-<%= render 'list' %>
-<%= render 'pagination' %>
+<% if params[:filter] == 'true' %>
+	<%= render 'layouts/panel_filter' %>
+<% else %>
+	<%= render 'layouts/panel' %>
+	<%= render 'pagination' %>
+<% end %>
