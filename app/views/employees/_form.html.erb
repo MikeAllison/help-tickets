@@ -27,26 +27,30 @@
 		  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Again" %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="form-group col-xs-4">
-			<%= f.label :active, "Account Status" %>
-			<br />
-			<%= f.radio_button(:active, 0, checked: @employee.active == false) %>
-			Inactive
-			<br />
-			<%= f.radio_button(:active, 1, checked: @employee.active == true) %>
-			Active
+	
+	<% if current_employee.admin? %>
+		<div class="row">
+			<div class="form-group col-xs-4">
+				<%= f.label :active, "Account Status" %>
+				<br />
+				<%= f.radio_button(:active, 0, checked: @employee.active == false) %>
+				Inactive
+				<br />
+				<%= f.radio_button(:active, 1, checked: @employee.active == true) %>
+				Active
+			</div>
+			<div class="form-group col-xs-4">
+				<%= f.label :admin, "User Rights" %>
+				<br />
+				<%= f.radio_button(:admin, 0, checked: @employee.admin == false) %>
+				Non-Admin
+				<br />
+				<%= f.radio_button(:admin, 1, checked: @employee.admin == true) %>
+				Admin
+			</div>
 		</div>
-		<div class="form-group col-xs-4">
-			<%= f.label :admin, "User Rights" %>
-			<br />
-			<%= f.radio_button(:admin, 0, checked: @employee.admin == false) %>
-			Non-Admin
-			<br />
-			<%= f.radio_button(:admin, 1, checked: @employee.admin == true) %>
-			Admin
-	  </div>
-	</div>
+	<% end %>
+	
 	<div class="row">
 		<div class="form-group col-xs-12">
 			<%= submit_button %>

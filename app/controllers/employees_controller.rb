@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 	
-	before_action :restrict_access
+	before_action :restrict_access, except: [:edit, :update]
 	before_action :find_employee, only: [:show, :edit, :update, :destroy]
 	before_action :all_employees, only: [:index, :new, :create]
 
@@ -16,10 +16,16 @@ class EmployeesController < ApplicationController
 	end
 
 	def edit
+	  if current_employee.admin? || @employee.id == current_employee.id
+	    render 'edit'
+	  else
+	    flash[:danger] = "You are not authorized to edit that employee!"
+	    redirect_to edit_employee_path(current_employee)    
+	  end
 	end
 
 	def create
-		@employee = Employee.new(employee_params)
+		@employee = Employee.new(employee_params_admin)
 
 		if @employee.save
 			flash[:success] = "Employee created!"
@@ -31,13 +37,24 @@ class EmployeesController < ApplicationController
 	end
 
 	def update
-		if @employee.update_attributes(employee_params)
-			flash[:success] = "Employee profile updated!"
-			redirect_to new_employee_path
-		else
-		  flash.now[:danger] = "There was a problem updating the employee."
-			render 'edit'
-		end
+	  # This could probably be refactored
+	  if current_employee.admin?
+	    if @employee.update_attributes(employee_params_admin)
+        flash[:success] = "Employee profile updated!"
+        redirect_to new_employee_path
+      else
+        flash.now[:danger] = "There was a problem updating the employee."
+        render 'edit'
+      end
+	  else
+	    if @employee.update_attributes(employee_params_restricted)
+        flash[:success] = "Employee profile updated!"
+        redirect_to tickets_my_path
+      else
+        flash.now[:danger] = "There was a problem updating the employee."
+        render 'edit'
+      end
+	  end 		
 	end
 
 	def destroy
@@ -56,8 +73,12 @@ class EmployeesController < ApplicationController
 		  @employees = Employee.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 	  end
 
-		def employee_params
+		def employee_params_admin
 			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :admin, :active)
 		end
+		
+		def employee_params_restricted
+      params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id)
+    end
 
 end
