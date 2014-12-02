@@ -8,10 +8,13 @@ class SessionsController < ApplicationController
   def create
     employee = Employee.find_by(user_name: params[:session][:user_name].downcase)
     
-    if employee && employee.authenticate(params[:session][:password])
+    if employee && employee.authenticate(params[:session][:password]) && employee.active
       log_in employee
       flash[:success] = "You are logged in!"
       default_tickets_redirect
+    elsif employee && employee.authenticate(params[:session][:password]) && !employee.active
+      flash.now[:danger] = "Your account is currently inactive!"
+      render 'new'
     else
       flash.now[:danger] = "Invalid credentials!"
       render 'new'

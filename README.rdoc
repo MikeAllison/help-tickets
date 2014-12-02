@@ -26,10 +26,10 @@ To-Do:
 * Office City/State Model
 * Use Ajax to add topics and offices right from index view
 * Create and admin section to change settings?
-* Pagination
+* Pagination - DONE
 * Search
 * Ability to sort
-* Color-coding based on ticket state
+* Color-coding based on ticket state - DONE
 * Auto-select current user when creating new ticket
 * Escalations
 * Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
@@ -39,11 +39,11 @@ To-Do:
 * Employee search for new tickets
 * Check responsiveness for forms
 * Reset all closing_comments to false on ticket re-open.
-* Attachents
+* Attachments
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
 * Bug with admins being able to see status dropdown on tickets/edit form
 * Automatically close tickets for employees made inactive
 * Be able to toggle between viewing active/inactive employees
 * Link titles
-* Fix bug with updating user info without resetting password
+* Fix bug with updating user info without resetting password - DONE
