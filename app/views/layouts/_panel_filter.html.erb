@@ -3,11 +3,13 @@
 		<div class="panel panel-default">
 		  <div class="panel-heading">
 		    <h3><%= panel_header %></h3>
-		    <a href="#">Filter</a> 
 		  </div>
-		  <div class="panel-body"> 	
-		  	<%= render 'list' %>
+		  <div class="panel-body">
+		    <form>
+					<label for="filterText">Filter:&nbsp;</label>
+					<input type="text" id="filterText">
+				</form>
 		  </div>
-		</div>
+		</div>		
 	</div>
 </div>
