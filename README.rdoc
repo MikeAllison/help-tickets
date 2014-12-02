@@ -18,31 +18,31 @@ To-Do:
 * 404s
 * Check admin functionality
 * Allow employees to update their passwords
-* Allow admins to update employee info without requiring a password change
+* Allow admins to update employee info without requiring a password change - DONE
 * Employee show?
 * Method to set employee user name
 * Assigning tickets to admins
-* Ticket comments
-* Office City/State Model
+* Ticket comments - DONE
+* Office City/State Model - DONE
 * Use Ajax to add topics and offices right from index view
-* Create and admin section to change settings?
+* Create an admin section to change settings?
 * Pagination - DONE
 * Search
 * Ability to sort
 * Color-coding based on ticket state - DONE
-* Auto-select current user when creating new ticket
+* Auto-select current user when creating new ticket - DONE
 * Escalations
 * Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
 * Responsive design
-* Active/inactive employees
+* Active/inactive employees - DONE
 * Toggle between pagination and listing all tickets with a filter option
 * Employee search for new tickets
 * Check responsiveness for forms
-* Reset all closing_comments to false on ticket re-open.
+* Reset all closing_comments to false on ticket re-open
 * Attachments
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
-* Bug with admins being able to see status dropdown on tickets/edit form
+* Bug with admins being able to see status dropdown on tickets/edit form - FIXED
 * Automatically close tickets for employees made inactive
 * Be able to toggle between viewing active/inactive employees
 * Link titles
