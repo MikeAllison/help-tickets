@@ -21,3 +21,30 @@
 
 en:
   hello: "Hello world"
+  
+  activerecord:
+    models:
+      ticket:
+        zero: tickets
+        one: ticket
+        other: tickets
+
+      employee:
+        zero: employees
+        one: employee
+        other: employees
+      
+      topic:
+        zero: topics
+        one: topic
+        other: topics
+      
+      office:
+        zero: offices
+        one: office
+        other: offices
+      
+      city:
+        zero: cities
+        one: city
+        other: cities

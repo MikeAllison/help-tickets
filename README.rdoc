@@ -17,7 +17,7 @@ To-Do:
 * Indexes
 * 404s
 * Check admin functionality
-* Allow employees to update their passwords
+* Allow employees to update their passwords - DONE
 * Allow admins to update employee info without requiring a password change - DONE
 * Employee show?
 * Method to set employee user name
@@ -47,3 +47,4 @@ To-Do:
 * Be able to toggle between viewing active/inactive employees
 * Link titles
 * Fix bug with updating user info without resetting password - DONE
+* Cancel button has a bug after flash error
