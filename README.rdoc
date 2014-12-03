@@ -50,3 +50,7 @@ To-Do:
 * Cancel button has a bug after flash error
 * Add clear button to filter - DONE
 * When deleting topics, offices, etc....no nil classes
+
+QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
+* Default ordering (Sec 8.3)
+* Check Sec 9 for possibly simplifying ticket controller code
