@@ -62,7 +62,7 @@ Employee.create(last_name: 'Van Allen',
 100.times do
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = first_name.slice(0) + last_name
+  user_name = first_name.slice(0) + last_name + rand(1..9).to_s
   office_id = rand(1..4)
   
   Employee.create(last_name: last_name, 
