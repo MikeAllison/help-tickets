@@ -45,7 +45,7 @@ To-Do:
 * Bug with admins being able to see status dropdown on tickets/edit form - FIXED
 * Automatically close tickets for employees made inactive
 * Be able to toggle between viewing active/inactive employees
-* Link titlesm on hover
+* Link titles on hover
 * Fix bug with updating user info without resetting password - DONE
 * Cancel button has a bug after flash error
 * Add clear button to filter - DONE

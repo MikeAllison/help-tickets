@@ -59,10 +59,10 @@ Employee.create(last_name: 'Van Allen',
                 admin: false)
 
 # Create active employees
-100.times do
+500.times do
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = first_name.slice(0) + last_name + rand(1..9).to_s
+  user_name = first_name.slice(0) + last_name + rand(1..99).to_s
   office_id = rand(1..4)
   
   Employee.create(last_name: last_name, 
@@ -76,10 +76,10 @@ Employee.create(last_name: 'Van Allen',
 end
 
 # Create inactive employees
-50.times do
+100.times do
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = first_name.slice(0) + last_name + rand(1..9).to_s
+  user_name = first_name.slice(0) + last_name + rand(1..99).to_s
   office_id = rand(1..4)
   
   Employee.create(last_name: last_name, 
@@ -174,9 +174,10 @@ State.create([
   {name: 'Wyoming', abbreviation: 'WY'}
 ])
 
-100.times do
+# Create tickets
+1000.times do
   description = Faker::Hacker.say_something_smart
-  employee_id = rand(1..100)
+  employee_id = rand(1..600)
   topic_id = rand(1..10)
   status_id = rand(1..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
@@ -189,10 +190,11 @@ State.create([
                 updated_at: time)
 end
 
-150.times do
+# Create comments on tickets
+1500.times do
   body = Faker::Hacker.say_something_smart
   employee_id = rand(1..10)
-  ticket_id = rand(1..100)
+  ticket_id = rand(1..1000)
   time = Faker::Time.between(4.days.ago, 3.days.ago)
   
   Comment.create(body: body,
@@ -203,7 +205,7 @@ end
 end
 
 # Set reopening comment on some tickets
-50.times do |i|
+100.times do |i|
   body = Faker::Hacker.say_something_smart
   employee_id = rand(1..10)
   ticket_id = i
