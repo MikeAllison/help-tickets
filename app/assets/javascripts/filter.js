@@ -4,12 +4,6 @@
 
 $(document).ready(function() {
 	
-	$("#filterClear").click(function(event){
-		event.preventDefault();
-		$("#filterText").val("");
-		$("tbody tr").show();
-	});
-	
 	// Code to make :contains case-insensitive
 	$.extend($.expr[':'], {
   	'containsi': function(elem, i, match, array) {
@@ -26,7 +20,14 @@ $(document).ready(function() {
 			$("tbody tr").hide();
 			$("tr:containsi('" + textVal + "')").show();
 		}	
-	});  // End keyup
+	}); // End keyup
+	
+	// Clear textbox when button is pressed
+	$("#filterClear").click(function(event){
+		event.preventDefault();
+		$("#filterText").val("");
+		$("tbody tr").show();
+	}); // End clear
 	
 }); // End ready
 
