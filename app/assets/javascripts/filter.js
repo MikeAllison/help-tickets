@@ -12,7 +12,6 @@ $(document).ready(function() {
 	});
 
 	$("#filterText").keyup(function(){
-
 		var textVal = $("#filterText").val();
 		
 		if (textVal === "") {
@@ -20,9 +19,13 @@ $(document).ready(function() {
 		} else {
 			$("tbody tr").hide();
 			$("tr:containsi('" + textVal + "')").show();
-		}
-		
+		}	
 	});  // End keyup
+	
+	$("#filterClear").click(function(event){
+		event.preventDefault();
+		$("#filterText").val() = "";
+	});
 	
 }); // End ready
 
