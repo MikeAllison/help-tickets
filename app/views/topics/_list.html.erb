@@ -2,22 +2,29 @@
 	<div class="col-xs-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-xs-4"><%= sort_column "System Name", "system" %></th>
+				<th class="col-xs-5"><%= sort_column "System Name", "system" %></th>
 				<th class="col-xs-2 hidden-xs">Open Tickets</th>
 				<th class="col-xs-2 hidden-xs">Closed Tickets</th>
 				<th class="col-xs-2 hidden-xs">Total Tickets</th>
-				<th class="col-xs-1"></th>
 				<th class="col-xs-1"></th>
 			</thead>
 			<tbody>
 				<% @topics.each do |topic| %>
 					<tr>
-						<td class="col-xs-4"><%= topic.system %></td>
+						<td class="col-xs-5"><%= topic.system %></td>
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.open.count %></td>
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>
-						<td class="col-xs-1"><%= link_to "Edit", edit_topic_path(topic) %></td>
-						<td class="col-xs-1"><%= link_to "Delete", topic, method: :delete %></td>
+						<td class="col-xs-1">
+							<%= link_to edit_topic_path(topic), title: 'Edit' do %>
+								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+								<span class="sr-only" title="Edit">Edit</span>
+							<% end %>
+							<%= link_to topic, method: :delete, title: 'Delete' do %>
+								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
+								<span class="sr-only" title="Delete">Delete</span>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 		</table>

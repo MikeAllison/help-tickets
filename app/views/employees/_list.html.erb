@@ -4,9 +4,8 @@
 			<thead>
 				<th class="col-xs-4"><%= sort_column "Name", "last_name" %></th>
 				<th class="col-xs-2"><%= sort_column "User Name", "user_name" %></th>
-				<th class="col-xs-2"><%= sort_column "Office", "offices.name", "office" %></th>
+				<th class="col-xs-3"><%= sort_column "Office", "offices.name", "office" %></th>
 				<th class="col-xs-2 hidden-xs">Total Tickets</th>
-				<th class="col-xs-1"></th>
 				<th class="col-xs-1"></th>
 			</thead>
 			<tbody>
@@ -18,18 +17,16 @@
 							<%= employee.last_first %>
 						</td>
 						<td class="col-xs-2"><%= employee.user_name %></td>
-						<td class="col-xs-2"><%= employee.office.name %></td>
+						<td class="col-xs-3"><%= employee.office.name %></td>
 						<td class="col-xs-2 hidden-xs"><%= employee.tickets.count %></td>
 						<td class="col-xs-1">
 							<%= link_to edit_employee_path(employee), title: 'Edit' do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
 							<% end %>
-						</td>
-						<td class="col-xs-1">
 							<%= link_to employee, method: :delete, title: 'Delete' do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
-								<span class="sr-only" title="Delete">Edit</span>
+								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>
 						</td>
 					</tr>

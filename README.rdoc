@@ -49,3 +49,4 @@ To-Do:
 * Fix bug with updating user info without resetting password - DONE
 * Cancel button has a bug after flash error
 * Add clear button to filter - DONE
+* When deleting topics, offices, etc....no nil classes
