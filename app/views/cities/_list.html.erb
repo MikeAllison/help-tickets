@@ -1,17 +1,17 @@
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-lg-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-xs-6"><%= sort_column "City", "name" %></th>
-				<th class="col-xs-5"><%= sort_column "State", "states.name", "state" %></th>
-				<th class="col-xs-1"></th>
+				<th class="col-lg-6"><%= sort_column "City", "name" %></th>
+				<th class="col-lg-5"><%= sort_column "State", "states.name", "state" %></th>
+				<th class="col-lg-1">Actions</th>
 			</thead>
 			<tbody>
 				<% @cities.each do |city| %>
 					<tr>
-						<td class="col-xs-6"><%= city.name %></td>
-						<td class="col-xs-5"><%= city.state.name %></td>
-						<td class="col-xs-1">
+						<td class="col-lg-6"><%= city.name %></td>
+						<td class="col-lg-5"><%= city.state.name %></td>
+						<td class="col-lg-1">
 							<%= link_to edit_city_path(city), title: 'Edit' do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>

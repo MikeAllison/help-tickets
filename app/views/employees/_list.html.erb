@@ -1,25 +1,25 @@
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-xs-4"><%= sort_column "Name", "last_name" %></th>
-				<th class="col-xs-2"><%= sort_column "User Name", "user_name" %></th>
-				<th class="col-xs-3"><%= sort_column "Office", "offices.name", "office" %></th>
-				<th class="col-xs-2 hidden-xs">Total Tickets</th>
-				<th class="col-xs-1"></th>
+				<th class="col-md-4"><%= sort_column "Name", "last_name" %></th>
+				<th class="col-md-2"><%= sort_column "User Name", "user_name" %></th>
+				<th class="col-md-3"><%= sort_column "Office", "offices.name", "office" %></th>
+				<th class="col-md-2 hidden-xs">Total Tickets</th>
+				<th class="col-md-1">Actions</th>
 			</thead>
 			<tbody>
 				<% @employees.each do |employee| %>
 					<tr>
-						<td class="col-xs-4">
+						<td class="col-md-4">
 							<%= employee_status_icon(employee.active) %>
 							&nbsp;
 							<%= employee.last_first %>
 						</td>
-						<td class="col-xs-2"><%= employee.user_name %></td>
-						<td class="col-xs-3"><%= employee.office.name %></td>
-						<td class="col-xs-2 hidden-xs"><%= employee.tickets.count %></td>
-						<td class="col-xs-1">
+						<td class="col-md-2"><%= employee.user_name %></td>
+						<td class="col-md-3"><%= employee.office.name %></td>
+						<td class="col-md-2 hidden-xs"><%= employee.tickets.count %></td>
+						<td class="col-md-1">
 							<%= link_to edit_employee_path(employee), title: 'Edit' do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>

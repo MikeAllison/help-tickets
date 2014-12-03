@@ -1,28 +1,28 @@
 <%= form_for @employee, html: { role: "form" } do |f| %>
 	<div class="row">
-		<div class="form-group col-xs-4">
+		<div class="form-group col-md-4">
 			<%= f.label :first_name, "First Name" %>
 		  <%= f.text_field :first_name, class: "form-control", placeholder: "Enter First Name" %>
 		</div>
-		<div class="form-group col-xs-4">
+		<div class="form-group col-md-4">
 		  <%= f.label :last_name, "Last Name" %>
 		  <%= f.text_field :last_name, class: "form-control", placeholder: "Enter Last Name" %>
 		</div>
-		<div class="form-group col-xs-4">	  
+		<div class="form-group col-md-4">	  
 		  <%= f.label :user_name, "User Name" %>
 		  <%= f.text_field :user_name, class: "form-control", placeholder: "Enter User Name" %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="form-group col-xs-4">  
+		<div class="form-group col-md-4">  
 		  <%= f.label :office_id %>
 		  <%= f.collection_select(:office_id, Office.all.order(:name), :id, :office_city_state_abbr, { prompt: true }, { class: "form-control" }) %>
 		</div>
-		<div class="form-group col-xs-4"> 
+		<div class="form-group col-md-4"> 
 		  <%= f.label :password, "Password (8 Character Minimum)" %>
 		  <%= f.password_field :password, class: "form-control", placeholder: "Enter Password" %>
 		</div>
-		<div class="form-group col-xs-4"> 
+		<div class="form-group col-md-4"> 
 		  <%= f.label :password_confirmation, "Password Confirmation" %>
 		  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Again" %>
 		</div>
@@ -30,7 +30,7 @@
 	
 	<% if current_employee.admin? %>
 		<div class="row">
-			<div class="form-group col-xs-4">
+			<div class="form-group col-md-4">
 				<%= f.label :active, "Account Status" %>
 				<br />
 				<%= f.radio_button(:active, 0, checked: @employee.active == false) %>
@@ -39,7 +39,7 @@
 				<%= f.radio_button(:active, 1, checked: @employee.active == true) %>
 				Active
 			</div>
-			<div class="form-group col-xs-4">
+			<div class="form-group col-md-4">
 				<%= f.label :admin, "User Rights" %>
 				<br />
 				<%= f.radio_button(:admin, 0, checked: @employee.admin == false) %>
@@ -52,7 +52,7 @@
 	<% end %>
 	
 	<div class="row">
-		<div class="form-group col-xs-12">
+		<div class="form-group col-md-12">
 			<%= submit_button %>
 			<%= cancel_button %>
 		</div>
