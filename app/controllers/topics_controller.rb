@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
 	  filter = params[:filter]
 	  
 	  if filter == 'true'
-	    @topics = Topic.joins(join_table).order(sort_column + ' ' + sort_direction)
+	    @topics = Topic.all.joins(join_table).order(sort_column + ' ' + sort_direction)
 	  else
 	    all_topics_paginated
 	  end
@@ -60,7 +60,7 @@ class TopicsController < ApplicationController
 		end
 
 		def all_topics_paginated
-			@topics = Topic.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+			@topics = Topic.all.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 
 		def topic_params

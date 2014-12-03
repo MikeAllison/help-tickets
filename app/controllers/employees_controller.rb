@@ -15,7 +15,7 @@ class EmployeesController < ApplicationController
   	  when 'inactive'
   	    @employees = Employee.inactive.joins(join_table).order(sort_column + ' ' + sort_direction)
   	  else
-  	    all_employees_paginated
+  	    @employees = Employee.all.joins(join_table).order(sort_column + ' ' + sort_direction)
   	  end
   	else
   	 case status
@@ -92,7 +92,7 @@ class EmployeesController < ApplicationController
 		end
 
 		def all_employees_paginated
-		  @employees = Employee.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+		  @employees = Employee.all.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 	  end
 
 		def employee_params_admin

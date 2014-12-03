@@ -8,7 +8,7 @@ class OfficesController < ApplicationController
 	  filter = params[:filter]
 	  
 	  if filter == 'true'
-	    @offices = Office.joins(join_table).order(sort_column + ' ' + sort_direction)
+	    @offices = Office.all.joins(join_table).order(sort_column + ' ' + sort_direction)
 	  else
 	    all_offices_paginated
 	  end
@@ -60,7 +60,7 @@ class OfficesController < ApplicationController
 		end
 
 		def all_offices_paginated
-			@offices = Office.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+			@offices = Office.all.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 		end
 
 		def office_params

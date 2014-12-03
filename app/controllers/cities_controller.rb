@@ -8,7 +8,7 @@ class CitiesController < ApplicationController
     filter = params[:filter]
     
     if filter == 'true'
-      @cities = City.joins(join_table).order(sort_column + ' ' + sort_direction)
+      @cities = City.all.joins(join_table).order(sort_column + ' ' + sort_direction)
     else
       all_cities_paginated
     end
@@ -60,7 +60,7 @@ class CitiesController < ApplicationController
     end
 
     def all_cities_paginated
-      @cities = City.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+      @cities = City.all.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     end
 
     

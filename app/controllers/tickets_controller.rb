@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
       when 'closed'
         @tickets = Ticket.closed.joins(join_table).order(sort_column + ' ' + sort_direction)
       else
-        @tickets = Ticket.joins(join_table).order(sort_column + ' ' + sort_direction)
+        @tickets = Ticket.all.joins(join_table).order(sort_column + ' ' + sort_direction)
       end
 	  else
 	   case status
@@ -35,7 +35,7 @@ class TicketsController < ApplicationController
       when 'closed'
         @tickets = Ticket.closed.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
       else
-        @tickets = Ticket.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+        @tickets = Ticket.all.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
       end
 	  end
 	  
