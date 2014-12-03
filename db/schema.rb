@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141125181132) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "cities", force: true do |t|
     t.string   "name"
     t.integer  "state_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20141125181132) do
     t.datetime "updated_at"
   end
 
-  add_index "cities", ["state_id"], name: "index_cities_on_state_id"
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "ticket_id"
@@ -44,8 +47,8 @@ ActiveRecord::Schema.define(version: 20141125181132) do
     t.boolean  "active",          default: false
   end
 
-  add_index "employees", ["admin"], name: "index_employees_on_admin"
-  add_index "employees", ["user_name"], name: "index_employees_on_user_name", unique: true
+  add_index "employees", ["admin"], name: "index_employees_on_admin", using: :btree
+  add_index "employees", ["user_name"], name: "index_employees_on_user_name", unique: true, using: :btree
 
   create_table "offices", force: true do |t|
     t.string   "name"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20141125181132) do
     t.integer  "city_id"
   end
 
-  add_index "offices", ["city_id"], name: "index_offices_on_city_id"
+  add_index "offices", ["city_id"], name: "index_offices_on_city_id", using: :btree
 
   create_table "states", force: true do |t|
     t.string   "name"
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141125181132) do
     t.integer  "status_id"
   end
 
-  add_index "tickets", ["status_id"], name: "index_tickets_on_status_id"
+  add_index "tickets", ["status_id"], name: "index_tickets_on_status_id", using: :btree
 
   create_table "topics", force: true do |t|
     t.string   "system"

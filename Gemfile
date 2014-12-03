@@ -42,14 +42,8 @@ gem 'bootstrap-sass', '3.2.0.0'
 gem 'jquery-turbolinks', '~> 0.2.1'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+gem 'faker', '~> 1.4.3'
+gem 'pg', '0.17.1'
+  
+gem 'rails_12factor', '0.0.2', group: :production
 
-group :development, :test do
-  gem 'sqlite3'
-  gem 'faker', '~> 1.4.3'
-end
-
-
-group :production do
-  gem 'pg',             '0.17.1'
-  #gem 'rails_12factor', '0.0.2'
-end
