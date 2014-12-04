@@ -42,7 +42,7 @@ class TicketsController < ApplicationController
 	end
 	
 	def my
-	  @tickets = Ticket.where('employee_id = ?', @current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.where('creator_id = ?', current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
 	end
 
 	def show
@@ -101,6 +101,6 @@ class TicketsController < ApplicationController
 		end
 		
 		def ticket_params
-	  	params.require(:ticket).permit(:employee_id, :topic_id, :description, :status_id)
+	  	params.require(:ticket).permit(:creator_id, :topic_id, :description, :status_id)
 	 	end
 end

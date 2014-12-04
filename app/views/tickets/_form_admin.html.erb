@@ -1,8 +1,8 @@
 <%= form_for @ticket, html: { role: "form" } do |f| %>
 	<div class="row">
 		<div class="form-group col-md-4">
-		<%= f.label :employee_id, "Select Employee" %>
-		<%= f.collection_select(:employee_id, Employee.active.order(:last_name), :id, :last_first, {}, { class: "form-control" }) %>
+		<%= f.label :creator_id, "Select Employee" %>
+		<%= f.collection_select(:creator_id, Employee.active.order(:last_name), :id, :last_first, {}, { class: "form-control" }) %>
 		</div>
 		<div class="form-group col-md-4">
 			<%= f.label :topic_id, "Select Topic" %>

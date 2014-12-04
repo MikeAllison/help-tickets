@@ -174,16 +174,23 @@ State.create([
   {name: 'Wyoming', abbreviation: 'WY'}
 ])
 
+Status.create([
+  {state: 'Unassigned'},
+  {state: 'Work in Progress'},
+  {state: 'On Hold'},
+  {state: 'Closed'}
+])
+
 # Create tickets
 1000.times do
   description = Faker::Hacker.say_something_smart
-  employee_id = rand(1..600)
+  creator_id = rand(1..600)
   topic_id = rand(1..10)
   status_id = rand(1..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
   
   Ticket.create(description: description,
-                employee_id: employee_id,
+                creator_id: creator_id,
                 topic_id: topic_id,
                 status_id: status_id,
                 created_at: time,
@@ -218,10 +225,3 @@ end
                  created_at: time,
                  updated_at: time)
 end
-
-Status.create([
-  {state: 'Unassigned'},
-  {state: 'Work in Progress'},
-  {state: 'On Hold'},
-  {state: 'Closed'}
-])
