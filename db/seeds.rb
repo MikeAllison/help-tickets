@@ -181,12 +181,12 @@ Status.create([
   {state: 'Closed'}
 ])
 
-# Create tickets
-1000.times do
+# Create assigned tickets
+100.times do
   description = Faker::Hacker.say_something_smart
   creator_id = rand(1..600)
   topic_id = rand(1..10)
-  status_id = rand(1..4)
+  status_id = 1
   time = Faker::Time.between(7.days.ago, 5.days.ago)
   
   Ticket.create(description: description,
@@ -195,6 +195,24 @@ Status.create([
                 status_id: status_id,
                 created_at: time,
                 updated_at: time)
+end
+
+# Create assigned tickets
+900.times do
+  description = Faker::Hacker.say_something_smart
+  creator_id = rand(1..600)
+  topic_id = rand(1..10)
+  status_id = rand(2..4)
+  time = Faker::Time.between(7.days.ago, 5.days.ago)
+  technician_id = rand(1..10)
+  
+  Ticket.create(description: description,
+                creator_id: creator_id,
+                topic_id: topic_id,
+                status_id: status_id,
+                created_at: time,
+                updated_at: time,
+                technician_id: technician_id)
 end
 
 # Create comments on tickets

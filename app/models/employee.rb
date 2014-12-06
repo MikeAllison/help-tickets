@@ -12,6 +12,7 @@ class Employee < ActiveRecord::Base
   
   scope :active,    -> { where(active: true) }
   scope :inactive,  -> { where(active: false) }
+  scope :admin,     -> { where(admin: true) }
 
   # Method to set user name
 

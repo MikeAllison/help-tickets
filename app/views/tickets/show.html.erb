@@ -11,6 +11,7 @@
 					<li><strong>Status: </strong><%= @ticket.status.state %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>Updated: </strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
+					<li><strong>Assigned To: </strong><%= @ticket.technician.last_first %></li>
 					<li><strong>Description: </strong><%= @ticket.description %></li>
 		  	</ul>
 		  	<div>
@@ -21,9 +22,9 @@
 		  			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reopenTicketModal">Reopen Ticket</button>
 		  		<% end %>
 		  		<% if admin? %>
-		  			<%= link_to "Cancel", tickets_open_path, class: "btn btn-default" %>
+		  			<%= link_to "Back", tickets_open_path, class: "btn btn-default" %>
 		  		<% else %>
-		  			<%= link_to "Cancel", tickets_my_path, class: "btn btn-default" %>
+		  			<%= link_to "Back", tickets_my_path, class: "btn btn-default" %>
 		  		<% end %>
 		  	</div>
 		  </div>

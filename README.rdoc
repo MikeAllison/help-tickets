@@ -50,6 +50,8 @@ To-Do:
 * Cancel button has a bug after flash error
 * Add clear button to filter - DONE
 * When deleting topics, offices, etc....no nil classes
+* Show updated_at column on closed tickets and label column "Closed"
+* Fix nil class bug on ticket show for tickets with no technician_id
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

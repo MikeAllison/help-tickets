@@ -2,37 +2,39 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-1"><%= sort_column "ID", "id" %></th>
-				<th class="col-md-2"><%= sort_column "Requested For", "employees.last_name", "employee" %></th>
-				<th class="col-md-1"><%= sort_column "Topic", "topics.system", "topic" %></th>
-				<th class="col-md-2 hidden-xs"><%= sort_column "Created", "created_at" %></th>
-				<th class="col-md-2 hidden-xs"><%= sort_column "Updated", "updated_at" %></th>
+				<th><%= sort_column "ID", "id" %></th>
+				<th><%= sort_column "Requested For", "employees.last_name", "employee" %></th>
+				<th><%= sort_column "Topic", "topics.system", "topic" %></th>
 				<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
-					<th class="col-md-1"><%= sort_column "Status", "statuses.state", "status" %></th>
+					<th><%= sort_column "Status", "statuses.state", "status" %></th>
 				<% end %>
-				<th class="col-md-2">Assigned To</th>
-				<th class="col-md-1">Actions</th>
+				<% if params[:status] != 'unassigned' %>
+					<th>Assigned To</th>
+				<% end %>
+				<th class="hidden-xs"><%= sort_column "Created", "created_at" %></th>
+				<th>Actions</th>
 			</thead>
 			<tbody>
 				<% @tickets.each do |ticket| %>
 					<tr>
-						<td class="col-md-1"><%= ticket.id %></td>
-						<td class="col-md-2"><%= ticket.creator.last_first %></td>
-						<td class="col-md-1"><%= ticket.topic.system %></td>
-						<td class="col-md-2 hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
-						<td class="col-md-2 hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<td><%= ticket.id %></td>
+						<td><%= ticket.creator.last_first %></td>
+						<td><%= ticket.topic.system %></td>
 						<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
-							<td class="col-md-1">
+							<td>
 								<%= ticket_status_icon(ticket.status.state) %>
 								<%= ticket.status.state %>
 							</td>
 						<% end %>
-						<td class="col-md-2">
-							<% if !ticket.technician.nil? %>
-								<%= ticket.technician.last_first %>
-							<% end %>
-						</td>
-						<td class="col-md-1">
+						<% if params[:status] != 'unassigned' %>
+							<td>
+								<% if !ticket.technician.nil? %>
+									<%= ticket.technician.last_first %>
+								<% end %>
+							</td>
+						<% end %>
+						<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<td>
 							<%= link_to ticket_path(ticket), title: 'Details' do %>
 								<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Details">Details</span>
