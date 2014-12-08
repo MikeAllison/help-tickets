@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
 	
 	before_action :restrict_access, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
+	before_action :check_unassigned, only: [:update]
 	
 	def index
 	  filter = params[:filter]
@@ -72,7 +73,7 @@ class TicketsController < ApplicationController
 	end
 	
 	def update
-	  if @ticket.update_attributes(ticket_params)
+    if @ticket.update_attributes(ticket_params)
 	    flash[:success] = "Ticket was successfully updated!"
 	    redirect_to ticket_path
 	  else
@@ -98,6 +99,15 @@ class TicketsController < ApplicationController
 		
 		def find_ticket
 			@ticket = Ticket.find(params[:id])
+		end
+		
+		def check_unassigned
+		  if @ticket.technician_id != '' && @ticket.status_id == 1
+        flash.now[:danger] = "Please change state to something other than 'Unassigned!'"
+        render 'edit'
+      else
+        return
+      end
 		end
 		
 		def ticket_params

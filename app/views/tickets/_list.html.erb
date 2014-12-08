@@ -3,13 +3,13 @@
 		<table class="table table-striped">
 			<thead>
 				<th><%= sort_column "ID", "id" %></th>
-				<th><%= sort_column "Requested For", "employees.last_name", "employee" %></th>
+				<th><%= sort_column "Requested For", "employees.last_name", "creator" %></th>
 				<th><%= sort_column "Topic", "topics.system", "topic" %></th>
 				<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column "Status", "statuses.state", "status" %></th>
 				<% end %>
 				<% if params[:status] != 'unassigned' %>
-					<th>Assigned To</th>
+					<th><%= sort_column "Assigned To", "employees.last_name", "technician" %></th>
 				<% end %>
 				<th class="hidden-xs"><%= sort_column "Created", "created_at" %></th>
 				<th>Actions</th>
@@ -28,9 +28,7 @@
 						<% end %>
 						<% if params[:status] != 'unassigned' %>
 							<td>
-								<% if !ticket.technician.nil? %>
-									<%= ticket.technician.last_first %>
-								<% end %>
+								<%= ticket.technician.last_first unless ticket.technician.nil? %>
 							</td>
 						<% end %>
 						<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>

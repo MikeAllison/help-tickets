@@ -11,9 +11,16 @@
 					<li><strong>Status: </strong><%= @ticket.status.state %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>Updated: </strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-					<li><strong>Assigned To: </strong><%= @ticket.technician.last_first %></li>
-					<li><strong>Description: </strong><%= @ticket.description %></li>
+					<li><strong>Assigned To: </strong><%= @ticket.technician.last_first unless @ticket.technician.blank? %></li>
+				</ul>
+				<ul class="list-unstyled">
+					<li>
+						<strong>Description:</strong>
+						<br />
+						<%= @ticket.description %>
+					</li>
 		  	</ul>
+		  	<br />
 		  	<div>
 		  		<% if @ticket.status.state != 'Closed' %>
 		  			<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
