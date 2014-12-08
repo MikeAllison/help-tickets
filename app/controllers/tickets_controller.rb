@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
 	
 	before_action :restrict_access, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
-	before_action :check_unassigned, only: [:update]
+	before_action :check_for_unassigned, only: [:show, :edit, :update]
 	
 	def index
 	  filter = params[:filter]
@@ -101,12 +101,12 @@ class TicketsController < ApplicationController
 			@ticket = Ticket.find(params[:id])
 		end
 		
-		def check_unassigned
-		  if @ticket.technician_id != '' && @ticket.status_id == 1
-        flash.now[:danger] = "Please change state to something other than 'Unassigned!'"
-        render 'edit'
-      else
-        return
+		# Checks for tickets assigned to a tech but status is still set to 'Unassigned'
+		# This would ideally not let you save if this is the case but can't get that...
+		# ...to work at the moment
+		def check_for_unassigned
+		  if @ticket.technician_id != nil && @ticket.status_id == 1
+        flash.now[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
       end
 		end
 		
