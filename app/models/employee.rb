@@ -15,12 +15,14 @@ class Employee < ActiveRecord::Base
   scope :admin,     -> { where(admin: true) }
 
   # Method to set user name
-
+  
 	def last_first
 		last_name + ', ' + first_name
 	end
-	
+
 	has_secure_password
 	validates :password, length: { minimum: 8 }, allow_blank: true
+	
+	private
 
 end
