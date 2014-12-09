@@ -47,7 +47,7 @@ class TicketsController < ApplicationController
 	end
 
 	def show
-	  if admin? || @ticket.employee_id == current_employee.id
+	  if admin? || @ticket.creator_id == current_employee.id
       render 'show'
 	  else
 	    flash[:danger] = "You are not authorized to view that ticket!"
