@@ -6,11 +6,13 @@ module EmployeesHelper
     
     if status == true
       icon += 'user alert-success'
+      tooltip = 'Active'
     else
       icon += 'user alert-danger'
+      tooltip = 'Inactive'
     end 
     
-    content_tag :span, '', class: icon
+    content_tag :span, '', { class: icon, title: tooltip }
   end
   
 end
