@@ -9,14 +9,14 @@
 	      </div>
 	      <div class="modal-body">
 	      	<div class="form-group">
-						<%= f.label :body, "Comment" %>
-						<%= f.text_area :body, class: "form-control", placeholder: "Enter Comment" %>
+						<%= f.label :body, 'Comment' %>
+						<%= f.text_area :body, class: 'form-control', placeholder: 'Enter Comment' %>
 					</div>			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 	        <%= f.hidden_field :reopening_comment, { value: true } %>
-	        <%= f.submit "Reopen Ticket", class: "btn btn-success" %>
+	        <%= f.submit 'Reopen Ticket', class: 'btn btn-success' %>
 	      </div>
 	    </div>
 	  </div>

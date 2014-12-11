@@ -2,8 +2,8 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-4"><%= sort_column "Office", "name" %></th>
-				<th class="col-md-3"><%= sort_column "City", "cities.name", "city" %></th>
+				<th class="col-md-4"><%= sort_column 'Office', 'name' %></th>
+				<th class="col-md-3"><%= sort_column 'City', 'cities.name', 'city' %></th>
 				<th class="col-md-2">State</th>
 				<th class="col-md-2 hidden-xs">Employees</th>
 				<th class="col-md-1">Actions</th>
@@ -16,11 +16,11 @@
 						<td class="col-md-2"><%= office.city.state.abbreviation %></td>
 						<td class="col-md-2 hidden-xs"><%= office.employees.count %></td>
 						<td class="col-md-1">
-							<%= link_to edit_office_path(office), title: 'Edit' do %>
+							<%= link_to edit_office_path(office), title: 'Edit', data: { toggle: 'tooltip', placement: 'left' } do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
 							<% end %>
-							<%= link_to office, method: :delete, title: 'Delete' do %>
+							<%= link_to office, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'right' } do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>

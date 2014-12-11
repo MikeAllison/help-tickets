@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<%= link_to "HELP DESK", root_path, class: "navbar-brand" %>
+			<%= link_to 'HELP DESK', root_path, class: 'navbar-brand' %>
 			<% if logged_in? %>
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
 	        <span class="sr-only">Toggle navigation</span>
@@ -20,54 +20,54 @@
 					<li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	          	<li><%= link_to "Create Ticket", new_ticket_path %></li>
+	          	<li><%= link_to 'Create Ticket', new_ticket_path %></li>
 	            <li class="divider"></li>
-	            <li><%= link_to "My Tickets", tickets_my_path %></li>
+	            <li><%= link_to 'My Tickets', tickets_my_path %></li>
 	            <li class="divider"></li>
-	            <li><%= link_to "Open", tickets_open_path %></li>
-	            <li><%= link_to "All", tickets_all_path %></li>
-	            <li><%= link_to "Unassigned", tickets_unassigned_path %></li>
-	            <li><%= link_to "Work In Progress", tickets_work_in_progress_path %></li>
-	            <li><%= link_to "On Hold", tickets_on_hold_path %></li>
-	            <li><%= link_to "Closed", tickets_closed_path %></li>
+	            <li><%= link_to 'Open', tickets_open_path %></li>
+	            <li><%= link_to 'All', tickets_all_path %></li>
+	            <li><%= link_to 'Unassigned', tickets_unassigned_path %></li>
+	            <li><%= link_to 'Work In Progress', tickets_work_in_progress_path %></li>
+	            <li><%= link_to 'On Hold', tickets_on_hold_path %></li>
+	            <li><%= link_to 'Closed', tickets_closed_path %></li>
 	          </ul>
 	        </li>
 	
 					<li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	          	<li><%= link_to "Add Employee", new_employee_path %></li>
+	          	<li><%= link_to 'Add Employee', new_employee_path %></li>
 	          	<li class="divider"></li>
-	          	<li><%= link_to "All", employees_all_path %></li>
-	          	<li><%= link_to "Active", employees_active_path %></li>
-	          	<li><%= link_to "Inactive", employees_inactive_path %></li>
+	          	<li><%= link_to 'All', employees_all_path %></li>
+	          	<li><%= link_to 'Active', employees_active_path %></li>
+	          	<li><%= link_to 'Inactive', employees_inactive_path %></li>
 	          </ul>
 	        </li>
 	        
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	          	<li><%= link_to "Add Topic", new_topic_path %></li>
+	          	<li><%= link_to 'Add Topic', new_topic_path %></li>
 	          	<li class="divider"></li>
-	          	<li><%= link_to "All", topics_path %></li>
+	          	<li><%= link_to 'All', topics_path %></li>
 	          </ul>
 	    		</li> 
 	
 					<li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Offices <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	          	<li><%= link_to "Add Office", new_office_path %></li>
+	          	<li><%= link_to 'Add Office', new_office_path %></li>
 	          	<li class="divider"></li>
-	          	<li><%= link_to "All", offices_path %></li>
+	          	<li><%= link_to 'All', offices_path %></li>
 	          </ul>
 	        </li>
 	    		<!-- End Admin Links -->
 	    	
 	    	<!-- Start Non-Admin Links -->
 	     	<% elsif logged_in? && !admin? %>
-	     		<li><%= link_to "Create Ticket", new_ticket_path %></li>
-		      <li><%= link_to "My Tickets", tickets_my_path %></li>
-		      <li><%= link_to "My Account", edit_employee_path(current_employee) %></li>
+	     		<li><%= link_to 'Create Ticket', new_ticket_path %></li>
+		      <li><%= link_to 'My Tickets', tickets_my_path %></li>
+		      <li><%= link_to 'My Account', edit_employee_path(current_employee) %></li>
 	     	<% end %> <!-- End Non-Admin Links -->
 			</ul> <!-- End Left Menu -->
 			
@@ -75,7 +75,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<% if logged_in? %>
 					<p class="navbar-text hidden-xs">Hello, <%= current_employee.first_name %>&#33;</p>
-					<li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+					<li><%= link_to 'Log Out', logout_path, method: 'delete' %></li>
 				<% end %>
 			</ul> <!-- End Right Menu -->
 			

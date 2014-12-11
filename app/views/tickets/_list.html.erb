@@ -2,16 +2,16 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th><%= sort_column "ID", "id" %></th>
-				<th><%= sort_column "Requested For", "employees.last_name", "creator" %></th>
-				<th><%= sort_column "Topic", "topics.system", "topic" %></th>
+				<th><%= sort_column 'ID', 'id' %></th>
+				<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
 				<% if params[:status] == nil || params[:status] == 'my' || params[:status] == 'open' %>
-					<th><%= sort_column "Status", "statuses.state", "status" %></th>
+					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
 				<% end %>
 				<% if params[:status] != 'unassigned' %>
-					<th><%= sort_column "Assigned To", "employees.last_name", "technician" %></th>
+					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
 				<% end %>
-				<th class="hidden-xs"><%= sort_column "Created", "created_at" %></th>
+				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
 				<th>Actions</th>
 			</thead>
 			<tbody>

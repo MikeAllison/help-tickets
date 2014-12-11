@@ -23,15 +23,15 @@
 		  	<br />
 		  	<div>
 		  		<% if @ticket.status.state != 'Closed' %>
-		  			<%= link_to "Edit Ticket", edit_ticket_path(@ticket), class: "btn btn-primary" %>
+		  			<%= link_to 'Edit Ticket', edit_ticket_path(@ticket), class: 'btn btn-primary' %>
 		  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>	
 		  		<% else %>
 		  			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reopenTicketModal">Reopen Ticket</button>
 		  		<% end %>
 		  		<% if admin? %>
-		  			<%= link_to "Back", tickets_open_path, class: "btn btn-default" %>
+		  			<%= link_to 'Back', tickets_open_path, class: 'btn btn-default' %>
 		  		<% else %>
-		  			<%= link_to "Back", tickets_my_path, class: "btn btn-default" %>
+		  			<%= link_to 'Back', tickets_my_path, class: 'btn btn-default' %>
 		  		<% end %>
 		  	</div>
 		  </div>

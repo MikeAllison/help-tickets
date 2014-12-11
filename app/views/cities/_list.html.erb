@@ -2,8 +2,8 @@
 	<div class="col-lg-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-lg-6"><%= sort_column "City", "name" %></th>
-				<th class="col-lg-5"><%= sort_column "State", "states.name", "state" %></th>
+				<th class="col-lg-6"><%= sort_column 'City', 'name' %></th>
+				<th class="col-lg-5"><%= sort_column 'State', 'states.name', 'state' %></th>
 				<th class="col-lg-1">Actions</th>
 			</thead>
 			<tbody>
@@ -12,11 +12,11 @@
 						<td class="col-lg-6"><%= city.name %></td>
 						<td class="col-lg-5"><%= city.state.name %></td>
 						<td class="col-lg-1">
-							<%= link_to edit_city_path(city), title: 'Edit' do %>
+							<%= link_to edit_city_path(city), title: 'Edit', data: { toggle: 'tooltip', placement: 'left' } do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
 							<% end %>
-							<%= link_to city, method: :delete, title: 'Delete' do %>
+							<%= link_to city, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'right' } do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>

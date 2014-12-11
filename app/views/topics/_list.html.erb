@@ -16,11 +16,11 @@
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
 						<td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>
 						<td class="col-xs-1">
-							<%= link_to edit_topic_path(topic), title: 'Edit' do %>
+							<%= link_to edit_topic_path(topic), title: 'Edit', data: { toggle: 'tooltip', placement: 'left' } do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
 							<% end %>
-							<%= link_to topic, method: :delete, title: 'Delete' do %>
+							<%= link_to topic, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'right' } do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>
