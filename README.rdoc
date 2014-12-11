@@ -52,6 +52,7 @@ To-Do:
 * When deleting topics, offices, etc....no nil classes
 * Show updated_at column on closed tickets and label column "Closed"
 * Fix nil class bug on ticket show for tickets with no technician_id
+* Fix bug where you can close a ticket without assigned it to anyone
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)
