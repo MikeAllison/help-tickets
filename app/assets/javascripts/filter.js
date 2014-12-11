@@ -2,7 +2,7 @@
 // Filters tbody rows based on content from a text input with id="filterText"
 // ***************************************************************************
 
-$(document).ready(function() {
+$(function() {
 	
 	// Code to make :contains case-insensitive
 	$.extend($.expr[':'], {

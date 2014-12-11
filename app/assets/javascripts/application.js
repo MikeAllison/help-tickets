@@ -16,3 +16,10 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
+
+//***************************************
+// Required to enable Bootstrap tooltips
+//***************************************
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});

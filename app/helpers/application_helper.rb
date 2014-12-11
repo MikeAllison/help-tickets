@@ -77,7 +77,7 @@ module ApplicationHelper
   end
   
   def filter_link
-    link_to 'Filter', { :filter => true }, { class: 'btn btn-default ' }
+    link_to 'Filter', { :filter => true }, { class: 'btn btn-default', title: 'Load All Records & Enable Filter', data: { toggle: 'tooltip', placement: 'right' } }
   end
   
 end
