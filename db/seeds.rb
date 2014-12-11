@@ -15,6 +15,15 @@ Employee.create(last_name: 'Allison',
                 active: true, 
                 admin: true)
 
+Employee.create(last_name: 'Fox', 
+                first_name: 'Michelle', 
+                user_name: 'mfadmin', 
+                password: 'password', 
+                password_confirmation: 'password', 
+                office_id: 1,
+                active: true, 
+                admin: true)
+
 # Create active admin users (admin1-6)
 6.times do |i|
   last_name = Faker::Name.last_name
@@ -52,6 +61,15 @@ end
 Employee.create(last_name: 'Van Allen', 
                 first_name: 'Pooks', 
                 user_name: 'pooks', 
+                password: 'password', 
+                password_confirmation: 'password', 
+                office_id: 1,
+                active: true, 
+                admin: false)
+                
+Employee.create(last_name: 'Fox', 
+                first_name: 'Michelle', 
+                user_name: 'mfox', 
                 password: 'password', 
                 password_confirmation: 'password', 
                 office_id: 1,
