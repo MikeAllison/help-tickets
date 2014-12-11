@@ -1,15 +1,16 @@
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        
-      </button>
-			<a class="navbar-brand" href="#">HELP DESK</a>
-		</div> <!-- Brand -->
+			<%= link_to "HELP DESK", root_path, class: "navbar-brand" %>
+			<% if logged_in? %>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+      <% end %>
+		</div> <!-- Brand and Responsive Menu -->
 		
 		<div id="navbar" class="collapse navbar-collapse">
 			
