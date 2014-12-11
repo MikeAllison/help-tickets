@@ -20,11 +20,11 @@
 						<td class="col-md-3"><%= employee.office.name %></td>
 						<td class="col-md-2 hidden-xs"><%= employee.created_tickets.count %></td>
 						<td class="col-md-1">
-							<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'left' }  do %>
+							<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'left' } do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
 							<% end %>
-							<%= link_to employee, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'right' }  do %>
+							<%= link_to employee, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'right' } do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>
