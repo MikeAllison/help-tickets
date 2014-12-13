@@ -84,7 +84,7 @@ class TicketsController < ApplicationController
 	
 	def assign_to_me
 	  flash[:success] = "Ticket was assigned to you and set to 'Work in Progress.'"
-	  @ticket.update_attributes({ technician_id: current_employee.id, status_id: 2 })
+	  @ticket.update_attributes(technician_id: current_employee.id, status_id: 2)
 	  redirect_to ticket_path
 	end
 	
