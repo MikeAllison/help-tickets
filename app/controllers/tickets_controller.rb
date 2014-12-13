@@ -117,7 +117,7 @@ class TicketsController < ApplicationController
 		# This would ideally not let you save if this is the case but can't get that...
 		# ...to work at the moment
 		def check_for_unassigned
-		  if @ticket.technician_id != nil && @ticket.status_id == 1
+		  if @ticket.technician_id != nil && @ticket.status_id == 1 && !current_employee.admin?
         flash.now[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
       end
 		end
