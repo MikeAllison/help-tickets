@@ -53,6 +53,8 @@ To-Do:
 * Show updated_at column on closed tickets and label column "Closed"
 * Fix nil class bug on ticket show for tickets with no technician_id - FIXED
 * Fix bug where you can close a ticket without assigning it to anyone - FIXED
+* Fix bug where reopening a ticket doesn't reset technician_id
+* Fix bug where a non-admin may be able to assign a ticket to themself
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

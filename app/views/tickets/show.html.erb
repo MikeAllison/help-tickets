@@ -29,7 +29,9 @@
 		  	<br />
 		  	<div>
 		  		<% if @ticket.status.state != 'Closed' %>
-		  			<%= link_to 'Assign to Me', assign_to_me_path(id: @ticket.id), class: 'btn btn-primary' %>
+		  			<% if current_employee.admin? %>
+		  				<%= link_to 'Assign to Me', assign_to_me_path(@ticket), class: 'btn btn-primary' %>
+		  			<% end %>
 		  			<%= link_to 'Edit Ticket', edit_ticket_path(@ticket), class: 'btn btn-primary' %>
 		  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>	
 		  		<% else %>
