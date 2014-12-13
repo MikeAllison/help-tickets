@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
 	
 	before_action :restrict_access, only: [:index]
-	before_action :find_ticket, only: [:show, :edit, :update, :close_ticket, :reopen_ticket, :destroy]
+	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close_ticket, :reopen_ticket, :destroy]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 	
 	def index
@@ -80,6 +80,12 @@ class TicketsController < ApplicationController
 	    flash.now[:danger] = "There was a problem updating the ticket."
 	    render 'edit'
 	  end
+	end
+	
+	def assign_to_me
+	  flash[:success] = "Ticket was assigned to you and set to 'Work in Progress.'"
+	  @ticket.update_attributes({ technician_id: current_employee.id, status_id: 2 })
+	  redirect_to ticket_path
 	end
 	
 	def close_ticket
