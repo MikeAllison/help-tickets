@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'tickets/all' => 'tickets#index'
+  get 'tickets/all' => 'tickets#index', status: 'all'
   get 'tickets/my' => 'tickets#my', status: 'my'
   get 'tickets/open' => 'tickets#index', status: 'open'
   get 'tickets/unassigned' => 'tickets#index', status: 'unassigned'

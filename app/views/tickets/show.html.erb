@@ -10,7 +10,13 @@
 					<li><strong>Topic: </strong><%= @ticket.topic.system %></li>
 					<li><strong>Status: </strong><%= @ticket.status.state %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-					<li><strong>Updated: </strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
+					<li><strong>
+						<% if @ticket.status.state == 'Closed' %>
+							Closed: 
+						<% else %>
+							Updated:
+						<% end %>
+					</strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>Assigned To: </strong><%= @ticket.technician.last_first unless @ticket.technician.blank? %></li>
 				</ul>
 				<ul class="list-unstyled">
