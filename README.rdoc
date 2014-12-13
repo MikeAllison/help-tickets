@@ -35,9 +35,9 @@ To-Do:
 * Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
 * Responsive design
 * Active/inactive employees - DONE
-* Toggle between pagination and listing all tickets with a filter option
+* Toggle between pagination and listing all tickets with a filter option - DONE
 * Employee search for new tickets
-* Check responsiveness for forms
+* Check responsiveness for forms - DONE
 * Reset all closing_comments to false on ticket re-open
 * Attachments
 * Ajax on offices/new
@@ -51,8 +51,8 @@ To-Do:
 * Add clear button to filter - DONE
 * When deleting topics, offices, etc....no nil classes
 * Show updated_at column on closed tickets and label column "Closed"
-* Fix nil class bug on ticket show for tickets with no technician_id
-* Fix bug where you can close a ticket without assigned it to anyone
+* Fix nil class bug on ticket show for tickets with no technician_id - FIXED
+* Fix bug where you can close a ticket without assigning it to anyone - FIXED
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

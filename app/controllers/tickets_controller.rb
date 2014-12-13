@@ -85,6 +85,9 @@ class TicketsController < ApplicationController
 	def close_ticket
 	  # Sets ticket.status.state to 'Closed'
 	  flash[:success] = "Ticket closed!"
+	  if @ticket.technician_id.nil?
+	    @ticket.update_attribute(:technician_id, current_employee.id)
+	  end
 	  @ticket.update_attribute(:status_id, 4)
 	  default_tickets_redirect
 	end
