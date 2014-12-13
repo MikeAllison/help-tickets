@@ -56,6 +56,7 @@ To-Do:
 * Fix bug where reopening a ticket doesn't reset technician_id
 * Fix bug where a non-admin may be able to assign a ticket to themself
 * Fix bug where a non-admin may be able to change ticket assignment status
+* Link to show tickets for a specific employee
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

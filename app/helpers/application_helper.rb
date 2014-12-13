@@ -60,11 +60,20 @@ module ApplicationHelper
       c_name = 'City'
     end
     
+    if params[:employee_id]
+      a_name = @employee.first_name + ' ' + @employee.last_name
+      if a_name.end_with?('s')
+        a_name += "'"
+      else
+        a_name += "'s"
+      end
+    end
+    
     if action_name == 'assigned_to_me'
       c_name + ' ' + a_name
     else
       a_name + ' ' + c_name
-    end  
+    end
     
   end
   

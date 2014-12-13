@@ -37,7 +37,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :topics
   resources :offices
-  resources :employees
+  resources :employees do
+    resources :tickets
+  end
   resources :cities
   resources :states
   resources :tickets do
