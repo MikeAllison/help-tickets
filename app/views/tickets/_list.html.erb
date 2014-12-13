@@ -11,7 +11,11 @@
 				<% if params[:status] != 'unassigned' %>
 					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
 				<% end %>
-				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
+				<% if params[:status] == 'closed' %>
+					<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
+				<% else %>
+					<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
+				<% end %>
 				<th>Actions</th>
 			</thead>
 			<tbody>
@@ -31,7 +35,11 @@
 								<%= ticket.technician.last_first unless ticket.technician.nil? %>
 							</td>
 						<% end %>
-						<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<% if params[:status] == 'closed' %>
+							<td class="hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<% else %>
+							<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+						<% end %>
 						<td>
 							<%= link_to ticket_path(ticket), title: 'Details', data: { toggle: 'tooltip', placement: 'right' } do %>
 								<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
