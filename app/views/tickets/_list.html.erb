@@ -8,7 +8,7 @@
 				<% if params[:status] == nil || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
 				<% end %>
-				<% if params[:status] != 'unassigned' %>
+				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' %>
 					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
 				<% end %>
 				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
@@ -31,7 +31,7 @@
 								<%= ticket.status.state %>
 							</td>
 						<% end %>
-						<% if params[:status] != 'unassigned' %>
+						<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' %>
 							<td>
 								<%= ticket.technician.last_first unless ticket.technician.nil? %>
 							</td>

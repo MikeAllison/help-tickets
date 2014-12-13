@@ -39,7 +39,10 @@ class TicketsController < ApplicationController
         @tickets = Ticket.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
       end
 	  end
-	  
+	end
+	
+	def assigned_to_me
+	  @tickets = Ticket.where('technician_id = ?', current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
 	end
 	
 	def my

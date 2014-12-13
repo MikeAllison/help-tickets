@@ -59,8 +59,13 @@ module ApplicationHelper
     elsif c_name == 'Citie'
       c_name = 'City'
     end
-      
-    a_name + ' ' + c_name
+    
+    if action_name == 'assigned_to_me'
+      c_name + ' ' + a_name
+    else
+      a_name + ' ' + c_name
+    end  
+    
   end
   
   # Creates a link for table headers with params to sort

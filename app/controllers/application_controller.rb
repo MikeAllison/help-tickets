@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     
     def default_tickets_redirect
       if admin?
-        redirect_to tickets_open_path
+        redirect_to tickets_assigned_to_me_path
       else
         redirect_to tickets_my_path
       end

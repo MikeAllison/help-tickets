@@ -12,23 +12,24 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'tickets/all' => 'tickets#index', status: 'all'
-  get 'tickets/my' => 'tickets#my', status: 'my'
-  get 'tickets/open' => 'tickets#index', status: 'open'
-  get 'tickets/unassigned' => 'tickets#index', status: 'unassigned'
-  get 'tickets/work_in_progress' => 'tickets#index', status: 'work_in_progress'
-  get 'tickets/hold' => 'tickets#index', status: 'on_hold'
-  get 'tickets/on_hold' => 'tickets#index', status: 'on_hold'
-  get 'tickets/closed' => 'tickets#index', status: 'closed'
+  get 'tickets/all'               => 'tickets#index',           status: 'all'
+  get 'tickets/my'                => 'tickets#my',              status: 'my'
+  get 'tickets/assigned_to_me'    => 'tickets#assigned_to_me',  status: 'assigned_to_me'
+  get 'tickets/open'              => 'tickets#index',           status: 'open'
+  get 'tickets/unassigned'        => 'tickets#index',           status: 'unassigned'
+  get 'tickets/work_in_progress'  => 'tickets#index',           status: 'work_in_progress'
+  get 'tickets/hold'              => 'tickets#index',           status: 'on_hold'
+  get 'tickets/on_hold'           => 'tickets#index',           status: 'on_hold'
+  get 'tickets/closed'            => 'tickets#index',           status: 'closed'
   
-  get 'employees/all' => 'employees#index'
-  get 'employees/active' => 'employees#index', status: 'active'
-  get 'employees/inactive' => 'employees#index', status: 'inactive'
+  get 'employees/all'             => 'employees#index'
+  get 'employees/active'          => 'employees#index',         status: 'active'
+  get 'employees/inactive'        => 'employees#index',         status: 'inactive'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-  get 'tickets/:id/assign_to_me' => 'tickets#assign_to_me', as: :assign_to_me
-  get 'tickets/:id/close_ticket' => 'tickets#close_ticket', as: :close_ticket
+  get 'tickets/:id/assign_to_me'  => 'tickets#assign_to_me',  as: :assign_to_me
+  get 'tickets/:id/close_ticket'  => 'tickets#close_ticket',  as: :close_ticket
   get 'tickets/:id/reopen_ticket' => 'tickets#reopen_ticket', as: :reopen_ticket
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
