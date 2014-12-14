@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'employees/all'             => 'employees#index'
   get 'employees/active'          => 'employees#index',         status: 'active'
   get 'employees/inactive'        => 'employees#index',         status: 'inactive'
+  get 'employees/admin'           => 'employees#index',         status: 'admin'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

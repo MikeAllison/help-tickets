@@ -58,6 +58,9 @@ To-Do:
 * Fix bug where a non-admin may be able to change ticket assignment status
 * Link to show tickets for a specific employee - DONE
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
+* Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets
+* Remove Assigned to from employee/:id/tickets list
+* Dependent: :destroy to delete all tickets from a deleted employee
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

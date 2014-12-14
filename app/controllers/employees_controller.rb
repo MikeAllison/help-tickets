@@ -14,6 +14,8 @@ class EmployeesController < ApplicationController
   	    @employees = Employee.active.joins(join_table).order(sort_column + ' ' + sort_direction)
   	  when 'inactive'
   	    @employees = Employee.inactive.joins(join_table).order(sort_column + ' ' + sort_direction)
+  	  when 'admin'
+  	    @employees = Employee.admin.joins(join_table).order(sort_column + ' ' + sort_direction)
   	  else
   	    @employees = Employee.all.joins(join_table).order(sort_column + ' ' + sort_direction)
   	  end
@@ -23,6 +25,8 @@ class EmployeesController < ApplicationController
         @employees = Employee.active.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
       when 'inactive'
         @employees = Employee.inactive.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+      when 'admin'
+        @employees = Employee.admin.joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
       else
         all_employees_paginated
       end

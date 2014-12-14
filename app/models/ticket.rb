@@ -2,7 +2,7 @@ class Ticket < ActiveRecord::Base
 	
 	before_save :set_status
 
-  has_many :comments, dependent: :destroy
+  has_many :comments
   belongs_to :creator, class_name: 'Employee'
   belongs_to :technician, class_name: 'Employee'
   belongs_to :topic

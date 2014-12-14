@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
 	  filter = params[:filter]
 	  status = params[:status]
 	  
-	  if params[:employee_id].nil?
+	  if params[:employee_id] == nil
   	  if filter == 'true'
   	   case status
         when 'open'
