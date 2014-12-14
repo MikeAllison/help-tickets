@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Create standard user account
 Employee.create(last_name: 'Allison', 
                 first_name: 'Mike', 
                 user_name: 'mallison', 
@@ -13,23 +14,55 @@ Employee.create(last_name: 'Allison',
                 password_confirmation: 'password', 
                 office_id: 1,
                 active: true, 
-                admin: true)
-
-Employee.create(last_name: 'Fox', 
-                first_name: 'Michelle', 
-                user_name: 'mfadmin', 
-                password: 'password', 
-                password_confirmation: 'password', 
-                office_id: 1,
-                active: true, 
-                admin: true)
+                admin: false)
+                
+# Create 4 specfic admin accounts
+Employee.create([
+  {
+    last_name: 'Allison', 
+    first_name: 'Mike', 
+    user_name: 'admin', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    office_id: 1,
+    active: true, 
+    admin: true
+  },{
+    last_name: 'Fox', 
+    first_name: 'Michelle', 
+    user_name: 'mfadmin', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    office_id: 1,
+    active: true, 
+    admin: true
+  },{
+    last_name: 'Peyatt', 
+    first_name: 'Justin', 
+    user_name: 'jpadmin', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    office_id: 1,
+    active: true, 
+    admin: true
+  },{
+    last_name: 'Souza', 
+    first_name: 'Carlos', 
+    user_name: 'csadmin', 
+    password: 'password', 
+    password_confirmation: 'password', 
+    office_id: 1,
+    active: true, 
+    admin: true
+  }
+])
 
 # Create active admin users (admin1-6)
-6.times do |i|
+3.times do |i|
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
   user_name = 'admin' + i.to_s
-  office_id = rand(1..3)
+  office_id = rand(2..3)
   
   Employee.create(last_name: last_name, 
                   first_name: first_name, 
@@ -46,7 +79,7 @@ end
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
   user_name = 'admin' + (i + 3).to_s
-  office_id = rand(1..3)
+  office_id = rand(2..3)
   
   Employee.create(last_name: last_name, 
                   first_name: first_name, 
@@ -57,15 +90,6 @@ end
                   active: false, 
                   admin: true)
 end
-
-Employee.create(last_name: 'Van Allen', 
-                first_name: 'Pooks', 
-                user_name: 'pooks', 
-                password: 'password', 
-                password_confirmation: 'password', 
-                office_id: 1,
-                active: true, 
-                admin: false)
 
 # Create active employees
 500.times do
@@ -190,7 +214,7 @@ Status.create([
   {state: 'Closed'}
 ])
 
-# Create a bunch of tickets for mallison
+# Create a bunch of tickets for admin
 100.times do
   description = Faker::Hacker.say_something_smart
   creator_id = 1

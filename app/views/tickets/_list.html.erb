@@ -5,7 +5,7 @@
 				<th><%= sort_column 'ID', 'id' %></th>
 				<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
 				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
-				<% if params[:status] == nil || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
+				<% if params[:status] == nil || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
 				<% end %>
 				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' %>
@@ -25,7 +25,7 @@
 						<td><%= ticket.id %></td>
 						<td><%= ticket.creator.last_first %></td>
 						<td><%= ticket.topic.system %></td>
-						<% if params[:status] == nil || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
+						<% if params[:status] == nil || params[:status] = 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 							<td>
 								<%= ticket_status_icon(ticket.status.state) %>
 								<%= ticket.status.state %>

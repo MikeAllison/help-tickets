@@ -2,16 +2,16 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-4"><%= sort_column 'Name', 'last_name' %></th>
+				<th class="col-md-3"><%= sort_column 'Name', 'last_name' %></th>
 				<th class="col-md-2"><%= sort_column 'User Name', 'user_name' %></th>
 				<th class="col-md-3"><%= sort_column 'Office', 'offices.name', 'office' %></th>
 				<th class="col-md-2 hidden-xs">Total Tickets</th>
-				<th class="col-md-1">Actions</th>
+				<th class="col-md-2">Actions</th>
 			</thead>
 			<tbody>
 				<% @employees.each do |employee| %>
 					<tr>
-						<td class="col-md-4">
+						<td class="col-md-3">
 							<%= employee_status_icon(employee.active) %>
 							&nbsp;
 							<%= employee.last_first %>
@@ -21,7 +21,7 @@
 						<td class="col-md-2 hidden-xs">
 							<%= employee.created_tickets.count %>
 						</td>
-						<td class="col-md-1">
+						<td class="col-md-2">
 							<% if current_employee.admin? %>
 								<%= link_to employee_tickets_path(employee), title: 'Show Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
 									<span class="glyphicon glyphicon-th-list btn btn-default btn-xs" aria-hidden="true"></span>
