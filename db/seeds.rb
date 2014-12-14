@@ -214,7 +214,7 @@ Status.create([
   {state: 'Closed'}
 ])
 
-# Create a bunch of tickets for admin
+# Create a bunch of tickets for mallison
 100.times do
   description = Faker::Hacker.say_something_smart
   creator_id = 1
@@ -228,7 +228,7 @@ Status.create([
                 topic_id: topic_id,
                 status_id: status_id,
                 created_at: time,
-                updated_at: time,
+                updated_at: time + 1.day,
                 technician_id: technician_id)
 end
 
@@ -262,7 +262,7 @@ end
                 topic_id: topic_id,
                 status_id: status_id,
                 created_at: time,
-                updated_at: time,
+                updated_at: time + 2.days,
                 technician_id: technician_id)
 end
 

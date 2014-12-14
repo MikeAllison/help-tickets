@@ -3,7 +3,9 @@
 		<table class="table table-striped">
 			<thead>
 				<th><%= sort_column 'ID', 'id' %></th>
-				<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+				<% if params[:status] != 'my' %>
+					<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+				<% end %>
 				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
 				<% if params[:status] == nil || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
@@ -23,9 +25,11 @@
 				<% @tickets.each do |ticket| %>
 					<tr>
 						<td><%= ticket.id %></td>
-						<td><%= ticket.creator.last_first %></td>
+						<% if params[:status] != 'my' %>
+							<td><%= ticket.creator.last_first %></td>
+						<% end %>
 						<td><%= ticket.topic.system %></td>
-						<% if params[:status] == nil || params[:status] = 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
+						<% if params[:status] == nil || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 							<td>
 								<%= ticket_status_icon(ticket.status.state) %>
 								<%= ticket.status.state %>
