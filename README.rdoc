@@ -50,12 +50,12 @@ To-Do:
 * Cancel button has a bug after flash error
 * Add clear button to filter - DONE
 * When deleting topics, offices, etc....no nil classes
-* Show updated_at column on closed tickets and label column "Closed"
+* Show updated_at column on closed tickets and label column "Closed" - DONE
 * Fix nil class bug on ticket show for tickets with no technician_id - FIXED
 * Fix bug where you can close a ticket without assigning it to anyone - FIXED
 * Fix bug where reopening a ticket doesn't reset technician_id
 * Fix bug where a non-admin may be able to assign a ticket to themself
-* Fix bug where a non-admin may be able to change ticket assignment status
+* Fix bug where a non-admin may be able to change ticket assignment status by passing in params
 * Link to show tickets for a specific employee - DONE
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
 * Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets

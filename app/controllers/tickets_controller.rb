@@ -42,16 +42,16 @@ class TicketsController < ApplicationController
   	  end
     else
       @employee = Employee.find(params[:employee_id])
-      @tickets = Ticket.where('creator_id = ?', @employee.id).order(created_at: :desc).paginate(:page => params[:page])
+      @tickets = Ticket.where('creator_id = ?', @employee.id).joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     end
 	end
 	
 	def assigned_to_me
-	  @tickets = Ticket.where('technician_id = ?', current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.where('technician_id = ?', current_employee.id).joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 	
 	def my
-	  @tickets = Ticket.where('creator_id = ?', current_employee.id).order(created_at: :desc).paginate(:page => params[:page])
+	  @tickets = Ticket.where('creator_id = ?', current_employee.id).joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 	end
 
 	def show
