@@ -20,7 +20,7 @@ Employee.create(last_name: 'Allison',
 Employee.create([
   {
     last_name: 'Allison', 
-    first_name: 'Mike', 
+    first_name: 'Mike (Admin)', 
     user_name: 'admin', 
     password: 'password', 
     password_confirmation: 'password', 
@@ -57,7 +57,7 @@ Employee.create([
   }
 ])
 
-# Create active admin users (admin1-6)
+# Create active admin users (admin1-3)
 3.times do |i|
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
@@ -74,11 +74,11 @@ Employee.create([
                   admin: true)
 end
 
-# Create inactive admin users (admin 7-9)
+# Create inactive admin users (admin4-6)
 3.times do |i|
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = 'admin' + (i + 3).to_s
+  user_name = 'admin' + (i + 1).to_s
   office_id = rand(2..3)
   
   Employee.create(last_name: last_name, 

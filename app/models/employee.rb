@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
 
   before_save { self.user_name = user_name.downcase }
   
-  has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id'
+  has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id', dependent: :destroy
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
   has_many :comments
   belongs_to :office
