@@ -8,20 +8,18 @@ class TicketsController < ApplicationController
 	  if params[:employee_id]
 	    @employee = Employee.find(params[:employee_id])
       @tickets = Ticket.where('creator_id = ?', @employee.id)
-	  else
-	    @tickets = Ticket.where(nil)
-	  	  
+	  else	  	  
   	  case params[:status]
   	  when 'open'
-  	    @tickets = @tickets.open
+  	    @tickets = Ticket.open
   	  when 'unassigned'
-  	    @tickets = @tickets.unassigned
+  	    @tickets = Ticket.unassigned
   	  when 'work_in_progress'
-  	    @tickets = @tickets.work_in_progress
+  	    @tickets = Ticket.work_in_progress
   	  when 'on_hold'
-  	    @tickets = @tickets.on_hold
+  	    @tickets = Ticket.on_hold
   	  when 'closed'
-  	    @tickets = @tickets.closed
+  	    @tickets = Ticket.closed
   	  else
   	    @tickets = Ticket.all
   	  end

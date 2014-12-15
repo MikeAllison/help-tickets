@@ -5,17 +5,15 @@ class EmployeesController < ApplicationController
 	before_action :find_all_employees, only: [:new, :create]
 
 	def index
-    @employees = Employee.where(nil)
-    
 	  case params[:status]
 	  when 'active'
-	    @employees = @employees.active
+	    @employees = Employee.active
 	  when 'inactive'
-	    @employees = @employees.inactive
+	    @employees = Employee.inactive
 	  when 'admin'
-	    @employees = @employees.admin
+	    @employees = Employee.admin
 	  else
-	    @employees = @employees.all
+	    @employees = Employee.all
 	  end
 	  
 	  @employees = apply_joins_and_order(@employees)
