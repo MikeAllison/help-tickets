@@ -22,6 +22,16 @@ class ApplicationController < ActionController::Base
         redirect_to tickets_my_path
       end
     end
+    
+    def apply_joins_and_order(model)
+      model = model.joins(join_table).order(sort_column + ' ' + sort_direction)
+      return model
+    end
+    
+    def apply_pagination(model)
+      model = model.paginate(:page => params[:page]) unless params[:filter]
+      return model
+    end
   
     # Converts join table to symbol for use with sort_column in ApplicationHelper 
     def join_table

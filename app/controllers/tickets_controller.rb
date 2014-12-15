@@ -27,16 +27,20 @@ class TicketsController < ApplicationController
   	  end
   	end
 	  
-	  @tickets = @tickets.joins(join_table).order(sort_column + ' ' + sort_direction)
-	  @tickets = @tickets.paginate(:page => params[:page]) unless params[:filter]
+	  @tickets = apply_joins_and_order(@tickets)
+	  @tickets = apply_pagination(@tickets)
 	end
 	
 	def assigned_to_me
-	  @tickets = Ticket.where('technician_id = ?', current_employee.id).joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
-	end
+	  @tickets = Ticket.where('technician_id = ?', current_employee.id)
+    @tickets = apply_joins_and_order(@tickets)
+    @tickets = apply_pagination(@tickets)
+  end
 	
 	def my
-	  @tickets = Ticket.where('creator_id = ?', current_employee.id).joins(join_table).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
+	  @tickets = Ticket.where('creator_id = ?', current_employee.id)
+	  @tickets = apply_joins_and_order(@tickets)
+    @tickets = apply_pagination(@tickets)
 	end
 
 	def show
