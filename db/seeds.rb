@@ -221,7 +221,7 @@ Status.create([
   topic_id = rand(1..10)
   status_id = rand(1..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
-  technician_id = rand(2..10)
+  technician_id = rand(2..11)
   
   Ticket.create(description: description,
                 creator_id: creator_id,
@@ -255,7 +255,7 @@ end
   topic_id = rand(1..10)
   status_id = rand(2..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
-  technician_id = rand(1..10)
+  technician_id = rand(2..11)
   
   Ticket.create(description: description,
                 creator_id: creator_id,
@@ -269,7 +269,7 @@ end
 # Create comments on tickets
 1500.times do
   body = Faker::Hacker.say_something_smart
-  employee_id = rand(1..10)
+  employee_id = rand(2..11)
   ticket_id = rand(1..1000)
   time = Faker::Time.between(4.days.ago, 3.days.ago)
   
@@ -283,7 +283,7 @@ end
 # Set reopening comment on some tickets
 100.times do |i|
   body = Faker::Hacker.say_something_smart
-  employee_id = rand(1..10)
+  employee_id = rand(2..600)
   ticket_id = i
   time = Faker::Time.between(2.days.ago, Time.now)
   
