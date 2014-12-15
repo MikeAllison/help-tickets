@@ -8,7 +8,7 @@
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
 			<% else %>
 				<p>Hello, <%= current_employee.first_name %>!</p>
-				<%= button_to 'Log Out', logout_path, method: 'delete', class: 'btn btn-danger' %>
+				<%= button_to 'Log Out', logout_path, method: 'delete', class: 'btn btn-danger btn-lg' %>
 			<% end %>
 		</div>
 	</div>
