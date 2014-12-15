@@ -5,11 +5,13 @@
 		    <h3><%= panel_header %></h3>
 		  </div>
 		  <div class="panel-body">
-		    <form>
-					<label for="filterText">Filter:&nbsp;</label>
-					<input type="text" id="filterText">
-					<button id="filterClear" class="btn btn-primary">Clear</button>
-					<%= link_to 'Cancel', :back, class: 'btn btn-default' %>
+		    <form class="form-inline" role="form">
+		    	<div class="form-group">
+	    			<label for="filterText">Filter:&nbsp;</label>
+						<input type="text" id="filterText" class"form-control">
+						<button id="filterClear" class="btn btn-primary">Clear</button>
+						<%= link_to 'Cancel', :back, class: 'btn btn-default' %>
+					</div>
 				</form>
 		  </div>
 		  <%= render 'list' %>
