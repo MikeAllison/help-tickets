@@ -78,7 +78,7 @@ end
 3.times do |i|
   last_name = Faker::Name.last_name
   first_name = Faker::Name.first_name
-  user_name = 'admin' + (i + 1).to_s
+  user_name = 'admin' + (i + 4).to_s
   office_id = rand(2..3)
   
   Employee.create(last_name: last_name, 
