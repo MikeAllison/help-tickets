@@ -63,6 +63,7 @@ To-Do:
 * Dependent: :destroy to delete all tickets from a deleted employee
 * File upload size and type validations
 * IMPORTANT - Use :select when querying tickets on index views so that attachments aren't being pulled (R4W: 170)
+* Add on_behalf_of to tickets created by another employee
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)
