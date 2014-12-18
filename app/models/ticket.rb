@@ -16,6 +16,7 @@ class Ticket < ActiveRecord::Base
   scope :work_in_progress, -> { joins(:status).where('state = ?', 'Work in Progress') }
   scope :on_hold,          -> { joins(:status).where('state = ?', 'On Hold') }
   scope :closed,           -> { joins(:status).where('state = ?', 'Closed') }
+  scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'status_id', 'technician_id', 'created_at', 'updated_at') }
     
   private
   

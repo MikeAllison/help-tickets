@@ -21,7 +21,7 @@ class TicketsController < ApplicationController
   	  when 'closed'
   	    @tickets = Ticket.closed
   	  else
-  	    @tickets = Ticket.all
+  	    @tickets = Ticket.no_descriptions
   	  end
   	end
 	  
