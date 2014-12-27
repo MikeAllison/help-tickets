@@ -19,6 +19,10 @@ class Employee < ActiveRecord::Base
 	def last_first
 		last_name + ', ' + first_name
 	end
+	
+	def first_last
+	  first_name + ' ' + last_name
+	end
 
 	has_secure_password
 	validates :password, length: { minimum: 8 }, allow_blank: true

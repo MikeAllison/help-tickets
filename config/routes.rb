@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   resources :employees do
     resources :tickets
   end
+  resources :technician do
+    resources :tickets
+  end
   resources :cities
   resources :states
   resources :tickets do

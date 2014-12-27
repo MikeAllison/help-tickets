@@ -60,12 +60,20 @@ module ApplicationHelper
       c_name = 'City'
     end
     
-    if params[:employee_id]
-      a_name = @employee.first_name + ' ' + @employee.last_name
-      if a_name.end_with?('s')
-        a_name += "'"
-      else
-        a_name += "'s"
+    if params[:employee_id] || params[:technician_id]
+      emp_name = @employee.first_last
+    
+      if params[:employee_id]      
+        if emp_name.end_with?('s')
+          a_name = emp_name + "'"
+        else
+          a_name = emp_name + "'s"
+        end
+      end
+      
+      if params[:technician_id]
+        c_name = ''
+        a_name = 'Tickets Assigned To ' + emp_name
       end
     end
     

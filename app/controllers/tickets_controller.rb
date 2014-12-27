@@ -7,19 +7,22 @@ class TicketsController < ApplicationController
 	def index
 	  if params[:employee_id]
 	    @employee = Employee.find(params[:employee_id])
-      @tickets = Ticket.where('creator_id = ?', @employee.id)
+      @tickets = Ticket.no_descriptions.where('creator_id = ?', @employee.id)
+    elsif params[:technician_id]
+      @employee = Employee.find(params[:technician_id])
+      @tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
 	  else	  	  
   	  case params[:status]
   	  when 'open'
-  	    @tickets = Ticket.open
+  	    @tickets = Ticket.no_descriptions.open
   	  when 'unassigned'
-  	    @tickets = Ticket.unassigned
+  	    @tickets = Ticket.no_descriptions.unassigned
   	  when 'work_in_progress'
-  	    @tickets = Ticket.work_in_progress
+  	    @tickets = Ticket.no_descriptions.work_in_progress
   	  when 'on_hold'
-  	    @tickets = Ticket.on_hold
+  	    @tickets = Ticket.no_descriptions.on_hold
   	  when 'closed'
-  	    @tickets = Ticket.closed
+  	    @tickets = Ticket.no_descriptions.closed
   	  else
   	    @tickets = Ticket.no_descriptions
   	  end
@@ -30,13 +33,13 @@ class TicketsController < ApplicationController
 	end
 	
 	def assigned_to_me
-	  @tickets = Ticket.where('technician_id = ?', current_employee.id)
+	  @tickets = Ticket.no_descriptions.where('technician_id = ?', current_employee.id)
     @tickets = apply_joins_and_order(@tickets)
     @tickets = apply_pagination(@tickets)
   end
 	
 	def my
-	  @tickets = Ticket.where('creator_id = ?', current_employee.id)
+	  @tickets = Ticket.no_descriptions.where('creator_id = ?', current_employee.id)
 	  @tickets = apply_joins_and_order(@tickets)
     @tickets = apply_pagination(@tickets)
 	end

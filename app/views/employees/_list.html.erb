@@ -2,32 +2,38 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-3"><%= sort_column 'Name', 'last_name' %></th>
+				<th class="col-md-2"><%= sort_column 'Name', 'last_name' %></th>
 				<th class="col-md-2"><%= sort_column 'User Name', 'user_name' %></th>
-				<th class="col-md-3"><%= sort_column 'Office', 'offices.name', 'office' %></th>
-				<th class="col-md-2 hidden-xs">Total Tickets</th>
+				<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
+				<th class="col-md-2 hidden-xs">Tickets Created</th>
+				<% if params[:status] == 'admin' %>
+					<th class="col-md-2 hidden-xs">Tickets Assigned</th>
+				<% end %>
 				<th class="col-md-2">Actions</th>
 			</thead>
 			<tbody>
 				<% @employees.each do |employee| %>
 					<tr>
-						<td class="col-md-3">
+						<td class="col-md-2">
 							<%= employee_status_icon(employee.active) %>
 							&nbsp;
 							<%= employee.last_first %>
 						</td>
 						<td class="col-md-2"><%= employee.user_name %></td>
-						<td class="col-md-3"><%= employee.office.name %></td>
+						<td class="col-md-2"><%= employee.office.name %></td>
 						<td class="col-md-2 hidden-xs">
-							<%= employee.created_tickets.count %>
-						</td>
-						<td class="col-md-2">
-							<% if current_employee.admin? %>
-								<%= link_to employee_tickets_path(employee), title: 'Show Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
-									<span class="glyphicon glyphicon-th-list btn btn-default btn-xs" aria-hidden="true"></span>
-									<span class="sr-only" title="Show Tickets">Show Tickets</span>
-								<% end %>
+							<%= link_to employee_tickets_path(employee), title: 'Employee\'s Created Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
+								<%= employee.created_tickets.count %>
 							<% end %>
+						</td>
+						<% if params[:status] == 'admin' %>
+							<td class="col-md-2 hidden-xs">
+								<%= link_to technician_tickets_path(employee), title: 'Technican\'s Assigned Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
+									<%= employee.assigned_tickets.count %>
+								<% end %>
+							</td>
+						<% end %>
+						<td class="col-md-2">
 							<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
 								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Edit">Edit</span>
