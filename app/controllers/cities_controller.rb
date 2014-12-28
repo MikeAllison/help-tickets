@@ -25,7 +25,11 @@ class CitiesController < ApplicationController
       flash[:success] = "City created!"
       redirect_to new_city_path
     else
-      flash.now[:danger] = "There was a problem adding the city."
+      if @city.errors.any?
+        flash.now[:danger] = 'City ' + @city.errors.full_messages[0].to_s
+      else
+        flash.now[:danger] = "There was a problem adding the city."
+      end
       render 'new'
     end
   end
