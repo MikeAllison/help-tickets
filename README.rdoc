@@ -60,10 +60,11 @@ To-Do:
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
 * Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets
 * Remove Assigned to from employee/:id/tickets list
-* Dependent: :destroy to delete all tickets from a deleted employee
+* Dependent: :destroy to delete all tickets from a deleted employee - DONE
 * File upload size and type validations
 * IMPORTANT - Use :select when querying tickets on index views so that attachments aren't being pulled (R4W: 170)
 * Add on_behalf_of to tickets created by another employee
+* Create option to assign new office to employees if office is closed or deleted
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

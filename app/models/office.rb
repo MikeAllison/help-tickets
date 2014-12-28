@@ -4,6 +4,9 @@ class Office < ActiveRecord::Base
 	belongs_to :city
 	
 	validates :name, presence: true
+	
+	scope :active,    -> { where(active: true) }
+  scope :not_hidden,    -> { where(hidden: false) }
 
   def office_city_state_abbr
     name + ' - ' + self.city.city_state_abbr

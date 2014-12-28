@@ -40,7 +40,7 @@
 							<% end %>
 							<%= link_to employee, method: :delete, 
 																		title: 'Delete', 
-																		data: { toggle: 'tooltip', placement: 'top', confirm: "This will delete all tickets created by this employee.  Is is recommended that you mark an employee inactive rather than deleting them.\nAre you sure that you would like to delete this employee?" } do %>
+																		data: { toggle: 'tooltip', placement: 'top', confirm: "WARNING!  This will delete all tickets created by, and assigned to, this employee.  Is is recommended that you mark an employee inactive rather than deleting them.\n\nAre you sure that you would like to delete this employee?" } do %>
 								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 								<span class="sr-only" title="Delete">Delete</span>
 							<% end %>

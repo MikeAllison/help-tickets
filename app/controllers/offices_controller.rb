@@ -41,7 +41,7 @@ class OfficesController < ApplicationController
 	end
 
 	def destroy
-		@office.destroy
+		@office.update_attribute(:hidden, true)
 		flash[:success] = "Office deleted!"
 		redirect_to new_office_path
 	end
@@ -53,13 +53,13 @@ class OfficesController < ApplicationController
 		end
 
 		def find_all_offices
-      @offices = Office.all
+      @offices = Office.not_hidden
       @offices = apply_joins_and_order(@offices)
       @offices = apply_pagination(@offices)
     end
 
 		def office_params
-			params.require(:office).permit(:name, :city_id)
+			params.require(:office).permit(:name, :city_id, :active, :hidden)
 		end
 
 end
