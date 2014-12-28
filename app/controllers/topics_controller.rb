@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 	end
 
 	def destroy
-		@topic.destroy
+		@topic.update_columns(hidden: true, active: false)
 		flash[:success] = "Topic deleted!"
 		redirect_to new_topic_path
 	end
@@ -53,13 +53,13 @@ class TopicsController < ApplicationController
 		end
 
 		def find_all_topics
-      @topics = Topic.all
+      @topics = Topic.not_hidden
       @topics = apply_joins_and_order(@topics)
       @topics = apply_pagination(@topics)
     end
 
 		def topic_params
-			params.require(:topic).permit(:system)
+			params.require(:topic).permit(:system, :active, :hidden)
 		end
 	
 end

@@ -5,7 +5,7 @@ class Office < ActiveRecord::Base
 	
 	validates :name, presence: true
 	
-	scope :active,    -> { where(active: true) }
+	scope :active,        -> { where(active: true) }
   scope :not_hidden,    -> { where(hidden: false) }
 
   def office_city_state_abbr

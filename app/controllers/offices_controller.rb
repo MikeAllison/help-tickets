@@ -41,7 +41,7 @@ class OfficesController < ApplicationController
 	end
 
 	def destroy
-		@office.update_attribute(:hidden, true)
+		@office.update_columns(hidden: true, active: false)
 		flash[:success] = "Office deleted!"
 		redirect_to new_office_path
 	end
