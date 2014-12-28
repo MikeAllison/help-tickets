@@ -41,7 +41,7 @@ class CitiesController < ApplicationController
   end
 
   def destroy
-    @city.destroy
+    @city.update_column(:hidden, true)
     flash[:success] = "City deleted!"
     redirect_to new_city_path
   end
@@ -53,13 +53,13 @@ class CitiesController < ApplicationController
     end
 
     def find_all_cities
-      @cities = City.all
+      @cities = City.not_hidden
       @cities = apply_joins_and_order(@cities)
       @cities = apply_pagination(@cities)
     end
 
     def city_params
-      params.require(:city).permit(:name, :state_id)
+      params.require(:city).permit(:name, :state_id, :hidden)
     end
     
 end

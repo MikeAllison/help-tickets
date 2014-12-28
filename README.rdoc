@@ -66,6 +66,7 @@ To-Do:
 * Add on_behalf_of to tickets created by another employee
 * Create option to assign new office to employees if office is closed or deleted
 * Create option to assign new topic to tickets if topic is deleted
+* Create option to assign new city to offices if city is deleted
 * Uniqueness validations on topics and offices
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 

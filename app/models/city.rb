@@ -5,6 +5,8 @@ class City < ActiveRecord::Base
   
   validates :name, presence: true
   
+  scope :not_hidden,    -> { where(hidden: false) }
+  
   def city_state_abbr
     name + ', ' + state.abbreviation
   end
