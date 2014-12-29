@@ -5,7 +5,8 @@ class City < ActiveRecord::Base
   
   validates :name, presence: { message: '- Cannot be blank!' }
   validates :name, uniqueness: { scope: :state, message: '- City/State already exists!' }
-  
+  validates :state, presence: true
+    
   scope :inactive,      -> { where(active: false) }
   scope :not_hidden,    -> { where(hidden: false) }
   

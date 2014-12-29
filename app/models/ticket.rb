@@ -9,7 +9,12 @@ class Ticket < ActiveRecord::Base
   belongs_to :topic
   belongs_to :status
 
-  validates :description, :topic, presence: true
+  validates :creator, :description, :topic, presence: true
+  # Tickets can be created/updated without assigning a technician
+  # But there should be some validation for valid techician IDs
+  
+  # Tickets can be submitted without a status and are set to unassigned
+  # Status should be checked to make sure that it is valid
 
   scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'status_id', 'technician_id', 'created_at', 'updated_at') }
   scope :open,             -> { joins(:status).where.not('state = ?', 'Closed') }
@@ -29,7 +34,7 @@ class Ticket < ActiveRecord::Base
       end
     end
     
-    # # Set pagination for will_paginate
+    # Set pagination for will_paginate
     self.per_page = 20
 
 end
