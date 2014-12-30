@@ -1,13 +1,19 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="jumbotron">
-		  <h1>Welcome to the Help Desk System</h1>
-		  <% if !logged_in? %>
-			  <p>Please log in to continue.</p>
-			  <!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
+			<h1>Welcome to the Help Desk System</h1>
+			<% if !logged_in? %>
+				<p>
+					Please log in to continue.
+				</p>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
+					Log In
+				</button>
 			<% else %>
-				<p>Hello, <%= current_employee.first_name %>!</p>
+				<p>
+					Hello, <%= current_employee.first_name %>!
+				</p>
 				<%= button_to 'Log Out', logout_path, method: 'delete', class: 'btn btn-danger btn-lg' %>
 			<% end %>
 		</div>
@@ -18,7 +24,9 @@
 	<div class="col-xs-12">
 		<div class="alert alert-info text-right">
 			Code for this project can be found on GitHub:
-			<a href="https://github.com/MikeAllison/help_desk" target="_blank"><code>https://github.com/MikeAllison/help_desk</code></a>
+			<a href="https://github.com/MikeAllison/help_desk" target="_blank">
+				<code>https://github.com/MikeAllison/help_desk</code>
+			</a>
 		</div>
 	</div>
 </div>
