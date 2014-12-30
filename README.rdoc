@@ -20,8 +20,8 @@ To-Do:
 * Allow employees to update their passwords - DONE
 * Allow admins to update employee info without requiring a password change - DONE
 * Employee show?
-* Method to set employee user name
-* Assigning tickets to admins
+* Method to automatically set employee user name
+* Assigning tickets to admins - DONE
 * Ticket comments - DONE
 * Office City/State Model - DONE
 * Use Ajax to add topics and offices right from index view
@@ -38,13 +38,13 @@ To-Do:
 * Toggle between pagination and listing all tickets with a filter option - DONE
 * Employee search for new tickets
 * Check responsiveness for forms - DONE
-* Reset all closing_comments to false on ticket re-open
+* Reset all closing_comments to false on ticket re-open - DONE (REQUIRED RE-OPENING COMMENT)
 * Attachments
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
 * Bug with admins being able to see status dropdown on tickets/edit form - FIXED
-* Automatically close tickets for employees made inactive
-* Be able to toggle between viewing active/inactive employees
+* Automatically close tickets for employees made inactive (and "deleted/hidden")
+* Be able to toggle between viewing active/inactive employees -DONE
 * Link titles on hover
 * Fix bug with updating user info without resetting password - DONE
 * Cancel button has a bug after flash error
@@ -68,6 +68,13 @@ To-Do:
 * Create option to assign new topic to tickets if topic is deleted
 * Create option to assign new city to offices if city is deleted
 * Uniqueness validations on topics and offices
+* WIP tickets can be currently assigned to no one.
+* Tickets can be closed by a tech while still assigned to another (closing tech field or change "Assigned To" to "Closed By" and use the last comment employee.id)
+* What to do with !closed tickets assigned to a tech that is made inactive?
+* Comments added by a deleted employee give nil class errors (hide deleted employees)
+* What to do about deleting your own account?
+* Can you set an index on hidden field for faster querying for non-hidden records?
+* Tickets created on behalf-of another employee
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)
