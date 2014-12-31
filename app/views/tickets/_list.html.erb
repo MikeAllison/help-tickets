@@ -2,24 +2,26 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th><%= sort_column 'ID', 'id' %></th>
-				<% if params[:status] != 'my' %>
-					<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
-				<% end %>
-				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
-				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
-				<% end %>
-				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
-				<% end %>
-				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
-				<% if params[:status] == 'closed' %>
-					<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
-				<% else %>
-					<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
-				<% end %>
-				<th>Actions</th>
+				<tr>
+					<th><%= sort_column 'ID', 'id' %></th>
+					<% if params[:status] != 'my' %>
+						<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+					<% end %>
+					<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
+					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
+						<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
+					<% end %>
+					<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
+						<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
+					<% end %>
+					<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
+					<% if params[:status] == 'closed' %>
+						<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
+					<% else %>
+						<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
+					<% end %>
+					<th>Actions</th>
+				</tr>
 			</thead>
 			<tbody>
 				<% @tickets.each do |ticket| %>

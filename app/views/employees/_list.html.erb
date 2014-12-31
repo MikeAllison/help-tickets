@@ -2,14 +2,16 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-2"><%= sort_column 'Name', 'last_name' %></th>
-				<th class="col-md-2"><%= sort_column 'User Name', 'user_name' %></th>
-				<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
-				<th class="col-md-2 hidden-xs">Tickets Created</th>
-				<% if params[:status] == 'admin' %>
-					<th class="col-md-2 hidden-xs">Tickets Assigned</th>
-				<% end %>
-				<th class="col-md-2">Actions</th>
+				<tr>
+					<th class="col-md-2"><%= sort_column 'Name', 'last_name' %></th>
+					<th class="col-md-2"><%= sort_column 'User Name', 'user_name' %></th>
+					<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
+					<th class="col-md-2 hidden-xs">Tickets Created</th>
+					<% if params[:status] == 'admin' %>
+						<th class="col-md-2 hidden-xs">Tickets Assigned</th>
+					<% end %>
+					<th class="col-md-2">Actions</th>
+				</tr>
 			</thead>
 			<tbody>
 				<% @employees.each do |employee| %>

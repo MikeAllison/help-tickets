@@ -2,9 +2,11 @@
 	<div class="col-lg-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-lg-6"><%= sort_column 'City', 'name' %></th>
-				<th class="col-lg-5"><%= sort_column 'State', 'states.name', 'state' %></th>
-				<th class="col-lg-1">Actions</th>
+				<tr>
+					<th class="col-lg-6"><%= sort_column 'City', 'name' %></th>
+					<th class="col-lg-5"><%= sort_column 'State', 'states.name', 'state' %></th>
+					<th class="col-lg-1">Actions</th>
+				</tr>
 			</thead>
 			<tbody>
 				<% @cities.each do |city| %>

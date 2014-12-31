@@ -2,11 +2,13 @@
 	<div class="col-md-12">
 		<table class="table table-striped">
 			<thead>
-				<th class="col-md-4"><%= sort_column 'Office', 'name' %></th>
-				<th class="col-md-3"><%= sort_column 'City', 'cities.name', 'city' %></th>
-				<th class="col-md-2">State</th>
-				<th class="col-md-2 hidden-xs">Employees</th>
-				<th class="col-md-1">Actions</th>
+				<tr>
+					<th class="col-md-4"><%= sort_column 'Office', 'name' %></th>
+					<th class="col-md-3"><%= sort_column 'City', 'cities.name', 'city' %></th>
+					<th class="col-md-2">State</th>
+					<th class="col-md-2 hidden-xs">Employees</th>
+					<th class="col-md-1">Actions</th>
+				</tr>
 			</thead>
 			<tbody>
 				<% @offices.each do |office| %>
