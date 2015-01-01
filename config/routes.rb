@@ -6,32 +6,41 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root    'sessions#new'
-  get     'login'   => 'sessions#new'
-  post    'login'   => 'sessions#create'
-  delete  'logout'  => 'sessions#destroy'
+  
+  controller :sessions do
+    get     'login'   => :new
+    post    'login'   => :create
+    delete  'logout'  => :destroy
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'tickets/all'               => 'tickets#index',           status: 'all'
-  get 'tickets/my'                => 'tickets#my',              status: 'my'
-  get 'tickets/assigned_to_me'    => 'tickets#assigned_to_me',  status: 'assigned_to_me'
-  get 'tickets/open'              => 'tickets#index',           status: 'open'
-  get 'tickets/unassigned'        => 'tickets#index',           status: 'unassigned'
-  get 'tickets/work_in_progress'  => 'tickets#index',           status: 'work_in_progress'
-  get 'tickets/hold'              => 'tickets#index',           status: 'on_hold'
-  get 'tickets/on_hold'           => 'tickets#index',           status: 'on_hold'
-  get 'tickets/closed'            => 'tickets#index',           status: 'closed'
+  controller :tickets do
+    get 'tickets/all'               => :index,           status: 'all'
+    get 'tickets/my'                => :my,              status: 'my'
+    get 'tickets/assigned_to_me'    => :assigned_to_me,  status: 'assigned_to_me'
+    get 'tickets/open'              => :index,           status: 'open'
+    get 'tickets/unassigned'        => :index,           status: 'unassigned'
+    get 'tickets/work_in_progress'  => :index,           status: 'work_in_progress'
+    get 'tickets/hold'              => :index,           status: 'on_hold'
+    get 'tickets/on_hold'           => :index,           status: 'on_hold'
+    get 'tickets/closed'            => :index,           status: 'closed'
+  end
   
-  get 'employees/all'             => 'employees#index'
-  get 'employees/active'          => 'employees#index',         status: 'active'
-  get 'employees/inactive'        => 'employees#index',         status: 'inactive'
-  get 'employees/admin'           => 'employees#index',         status: 'admin'
+  controller :employees do
+    get 'employees/all'             => :index
+    get 'employees/active'          => :index,         status: 'active'
+    get 'employees/inactive'        => :index,         status: 'inactive'
+    get 'employees/admin'           => :index,         status: 'admin'
+  end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-  get 'tickets/:id/assign_to_me'  => 'tickets#assign_to_me',  as: :assign_to_me
-  get 'tickets/:id/close_ticket'  => 'tickets#close_ticket',  as: :close_ticket
-  get 'tickets/:id/reopen_ticket' => 'tickets#reopen_ticket', as: :reopen_ticket
+  controller :tickets do
+    get 'tickets/:id/assign_to_me'  => :assign_to_me,  as: :assign_to_me
+    get 'tickets/:id/close_ticket'  => :close_ticket,  as: :close_ticket
+    get 'tickets/:id/reopen_ticket' => :reopen_ticket, as: :reopen_ticket
+  end
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

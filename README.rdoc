@@ -75,6 +75,7 @@ To-Do:
 * What to do about deleting your own account?
 * Can you set an index on hidden field for faster querying for non-hidden records?
 * Tickets created on behalf-of another employee
+* Reopening a ticket should redirect to the same ticket
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)
