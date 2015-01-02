@@ -1,57 +1,57 @@
-<div class="row">
-	<div class="col-md-12">
-		<table class="table table-striped">
-			<thead>
+
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th><%= sort_column 'ID', 'id' %></th>
+				<% if params[:status] != 'my' %>
+					<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+				<% end %>
+				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
+				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
+					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
+				<% end %>
+				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
+					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
+				<% end %>
+				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
+				<% if params[:status] == 'closed' %>
+					<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
+				<% else %>
+					<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
+				<% end %>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @tickets.each do |ticket| %>
 				<tr>
-					<th><%= sort_column 'ID', 'id' %></th>
+					<td><%= ticket.id %></td>
 					<% if params[:status] != 'my' %>
-						<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+						<td><%= ticket.creator.last_first %></td>
 					<% end %>
-					<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
+					<td><%= ticket.topic.system %></td>
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-						<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
+						<td>
+							<%= ticket_status_icon(ticket.status.state) %>
+							<%= ticket.status.state %>
+						</td>
 					<% end %>
 					<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-						<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
-					<% end %>
-					<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
-					<% if params[:status] == 'closed' %>
-						<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
-					<% else %>
-						<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
-					<% end %>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @tickets.each do |ticket| %>
-					<tr>
-						<td><%= ticket.id %></td>
-						<% if params[:status] != 'my' %>
-							<td><%= ticket.creator.last_first %></td>
-						<% end %>
-						<td><%= ticket.topic.system %></td>
-						<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-							<td>
-								<%= ticket_status_icon(ticket.status.state) %>
-								<%= ticket.status.state %>
-							</td>
-						<% end %>
-						<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-							<td>
-								<%= ticket.technician.last_first unless ticket.technician.nil? %>
-							</td>
-						<% end %>
-						<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
-						<td class="hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 						<td>
-							<%= link_to ticket_path(ticket), title: 'Details', data: { toggle: 'tooltip', placement: 'right' } do %>
-								<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
-								<span class="sr-only" title="Details">Details</span>
-							<% end %>
+							<%= ticket.technician.last_first unless ticket.technician.nil? %>
 						</td>
-					</tr>
-				<% end %>
-		</table>
-	</div>
+					<% end %>
+					<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+					<td class="hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+					<td>
+						<%= link_to ticket_path(ticket), title: 'Details', data: { toggle: 'tooltip', placement: 'right' } do %>
+							<span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
+							<span class="sr-only" title="Details">Details</span>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>

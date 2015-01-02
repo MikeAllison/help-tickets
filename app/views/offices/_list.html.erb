@@ -1,34 +1,33 @@
-<div class="row">
-	<div class="col-md-12">
-		<table class="table table-striped">
-			<thead>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th class="col-md-4"><%= sort_column 'Office', 'name' %></th>
+				<th class="col-md-3"><%= sort_column 'City', 'cities.name', 'city' %></th>
+				<th class="col-md-2">State</th>
+				<th class="col-md-2 hidden-xs">Employees</th>
+				<th class="col-md-1">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @offices.each do |office| %>
 				<tr>
-					<th class="col-md-4"><%= sort_column 'Office', 'name' %></th>
-					<th class="col-md-3"><%= sort_column 'City', 'cities.name', 'city' %></th>
-					<th class="col-md-2">State</th>
-					<th class="col-md-2 hidden-xs">Employees</th>
-					<th class="col-md-1">Actions</th>
+					<td class="col-md-4"><%= office.name %></td>
+					<td class="col-md-3"><%= office.city.name %></td>
+					<td class="col-md-2"><%= office.city.state.abbreviation %></td>
+					<td class="col-md-2 hidden-xs"><%= office.employees.count %></td>
+					<td class="col-md-1">
+						<%= link_to edit_office_path(office), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
+							<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+							<span class="sr-only" title="Edit">Edit</span>
+						<% end %>
+						<%= link_to office, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'top' } do %>
+							<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
+							<span class="sr-only" title="Delete">Delete</span>
+						<% end %>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<% @offices.each do |office| %>
-					<tr>
-						<td class="col-md-4"><%= office.name %></td>
-						<td class="col-md-3"><%= office.city.name %></td>
-						<td class="col-md-2"><%= office.city.state.abbreviation %></td>
-						<td class="col-md-2 hidden-xs"><%= office.employees.count %></td>
-						<td class="col-md-1">
-							<%= link_to edit_office_path(office), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
-								<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
-								<span class="sr-only" title="Edit">Edit</span>
-							<% end %>
-							<%= link_to office, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'top' } do %>
-								<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
-								<span class="sr-only" title="Delete">Delete</span>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-		</table>
-	</div>
+			<% end %>
+		</tbody>
+	</table>
 </div>
