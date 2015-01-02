@@ -76,6 +76,7 @@ To-Do:
 * Can you set an index on hidden field for faster querying for non-hidden records?
 * Tickets created on behalf-of another employee
 * Reopening a ticket should redirect to the same ticket
+* Current method to close/reopen tickets is probably not the best way to handle those actions
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)

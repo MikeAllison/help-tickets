@@ -99,8 +99,8 @@ Status.create([
 Employee.create(last_name: 'Allison', 
                 first_name: 'Mike', 
                 user_name: 'mallison', 
-                password: 'password', 
-                password_confirmation: 'password', 
+                password: 'asdfasdf', 
+                password_confirmation: 'asdfasdf', 
                 office_id: 1,
                 active: true, 
                 admin: false)
@@ -111,8 +111,8 @@ Employee.create([
     last_name: 'Allison', 
     first_name: 'Mike (Admin)', 
     user_name: 'admin', 
-    password: 'password', 
-    password_confirmation: 'password', 
+    password: 'asdfasdf', 
+    password_confirmation: 'asdfasdf', 
     office_id: 1,
     active: true, 
     admin: true
