@@ -53,7 +53,7 @@ To-Do:
 * Show updated_at column on closed tickets and label column "Closed" - DONE
 * Fix nil class bug on ticket show for tickets with no technician_id - FIXED
 * Fix bug where you can close a ticket without assigning it to anyone - FIXED
-* Fix bug where reopening a ticket doesn't reset technician_id
+* Fix bug where reopening a ticket doesn't reset technician_id - FIXED
 * Fix bug where a non-admin may be able to assign a ticket to themself
 * Fix bug where a non-admin may be able to change ticket assignment status by passing in params
 * Link to show tickets for a specific employee - DONE
@@ -68,7 +68,7 @@ To-Do:
 * Create option to assign new topic to tickets if topic is deleted
 * Create option to assign new city to offices if city is deleted
 * Uniqueness validations on topics and offices
-* WIP tickets can be currently assigned to no one.
+* WIP tickets can be currently assigned to no one
 * Tickets can be closed by a tech while still assigned to another (closing tech field or change "Assigned To" to "Closed By" and use the last comment employee.id)
 * What to do with !closed tickets assigned to a tech that is made inactive?
 * Comments added by a deleted employee give nil class errors (hide deleted employees)

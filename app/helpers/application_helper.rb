@@ -95,7 +95,7 @@ module ApplicationHelper
       direction = 'ASC'
     end
     
-    link_to title, :sort_column => column, :sort_direction => direction, :join_table => joins
+    link_to title, { :sort_column => column, :sort_direction => direction, :join_table => joins }, { title: 'Click to Sort', data: { toggle: 'tooltip', placement: 'top' } }
   end
   
   def filter_link
