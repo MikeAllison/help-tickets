@@ -7,13 +7,13 @@ class EmployeesController < ApplicationController
 	def index
 	  case params[:status]
 	  when 'active'
-	    @employees = Employee.active
+	    @employees = Employee.active.not_hidden
 	  when 'inactive'
-	    @employees = Employee.inactive
+	    @employees = Employee.inactive.not_hidden
 	  when 'admin'
-	    @employees = Employee.admin
+	    @employees = Employee.admin.not_hidden
 	  else
-	    @employees = Employee.all
+	    @employees = Employee.not_hidden
 	  end
 	  
 	  @employees = apply_joins_and_order(@employees)
@@ -71,7 +71,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def destroy
-		@employee.destroy
+		@employee.update_attribute(:hidden, true)
 		flash[:success] = "Employee deleted!"
 		redirect_to new_employee_path
 	end
@@ -83,13 +83,13 @@ class EmployeesController < ApplicationController
 		end
 		
 		def find_all_employees
-		  @employees = Employee.all
+		  @employees = Employee.not_hidden
 		  @employees = apply_joins_and_order(@employees)
       @employees = apply_pagination(@employees)
 		end
 
 		def employee_params_admin
-			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :admin, :active)
+			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :admin, :active, :hidden)
 		end
 		
 		def employee_params_restricted

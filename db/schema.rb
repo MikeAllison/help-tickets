@@ -11,20 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228160234) do
+ActiveRecord::Schema.define(version: 20150104205955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attachments", force: true do |t|
-    t.string   "filename"
-    t.binary   "data"
+    t.binary   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "ticket_id"
   end
-
-  add_index "attachments", ["ticket_id"], name: "index_attachments_on_ticket_id", using: :btree
 
   create_table "cities", force: true do |t|
     t.string   "name"
@@ -56,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141228160234) do
     t.string   "password_digest"
     t.boolean  "admin",           default: false
     t.boolean  "active",          default: false
+    t.boolean  "hidden",          default: false
   end
 
   add_index "employees", ["admin"], name: "index_employees_on_admin", using: :btree

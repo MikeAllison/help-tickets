@@ -13,9 +13,10 @@ class Employee < ActiveRecord::Base
   validates :user_name, presence: true, uniqueness: true
   validates :password, length: { minimum: 8 }, allow_blank: true
   
-  scope :active,    -> { where(active: true) }
-  scope :inactive,  -> { where(active: false) }
-  scope :admin,     -> { where(admin: true) }
+  scope :active,      -> { where(active: true) }
+  scope :inactive,    -> { where(active: false) }
+  scope :admin,       -> { where(admin: true) }
+  scope :not_hidden,  -> { where(hidden: false) }
 
   # Create method to set user name
   
