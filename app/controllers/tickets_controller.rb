@@ -98,7 +98,11 @@ class TicketsController < ApplicationController
 	 
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
-	  @ticket.update_attributes(status_id: 1, technician_id: nil)
+	  if current_employee.admin?
+	   @ticket.update_attributes(status_id: 2, technician_id: current_employee.id)
+	  else
+	   @ticket.update_attributes(status_id: 1, technician_id: nil)
+	  end
 	  redirect_to @ticket
 	end
 	
