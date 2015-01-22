@@ -43,7 +43,7 @@ gem 'jquery-turbolinks', '~> 0.2.1'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 gem 'faker', '~> 1.4.3'
-gem 'pg', '0.17.1'
+gem 'pg', '~> 0.18.1'
   
 gem 'rails_12factor', '0.0.2', group: :production
 
