@@ -71,10 +71,11 @@ To-Do:
 * What to do with !closed tickets assigned to a tech that is made inactive?
 * Comments added by a deleted employee give nil class errors (hide deleted employees)
 * What to do about deleting your own account?
-* Can you set an index on hidden field for faster querying for non-hidden records?
+* Can you set an index on hidden field for faster querying for non-hidden records? (Partial Index - Discussed in R4W)
 * Tickets created on behalf-of another employee
 * Reopening a ticket should redirect to the same ticket - FIXED
 * Current method to close/reopen tickets is probably not the best way to handle those actions
+* Check use of && and || vs 'and' and 'or'
 
 QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
 * Default ordering (Sec 8.3)
