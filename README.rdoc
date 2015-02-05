@@ -5,16 +5,14 @@
 Ideas:
 
 * Custom Paths (like /mytickets)
-
 * Cube Numbers/Map
-
 * Remember Me - Hartl 8.4.1
 
 To-Do:
 
 * Validations
 * Custom validation error messages
-* Indexes
+* Indexes (WIP)
 * 404s
 * Check admin functionality
 * Allow employees to update their passwords - DONE
