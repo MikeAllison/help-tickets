@@ -1,14 +1,12 @@
-== README
+= README
 
-8.2.3
-
-Ideas:
+== Ideas:
 
 * Custom Paths (like /mytickets)
 * Cube Numbers/Map
 * Remember Me - Hartl 8.4.1
 
-To-Do:
+== To-Do:
 
 * Validations
 * Custom validation error messages
@@ -77,6 +75,6 @@ To-Do:
 * Current method to close/reopen tickets is probably not the best way to handle those actions
 * Check use of && and || vs 'and' and 'or'
 
-QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
+QUERYING (http://guides.rubyonrails.org/active_record_querying.html)
 * Default ordering (Sec 8.3)
 * Check Sec 9 for possibly simplifying ticket controller code
