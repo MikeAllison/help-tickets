@@ -1,12 +1,12 @@
 = README
 
-== Ideas:
+=== Ideas:
 
 * Custom Paths (like /mytickets)
 * Cube Numbers/Map
 * Remember Me - Hartl 8.4.1
 
-== To-Do:
+=== To-Do:
 
 * Validations
 * Custom validation error messages
