@@ -76,7 +76,8 @@ To-Do:
 * Reopening a ticket should redirect to the same ticket - FIXED
 * Current method to close/reopen tickets is probably not the best way to handle those actions
 * Check use of && and || vs 'and' and 'or'
+* Simplify routes.rb with 'collection' or 'member'
 
-QUERYING (http://guides.rubyonrails.org/active_record_querying.html) 
+QUERYING (http://guides.rubyonrails.org/active_record_querying.html)
 * Default ordering (Sec 8.3)
 * Check Sec 9 for possibly simplifying ticket controller code
