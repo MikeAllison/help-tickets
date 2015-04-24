@@ -1,14 +1,12 @@
-== README
+= README
 
-8.2.3
-
-Ideas:
+=== Ideas:
 
 * Custom Paths (like /mytickets)
 * Cube Numbers/Map
 * Remember Me - Hartl 8.4.1
 
-To-Do:
+=== To-Do:
 
 * Validations
 * Custom validation error messages
@@ -78,6 +76,8 @@ To-Do:
 * Check use of && and || vs 'and' and 'or'
 * Simplify routes.rb with 'collection' or 'member'
 
-QUERYING (http://guides.rubyonrails.org/active_record_querying.html)
+=== Querying (http://guides.rubyonrails.org/active_record_querying.html):
+
+* Use f.submit(@ticket.new_record? ? 'Submit Ticket' : 'Update Ticket') to simplfy button code
 * Default ordering (Sec 8.3)
 * Check Sec 9 for possibly simplifying ticket controller code
