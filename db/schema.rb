@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150122170729) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "attachments", force: true do |t|
     t.binary   "file"
     t.datetime "created_at"
@@ -30,8 +27,8 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "hidden",     default: false
   end
 
-  add_index "cities", ["hidden"], name: "index_cities_on_hidden", using: :btree
-  add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
+  add_index "cities", ["hidden"], name: "index_cities_on_hidden"
+  add_index "cities", ["state_id"], name: "index_cities_on_state_id"
 
   create_table "comments", force: true do |t|
     t.integer  "ticket_id"
@@ -43,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "reopening_comment", default: false
   end
 
-  add_index "comments", ["employee_id"], name: "index_comments_on_employee_id", using: :btree
-  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
+  add_index "comments", ["employee_id"], name: "index_comments_on_employee_id"
+  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
 
   create_table "employees", force: true do |t|
     t.string   "first_name"
@@ -59,11 +56,11 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "hidden",          default: false
   end
 
-  add_index "employees", ["active"], name: "index_employees_on_active", using: :btree
-  add_index "employees", ["admin"], name: "index_employees_on_admin", using: :btree
-  add_index "employees", ["hidden"], name: "index_employees_on_hidden", using: :btree
-  add_index "employees", ["office_id"], name: "index_employees_on_office_id", using: :btree
-  add_index "employees", ["user_name"], name: "index_employees_on_user_name", unique: true, using: :btree
+  add_index "employees", ["active"], name: "index_employees_on_active"
+  add_index "employees", ["admin"], name: "index_employees_on_admin"
+  add_index "employees", ["hidden"], name: "index_employees_on_hidden"
+  add_index "employees", ["office_id"], name: "index_employees_on_office_id"
+  add_index "employees", ["user_name"], name: "index_employees_on_user_name", unique: true
 
   create_table "offices", force: true do |t|
     t.string   "name"
@@ -74,9 +71,9 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "active",     default: true
   end
 
-  add_index "offices", ["active"], name: "index_offices_on_active", using: :btree
-  add_index "offices", ["city_id"], name: "index_offices_on_city_id", using: :btree
-  add_index "offices", ["hidden"], name: "index_offices_on_hidden", using: :btree
+  add_index "offices", ["active"], name: "index_offices_on_active"
+  add_index "offices", ["city_id"], name: "index_offices_on_city_id"
+  add_index "offices", ["hidden"], name: "index_offices_on_hidden"
 
   create_table "states", force: true do |t|
     t.string   "name"
@@ -101,10 +98,10 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.integer  "technician_id"
   end
 
-  add_index "tickets", ["creator_id"], name: "index_tickets_on_creator_id", using: :btree
-  add_index "tickets", ["status_id"], name: "index_tickets_on_status_id", using: :btree
-  add_index "tickets", ["technician_id"], name: "index_tickets_on_technician_id", using: :btree
-  add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id", using: :btree
+  add_index "tickets", ["creator_id"], name: "index_tickets_on_creator_id"
+  add_index "tickets", ["status_id"], name: "index_tickets_on_status_id"
+  add_index "tickets", ["technician_id"], name: "index_tickets_on_technician_id"
+  add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id"
 
   create_table "topics", force: true do |t|
     t.string   "system"
@@ -114,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "hidden",     default: false
   end
 
-  add_index "topics", ["active"], name: "index_topics_on_active", using: :btree
-  add_index "topics", ["hidden"], name: "index_topics_on_hidden", using: :btree
+  add_index "topics", ["active"], name: "index_topics_on_active"
+  add_index "topics", ["hidden"], name: "index_topics_on_hidden"
 
 end

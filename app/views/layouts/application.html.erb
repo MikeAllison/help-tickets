@@ -10,13 +10,13 @@
 
 <body>
 	<%= render 'layouts/navbar' %>
-	
+
 	<div class="container">
-		
+
 		<div class ="row">
 			<div class="col-xs-12">
 				<% flash.each do |message_type, message| %>
-					<div class="alert alert-<%= message_type%>">
+					<div class="alert alert-<%= message_type %>">
 						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 						<span class="sr-only">Alert:</span>
 						<%= message %>
@@ -27,13 +27,7 @@
 
 		<%= yield %>
 
-		<div id="debug" class="row hidden-xs">
-			<div class="col.xs-12">
-				<%= debug(params) if Rails.env.development? %>
-			</div>
-		</div>
-		
 	</div> <!-- Container -->
-	
+
 </body>
 </html>

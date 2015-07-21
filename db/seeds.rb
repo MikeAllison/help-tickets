@@ -96,52 +96,43 @@ Status.create([
 ])
 
 # Create standard user account
-Employee.create(last_name: 'Allison', 
-                first_name: 'Mike', 
-                user_name: 'mallison', 
-                password: 'asdfasdf', 
-                password_confirmation: 'asdfasdf', 
+Employee.create(last_name: 'Allison',
+                first_name: 'Mike',
+                user_name: 'mallison',
+                password: 'asdfasdf',
+                password_confirmation: 'asdfasdf',
                 office_id: 1,
-                active: true, 
+                active: true,
                 admin: false)
-                
+
 # Create 4 specfic admin accounts
 Employee.create([
   {
-    last_name: 'Allison', 
-    first_name: 'Mike (Admin)', 
-    user_name: 'admin', 
-    password: 'asdfasdf', 
-    password_confirmation: 'asdfasdf', 
+    last_name: 'Allison',
+    first_name: 'Mike (Admin)',
+    user_name: 'admin',
+    password: 'asdfasdf',
+    password_confirmation: 'asdfasdf',
     office_id: 1,
-    active: true, 
+    active: true,
     admin: true
   },{
-    last_name: 'Fox', 
-    first_name: 'Michelle', 
-    user_name: 'mfadmin', 
-    password: 'password', 
-    password_confirmation: 'password', 
+    last_name: 'Peyatt',
+    first_name: 'Justin',
+    user_name: 'jpadmin',
+    password: 'password',
+    password_confirmation: 'password',
     office_id: 1,
-    active: true, 
+    active: true,
     admin: true
   },{
-    last_name: 'Peyatt', 
-    first_name: 'Justin', 
-    user_name: 'jpadmin', 
-    password: 'password', 
-    password_confirmation: 'password', 
+    last_name: 'Souza',
+    first_name: 'Carlos',
+    user_name: 'csadmin',
+    password: 'password',
+    password_confirmation: 'password',
     office_id: 1,
-    active: true, 
-    admin: true
-  },{
-    last_name: 'Souza', 
-    first_name: 'Carlos', 
-    user_name: 'csadmin', 
-    password: 'password', 
-    password_confirmation: 'password', 
-    office_id: 1,
-    active: true, 
+    active: true,
     admin: true
   }
 ])
@@ -152,12 +143,12 @@ Employee.create([
   first_name = Faker::Name.first_name
   user_name = 'admin' + i.to_s
   office_id = rand(2..3)
-  
-  Employee.create(last_name: last_name, 
-                  first_name: first_name, 
-                  user_name: user_name, 
-                  password: 'password', 
-                  password_confirmation: 'password', 
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: user_name,
+                  password: 'password',
+                  password_confirmation: 'password',
                   office_id: office_id,
                   active: true,
                   admin: true)
@@ -169,14 +160,14 @@ end
   first_name = Faker::Name.first_name
   user_name = 'admin' + (i + 4).to_s
   office_id = rand(2..3)
-  
-  Employee.create(last_name: last_name, 
-                  first_name: first_name, 
-                  user_name: user_name, 
-                  password: 'password', 
-                  password_confirmation: 'password', 
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: user_name,
+                  password: 'password',
+                  password_confirmation: 'password',
                   office_id: office_id,
-                  active: false, 
+                  active: false,
                   admin: true)
 end
 
@@ -186,12 +177,12 @@ end
   first_name = Faker::Name.first_name
   user_name = first_name.slice(0) + last_name + rand(1..99).to_s
   office_id = rand(1..4)
-  
-  Employee.create(last_name: last_name, 
-                  first_name: first_name, 
-                  user_name: user_name, 
-                  password: 'password', 
-                  password_confirmation: 'password', 
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: user_name,
+                  password: 'password',
+                  password_confirmation: 'password',
                   office_id: office_id,
                   active: true,
                   admin: false)
@@ -203,12 +194,12 @@ end
   first_name = Faker::Name.first_name
   user_name = first_name.slice(0) + last_name + rand(1..99).to_s
   office_id = rand(1..4)
-  
-  Employee.create(last_name: last_name, 
-                  first_name: first_name, 
-                  user_name: user_name, 
-                  password: 'password', 
-                  password_confirmation: 'password', 
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: user_name,
+                  password: 'password',
+                  password_confirmation: 'password',
                   office_id: office_id,
                   active: false,
                   admin: false)
@@ -222,7 +213,7 @@ end
   status_id = rand(1..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
   technician_id = rand(2..11)
-  
+
   Ticket.create(description: description,
                 creator_id: creator_id,
                 topic_id: topic_id,
@@ -239,7 +230,7 @@ end
   topic_id = rand(1..10)
   status_id = 1
   time = Faker::Time.between(7.days.ago, 5.days.ago)
-  
+
   Ticket.create(description: description,
                 creator_id: creator_id,
                 topic_id: topic_id,
@@ -256,7 +247,7 @@ end
   status_id = rand(2..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
   technician_id = rand(2..11)
-  
+
   Ticket.create(description: description,
                 creator_id: creator_id,
                 topic_id: topic_id,
@@ -272,7 +263,7 @@ end
   employee_id = rand(2..11)
   ticket_id = rand(1..1000)
   time = Faker::Time.between(4.days.ago, 3.days.ago)
-  
+
   Comment.create(body: body,
                  employee_id: employee_id,
                  ticket_id: ticket_id,
@@ -286,7 +277,7 @@ end
   employee_id = rand(2..600)
   ticket_id = i
   time = Faker::Time.between(2.days.ago, Time.now)
-  
+
   Comment.create(body: body,
                  employee_id: employee_id,
                  ticket_id: ticket_id,
