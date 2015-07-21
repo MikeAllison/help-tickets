@@ -88,13 +88,6 @@ Topic.create([
   {system: 'Browser'}
 ])
 
-Status.create([
-  {state: 'Unassigned'},
-  {state: 'Work in Progress'},
-  {state: 'On Hold'},
-  {state: 'Closed'}
-])
-
 # Create standard user account
 Employee.create(last_name: 'Allison',
                 first_name: 'Mike',
@@ -139,148 +132,108 @@ Employee.create([
 
 # Create active admin users (admin1-3)
 3.times do |i|
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
-  user_name = 'admin' + i.to_s
-  office_id = rand(2..3)
-
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
-                  user_name: user_name,
+  Employee.create(last_name: Faker::Name.last_name,
+                  first_name: Faker::Name.first_name,
+                  user_name: 'admin' + i.to_s,
                   password: 'password',
                   password_confirmation: 'password',
-                  office_id: office_id,
+                  office_id: rand(2..3),
                   active: true,
                   admin: true)
 end
 
 # Create inactive admin users (admin4-6)
 3.times do |i|
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
-  user_name = 'admin' + (i + 4).to_s
-  office_id = rand(2..3)
-
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
-                  user_name: user_name,
+  Employee.create(last_name: Faker::Name.last_name,
+                  first_name: Faker::Name.first_name,
+                  user_name: 'admin' + (i + 4).to_s,
                   password: 'password',
                   password_confirmation: 'password',
-                  office_id: office_id,
+                  office_id: rand(2..3),
                   active: false,
                   admin: true)
 end
 
 # Create active employees
 500.times do
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
-  user_name = first_name.slice(0) + last_name + rand(1..99).to_s
-  office_id = rand(1..4)
-
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
-                  user_name: user_name,
+  Employee.create(last_name: Faker::Name.last_name,
+                  first_name: Faker::Name.first_name,
+                  user_name: first_name.slice(0) + last_name + rand(1..99).to_s,
                   password: 'password',
                   password_confirmation: 'password',
-                  office_id: office_id,
+                  office_id: rand(1..4),
                   active: true,
                   admin: false)
 end
 
 # Create inactive employees
 100.times do
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
-  user_name = first_name.slice(0) + last_name + rand(1..99).to_s
-  office_id = rand(1..4)
-
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
-                  user_name: user_name,
+  Employee.create(last_name: Faker::Name.last_name,
+                  first_name: Faker::Name.first_name,
+                  user_name: first_name.slice(0) + last_name + rand(1..99).to_s,
                   password: 'password',
                   password_confirmation: 'password',
-                  office_id: office_id,
+                  office_id: rand(1..4),
                   active: false,
                   admin: false)
 end
 
 # Create a bunch of tickets for mallison
 100.times do
-  description = Faker::Hacker.say_something_smart
-  creator_id = 1
-  topic_id = rand(1..10)
-  status_id = rand(1..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
-  technician_id = rand(2..11)
 
-  Ticket.create(description: description,
-                creator_id: creator_id,
-                topic_id: topic_id,
-                status_id: status_id,
+  Ticket.create(description: Faker::Hacker.say_something_smart,
+                creator_id: 1,
+                topic_id: rand(1..10),
+                status: rand(0..3),
                 created_at: time,
                 updated_at: time + 1.day,
-                technician_id: technician_id)
+                technician_id: rand(2..11))
 end
 
 # Create unassigned tickets
 100.times do
-  description = Faker::Hacker.say_something_smart
-  creator_id = rand(1..600)
-  topic_id = rand(1..10)
-  status_id = 1
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
-  Ticket.create(description: description,
-                creator_id: creator_id,
-                topic_id: topic_id,
-                status_id: status_id,
+  Ticket.create(description: Faker::Hacker.say_something_smart,
+                creator_id: rand(1..600),
+                topic_id: rand(1..10),
+                status: 0,
                 created_at: time,
                 updated_at: time)
 end
 
 # Create assigned tickets
 900.times do
-  description = Faker::Hacker.say_something_smart
-  creator_id = rand(1..600)
-  topic_id = rand(1..10)
-  status_id = rand(2..4)
   time = Faker::Time.between(7.days.ago, 5.days.ago)
-  technician_id = rand(2..11)
 
-  Ticket.create(description: description,
-                creator_id: creator_id,
-                topic_id: topic_id,
-                status_id: status_id,
+  Ticket.create(description: Faker::Hacker.say_something_smart,
+                creator_id: rand(1..600),
+                topic_id: rand(1..10),
+                status: rand(1..3),
                 created_at: time,
                 updated_at: time + 2.days,
-                technician_id: technician_id)
+                technician_id: rand(2..11))
 end
 
 # Create comments on tickets
 1500.times do
-  body = Faker::Hacker.say_something_smart
-  employee_id = rand(2..11)
-  ticket_id = rand(1..1000)
   time = Faker::Time.between(4.days.ago, 3.days.ago)
 
-  Comment.create(body: body,
-                 employee_id: employee_id,
-                 ticket_id: ticket_id,
+  Comment.create(body: Faker::Hacker.say_something_smart,
+                 employee_id: rand(2..11),
+                 ticket_id: rand(1..1000),
                  created_at: time,
                  updated_at: time)
 end
 
 # Set reopening comment on some tickets
 100.times do |i|
-  body = Faker::Hacker.say_something_smart
-  employee_id = rand(2..600)
-  ticket_id = i
   time = Faker::Time.between(2.days.ago, Time.now)
 
-  Comment.create(body: body,
-                 employee_id: employee_id,
-                 ticket_id: ticket_id,
+  Comment.create(body: Faker::Hacker.say_something_smart,
+                 employee_id: rand(2..600),
+                 ticket_id: i,
                  reopening_comment: true,
                  created_at: time,
                  updated_at: time)

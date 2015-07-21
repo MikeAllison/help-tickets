@@ -4,7 +4,7 @@
 	</div>
 </div>
 
-<% if @ticket.status.state != 'Closed' %>
+<% unless @ticket.status.closed? %>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -36,7 +36,7 @@
 				    			&#40;Ticket Reopened&#41;
 				    		<% elsif comment.closing_comment %>
 				    			&#40;Closing Comment&#41;
-				    		<% end %>		
+				    		<% end %>
 				    	</span>
 				    </h4>
 				  </div>
@@ -46,6 +46,6 @@
 				  	</ul>
 				  </div>
 				</div>
-		<% end %>		
+		<% end %>
 	</div>
 </div>

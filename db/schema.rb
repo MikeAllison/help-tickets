@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122170729) do
+ActiveRecord::Schema.define(version: 20150721192919) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "hidden",     default: false
   end
 
-  add_index "cities", ["hidden"], name: "index_cities_on_hidden"
   add_index "cities", ["state_id"], name: "index_cities_on_state_id"
 
   create_table "comments", force: true do |t|
@@ -56,11 +55,7 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "hidden",          default: false
   end
 
-  add_index "employees", ["active"], name: "index_employees_on_active"
-  add_index "employees", ["admin"], name: "index_employees_on_admin"
-  add_index "employees", ["hidden"], name: "index_employees_on_hidden"
   add_index "employees", ["office_id"], name: "index_employees_on_office_id"
-  add_index "employees", ["user_name"], name: "index_employees_on_user_name", unique: true
 
   create_table "offices", force: true do |t|
     t.string   "name"
@@ -71,19 +66,11 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "active",     default: true
   end
 
-  add_index "offices", ["active"], name: "index_offices_on_active"
   add_index "offices", ["city_id"], name: "index_offices_on_city_id"
-  add_index "offices", ["hidden"], name: "index_offices_on_hidden"
 
   create_table "states", force: true do |t|
     t.string   "name"
     t.string   "abbreviation", limit: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "statuses", force: true do |t|
-    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,13 +81,11 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status_id"
     t.integer  "technician_id"
+    t.integer  "status",        default: 0
   end
 
   add_index "tickets", ["creator_id"], name: "index_tickets_on_creator_id"
-  add_index "tickets", ["status_id"], name: "index_tickets_on_status_id"
-  add_index "tickets", ["technician_id"], name: "index_tickets_on_technician_id"
   add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id"
 
   create_table "topics", force: true do |t|
@@ -110,8 +95,5 @@ ActiveRecord::Schema.define(version: 20150122170729) do
     t.boolean  "active",     default: true
     t.boolean  "hidden",     default: false
   end
-
-  add_index "topics", ["active"], name: "index_topics_on_active"
-  add_index "topics", ["hidden"], name: "index_topics_on_hidden"
 
 end
