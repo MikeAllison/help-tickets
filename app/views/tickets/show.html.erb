@@ -8,11 +8,11 @@
 		    <ul class="list-unstyled">
 		    	<li><strong>Requested For: </strong><%= @ticket.creator.last_first %></li>
 					<li><strong>Topic: </strong><%= @ticket.topic.system %></li>
-					<li><strong>Status: </strong><%= @ticket.status.state %></li>
+					<li><strong>Status: </strong><%= @ticket.status %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>
-						<% if @ticket.status.state == 'Closed' %>
-							Closed: 
+						<% if @ticket.closed? %>
+							Closed:
 						<% else %>
 							Updated:
 						<% end %>
@@ -28,12 +28,12 @@
 		  	</ul>
 		  	<br />
 		  	<div>
-		  		<% if @ticket.status.state != 'Closed' %>
+		  		<% unless @ticket.closed? %>
 		  			<% if current_employee.admin? %>
 		  				<%= link_to 'Assign to Me', assign_to_me_path(@ticket), method: :patch, class: 'btn btn-primary' %>
 		  			<% end %>
 		  			<%= link_to 'Edit Ticket', edit_ticket_path(@ticket), class: 'btn btn-primary' %>
-		  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>	
+		  			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#closeTicketModal">Close Ticket</button>
 		  		<% else %>
 		  			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#reopenTicketModal">Reopen Ticket</button>
 		  		<% end %>
@@ -49,12 +49,12 @@
 		  	</div>
 		  </div>
 		</div>
-	</div>		
+	</div>
 </div>
 
 <%= render 'comments' %>
 
-<% if @ticket.status.state != 'Closed' %>
+<% unless @ticket.closed? %>
 	<%= render 'close_ticket_modal' %>
 <% else %>
 	<%= render 'reopen_ticket_modal' %>

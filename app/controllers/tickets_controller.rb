@@ -58,7 +58,6 @@ class TicketsController < ApplicationController
 	end
 
 	def create
-	  # @ticket.status_id set to 1 (Unassigned) by default
 	  @ticket = Ticket.new(ticket_params)
 
 	  if @ticket.save
@@ -82,14 +81,15 @@ class TicketsController < ApplicationController
 
 	def assign_to_me
 	  flash[:success] = "Ticket was assigned to you and set to 'Work in Progress.'"
-	  @ticket.update_attributes(technician_id: current_employee.id, status_id: 2)
+	  @ticket.update_attributes(technician_id: current_employee.id)
+		@ticket.work_in_progress!
 	  redirect_to ticket_path
 	end
 
 	def close_ticket
 	  flash[:success] = "Ticket closed!"
 	  if @ticket.technician_id.nil?
-	    @ticket.update_attribute(:technician_id, current_employee.id)
+	    @ticket.update_attribute(technician_id: current_employee.id)
 	  end
 	  @ticket.closed!
 	  default_tickets_redirect
@@ -98,9 +98,9 @@ class TicketsController < ApplicationController
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
 	  if current_employee.admin?
-	   @ticket.update_attributes(status_id: 2, technician_id: current_employee.id)
+	   @ticket.update_attributes(status: 1, technician_id: current_employee.id)
 	  else
-	   @ticket.update_attributes(status_id: 1, technician_id: nil)
+	   @ticket.update_attributes(status: 0, technician_id: nil)
 	  end
 	  redirect_to @ticket
 	end
@@ -115,12 +115,12 @@ class TicketsController < ApplicationController
 		# This would ideally not let you save if this is the case but can't get that...
 		# ...to work at the moment
 		def check_for_unassigned
-		  if @ticket.technician_id != nil && @ticket.status_id == 1 && current_employee.admin?
+		  if @ticket.technician_id != nil && @ticket.unassigned? && current_employee.admin?
         flash.now[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
       end
 		end
 
 		def ticket_params
-	  	params.require(:ticket).permit(:creator_id, :topic_id, :description, :status_id, :technician_id)
+	  	params.require(:ticket).permit(:creator_id, :topic_id, :description, :technician_id, :status)
 	 	end
 end

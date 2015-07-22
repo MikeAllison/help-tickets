@@ -2,7 +2,7 @@ class Ticket < ActiveRecord::Base
 
 	enum status: [:unassigned, :work_in_progress, :on_hold, :closed]
 
-	before_save :set_status
+	before_save :set_default_status
 
   has_many :attachments
   has_many :comments
@@ -17,7 +17,7 @@ class Ticket < ActiveRecord::Base
   # Tickets can be submitted without a status and are set to unassigned
   # Status should be checked to make sure that it is valid
 
-  scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'status_id', 'technician_id', 'created_at', 'updated_at') }
+  scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   #scope :open,             -> { joins(:status).where.not('state = ?', 'Closed') }
   #scope :unassigned,       -> { joins(:status).where('state = ?', 'Unassigned') }
 	#scope :work_in_progress, -> { joins(:status).where('state = ?', 'Work in Progress') }
@@ -27,9 +27,8 @@ class Ticket < ActiveRecord::Base
   private
 
     # Sets default ticket status to 'Unassigned'
-    def set_status
-			binding.pry
-      self.unassigned! if self.status
+    def set_default_status
+      self.unassigned! if self.status.nil?
     end
 
     # Set pagination for will_paginate

@@ -19,7 +19,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-group :developement do
+group :development do
   gem 'quiet_assets'
   gem 'pry'
   gem 'sqlite3'

@@ -1,23 +1,23 @@
 module TicketsHelper
-  
+
   # Sets color of flag icon in tickets/list partial
-  def ticket_status_icon(state)
+  def status_icon(ticket)
     icon = 'glyphicon glyphicon-floppy-disk'
-    
-    case state 
-    when 'Unassigned'
+
+    case ticket.status.to_sym
+    when :unassigned
       icon = 'glyphicon glyphicon-floppy-remove'
       style = 'alert-danger'
-    when 'Work in Progress'
+    when :work_in_progress
       style = 'alert-warning'
-    when 'On Hold'
+    when :on_hold
       style = 'alert-warning'
-    when 'Closed'
+    when :closed
       icon = 'glyphicon glyphicon-floppy-saved'
       style = 'alert-success'
     end
-    
+
     content_tag :span, '', class: icon + ' ' + style
   end
-   
+
 end

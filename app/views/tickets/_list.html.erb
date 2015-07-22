@@ -33,8 +33,8 @@
 					<td><%= ticket.topic.system %></td>
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 						<td>
-							<%= ticket_status_icon(ticket.status.state) %>
-							<%= ticket.status.state %>
+							<%= status_icon(ticket) %> <!-- TicketsHelper -->
+							<%= ticket.status.humanize.titleize %>
 						</td>
 					<% end %>
 					<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>

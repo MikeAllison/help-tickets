@@ -134,7 +134,7 @@ Employee.create([
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
-                  user_name: 'admin' + i.to_s,
+                  user_name: "admin#{i}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -146,7 +146,7 @@ end
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
-                  user_name: 'admin' + (i + 4).to_s,
+                  user_name: "admin#{i + 4}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -156,9 +156,12 @@ end
 
 # Create active employees
 500.times do
-  Employee.create(last_name: Faker::Name.last_name,
-                  first_name: Faker::Name.first_name,
-                  user_name: first_name.slice(0) + last_name + rand(1..99).to_s,
+  last_name = Faker::Name.last_name
+  first_name = Faker::Name.first_name
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: "#{first_name.slice(0)}#{last_name}#{rand(1..99)}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),
@@ -168,9 +171,12 @@ end
 
 # Create inactive employees
 100.times do
-  Employee.create(last_name: Faker::Name.last_name,
-                  first_name: Faker::Name.first_name,
-                  user_name: first_name.slice(0) + last_name + rand(1..99).to_s,
+  last_name = Faker::Name.last_name
+  first_name = Faker::Name.first_name
+
+  Employee.create(last_name: last_name,
+                  first_name: first_name,
+                  user_name: "#{first_name.slice(0)}#{last_name}#{rand(1..99)}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),
