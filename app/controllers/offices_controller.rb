@@ -1,12 +1,12 @@
 class OfficesController < ApplicationController
-	
+
 	before_action :restrict_access
 	before_action :find_office, only: [:edit, :update, :destroy]
 	before_action :find_all_offices, only: [:index, :new, :create]
-	
+
 	def index
 	end
-	
+
 	def show
 	  redirect_to new_office_path
 	end
@@ -31,7 +31,7 @@ class OfficesController < ApplicationController
 	end
 
 	def update
-		if @office.update_attributes(office_params)
+		if @office.update(office_params)
 			flash[:success] = "Office information updated!"
 			redirect_to new_office_path
 		else
@@ -41,7 +41,7 @@ class OfficesController < ApplicationController
 	end
 
 	def destroy
-		@office.update_columns(hidden: true, active: false)
+		@office.update(hidden: true, active: false)
 		flash[:success] = "Office deleted!"
 		redirect_to new_office_path
 	end

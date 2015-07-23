@@ -70,7 +70,7 @@ class TicketsController < ApplicationController
 	end
 
 	def update
-    if @ticket.update_attributes(ticket_params)
+    if @ticket.update(ticket_params)
 	    flash[:success] = "Ticket was successfully updated!"
 	    redirect_to ticket_path
 	  else
@@ -81,7 +81,7 @@ class TicketsController < ApplicationController
 
 	def assign_to_me
 	  flash[:success] = "Ticket was assigned to you and set to 'Work in Progress.'"
-	  @ticket.update_attributes(technician_id: current_employee.id)
+	  @ticket.update(technician_id: current_employee.id)
 		@ticket.work_in_progress!
 	  redirect_to ticket_path
 	end
@@ -89,7 +89,7 @@ class TicketsController < ApplicationController
 	def close_ticket
 	  flash[:success] = "Ticket closed!"
 	  if @ticket.technician_id.nil?
-	    @ticket.update_attribute(technician_id: current_employee.id)
+	    @ticket.update(technician_id: current_employee.id)
 	  end
 	  @ticket.closed!
 	  default_tickets_redirect
@@ -98,9 +98,9 @@ class TicketsController < ApplicationController
 	def reopen_ticket
 	  flash[:success] = "Ticket re-opened!"
 	  if current_employee.admin?
-	   @ticket.update_attributes(status: 1, technician_id: current_employee.id)
+	   @ticket.update(status: 1, technician_id: current_employee.id)
 	  else
-	   @ticket.update_attributes(status: 0, technician_id: nil)
+	   @ticket.update(status: 0, technician_id: nil)
 	  end
 	  redirect_to @ticket
 	end

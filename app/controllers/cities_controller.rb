@@ -3,10 +3,10 @@ class CitiesController < ApplicationController
   before_action :restrict_access
   before_action :find_city, only: [:show, :edit, :update, :destroy]
   before_action :find_all_cities, only: [:index, :new, :create]
-  
+
   def index
   end
-  
+
   def show
     redirect_to new_city_path
   end
@@ -20,7 +20,7 @@ class CitiesController < ApplicationController
 
   def create
     @city = City.new(city_params)
-    
+
     if @city.save
       flash[:success] = "City created!"
       redirect_to new_city_path
@@ -35,7 +35,7 @@ class CitiesController < ApplicationController
   end
 
   def update
-    if @city.update_attributes(city_params)
+    if @city.update(city_params)
       flash[:success] = "City updated!"
       redirect_to new_city_path
     else
@@ -45,7 +45,7 @@ class CitiesController < ApplicationController
   end
 
   def destroy
-    @city.update_column(:hidden, true)
+    @city.update(hidden: true)
     flash[:success] = "City deleted!"
     redirect_to new_city_path
   end
@@ -65,5 +65,5 @@ class CitiesController < ApplicationController
     def city_params
       params.require(:city).permit(:name, :state_id, :hidden)
     end
-    
+
 end

@@ -10,23 +10,16 @@ class Ticket < ActiveRecord::Base
   belongs_to :technician, class_name: 'Employee'
   belongs_to :topic
 
-  validates :creator, :description, :topic, presence: true
-  # Tickets can be created/updated without assigning a technician
+	# Tickets can be created/updated without assigning a technician
   # But there should be some validation for valid techician IDs
-
-  # Tickets can be submitted without a status and are set to unassigned
-  # Status should be checked to make sure that it is valid
+  validates :creator, :description, :topic, presence: true
 
   scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
-  #scope :open,             -> { joins(:status).where.not('state = ?', 'Closed') }
-  #scope :unassigned,       -> { joins(:status).where('state = ?', 'Unassigned') }
-	#scope :work_in_progress, -> { joins(:status).where('state = ?', 'Work in Progress') }
-  #scope :on_hold,          -> { joins(:status).where('state = ?', 'On Hold') }
-  #scope :closed,           -> { joins(:status).where('state = ?', 'Closed') }
+  scope :open,             -> { where.not('status = ?', 'Closed') }
 
   private
 
-    # Sets default ticket status to 'Unassigned'
+    # Tickets can be submitted without a status and are set to 'Unassigned'
     def set_default_status
       self.unassigned! if self.status.nil?
     end

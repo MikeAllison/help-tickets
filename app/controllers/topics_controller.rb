@@ -1,12 +1,12 @@
 class TopicsController < ApplicationController
-	
+
 	before_action :restrict_access
 	before_action :find_topic, only: [:show, :edit, :update, :destroy]
 	before_action :find_all_topics, only: [:index, :new, :create]
-	
+
 	def index
 	end
-	
+
 	def show
     redirect_to new_topic_path
   end
@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
 	end
 
 	def update
-		if @topic.update_attributes(topic_params)
+		if @topic.update(topic_params)
 			flash[:success] = "Topic updated!"
 			redirect_to new_topic_path
 		else
@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 	end
 
 	def destroy
-		@topic.update_columns(hidden: true, active: false)
+		@topic.update(hidden: true, active: false)
 		flash[:success] = "Topic deleted!"
 		redirect_to new_topic_path
 	end
@@ -61,5 +61,5 @@ class TopicsController < ApplicationController
 		def topic_params
 			params.require(:topic).permit(:system, :active, :hidden)
 		end
-	
+
 end
