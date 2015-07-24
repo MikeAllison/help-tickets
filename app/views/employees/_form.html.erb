@@ -8,26 +8,26 @@
 		  <%= f.label :last_name, 'Last Name' %>
 		  <%= f.text_field :last_name, class: 'form-control', placeholder: 'Enter Last Name' %>
 		</div>
-		<div class="form-group col-md-4">	  
+		<div class="form-group col-md-4">
 		  <%= f.label :user_name, 'User Name' %>
 		  <%= f.text_field :user_name, class: 'form-control', placeholder: 'Enter User Name' %>
 		</div>
 	</div>
 	<div class="row">
-		<div class="form-group col-md-4">  
+		<div class="form-group col-md-4">
 		  <%= f.label :office_id %>
 		  <%= f.collection_select(:office_id, Office.active.order(:name), :id, :office_city_state_abbr, { prompt: true }, { class: "form-control" }) %>
 		</div>
-		<div class="form-group col-md-4"> 
+		<div class="form-group col-md-4">
 		  <%= f.label :password, 'Password' %>
 		  <%= f.password_field :password, class: 'form-control', placeholder: 'Enter Password', title: '8 Character Minimum', data: { toggle: 'tooltip', placement: 'bottom' } %>
 		</div>
-		<div class="form-group col-md-4"> 
+		<div class="form-group col-md-4">
 		  <%= f.label :password_confirmation, 'Password Confirmation' %>
 		  <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Again' %>
 		</div>
 	</div>
-	
+
 	<% if current_employee.admin? %>
 		<div class="row">
 			<div class="form-group col-md-4">
@@ -50,11 +50,10 @@
 			</div>
 		</div>
 	<% end %>
-	
+
 	<div class="row">
 		<div class="form-group col-md-12">
-			<%= submit_button %>
-			<%= cancel_button %>
+			<%= submit_button_add_update(@employee) %>
 		</div>
 	</div>
 <% end %>

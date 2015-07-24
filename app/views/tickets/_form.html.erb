@@ -17,8 +17,8 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-md-12">
-			<%= submit_button %>
-			<%= cancel_button %>
+			<%= submit_button_create_update(@ticket) %>
+			<%= link_to "Cancel", :back, class: 'btn btn-default' %>
 		</div>
 	</div>
 <% end %>

@@ -1,6 +1,6 @@
 <% if params[:filter] == 'true' %>
-	<%= render 'layouts/panel_filter' %>
+	<%= render 'shared/panel_filter' %>
 <% else %>
-	<%= render 'layouts/panel' %>
+	<%= render 'shared/panel' %>
 	<%= render 'pagination' %>
 <% end %>
