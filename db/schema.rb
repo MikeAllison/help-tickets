@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721192919) do
+ActiveRecord::Schema.define(version: 20150724135722) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20150721192919) do
   add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id"
 
   create_table "topics", force: true do |t|
-    t.string   "system"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",     default: true

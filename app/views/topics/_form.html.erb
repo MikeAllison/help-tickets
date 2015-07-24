@@ -1,8 +1,8 @@
 <%= form_for @topic, html: { role: 'form' } do |f| %>
 	<div class="row">
 		<div class="form-group col-md-6">
-			<%= f.label :system, 'System Name' %>
-			<%= f.text_field :system, class: 'form-control', placeholder: 'Enter System Name' %>
+			<%= f.label :name, 'System Name' %>
+			<%= f.text_field :name, class: 'form-control', placeholder: 'Enter System Name' %>
 		</div>
 		<div class="form-group col-md-6">
 			<%= f.label :active, 'Topic Status' %>

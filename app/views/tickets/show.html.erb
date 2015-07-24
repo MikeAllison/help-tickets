@@ -7,7 +7,7 @@
 		  <div class="panel-body">
 		    <ul class="list-unstyled">
 		    	<li><strong>Requested For: </strong><%= @ticket.creator.last_first %></li>
-					<li><strong>Topic: </strong><%= @ticket.topic.system %></li>
+					<li><strong>Topic: </strong><%= @ticket.topic.name %></li>
 					<li><strong>Status: </strong><%= @ticket.status.humanize.titleize %></li>
 					<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 					<li><strong>

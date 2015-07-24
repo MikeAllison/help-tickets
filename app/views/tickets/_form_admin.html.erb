@@ -6,7 +6,7 @@
 		</div>
 		<div class="form-group col-md-6">
 			<%= f.label :topic_id, 'Select Topic' %>
-			<%= f.collection_select(:topic_id, Topic.active.order(:system), :id, :system, { prompt: true }, { class: 'form-control' }) %>
+			<%= f.collection_select(:topic_id, Topic.active.order(:name), :id, :name, { prompt: true }, { class: 'form-control' }) %>
 		</div>
 	</div>
 	<div class="row">

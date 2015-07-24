@@ -7,7 +7,7 @@
 				<% if params[:status] != 'my' %>
 					<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
 				<% end %>
-				<th><%= sort_column 'Topic', 'topics.system', 'topic' %></th>
+				<th><%= sort_column 'Topic', 'topics.name', 'topic' %></th>
 				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
 				<% end %>
@@ -30,7 +30,7 @@
 					<% if params[:status] != 'my' %>
 						<td><%= ticket.creator.last_first %></td>
 					<% end %>
-					<td><%= ticket.topic.system %></td>
+					<td><%= ticket.topic.name %></td>
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 						<td>
 							<%= status_icon(ticket) %> <!-- TicketsHelper -->

@@ -75,17 +75,17 @@ Office.create([
 ])
 
 Topic.create([
-  {system: 'Misc'},
-  {system: 'Computer'},
-  {system: 'Monitor'},
-  {system: 'Mouse/Keyboard'},
-  {system: 'Docking Station'},
-  {system: 'Telephone'},
-  {system: 'Other Peripheral'},
-  {system: 'Operating System'},
-  {system: 'Outlook'},
-  {system: 'Office'},
-  {system: 'Browser'}
+  {name: 'Misc'},
+  {name: 'Computer'},
+  {name: 'Monitor'},
+  {name: 'Mouse/Keyboard'},
+  {name: 'Docking Station'},
+  {name: 'Telephone'},
+  {name: 'Other Peripheral'},
+  {name: 'Operating name'},
+  {name: 'Outlook'},
+  {name: 'Office'},
+  {name: 'Browser'}
 ])
 
 # Create standard user account
