@@ -1,16 +1,5 @@
 module ApplicationHelper
 
-  def controller_name_singularize
-    c_name = controller_name.to_s.chop
-
-    case c_name
-    when 'citie'
-      c_name = 'city'
-    else
-      c_name
-    end
-  end
-
   def submit_button_add_update(obj)
     submit_tag (obj.new_record? ? "Add" : "Update") + " #{obj.class}", class: 'btn btn-primary'
   end
@@ -19,60 +8,39 @@ module ApplicationHelper
     submit_tag (obj.new_record? ? "Create" : "Update") + " #{obj.class}", class: 'btn btn-primary'
   end
 
-  def panel_header
-    c_name = controller_name.capitalize
+  # Formats the header for each page based on model and action
+  def page_header
+    obj = controller_name
 
-    # params[:status] set in routes
-    if params[:status].nil?
-      a_name = action_name.capitalize
+    # Sets the first word:
+    # 'Index Objects' -> 'All Objects'
+    # 'New Objects' -> 'Add Objects'
+    # 'Edit Objects' -> 'Edit Object'
+    if params[:status] # If params[:status] is passed in routes.rb
+      first_word = params[:status]
+    elsif action_name == 'index'
+      first_word = 'All'
+    elsif action_name == 'new'
+      first_word = 'Add'
+    elsif action_name == 'edit'
+      first_word = 'Edit'
+      obj = obj.singularize
+    end
+
+    # Fixes for edge case issues or returns the standard header
+    if action_name == 'new' && controller_name == 'tickets'
+      'Create a Ticket'
+    elsif action_name == 'assigned_to_me'
+      "#{obj.titleize} #{first_word.titleize}"
+    elsif params[:employee_id]
+      raw "Tickets for #{@employee.first_name}"
+    elsif params[:technician_id]
+      raw "Tickets Assigned to #{@employee.first_name}"
+    elsif controller_name == 'tickets' && action_name == 'edit'
+      "Edit Ticket #{@ticket.id}"
     else
-      a_name = params[:status].split('_')
-      a_name.map { |item| item.capitalize! }
-      a_name = a_name.join(' ')
+      "#{first_word.titleize} #{obj.titleize}"
     end
-
-    case a_name
-    when 'Index'
-      a_name = 'All'
-    when 'New'
-      a_name = 'Add'
-      c_name.chop!
-    when 'Create'
-      a_name = 'Add'
-      c_name.chop!
-    when 'Edit'
-      c_name.chop!
-    end
-
-    if a_name == 'Add' && c_name == 'Ticket'
-      a_name = 'Create'
-    elsif c_name == 'Citie'
-      c_name = 'City'
-    end
-
-    if params[:employee_id] || params[:technician_id]
-      emp_name = @employee.first_last
-
-      if params[:employee_id]
-        if emp_name.end_with?('s')
-          a_name = emp_name + "'"
-        else
-          a_name = emp_name + "'s"
-        end
-      end
-
-      if params[:technician_id]
-        c_name = ''
-        a_name = 'Tickets Assigned To ' + emp_name
-      end
-    end
-
-    if action_name == 'assigned_to_me'
-      c_name + ' ' + a_name
-    else
-      a_name + ' ' + c_name
-    end
-
   end
 
   # Creates a link for table headers with params to sort

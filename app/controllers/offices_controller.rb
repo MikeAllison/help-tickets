@@ -49,7 +49,7 @@ class OfficesController < ApplicationController
 	private
 
 		def find_office
-			@office = Office.find(params[:id])
+			@office = Office.find_by!(slug: params[:id])
 		end
 
 		def find_all_offices

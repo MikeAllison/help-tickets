@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724135722) do
+ActiveRecord::Schema.define(version: 20150724200235) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150724135722) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hidden",     default: false
+    t.string   "slug"
   end
 
   add_index "cities", ["state_id"], name: "index_cities_on_state_id"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150724135722) do
     t.integer  "city_id"
     t.boolean  "hidden",     default: false
     t.boolean  "active",     default: true
+    t.string   "slug"
   end
 
   add_index "offices", ["city_id"], name: "index_offices_on_city_id"
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150724135722) do
     t.datetime "updated_at"
     t.boolean  "active",     default: true
     t.boolean  "hidden",     default: false
+    t.string   "slug"
   end
 
 end

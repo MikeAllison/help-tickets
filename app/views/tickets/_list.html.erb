@@ -34,7 +34,7 @@
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 						<td>
 							<%= status_icon(ticket) %> <!-- TicketsHelper -->
-							<%= ticket.status.humanize.titleize %>
+							<%= ticket.status.titleize %>
 						</td>
 					<% end %>
 					<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>

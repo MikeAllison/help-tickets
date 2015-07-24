@@ -49,7 +49,7 @@ class TopicsController < ApplicationController
 	private
 
 		def find_topic
-			@topic = Topic.find(params[:id])
+			@topic = Topic.find_by!(slug: params[:id])
 		end
 
 		def find_all_topics

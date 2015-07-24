@@ -53,7 +53,7 @@ class CitiesController < ApplicationController
   private
 
     def find_city
-      @city = City.find(params[:id])
+      @city = City.find_by!(slug: params[:id])
     end
 
     def find_all_cities
