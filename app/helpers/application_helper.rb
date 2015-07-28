@@ -20,39 +20,28 @@ module ApplicationHelper
   end
 
   # Formats the header for each page based on model and action
-   def page_header
-     obj = controller_name
+  def page_header
+    actions = { index: "all", new: "add", edit: "edit" }
+    obj = controller_name
+    obj = obj.singularize if action_name == 'edit'
 
-     # Sets the first word:
-     # 'Index Objects' -> 'All Objects'
-     # 'New Objects' -> 'Add Objects'
-     # 'Edit Objects' -> 'Edit Object'
-     if params[:status] # If params[:status] is passed in routes.rb
-       first_word = params[:status]
-     elsif action_name == 'index'
-       first_word = 'All'
-     elsif action_name == 'new'
-       first_word = 'Add'
-     elsif action_name == 'edit'
-       first_word = 'Edit'
-       obj = obj.singularize
-     end
+    first_word = params[:status] || actions[action_name.to_sym]
 
-     # Fixes for edge case issues or returns the standard header
-     if action_name == 'new' && controller_name == 'tickets'
-       'Create a Ticket'
-     elsif action_name == 'assigned_to_me'
-       "#{obj.titleize} #{first_word.titleize}"
-     elsif params[:employee_id]
-       raw "Tickets for #{@employee.first_name}"
-     elsif params[:technician_id]
-       raw "Tickets Assigned to #{@employee.first_name}"
-     elsif controller_name == 'tickets' && action_name == 'edit'
-       "Edit Ticket #{@ticket.id}"
-     else
-       "#{first_word.titleize} #{obj.titleize}"
-     end
-   end
+    # Fixes for edge cases or returns the standard header
+    if action_name == 'new' && controller_name == 'tickets'
+      'Create a Ticket'
+    elsif action_name == 'assigned_to_me'
+      "#{obj} #{first_word}".titleize
+    elsif params[:employee_id]
+      "Tickets for #{@employee.first_name} #{@employee.last_name}"
+    elsif params[:technician_id]
+      "Tickets Assigned to #{@employee.first_name} #{@employee.last_name}"
+    elsif controller_name == 'tickets' && action_name == 'edit'
+      "Edit Ticket #{@ticket.id}"
+    else
+      "#{first_word} #{obj}".titleize
+    end
+  end
 
   # Creates a link for table headers with params to sort
   # :join_table is converted to symbol in ApplicationController
