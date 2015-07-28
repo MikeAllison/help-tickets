@@ -40,9 +40,9 @@ class TopicsController < ApplicationController
 		end
 	end
 
-	def destroy
+	def hide
 		@topic.update(hidden: true, active: false)
-		flash[:success] = "Topic deleted!"
+		flash[:success] = "Topic hidden!"
 		redirect_to new_topic_path
 	end
 

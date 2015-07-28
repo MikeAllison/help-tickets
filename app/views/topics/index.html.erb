@@ -2,5 +2,5 @@
 	<%= render 'shared/panel_filter' %>
 <% else %>
 	<%= render 'shared/panel' %>
-	<%= render 'pagination' %>
+	<%= render 'shared/pagination', obj: @topics %>
 <% end %>

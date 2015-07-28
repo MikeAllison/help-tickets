@@ -29,8 +29,8 @@
 					</td>
 					<% if params[:status] == 'admin' %>
 						<td class="col-md-2 hidden-xs">
-							<%= link_to technician_tickets_path(employee), title: 'Technican\'s Assigned Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
-								<%= employee.assigned_tickets.count %>
+							<%= link_to assigned_tickets_employee_path(employee), title: 'Technican\'s Assigned Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
+							  <%= employee.assigned_tickets.count %>
 							<% end %>
 						</td>
 					<% end %>
@@ -39,8 +39,8 @@
 							<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 							<span class="sr-only" title="Edit">Edit</span>
 						<% end %>
-						<%= link_to employee, method: :delete, 
-																	title: 'Delete', 
+						<%= link_to employee, method: :delete,
+																	title: 'Delete',
 																	data: { toggle: 'tooltip', placement: 'top', confirm: "WARNING!  This will delete all tickets created by, and assigned to, this employee.  Is is recommended that you mark an employee inactive rather than deleting them.\n\nAre you sure that you would like to delete this employee?" } do %>
 							<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
 							<span class="sr-only" title="Delete">Delete</span>

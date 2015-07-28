@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
 
 	before_action :restrict_access, except: [:edit, :update]
-	before_action :find_employee, only: [:show, :edit, :update, :destroy]
+	before_action :find_employee, only: [:show, :edit, :update, :hide, :assigned_tickets]
 	before_action :find_all_employees, only: [:new, :create]
 
 	def index
@@ -62,7 +62,7 @@ class EmployeesController < ApplicationController
 	  else
 	    if @employee.update(employee_params_restricted)
         flash[:success] = "Employee profile updated!"
-        redirect_to tickets_my_path
+        redirect_to my_tickets_path
       else
         flash.now[:danger] = "There was a problem updating the employee."
         render 'edit'
@@ -70,9 +70,13 @@ class EmployeesController < ApplicationController
 	  end
 	end
 
-	def destroy
+	def assigned_tickets
+		@tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
+	end
+
+	def hide
 		@employee.update(hidden: true)
-		flash[:success] = "Employee deleted!"
+		flash[:success] = "Employee hidden!"
 		redirect_to new_employee_path
 	end
 

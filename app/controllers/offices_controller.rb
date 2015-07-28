@@ -40,9 +40,9 @@ class OfficesController < ApplicationController
 		end
 	end
 
-	def destroy
+	def hide
 		@office.update(hidden: true, active: false)
-		flash[:success] = "Office deleted!"
+		flash[:success] = "Office hidden!"
 		redirect_to new_office_path
 	end
 

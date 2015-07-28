@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
 
 	before_action :restrict_access, only: [:index]
-	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close_ticket, :reopen_ticket, :destroy]
+	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close, :reopen]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 
 	def index
@@ -49,7 +49,7 @@ class TicketsController < ApplicationController
       render 'show'
 	  else
 	    flash[:danger] = "You are not authorized to view that ticket!"
-	    redirect_to tickets_my_path
+	    redirect_to my_tickets_path
 	  end
 	end
 
@@ -86,7 +86,7 @@ class TicketsController < ApplicationController
 	  redirect_to ticket_path
 	end
 
-	def close_ticket
+	def close
 	  flash[:success] = "Ticket closed!"
 	  if @ticket.technician_id.nil?
 	    @ticket.update(technician_id: current_employee.id)
@@ -95,7 +95,7 @@ class TicketsController < ApplicationController
 	  default_tickets_redirect
 	end
 
-	def reopen_ticket
+	def reopen
 	  flash[:success] = "Ticket re-opened!"
 	  if current_employee.admin?
 	   @ticket.update(status: 1, technician_id: current_employee.id)

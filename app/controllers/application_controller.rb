@@ -11,15 +11,15 @@ class ApplicationController < ActionController::Base
     def restrict_access
       unless admin?
         flash[:danger] = "You are not authorized to view that page!"
-        redirect_to tickets_my_path
+        redirect_to my_tickets_path
       end
     end
 
     def default_tickets_redirect
       if admin?
-        redirect_to tickets_assigned_to_me_path
+        redirect_to assigned_to_me_tickets_path
       else
-        redirect_to tickets_my_path
+        redirect_to my_tickets_path
       end
     end
 

@@ -44,9 +44,9 @@ class CitiesController < ApplicationController
     end
   end
 
-  def destroy
+  def hide
     @city.update(hidden: true)
-    flash[:success] = "City deleted!"
+    flash[:success] = "City hidden!"
     redirect_to new_city_path
   end
 
