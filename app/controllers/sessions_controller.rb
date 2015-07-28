@@ -10,13 +10,13 @@ class SessionsController < ApplicationController
 
     if employee && employee.authenticate(params[:session][:password]) && employee.active
       log_in employee
-      flash[:success] = "You are logged in!"
+      flash[:success] = 'You are logged in!'
       default_tickets_redirect
     elsif employee && employee.authenticate(params[:session][:password]) && !employee.active
-      flash.now[:danger] = "Your account is currently inactive!"
+      flash.now[:danger] = 'Your account is currently inactive!'
       render 'new'
     else
-      flash.now[:danger] = "Invalid credentials!"
+      flash.now[:danger] = 'Invalid credentials!'
       render 'new'
     end
   end

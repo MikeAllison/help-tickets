@@ -1,15 +1,11 @@
 class TopicsController < ApplicationController
 
-	before_action :restrict_access
-	before_action :find_topic, only: [:show, :edit, :update, :destroy]
+	before_action :restrict_to_admins
+	before_action :find_topic, only: [:edit, :update, :destroy]
 	before_action :find_all_topics, only: [:index, :new, :create]
 
 	def index
 	end
-
-	def show
-    redirect_to new_topic_path
-  end
 
 	def new
 		@topic = Topic.new

@@ -2,15 +2,16 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
   include SessionsHelper
 
   before_action :require_login
 
   private
 
-    def restrict_access
+    def restrict_to_admins
       unless admin?
-        flash[:danger] = "You are not authorized to view that page!"
+        flash[:danger] = 'You are not authorized to view that page!'
         redirect_to my_tickets_path
       end
     end

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  resources :employees, except: [:destroy] do
+  resources :employees, except: [:show, :destroy] do
     collection do
       get 'all'      => :index
       get 'active'   => :index, status: 'active'
@@ -46,19 +46,19 @@ Rails.application.routes.draw do
     resources :tickets, only: [:index]
   end
 
-  resources :cities, except: [:destroy] do
+  resources :cities, except: [:show, :destroy] do
     member do
       patch 'hide'
     end
   end
 
-  resources :offices, except: [:destroy] do
+  resources :offices, except: [:show, :destroy] do
     member do
       patch 'hide'
     end
   end
 
-  resources :topics, except: [:destroy] do
+  resources :topics, except: [:show, :destroy] do
     member do
       patch 'hide'
     end

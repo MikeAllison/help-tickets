@@ -1,14 +1,10 @@
 class OfficesController < ApplicationController
 
-	before_action :restrict_access
+	before_action :restrict_to_admins
 	before_action :find_office, only: [:edit, :update, :destroy]
 	before_action :find_all_offices, only: [:index, :new, :create]
 
 	def index
-	end
-
-	def show
-	  redirect_to new_office_path
 	end
 
 	def new
@@ -22,27 +18,27 @@ class OfficesController < ApplicationController
 		@office = Office.new(office_params)
 
 		if @office.save
-			flash[:success] = "Office created!"
+			flash[:success] = 'Office added!'
 			redirect_to new_office_path
 		else
-      flash.now[:danger] = "There was a problem adding the office."
+      flash.now[:danger] = 'There was a problem adding the office.'
 			render 'new'
 		end
 	end
 
 	def update
 		if @office.update(office_params)
-			flash[:success] = "Office information updated!"
+			flash[:success] = 'Office information updated!'
 			redirect_to new_office_path
 		else
-      flash.now[:danger] = "There was a problem updating the office."
+      flash.now[:danger] = 'There was a problem updating the office.'
 			render 'edit'
 		end
 	end
 
 	def hide
 		@office.update(hidden: true, active: false)
-		flash[:success] = "Office hidden!"
+		flash[:success] = 'Office hidden!'
 		redirect_to new_office_path
 	end
 

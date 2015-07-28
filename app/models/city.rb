@@ -3,10 +3,9 @@ class City < ActiveRecord::Base
   has_many :offices
   belongs_to :state
 
-  # FIX THESE MESSAGES
-  validates :name, presence: { message: '- Cannot be blank!' }
-  validates :name, uniqueness: { scope: :state, message: '- City/State already exists!' }
-  validates :state, presence: true
+  validates_presence_of :name, message: 'City Name cannot be blank!'
+  validates_uniqueness_of :name, scope: :state, message: 'This city/state already exists!'
+  validates_presence_of :state, message: 'Please select a state!'
 
   before_save :create_slug
 

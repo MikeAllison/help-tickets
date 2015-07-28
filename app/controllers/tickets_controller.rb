@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-	before_action :restrict_access, only: [:index]
+	before_action :restrict_to_admins, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close, :reopen]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 
@@ -48,7 +48,7 @@ class TicketsController < ApplicationController
 	  if admin? || @ticket.creator_id == current_employee.id
       render 'show'
 	  else
-	    flash[:danger] = "You are not authorized to view that ticket!"
+	    flash[:danger] = 'You are not authorized to view that ticket!'
 	    redirect_to my_tickets_path
 	  end
 	end
@@ -61,20 +61,20 @@ class TicketsController < ApplicationController
 	  @ticket = Ticket.new(ticket_params)
 
 	  if @ticket.save
-	    flash[:success] = "Ticket was successfully submitted!"
+	    flash[:success] = 'Ticket was successfully submitted!'
 	    default_tickets_redirect
 	  else
-	    flash.now[:danger] = "There was a problem submitting the ticket."
+	    flash.now[:danger] = 'There was a problem submitting the ticket.'
 	    render 'new'
 	  end
 	end
 
 	def update
     if @ticket.update(ticket_params)
-	    flash[:success] = "Ticket was successfully updated!"
+	    flash[:success] = 'Ticket was successfully updated!'
 	    redirect_to ticket_path
 	  else
-	    flash.now[:danger] = "There was a problem updating the ticket."
+	    flash.now[:danger] = 'There was a problem updating the ticket.'
 	    render 'edit'
 	  end
 	end
@@ -87,7 +87,7 @@ class TicketsController < ApplicationController
 	end
 
 	def close
-	  flash[:success] = "Ticket closed!"
+	  flash[:success] = 'Ticket closed!'
 	  if @ticket.technician_id.nil?
 	    @ticket.update(technician_id: current_employee.id)
 	  end
@@ -96,7 +96,7 @@ class TicketsController < ApplicationController
 	end
 
 	def reopen
-	  flash[:success] = "Ticket re-opened!"
+	  flash[:success] = 'Ticket re-opened!'
 	  if current_employee.admin?
 	   @ticket.update(status: 1, technician_id: current_employee.id)
 	  else

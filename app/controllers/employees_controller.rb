@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
 
-	before_action :restrict_access, except: [:edit, :update]
-	before_action :find_employee, only: [:show, :edit, :update, :hide, :assigned_tickets]
+	before_action :restrict_to_admins, except: [:edit, :update]
+	before_action :find_employee, only: [:edit, :update, :hide, :assigned_tickets]
 	before_action :find_all_employees, only: [:new, :create]
 
 	def index
@@ -20,10 +20,6 @@ class EmployeesController < ApplicationController
 	  @employees = apply_pagination(@employees)
 	end
 
-	def show
-    redirect_to new_employee_path
-  end
-
 	def new
 		@employee = Employee.new
 	end
@@ -32,7 +28,7 @@ class EmployeesController < ApplicationController
 	  if current_employee.admin? || @employee.id == current_employee.id
 	    render 'edit'
 	  else
-	    flash[:danger] = "You are not authorized to edit that employee!"
+	    flash[:danger] = 'You are not authorized to edit that employee!'
 	    redirect_to edit_employee_path(current_employee)
 	  end
 	end
@@ -41,10 +37,10 @@ class EmployeesController < ApplicationController
 		@employee = Employee.new(employee_params_admin)
 
 		if @employee.save
-			flash[:success] = "Employee created!"
+			flash[:success] = 'Employee created!'
 			redirect_to new_employee_path
 		else
-		  flash.now[:danger] = "There was a problem adding the employee."
+		  flash.now[:danger] = 'There was a problem adding the employee.'
 			render 'new'
 		end
 	end
@@ -53,18 +49,18 @@ class EmployeesController < ApplicationController
 	  # This could probably be refactored
 	  if current_employee.admin?
 	    if @employee.update(employee_params_admin)
-        flash[:success] = "Employee profile updated!"
+        flash[:success] = 'Employee profile updated!'
         redirect_to new_employee_path
       else
-        flash.now[:danger] = "There was a problem updating the employee."
+        flash.now[:danger] = 'There was a problem updating the employee.'
         render 'edit'
       end
 	  else
 	    if @employee.update(employee_params_restricted)
-        flash[:success] = "Employee profile updated!"
+        flash[:success] = 'Employee profile updated!'
         redirect_to my_tickets_path
       else
-        flash.now[:danger] = "There was a problem updating the employee."
+        flash.now[:danger] = 'There was a problem updating the employee.'
         render 'edit'
       end
 	  end
@@ -76,7 +72,7 @@ class EmployeesController < ApplicationController
 
 	def hide
 		@employee.update(hidden: true)
-		flash[:success] = "Employee hidden!"
+		flash[:success] = 'Employee hidden!'
 		redirect_to new_employee_path
 	end
 
