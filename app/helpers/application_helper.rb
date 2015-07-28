@@ -22,16 +22,18 @@ module ApplicationHelper
   # Formats the header for each page based on model and action
   def page_header
     actions = { index: "all", new: "add", edit: "edit" }
-    obj = controller_name
-    obj = obj.singularize if action_name == 'edit'
+    model = controller_name
+    model = model.singularize if action_name == 'edit'
 
-    first_word = params[:status] || actions[action_name.to_sym]
+    action = params[:status] || actions[action_name.to_sym]
 
     # Fixes for edge cases or returns the standard header
     if action_name == 'new' && controller_name == 'tickets'
       'Create a Ticket'
-    elsif action_name == 'assigned_to_me'
-      "#{obj} #{first_word}".titleize
+    elsif params[:status] == 'assigned_to_me' || params[:status] == 'on_hold'
+      "#{model} #{action}".titleize
+    elsif params[:status] == 'work_in_progress'
+      "Tickets In Progress"
     elsif params[:employee_id]
       "Tickets for #{@employee.first_name} #{@employee.last_name}"
     elsif params[:technician_id]
@@ -39,7 +41,7 @@ module ApplicationHelper
     elsif controller_name == 'tickets' && action_name == 'edit'
       "Edit Ticket #{@ticket.id}"
     else
-      "#{first_word} #{obj}".titleize
+      "#{action} #{model}".titleize
     end
   end
 
