@@ -9,8 +9,10 @@ class Employee < ActiveRecord::Base
   has_many :comments
   belongs_to :office
 
-  validates :first_name, :last_name, :office, presence: true
-  validates :user_name, presence: true, uniqueness: true
+  validates_presence_of :first_name, message: 'Please enter a first name!'
+  validates_presence_of :last_name, message: 'Please enter a last name!'
+  validates_presence_of :user_name, message: 'Please enter a user name!'
+  validates_presence_of :office, message: 'Please select an office!'
   validates :password, length: { minimum: 8 }, allow_blank: true
 
   scope :active,      -> { where(active: true) }

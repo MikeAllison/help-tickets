@@ -12,7 +12,9 @@ class Ticket < ActiveRecord::Base
 
 	# Tickets can be created/updated without assigning a technician
   # But there should be some validation for valid techician IDs
-  validates :creator, :description, :topic, presence: true
+	validates_presence_of :creator, message: 'Please select an employee!'
+	validates_presence_of :topic, message: 'Please select a topic!'
+	validates_presence_of :description, message: 'Please enter a description of the problem!'
 
   scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   scope :open,             -> { where.not('status = ?', 'Closed') }

@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
   has_many :offices
   belongs_to :state
 
-  validates_presence_of :name, message: 'City Name cannot be blank!'
+  validates_presence_of :name, message: 'Please enter a city name!'
   validates_uniqueness_of :name, scope: :state, message: 'This city/state already exists!'
   validates_presence_of :state, message: 'Please select a state!'
 

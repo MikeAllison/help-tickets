@@ -3,7 +3,8 @@ class Office < ActiveRecord::Base
 	has_many :employees
 	belongs_to :city
 
-	validates :name, :city, presence: true
+	validates_presence_of :name, message: 'Please enter an office name!'
+	validates_presence_of :city, message: 'Please select a city/state!'
 
 	before_save :create_slug
 

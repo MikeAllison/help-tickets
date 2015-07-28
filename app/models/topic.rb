@@ -2,7 +2,7 @@ class Topic < ActiveRecord::Base
 
   has_many :tickets
 
-  validates :name, presence: true
+  validates_presence_of :name, message: 'Please enter a topic name!'
 
   before_save :create_slug
 
