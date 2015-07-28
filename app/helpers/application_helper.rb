@@ -10,11 +10,11 @@ module ApplicationHelper
 
   # Formats the header for each page based on model and action
   def page_header
-    actions = { index: "all", new: "add", edit: "edit" }
+    actions = { index: 'all', new: 'add', edit: 'edit' }
+    action = params[:status] || actions[action_name.to_sym]
+
     model = controller_name
     model = model.singularize if action_name == 'edit'
-
-    action = params[:status] || actions[action_name.to_sym]
 
     # Fixes for edge cases or returns the standard header
     if action_name == 'new' && controller_name == 'tickets'
@@ -22,7 +22,7 @@ module ApplicationHelper
     elsif params[:status] == 'assigned_to_me' || params[:status] == 'on_hold'
       "#{model} #{action}".titleize
     elsif params[:status] == 'work_in_progress'
-      "Tickets In Progress"
+      'Tickets In Progress'
     elsif params[:employee_id]
       "Tickets for #{@employee.first_name} #{@employee.last_name}"
     elsif params[:technician_id]
