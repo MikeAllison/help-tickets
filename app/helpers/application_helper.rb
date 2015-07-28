@@ -1,16 +1,5 @@
 module ApplicationHelper
 
-  def controller_name_singularize
-    c_name = controller_name.to_s.chop
-
-    case c_name
-    when 'citie'
-      c_name = 'city'
-    else
-      c_name
-    end
-  end
-
   def submit_button_add_update(obj)
     submit_tag (obj.new_record? ? "Add" : "Update") + " #{obj.class}", class: 'btn btn-primary'
   end
