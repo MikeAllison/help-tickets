@@ -1,3 +1,5 @@
+<%= render 'shared/validation_errors', obj: @ticket %>
+
 <%= form_for @ticket do |f| %>
 	<div class="row">
 		<div class="form-group col-md-6">
@@ -15,7 +17,7 @@
 			<%= f.collection_select(:status, Ticket.statuses.keys, :to_s, Proc.new { |p| p.titleize }, {}, { class: 'form-control' }) %>
 		</div>
 		<div class="form-group col-md-6">
-			<%= f.label :technician, 'Assigned To' %>
+			<%= f.label :technician_id, 'Assigned To' %>
 			<%= f.collection_select(:technician_id, Employee.active.admin.order(:last_name), :id, :last_first, { prompt: true, include_blank: '< Technician Not Assigned >' }, { class: 'form-control' }) %>
 		</div>
 	</div>

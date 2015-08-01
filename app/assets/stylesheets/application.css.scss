@@ -6,6 +6,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$error-red: #a94442;
+
 #pagination {
   margin-bottom: 2em;
+}
+
+.validation-errors {
+  color: $error-red;
+  border-left-width: 7px;
+  border-left-color: $error-red;
+  dl { margin-bottom: 0px; }
+}
+
+.field_with_errors {
+  input { border-color: $error-red; }
+  select { border-color: $error-red; }
+  textarea { border-color: $error-red; }
 }
