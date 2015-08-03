@@ -52,10 +52,33 @@
 	</div>
 </div>
 
-<%= render 'comments' %>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Comments</h3>
+	</div>
+</div>
 
 <% unless @ticket.closed? %>
-	<%= render 'close_ticket_modal' %>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			  <div class="panel-body">
+					<%= render 'shared/validation_errors', obj: @comment %>
+			  	<%= render 'comments/form' %>
+			  </div>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<div class="row">
+	<div class="col-xs-12">
+		<%= render @ticket.comments.order('created_at DESC') %>
+	</div>
+</div>
+
+<% unless @ticket.closed? %>
+	<%= render 'tickets/close_ticket_modal' %>
 <% else %>
-	<%= render 'reopen_ticket_modal' %>
+	<%= render 'tickets/reopen_ticket_modal' %>
 <% end %>

@@ -45,6 +45,8 @@ class TicketsController < ApplicationController
 	end
 
 	def show
+		@comment = Comment.new
+		
 	  if admin? || @ticket.creator_id == current_employee.id
       render 'show'
 	  else

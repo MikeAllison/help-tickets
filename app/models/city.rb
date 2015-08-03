@@ -5,7 +5,7 @@ class City < ActiveRecord::Base
 
   validates_presence_of :name, message: 'Please enter a city name!'
   validates_uniqueness_of :name, scope: :state, message: 'This city/state already exists!'
-  validates_presence_of :state, message: 'Please select a state!'
+  validates_presence_of :state_id, message: 'Please select a state!'
 
   before_save :create_slug
 

@@ -1,0 +1,27 @@
+<% if comment.closing_comment %>
+	<div class="panel panel-success">
+<% elsif comment.reopening_comment %>
+	<div class="panel panel-danger">
+<% else %>
+	<div class="panel panel-default">
+<% end %>
+	  <div class="panel-heading">
+	    <h4>
+	    	<%= comment.created_at.strftime('%m/%d/%Y %I:%M %p') %>
+	    	&nbsp;&#45;&nbsp;
+	    	<%= comment.employee.last_first %>
+	    	<span class="pull-right">
+	    		<% if comment.reopening_comment %>
+	    			&#40;Ticket Reopened&#41;
+	    		<% elsif comment.closing_comment %>
+	    			&#40;Closing Comment&#41;
+	    		<% end %>
+	    	</span>
+	    </h4>
+	  </div>
+	  <div class="panel-body">
+	    <ul class="list-unstyled">
+	    	<li><%= comment.body %></li>
+	  	</ul>
+	  </div>
+	</div>

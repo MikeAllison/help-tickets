@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :find_ticket
 
   def create
-    @comment = @ticket.comments.new(comment_params)
+    @comment = @ticket.comments.build(comment_params)
     @comment.employee_id = current_employee.id
 
     if @comment.save
@@ -18,11 +18,7 @@ class CommentsController < ApplicationController
       end
     else
       flash[:danger] = 'There was a problem adding the comment.'
-      if @comment.closing_comment == true
-        redirect_to @ticket
-      else
-        redirect_to @ticket
-      end
+      render 'tickets/show'
     end
   end
 

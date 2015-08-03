@@ -1,6 +1,6 @@
 class Employee < ActiveRecord::Base
 
-  has_secure_password
+  has_secure_password validations: false
 
   before_save { self.user_name = user_name.downcase }
 
@@ -12,8 +12,11 @@ class Employee < ActiveRecord::Base
   validates_presence_of :first_name, message: 'Please enter a first name!'
   validates_presence_of :last_name, message: 'Please enter a last name!'
   validates_presence_of :user_name, message: 'Please enter a user name!'
-  validates_presence_of :office, message: 'Please select an office!'
-  validates :password, length: { minimum: 8 }, allow_blank: true
+  validates_presence_of :office_id, message: 'Please select an office!'
+  validates_presence_of :password, message: 'Please enter a password!', on: :create
+  #validates_presence_of :password_confirmation, message: 'Password Confirmation cannot be blank!', on: :create
+
+
 
   scope :active,      -> { where(active: true) }
   scope :inactive,    -> { where(active: false) }

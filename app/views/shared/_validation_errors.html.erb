@@ -1,10 +1,9 @@
-<% if @ticket.errors.any? %>
+<% if obj.errors.any? %>
 	<div class="row">
 		<div class="col-xs-12">
       <div class="panel panel-default validation-errors">
         <div class="panel-body">
           <dl>
-            <dt><strong>ERRORS</strong></dt>
             <% obj.errors.each do |field, message| %>
               <dd><%= message %></dd>
             <% end %>
