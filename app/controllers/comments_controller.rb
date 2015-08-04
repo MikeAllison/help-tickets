@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         redirect_to @ticket
       end
     else
-      flash[:danger] = 'There was a problem adding the comment.'
+      @comment.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the comment.'
       render 'tickets/show'
     end
   end

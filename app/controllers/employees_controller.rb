@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
 			flash[:success] = 'Employee created!'
 			redirect_to new_employee_path
 		else
-		  flash.now[:danger] = 'There was a problem adding the employee.'
+		  @employee.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the employee.'
 			render 'new'
 		end
 	end
@@ -52,7 +52,7 @@ class EmployeesController < ApplicationController
         flash[:success] = 'Employee profile updated!'
         redirect_to new_employee_path
       else
-        flash.now[:danger] = 'There was a problem updating the employee.'
+        @employee.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the employee.'
         render 'edit'
       end
 	  else

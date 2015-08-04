@@ -18,27 +18,27 @@ class TopicsController < ApplicationController
 		@topic = Topic.new(topic_params)
 
 		if @topic.save
-			flash[:success] = "Topic created!"
+			flash[:success] = 'Topic created!'
 			redirect_to new_topic_path
 		else
-      flash.now[:danger] = "There was a problem adding the topic."
+      @topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
 			render 'new'
 		end
 	end
 
 	def update
 		if @topic.update(topic_params)
-			flash[:success] = "Topic updated!"
+			flash[:success] = 'Topic updated!'
 			redirect_to new_topic_path
 		else
-      flash.now[:danger] = "There was a problem updating the topic."
+      @topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the topic.'
 			render 'edit'
 		end
 	end
 
 	def hide
 		@topic.update(hidden: true, active: false)
-		flash[:success] = "Topic hidden!"
+		flash[:success] = 'Topic hidden!'
 		redirect_to new_topic_path
 	end
 

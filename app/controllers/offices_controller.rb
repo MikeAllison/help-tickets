@@ -21,7 +21,7 @@ class OfficesController < ApplicationController
 			flash[:success] = 'Office added!'
 			redirect_to new_office_path
 		else
-      flash.now[:danger] = 'There was a problem adding the office.'
+      @office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the office.'
 			render 'new'
 		end
 	end
@@ -31,7 +31,7 @@ class OfficesController < ApplicationController
 			flash[:success] = 'Office information updated!'
 			redirect_to new_office_path
 		else
-      flash.now[:danger] = 'There was a problem updating the office.'
+      @office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the office.'
 			render 'edit'
 		end
 	end

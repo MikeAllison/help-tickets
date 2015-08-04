@@ -66,7 +66,7 @@ class TicketsController < ApplicationController
 	    flash[:success] = 'Ticket was successfully submitted!'
 	    default_tickets_redirect
 	  else
-	    flash.now[:danger] = 'There was a problem submitting the ticket.'
+	    @ticket.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem submitting the ticket.'
 	    render 'new'
 	  end
 	end
@@ -76,7 +76,7 @@ class TicketsController < ApplicationController
 	    flash[:success] = 'Ticket was successfully updated!'
 	    redirect_to ticket_path
 	  else
-	    flash.now[:danger] = 'There was a problem updating the ticket.'
+	    @tcket.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the ticket.'
 	    render 'edit'
 	  end
 	end
