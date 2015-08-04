@@ -2,7 +2,7 @@ class Employee < ActiveRecord::Base
 
   has_secure_password validations: false
 
-  before_save { self.user_name = user_name.downcase }
+  before_create :set_user_name
 
   has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id', dependent: :destroy
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
@@ -11,30 +11,38 @@ class Employee < ActiveRecord::Base
 
   validates_presence_of :first_name, message: 'Please enter a first name!'
   validates_presence_of :last_name, message: 'Please enter a last name!'
-  validates_presence_of :user_name, message: 'Please enter a user name!'
   validates_presence_of :office_id, message: 'Please select an office!'
   validates_presence_of :password, message: 'Please enter a password!', on: :create
   #validates_presence_of :password_confirmation, message: 'Password Confirmation cannot be blank!', on: :create
-
-
 
   scope :active,      -> { where(active: true) }
   scope :inactive,    -> { where(active: false) }
   scope :admin,       -> { where(admin: true) }
   scope :not_hidden,  -> { where(hidden: false) }
 
-  # Create method to set user name (check for availablity before saving)
-
   def to_param
     user_name
   end
 
 	def last_first
-		last_name + ', ' + first_name
+    "#{last_name}, #{first_name}"
 	end
 
 	def first_last
-	  first_name + ' ' + last_name
+    "#{first_name} #{last_name}"
 	end
+
+  private
+
+    def set_user_name
+      user_name = f_last = "#{first_name[0]}#{last_name}".downcase
+      count = 0
+
+      while Employee.find_by(user_name: user_name).present?
+        user_name = "#{f_last}#{count += 1}"
+      end
+
+      self.user_name = user_name
+    end
 
 end

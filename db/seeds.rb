@@ -91,7 +91,6 @@ Topic.create([
 # Create standard user account
 Employee.create(last_name: 'Allison',
                 first_name: 'Mike',
-                user_name: 'mallison',
                 password: 'asdfasdf',
                 password_confirmation: 'asdfasdf',
                 office_id: 1,
@@ -103,7 +102,6 @@ Employee.create([
   {
     last_name: 'Allison',
     first_name: 'Mike (Admin)',
-    user_name: 'admin',
     password: 'asdfasdf',
     password_confirmation: 'asdfasdf',
     office_id: 1,
@@ -112,7 +110,6 @@ Employee.create([
   },{
     last_name: 'Peyatt',
     first_name: 'Justin',
-    user_name: 'jpadmin',
     password: 'password',
     password_confirmation: 'password',
     office_id: 1,
@@ -121,7 +118,6 @@ Employee.create([
   },{
     last_name: 'Souza',
     first_name: 'Carlos',
-    user_name: 'csadmin',
     password: 'password',
     password_confirmation: 'password',
     office_id: 1,
@@ -134,7 +130,6 @@ Employee.create([
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
-                  user_name: "admin#{i}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -146,7 +141,6 @@ end
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
-                  user_name: "admin#{i + 4}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -161,7 +155,6 @@ end
 
   Employee.create(last_name: last_name,
                   first_name: first_name,
-                  user_name: "#{first_name.slice(0)}#{last_name}#{rand(1..99)}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),
@@ -176,7 +169,6 @@ end
 
   Employee.create(last_name: last_name,
                   first_name: first_name,
-                  user_name: "#{first_name.slice(0)}#{last_name}#{rand(1..99)}",
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),
