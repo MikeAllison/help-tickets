@@ -12,16 +12,16 @@
 * Custom validation error messages
 * Indexes (WIP)
 * 404s
-* Check admin functionality
+* Check technician functionality
 * Allow employees to update their passwords - DONE
-* Allow admins to update employee info without requiring a password change - DONE
+* Allow technicians to update employee info without requiring a password change - DONE
 * Employee show?
 * Method to automatically set employee user name
-* Assigning tickets to admins - DONE
+* Assigning tickets to technicians - DONE
 * Ticket comments - DONE
 * Office City/State Model - DONE
 * Use Ajax to add topics and offices right from index view
-* Create an admin section to change settings?
+* Create an technician section to change settings?
 * Pagination - DONE
 * Search
 * Ability to sort
@@ -38,7 +38,7 @@
 * Attachments
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
-* Bug with admins being able to see status dropdown on tickets/edit form - FIXED
+* Bug with technicians being able to see status dropdown on tickets/edit form - FIXED
 * Automatically close tickets for employees made inactive (and "deleted/hidden")
 * Be able to toggle between viewing active/inactive employees -DONE
 * Link titles on hover
@@ -50,8 +50,8 @@
 * Fix nil class bug on ticket show for tickets with no technician_id - FIXED
 * Fix bug where you can close a ticket without assigning it to anyone - FIXED
 * Fix bug where reopening a ticket doesn't reset technician_id - FIXED
-* Fix bug where a non-admin may be able to assign a ticket to themself
-* Fix bug where a non-admin may be able to change ticket assignment status by passing in params
+* Fix bug where a non-technician may be able to assign a ticket to themself
+* Fix bug where a non-technician may be able to change ticket assignment status by passing in params
 * Link to show tickets for a specific employee - DONE
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
 * Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets

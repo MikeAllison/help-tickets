@@ -15,10 +15,10 @@ class Employee < ActiveRecord::Base
   validates_presence_of :password, message: 'Please enter a password!', on: :create
   #validates_presence_of :password_confirmation, message: 'Password Confirmation cannot be blank!', on: :create
 
-  scope :active,      -> { where(active: true) }
-  scope :inactive,    -> { where(active: false) }
-  scope :admin,       -> { where(admin: true) }
-  scope :not_hidden,  -> { where(hidden: false) }
+  scope :active,     -> { where(active: true) }
+  scope :inactive,   -> { where(active: false) }
+  scope :technician, -> { where(technician: true) }
+  scope :not_hidden, -> { where(hidden: false) }
 
   def to_param
     user_name

@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-	before_action :restrict_to_admins, except: [:edit, :update]
+	before_action :restrict_to_technicians, except: [:edit, :update]
 	before_action :find_employee, only: [:edit, :update, :hide, :assigned_tickets]
 	before_action :find_all_employees, only: [:new, :create]
 
@@ -10,8 +10,8 @@ class EmployeesController < ApplicationController
 	    @employees = Employee.active.not_hidden
 	  when 'inactive'
 	    @employees = Employee.inactive.not_hidden
-	  when 'admin'
-	    @employees = Employee.admin.not_hidden
+	  when 'technician'
+	    @employees = Employee.technician.not_hidden
 	  else
 	    @employees = Employee.not_hidden
 	  end
@@ -25,7 +25,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def edit
-	  if current_employee.admin? || @employee.id == current_employee.id
+	  if current_employee.technician? || @employee.id == current_employee.id
 	    render 'edit'
 	  else
 	    flash[:danger] = 'You are not authorized to edit that employee!'
@@ -34,7 +34,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def create
-		@employee = Employee.new(employee_params_admin)
+		@employee = Employee.new(employee_params_technician)
 
 		if @employee.save
 			flash[:success] = 'Employee created!'
@@ -47,8 +47,8 @@ class EmployeesController < ApplicationController
 
 	def update
 	  # This could probably be refactored
-	  if current_employee.admin?
-	    if @employee.update(employee_params_admin)
+	  if current_employee.technician?
+	    if @employee.update(employee_params_technician)
         flash[:success] = 'Employee profile updated!'
         redirect_to new_employee_path
       else
@@ -88,8 +88,8 @@ class EmployeesController < ApplicationController
       @employees = apply_pagination(@employees)
 		end
 
-		def employee_params_admin
-			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :admin, :active, :hidden)
+		def employee_params_technician
+			params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :technician, :active, :hidden)
 		end
 
 		def employee_params_restricted

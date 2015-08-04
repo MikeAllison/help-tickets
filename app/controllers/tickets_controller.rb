@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
 
-	before_action :restrict_to_admins, only: [:index]
+	before_action :restrict_to_technicians, only: [:index]
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close, :reopen]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 
@@ -46,8 +46,8 @@ class TicketsController < ApplicationController
 
 	def show
 		@comment = Comment.new
-		
-	  if admin? || @ticket.creator_id == current_employee.id
+
+	  if technician? || @ticket.creator_id == current_employee.id
       render 'show'
 	  else
 	    flash[:danger] = 'You are not authorized to view that ticket!'
@@ -99,7 +99,7 @@ class TicketsController < ApplicationController
 
 	def reopen
 	  flash[:success] = 'Ticket re-opened!'
-	  if current_employee.admin?
+	  if current_employee.technician?
 	   @ticket.update(status: 1, technician_id: current_employee.id)
 	  else
 	   @ticket.update(status: 0, technician_id: nil)
@@ -117,7 +117,7 @@ class TicketsController < ApplicationController
 		# This would ideally not let you save if this is the case but can't get that...
 		# ...to work at the moment
 		def check_for_unassigned
-		  if @ticket.technician_id != nil && @ticket.unassigned? && current_employee.admin?
+		  if @ticket.technician_id != nil && @ticket.unassigned? && current_employee.technician?
         flash.now[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
       end
 		end

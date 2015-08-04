@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :restrict_to_admins, except: :create
+  before_action :restrict_to_technicians, except: :create
   before_action :find_ticket
 
   def create

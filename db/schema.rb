@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724200235) do
+ActiveRecord::Schema.define(version: 20150804221608) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150724200235) do
     t.datetime "updated_at"
     t.string   "user_name"
     t.string   "password_digest"
-    t.boolean  "admin",           default: false
+    t.boolean  "technician",      default: false
     t.boolean  "active",          default: false
     t.boolean  "hidden",          default: false
   end

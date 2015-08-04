@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<% if current_employee.admin? %>
+	<% if current_employee.technician? %>
 		<div class="row">
 			<div class="form-group col-md-4">
 				<%= f.label :active, 'Account Status' %>
@@ -38,13 +38,13 @@
 				Active
 			</div>
 			<div class="form-group col-md-4">
-				<%= f.label :admin, 'User Rights' %>
+				<%= f.label :technician, 'User Rights' %>
 				<br />
-				<%= f.radio_button(:admin, 0, checked: @employee.admin == false) %>
-				Non-Admin
+				<%= f.radio_button(:technician, 0, checked: @employee.technician == false) %>
+				Non-Technician
 				<br />
-				<%= f.radio_button(:admin, 1, checked: @employee.admin == true) %>
-				Admin
+				<%= f.radio_button(:technician, 1, checked: @employee.technician == true) %>
+				Technician
 			</div>
 		</div>
 	<% end %>

@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
 
-  before_action :restrict_to_admins
+  before_action :restrict_to_technicians
   before_action :find_city, only: [:edit, :update, :destroy]
   before_action :find_all_cities, only: [:index, :new, :create]
 

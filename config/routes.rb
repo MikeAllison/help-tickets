@@ -32,10 +32,10 @@ Rails.application.routes.draw do
 
   resources :employees, except: [:show, :destroy] do
     collection do
-      get 'all'      => :index
-      get 'active'   => :index, status: 'active'
-      get 'inactive' => :index, status: 'inactive'
-      get 'admin'    => :index, status: 'admin'
+      get 'all'        => :index
+      get 'active'     => :index, status: 'active'
+      get 'inactive'   => :index, status: 'inactive'
+      get 'technician' => :index, status: 'technician'
     end
 
     member do

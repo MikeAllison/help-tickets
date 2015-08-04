@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-	before_action :restrict_to_admins
+	before_action :restrict_to_technicians
 	before_action :find_topic, only: [:edit, :update, :destroy]
 	before_action :find_all_topics, only: [:index, :new, :create]
 

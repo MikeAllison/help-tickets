@@ -95,18 +95,18 @@ Employee.create(last_name: 'Allison',
                 password_confirmation: 'asdfasdf',
                 office_id: 1,
                 active: true,
-                admin: false)
+                technician: false)
 
-# Create 4 specfic admin accounts
+# Create 4 specfic technician accounts
 Employee.create([
   {
     last_name: 'Allison',
-    first_name: 'Mike (Admin)',
+    first_name: 'Mike (technician)',
     password: 'asdfasdf',
     password_confirmation: 'asdfasdf',
     office_id: 1,
     active: true,
-    admin: true
+    technician: true
   },{
     last_name: 'Peyatt',
     first_name: 'Justin',
@@ -114,7 +114,7 @@ Employee.create([
     password_confirmation: 'password',
     office_id: 1,
     active: true,
-    admin: true
+    technician: true
   },{
     last_name: 'Souza',
     first_name: 'Carlos',
@@ -122,11 +122,11 @@ Employee.create([
     password_confirmation: 'password',
     office_id: 1,
     active: true,
-    admin: true
+    technician: true
   }
 ])
 
-# Create active admin users (admin1-3)
+# Create active technician users
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
@@ -134,10 +134,10 @@ Employee.create([
                   password_confirmation: 'password',
                   office_id: rand(2..3),
                   active: true,
-                  admin: true)
+                  technician: true)
 end
 
-# Create inactive admin users (admin4-6)
+# Create inactive technician users
 3.times do |i|
   Employee.create(last_name: Faker::Name.last_name,
                   first_name: Faker::Name.first_name,
@@ -145,7 +145,7 @@ end
                   password_confirmation: 'password',
                   office_id: rand(2..3),
                   active: false,
-                  admin: true)
+                  technician: true)
 end
 
 # Create active employees
@@ -159,7 +159,7 @@ end
                   password_confirmation: 'password',
                   office_id: rand(1..4),
                   active: true,
-                  admin: false)
+                  technician: false)
 end
 
 # Create inactive employees
@@ -173,7 +173,7 @@ end
                   password_confirmation: 'password',
                   office_id: rand(1..4),
                   active: false,
-                  admin: false)
+                  technician: false)
 end
 
 # Create a bunch of tickets for mallison
