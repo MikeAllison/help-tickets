@@ -34,7 +34,7 @@ class Employee < ActiveRecord::Base
 
   def hide
     self.transaction do
-      self.created_tickets.each { |ticket| ticket.close! }
+      self.created_tickets.each { |ticket| ticket.closed! }
       self.update(hidden: true)
     end
   end
