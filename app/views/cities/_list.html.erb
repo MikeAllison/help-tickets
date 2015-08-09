@@ -17,9 +17,9 @@
 							<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 							<span class="sr-only" title="Edit">Edit</span>
 						<% end %>
-						<%= link_to city, method: :delete, title: 'Delete', data: { toggle: 'tooltip', placement: 'top' } do %>
-							<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
-							<span class="sr-only" title="Delete">Delete</span>
+						<%= link_to hide_city_path(city), method: :patch, title: 'Hide', data: { toggle: 'tooltip', placement: 'top' } do %>
+							<span class="glyphicon glyphicon-eye-close btn btn-default btn-xs" aria-hidden="true"></span>
+							<span class="sr-only" title="Hide">Hide</span>
 						<% end %>
 					</td>
 				</tr>

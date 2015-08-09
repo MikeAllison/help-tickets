@@ -1,6 +1,6 @@
-<% if comment.closing_comment %>
+<% if comment.closing? %>
 	<div class="panel panel-success">
-<% elsif comment.reopening_comment %>
+<% elsif comment.reopening? %>
 	<div class="panel panel-danger">
 <% else %>
 	<div class="panel panel-default">
@@ -11,9 +11,9 @@
 	    	&nbsp;&#45;&nbsp;
 	    	<%= comment.employee.last_first %>
 	    	<span class="pull-right">
-	    		<% if comment.reopening_comment %>
+	    		<% if comment.reopening? %>
 	    			&#40;Ticket Reopened&#41;
-	    		<% elsif comment.closing_comment %>
+	    		<% elsif comment.closing? %>
 	    			&#40;Closing Comment&#41;
 	    		<% end %>
 	    	</span>

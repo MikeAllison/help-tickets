@@ -183,7 +183,7 @@ end
   Ticket.create(description: Faker::Hacker.say_something_smart,
                 creator_id: 1,
                 topic_id: rand(1..10),
-                status: rand(0..3),
+                status: rand(1..3),
                 created_at: time,
                 updated_at: time + 1.day,
                 technician_id: rand(2..11))
@@ -232,7 +232,7 @@ end
   Comment.create(body: Faker::Hacker.say_something_smart,
                  employee_id: rand(2..600),
                  ticket_id: i,
-                 reopening_comment: true,
+                 status_type: :reopening,
                  created_at: time,
                  updated_at: time)
 end

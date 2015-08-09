@@ -19,12 +19,27 @@ class Ticket < ActiveRecord::Base
   scope :no_descriptions,  -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   scope :open,             -> { where.not('status = ?', 'Closed') }
 
-  private
+	def reopen(current_employee)
+		if current_employee.technician?
+			self.update(status: :work_in_progress, technician_id: current_employee.id)
+		else
+			self.update(status: :unassigned, technician_id: nil)
+		end
+	end
+
+	def close(current_employee)
+		self.transaction do
+			self.closed!
+			self.update(technician_id: current_employee.id)	if current_employee.technician?
+		end
+	end
+
+	private
 
     # Tickets can be submitted without a status and are set to 'Unassigned'
     def set_default_status
       self.unassigned! if self.status.nil?
-    end
+		end
 
     # Set pagination for will_paginate
     self.per_page = 20

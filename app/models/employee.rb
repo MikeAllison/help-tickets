@@ -4,7 +4,7 @@ class Employee < ActiveRecord::Base
 
   before_create :set_user_name
 
-  has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id', dependent: :destroy
+  has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id'
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
   has_many :comments
   belongs_to :office
@@ -31,6 +31,13 @@ class Employee < ActiveRecord::Base
 	def first_last
     "#{first_name} #{last_name}"
 	end
+
+  def hide
+    self.transaction do
+      self.created_tickets.each { |ticket| ticket.close! }
+      self.update(hidden: true)
+    end
+  end
 
   private
 

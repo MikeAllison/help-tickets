@@ -71,7 +71,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def hide
-		@employee.update(hidden: true)
+		@employee.hide
 		flash[:success] = 'Employee hidden!'
 		redirect_to new_employee_path
 	end

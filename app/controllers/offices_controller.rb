@@ -1,7 +1,7 @@
 class OfficesController < ApplicationController
 
 	before_action :restrict_to_technicians
-	before_action :find_office, only: [:edit, :update, :destroy]
+	before_action :find_office, only: [:edit, :update, :hide]
 	before_action :find_all_offices, only: [:index, :new, :create]
 
 	def index

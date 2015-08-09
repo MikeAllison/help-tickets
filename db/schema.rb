@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804221608) do
+ActiveRecord::Schema.define(version: 20150808223337) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -36,8 +36,7 @@ ActiveRecord::Schema.define(version: 20150804221608) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "closing_comment",   default: false
-    t.boolean  "reopening_comment", default: false
+    t.integer  "status_type", default: 0
   end
 
   add_index "comments", ["employee_id"], name: "index_comments_on_employee_id"

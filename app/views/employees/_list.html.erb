@@ -39,11 +39,11 @@
 							<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 							<span class="sr-only" title="Edit">Edit</span>
 						<% end %>
-						<%= link_to employee, method: :delete,
-																	title: 'Delete',
-																	data: { toggle: 'tooltip', placement: 'top', confirm: "WARNING!  This will delete all tickets created by, and assigned to, this employee.  Is is recommended that you mark an employee inactive rather than deleting them.\n\nAre you sure that you would like to delete this employee?" } do %>
-							<span class="glyphicon glyphicon-trash btn btn-default btn-xs" aria-hidden="true"></span>
-							<span class="sr-only" title="Delete">Delete</span>
+						<%= link_to hide_employee_path(employee), method: :patch,
+																	title: 'Hide',
+																	data: { toggle: 'tooltip', placement: 'top', confirm: "WARNING!  This will close all tickets created by this employee.  Is is recommended that you mark an employee inactive rather than hiding them.\n\nAre you sure that you would like to hide this employee?" } do %>
+							<span class="glyphicon glyphicon-eye-close btn btn-default btn-xs" aria-hidden="true"></span>
+							<span class="sr-only" title="Hide">Hide</span>
 						<% end %>
 					</td>
 				</tr>

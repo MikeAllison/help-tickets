@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
     def restrict_to_technicians
       unless technician?
-        flash[:danger] = 'You are not authorized to view that page!'
+        flash[:danger] = 'That action requires technican rights!'
         redirect_to my_tickets_path
       end
     end

@@ -6,7 +6,7 @@
 		  </div>
 		  <div class="panel-body">
 		  	<% if controller_name == 'tickets' %>
-		  		<% if admin? %>
+		  		<% if technician? %>
 		  			<%= render 'tickets/form_admin' %>
 		  		<% else %>
 		  			<%= render 'tickets/form' %>
