@@ -89,8 +89,8 @@ Topic.create([
 ])
 
 # Create standard user account
-Employee.create(last_name: 'Allison',
-                first_name: 'Mike',
+Employee.create(last_name: 'Van Allen',
+                first_name: 'Jennifer',
                 password: 'asdfasdf',
                 password_confirmation: 'asdfasdf',
                 office_id: 1,
@@ -101,7 +101,7 @@ Employee.create(last_name: 'Allison',
 Employee.create([
   {
     last_name: 'Allison',
-    first_name: 'Mike (technician)',
+    first_name: 'Mike',
     password: 'asdfasdf',
     password_confirmation: 'asdfasdf',
     office_id: 1,
