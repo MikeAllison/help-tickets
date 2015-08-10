@@ -3,15 +3,3 @@ mallison:
   last_name: Allison
   password_digest: asdfasdf
   office_id: 1
-
-mallison2:
-  first_name: Michael
-  last_name: Allison
-  password_digest: asdfasdf
-  office_id: 2
-
-jvanallen:
-  first_name: Jennifer
-  last_name: Van Allen
-  password_digest: asdfasdf
-  office_id: 2

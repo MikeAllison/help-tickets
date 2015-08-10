@@ -42,7 +42,9 @@ class Employee < ActiveRecord::Base
   private
 
     def set_user_name
-      user_name = f_last = "#{first_name[0]}#{last_name}".downcase
+      first = first_name.gsub(/\s+/, '')
+      last = last_name.gsub(/\s+/, '')
+      user_name = f_last = "#{first[0]}#{last}".downcase
       count = 0
 
       while Employee.find_by(user_name: user_name).present?

@@ -2,19 +2,20 @@ require 'test_helper'
 
 class EmployeeTest < ActiveSupport::TestCase
 
-  employee = Employee.new(first_name: 'Mike', last_name: 'Allison', office_id: 1, password: 'asdfasdf')
-
   test 'should not save without a first name' do
+    employee = employees(:mallison)
     employee.first_name = nil
     assert_not employee.save
   end
 
   test 'should not save without a last name' do
+    employee = employees(:mallison)
     employee.last_name = nil
     assert_not employee.save
   end
 
   test 'should not save without an office id' do
+    employee = employees(:mallison)
     employee.office_id = nil
     assert_not employee.save
   end
@@ -25,40 +26,44 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should allow save without password on update' do
-    mike = Employee.first
-    mike.first_name = 'Michael'
-    mike.password_digest = nil
-    assert mike.save
+    employee = employees(:mallison)
+    employee.first_name = 'Michael'
+    employee.password_digest = nil
+    assert employee.save
   end
 
   test 'should create user_name before_create' do
-    employee.save
+    employee = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
     assert_equal 'mallison', employee.user_name
   end
 
   test 'should auto-increment user names' do
-    employee.save
-    employee2 = Employee.new(first_name: 'Mike', last_name: 'Allison', office_id: 1, password: 'asdfasdf')
-    employee2.save
+    employee = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
+    employee2 = Employee.create(first_name: 'Matthew', last_name: 'Allison', password: 'asdfasdf', office_id: 2)
     assert_equal 'mallison1', employee2.user_name
   end
 
   test 'testing last_first' do
-    assert_equal 'Allison, Mike', employee.last_first
+    assert_equal 'Allison, Mike', employees(:mallison).last_first
   end
 
   test 'testing first_last' do
-    assert_equal 'Mike Allison', employee.first_last
+    assert_equal 'Mike Allison', employees(:mallison).first_last
   end
 
-  # test 'hide' do
-  #   employee.save
-  #   ticket = Ticket.create(creator_id: employee.id, description: 'Words', topic_id: 1)
-  #   employee.hide
-  #   assert_equal false, ticket.closed?
-  #   assert_equal true, employee.hidden
-  #   ticket.save
-  #   assert_equal true, ticket.closed?
-  # end
+  test 'set_user_name should strip whitespace' do
+    employee = Employee.create(first_name:  '  Jennifer  ', last_name: '  Van Allen  ', password: 'asdfasdf', office_id: 1)
+    assert_equal 'jvanallen', employee.user_name
+  end
+
+  test 'hide' do
+    employee = employees(:mallison)
+    ticket = Ticket.create(creator_id: employee.id, description: 'Words', topic_id: 1)
+    ticket2 = Ticket.create(creator_id: employee.id, description: 'Words 2', topic_id: 2)
+    employee.hide
+    assert_equal true, employee.hidden
+    assert_equal true, ticket.reload.closed?
+    assert_equal true, ticket2.reload.closed?
+  end
 
 end
