@@ -1,0 +1,11 @@
+florida:
+  name: Florida
+  abbreviation: FL
+
+texas:
+  name: Texas
+  abbreviation: TX
+
+california:
+  name: California
+  abbreviation: CA

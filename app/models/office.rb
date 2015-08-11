@@ -16,13 +16,14 @@ class Office < ActiveRecord::Base
 	end
 
   def office_city_state_abbr
-    name + ' - ' + self.city.city_state_abbr
+		"#{self.name} - #{self.city.name}, #{self.city.state.abbreviation}"
   end
 
   private
 
 		def create_slug
-			self.slug = "#{name.delete("'")}-#{self.city.name}-#{self.city.state.abbreviation}".downcase.gsub(/\s/, '-')
+			# Need to account for '  Fisherman's Wharf San  Francisco'
+			self.slug = "#{name.delete("'")}-#{self.city.name}-#{self.city.state.abbreviation}".downcase.gsub(/\s+/, '-')
 		end
 
     # Set pagination for will_paginate

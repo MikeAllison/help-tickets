@@ -2,4 +2,4 @@ mallison:
   first_name: Mike
   last_name: Allison
   password_digest: asdfasdf
-  office_id: 1
+  office: orlando
