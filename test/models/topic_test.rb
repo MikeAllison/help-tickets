@@ -14,4 +14,10 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal 'operating-system', topic.slug
   end
 
+  test 'strip extra whitespace before save' do
+    topic.name = '   Operating   System   '
+    topic.save
+    assert_equal 'Operating System', topic.name
+  end
+
 end

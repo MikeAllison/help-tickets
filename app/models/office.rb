@@ -22,8 +22,11 @@ class Office < ActiveRecord::Base
   private
 
 		def create_slug
-			# Need to account for '  Fisherman's Wharf San  Francisco'
-			self.slug = "#{name.delete("'")}-#{self.city.name}-#{self.city.state.abbreviation}".downcase.gsub(/\s+/, '-')
+			office = self.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
+			city = self.city.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
+			state_abbr = self.city.state.abbreviation
+
+			self.slug = "#{office}-#{city}-#{state_abbr}".downcase
 		end
 
     # Set pagination for will_paginate

@@ -21,6 +21,7 @@ class OfficeTest < ActiveSupport::TestCase
 
   test 'create_slug' do
     office = offices(:fishermans)
+    office.save
     assert_equal 'fishermans-wharf-san-francisco-ca', office.slug
   end
 
