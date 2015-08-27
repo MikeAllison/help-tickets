@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close, :reopen]
 	before_action :restrict_to_technicians_or_creator, only: [:show]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
+	#TEST
 
 	# Non-Technician actions
 	def my
@@ -60,8 +61,8 @@ class TicketsController < ApplicationController
 				@tickets = Ticket.no_descriptions.closed
 			else
 				@tickets = Ticket.no_descriptions
+			end
 		end
-	end
 
 		@tickets = apply_joins_and_order(@tickets)
 		@tickets = apply_pagination(@tickets)
