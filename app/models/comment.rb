@@ -11,8 +11,8 @@ class Comment < ActiveRecord::Base
 
   private
 
-    def set_default_status_type
-      self.normal! if self.status_type.nil?
-    end
+  def set_default_status_type
+    self.normal! if self.status_type.nil?
+  end
 
 end

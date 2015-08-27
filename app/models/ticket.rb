@@ -36,12 +36,12 @@ class Ticket < ActiveRecord::Base
 
 	private
 
-    # Tickets can be submitted without a status and are set to 'Unassigned'
-    def set_default_status
-      self.unassigned! if self.status.nil?
-		end
+  # Tickets can be submitted without a status and are set to 'Unassigned'
+  def set_default_status
+    self.unassigned! if self.status.nil?
+	end
 
-    # Set pagination for will_paginate
-    self.per_page = 20
+  # Set pagination for will_paginate
+  self.per_page = 20
 
 end

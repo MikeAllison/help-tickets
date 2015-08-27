@@ -22,8 +22,8 @@ class City < ActiveRecord::Base
 
   private
 
-    def create_slug
-      self.slug = "#{name.gsub(/\s/, '-')}-#{self.state.abbreviation}".downcase
-    end
+  def create_slug
+    self.slug = "#{name.gsub(/\s/, '-')}-#{self.state.abbreviation}".downcase
+  end
 
 end

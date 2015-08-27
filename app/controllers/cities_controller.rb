@@ -44,18 +44,18 @@ class CitiesController < ApplicationController
 
   private
 
-    def find_city
-      @city = City.find_by!(slug: params[:id])
-    end
+  def find_city
+    @city = City.find_by!(slug: params[:id])
+  end
 
-    def find_all_cities
-      @cities = City.not_hidden
-      @cities = apply_joins_and_order(@cities)
-      @cities = apply_pagination(@cities)
-    end
+  def find_all_cities
+    @cities = City.not_hidden
+    @cities = apply_joins_and_order(@cities)
+    @cities = apply_pagination(@cities)
+  end
 
-    def city_params
-      params.require(:city).permit(:name, :state_id, :hidden)
-    end
+  def city_params
+    params.require(:city).permit(:name, :state_id, :hidden)
+  end
 
 end

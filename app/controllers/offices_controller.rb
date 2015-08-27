@@ -44,18 +44,18 @@ class OfficesController < ApplicationController
 
 	private
 
-		def find_office
-			@office = Office.find_by!(slug: params[:id])
-		end
+	def find_office
+		@office = Office.find_by!(slug: params[:id])
+	end
 
-		def find_all_offices
-      @offices = Office.not_hidden
-      @offices = apply_joins_and_order(@offices)
-      @offices = apply_pagination(@offices)
-    end
+	def find_all_offices
+    @offices = Office.not_hidden
+    @offices = apply_joins_and_order(@offices)
+    @offices = apply_pagination(@offices)
+  end
 
-		def office_params
-			params.require(:office).permit(:name, :city_id, :active, :hidden)
-		end
+	def office_params
+		params.require(:office).permit(:name, :city_id, :active, :hidden)
+	end
 
 end

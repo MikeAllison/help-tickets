@@ -86,27 +86,28 @@ class TicketsController < ApplicationController
 
 	private
 
-		def restrict_to_technicians_or_creator
-			unless technician? || @ticket.creator_id == current_employee.id
-				flash[:danger] = 'You are not authorized to view that ticket!'
-		    redirect_to my_tickets_path
-			end
+	def restrict_to_technicians_or_creator
+		unless technician? || @ticket.creator_id == current_employee.id
+			flash[:danger] = 'You are not authorized to view that ticket!'
+	    redirect_to my_tickets_path
 		end
+	end
 
-		def find_ticket
-			@ticket = Ticket.find(params[:id])
-		end
+	def find_ticket
+		@ticket = Ticket.find(params[:id])
+	end
 
-		# Checks for tickets assigned to a tech but status is still set to 'Unassigned'
-		# This would ideally not let you save if this is the case but can't get that...
-		# ...to work at the moment
-		def check_for_unassigned
-		  if @ticket.technician_id != nil && @ticket.unassigned? && current_employee.technician?
-        flash[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
-      end
-		end
+	# Checks for tickets assigned to a tech but status is still set to 'Unassigned'
+	# This would ideally not let you save if this is the case but can't get that...
+	# ...to work at the moment
+	def check_for_unassigned
+	  if @ticket.technician_id != nil && @ticket.unassigned? && current_employee.technician?
+      flash[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
+    end
+	end
 
-		def ticket_params
-	  	params.require(:ticket).permit(:creator_id, :topic_id, :description, :technician_id, :status)
-	 	end
+	def ticket_params
+  	params.require(:ticket).permit(:creator_id, :topic_id, :description, :technician_id, :status)
+ 	end
+	
 end

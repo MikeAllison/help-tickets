@@ -21,15 +21,15 @@ class Office < ActiveRecord::Base
 
   private
 
-		def create_slug
-			office = self.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
-			city = self.city.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
-			state_abbr = self.city.state.abbreviation
+	def create_slug
+		office = self.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
+		city = self.city.name.gsub(/[^\w\s]/, '').gsub(/\s+/, '-')
+		state_abbr = self.city.state.abbreviation
 
-			self.slug = "#{office}-#{city}-#{state_abbr}".downcase
-		end
+		self.slug = "#{office}-#{city}-#{state_abbr}".downcase
+	end
 
-    # Set pagination for will_paginate
-    self.per_page = 20
+  # Set pagination for will_paginate
+  self.per_page = 20
 
 end

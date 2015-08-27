@@ -9,65 +9,65 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def restrict_to_technicians
-      unless technician?
-        flash[:danger] = 'That action requires technican rights!'
-        redirect_to my_tickets_path
-      end
+  def restrict_to_technicians
+    unless technician?
+      flash[:danger] = 'That action requires technican rights!'
+      redirect_to my_tickets_path
+    end
+  end
+
+  def default_tickets_redirect
+    if technician?
+      redirect_to assigned_to_me_tickets_path
+    else
+      redirect_to my_tickets_path
+    end
+  end
+
+  def apply_joins_and_order(model)
+    model = model.joins(join_table).order(sort_column + ' ' + sort_direction)
+    return model
+  end
+
+  def apply_pagination(model)
+    model = model.paginate(:page => params[:page]) unless params[:filter]
+    return model
+  end
+
+  # Converts join table to symbol for use with sort_column in ApplicationHelper
+  def join_table
+    join_table = params[:join_table] || nil
+    join_table.to_sym if !join_table.nil?
+  end
+
+  # Set default sorting column with sort_column in ApplicationHelper
+  def sort_column
+    case controller_name
+    when 'tickets'
+      sort_column = 'created_at'
+    when 'employees'
+      sort_column = 'last_name'
+    when 'offices'
+      sort_column = 'name'
+    when 'topics'
+      sort_column = 'name'
+    when 'cities'
+      sort_column = 'name'
     end
 
-    def default_tickets_redirect
-      if technician?
-        redirect_to assigned_to_me_tickets_path
-      else
-        redirect_to my_tickets_path
-      end
+    params[:sort_column] || sort_column
+  end
+
+  # Set default sorting direction with sort_column in ApplicationHelper
+  def sort_direction
+    case controller_name
+    when 'tickets'
+      sort_direction = 'DESC'
+    else
+      sort_direction = 'ASC'
     end
 
-    def apply_joins_and_order(model)
-      model = model.joins(join_table).order(sort_column + ' ' + sort_direction)
-      return model
-    end
-
-    def apply_pagination(model)
-      model = model.paginate(:page => params[:page]) unless params[:filter]
-      return model
-    end
-
-    # Converts join table to symbol for use with sort_column in ApplicationHelper
-    def join_table
-      join_table = params[:join_table] || nil
-      join_table.to_sym if !join_table.nil?
-    end
-
-    # Set default sorting column with sort_column in ApplicationHelper
-    def sort_column
-      case controller_name
-      when 'tickets'
-        sort_column = 'created_at'
-      when 'employees'
-        sort_column = 'last_name'
-      when 'offices'
-        sort_column = 'name'
-      when 'topics'
-        sort_column = 'name'
-      when 'cities'
-        sort_column = 'name'
-      end
-
-      params[:sort_column] || sort_column
-    end
-
-    # Set default sorting direction with sort_column in ApplicationHelper
-    def sort_direction
-      case controller_name
-      when 'tickets'
-        sort_direction = 'DESC'
-      else
-        sort_direction = 'ASC'
-      end
-
-      params[:sort_direction] || sort_direction
-    end
+    params[:sort_direction] || sort_direction
+  end
 
 end

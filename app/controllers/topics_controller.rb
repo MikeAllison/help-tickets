@@ -44,18 +44,18 @@ class TopicsController < ApplicationController
 
 	private
 
-		def find_topic
-			@topic = Topic.find_by!(slug: params[:id])
-		end
+	def find_topic
+		@topic = Topic.find_by!(slug: params[:id])
+	end
 
-		def find_all_topics
-      @topics = Topic.not_hidden
-      @topics = apply_joins_and_order(@topics)
-      @topics = apply_pagination(@topics)
-    end
+	def find_all_topics
+    @topics = Topic.not_hidden
+    @topics = apply_joins_and_order(@topics)
+    @topics = apply_pagination(@topics)
+  end
 
-		def topic_params
-			params.require(:topic).permit(:name, :active, :hidden)
-		end
+	def topic_params
+		params.require(:topic).permit(:name, :active, :hidden)
+	end
 
 end
