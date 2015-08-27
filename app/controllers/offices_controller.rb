@@ -8,7 +8,7 @@ class OfficesController < ApplicationController
 	end
 
 	def new
-	  @office = Office.new
+		@office = Office.new
 	end
 
 	def edit
@@ -21,7 +21,7 @@ class OfficesController < ApplicationController
 			flash[:success] = 'Office added!'
 			redirect_to new_office_path
 		else
-      @office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the office.'
+			@office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the office.'
 			render 'new'
 		end
 	end
@@ -31,7 +31,7 @@ class OfficesController < ApplicationController
 			flash[:success] = 'Office information updated!'
 			redirect_to new_office_path
 		else
-      @office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the office.'
+			@office.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the office.'
 			render 'edit'
 		end
 	end
@@ -49,10 +49,10 @@ class OfficesController < ApplicationController
 	end
 
 	def find_all_offices
-    @offices = Office.not_hidden
-    @offices = apply_joins_and_order(@offices)
-    @offices = apply_pagination(@offices)
-  end
+		@offices = Office.not_hidden
+		@offices = apply_joins_and_order(@offices)
+		@offices = apply_pagination(@offices)
+	end
 
 	def office_params
 		params.require(:office).permit(:name, :city_id, :active, :hidden)

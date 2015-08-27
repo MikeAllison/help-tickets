@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
 			flash[:success] = 'Topic created!'
 			redirect_to new_topic_path
 		else
-      @topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
+			@topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
 			render 'new'
 		end
 	end
@@ -31,7 +31,7 @@ class TopicsController < ApplicationController
 			flash[:success] = 'Topic updated!'
 			redirect_to new_topic_path
 		else
-      @topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the topic.'
+			@topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the topic.'
 			render 'edit'
 		end
 	end
@@ -49,10 +49,10 @@ class TopicsController < ApplicationController
 	end
 
 	def find_all_topics
-    @topics = Topic.not_hidden
-    @topics = apply_joins_and_order(@topics)
-    @topics = apply_pagination(@topics)
-  end
+		@topics = Topic.not_hidden
+		@topics = apply_joins_and_order(@topics)
+		@topics = apply_pagination(@topics)
+	end
 
 	def topic_params
 		params.require(:topic).permit(:name, :active, :hidden)
