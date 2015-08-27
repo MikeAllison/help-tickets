@@ -31,7 +31,7 @@ class CitiesController < ApplicationController
       flash[:success] = 'City updated!'
       redirect_to new_city_path
     else
-      @city.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the city.'
+      @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem updating the city.'
       render 'edit'
     end
   end

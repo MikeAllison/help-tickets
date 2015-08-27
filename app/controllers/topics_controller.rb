@@ -3,7 +3,6 @@ class TopicsController < ApplicationController
 	before_action :restrict_to_technicians
 	before_action :find_topic, only: [:edit, :update, :hide]
 	before_action :find_all_topics, only: [:index, :new, :create]
-	#TEST
 
 	def index
 	end
@@ -22,7 +21,7 @@ class TopicsController < ApplicationController
 			flash[:success] = 'Topic created!'
 			redirect_to new_topic_path
 		else
-			@topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
+			@topic.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
 			render 'new'
 		end
 	end
@@ -32,7 +31,7 @@ class TopicsController < ApplicationController
 			flash[:success] = 'Topic updated!'
 			redirect_to new_topic_path
 		else
-			@topic.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the topic.'
+			@topic.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem updating the topic.'
 			render 'edit'
 		end
 	end

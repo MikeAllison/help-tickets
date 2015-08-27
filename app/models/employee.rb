@@ -1,8 +1,9 @@
 class Employee < ActiveRecord::Base
+  include Formatable
 
   has_secure_password validations: false
 
-  before_create :set_user_name
+  before_save :set_user_name
 
   has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id'
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
@@ -19,6 +20,8 @@ class Employee < ActiveRecord::Base
   scope :inactive,   -> { where(active: false) }
   scope :technician, -> { where(technician: true) }
   scope :not_hidden, -> { where(hidden: false) }
+
+  set_whitespace_stripable_attributes :first_name, :last_name
 
   def to_param
     user_name
