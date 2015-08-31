@@ -16,7 +16,7 @@ module Formatable
 
   def strip_whitespace()
     self.whitespace_stripped_attributes.each do |attr|
-      binding.pry
+      self.send("#{attr}=", self.send(attr).squish)
     end
   end
 
