@@ -3,8 +3,6 @@ class Employee < ActiveRecord::Base
 
   has_secure_password validations: false
 
-  before_save :set_user_name
-
   has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id'
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
   has_many :comments
@@ -22,6 +20,8 @@ class Employee < ActiveRecord::Base
   scope :not_hidden, -> { where(hidden: false) }
 
   set_whitespace_stripable_attributes :first_name, :last_name
+
+  before_save :set_user_name
 
   def to_param
     user_name

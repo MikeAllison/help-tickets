@@ -10,6 +10,8 @@ class Topic < ActiveRecord::Base
   scope :active,        -> { where(active: true) }
   scope :not_hidden,    -> { where(hidden: false) }
 
+  set_whitespace_stripable_attributes :name
+
   def to_param
     slug
   end

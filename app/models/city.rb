@@ -7,6 +7,8 @@ class City < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :state, message: 'This city/state already exists!'
   validates_presence_of :state_id, message: 'Please select a state!'
 
+  set_whitespace_stripable_attributes :name
+
   before_save :create_slug
 
   scope :inactive,      -> { where(active: false) }
