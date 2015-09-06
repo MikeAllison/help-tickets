@@ -3,7 +3,7 @@ module Formatable
 
   included do
     class_attribute :whitespace_stripped_attributes
-    before_save :strip_whitespace
+    before_validation :strip_whitespace
   end
 
   module ClassMethods

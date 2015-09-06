@@ -23,6 +23,11 @@ class City < ActiveRecord::Base
     name + ', ' + state.abbreviation
   end
 
+  def unhide
+    self.hidden = false
+    self.save
+  end
+
   private
 
   def create_slug

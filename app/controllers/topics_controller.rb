@@ -20,6 +20,11 @@ class TopicsController < ApplicationController
 		if @topic.save
 			flash[:success] = 'Topic created!'
 			redirect_to new_topic_path
+		elsif Topic.exists?(name: @topic.name, hidden: true)
+      @topic = Topic.find_by(name: @topic.name)
+      @topic.unhide
+      flash[:success] = 'This topic had already existed but has now been unhidden!'
+      redirect_to new_topic_path
 		else
 			@topic.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
 			render 'new'
