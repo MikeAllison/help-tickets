@@ -1,4 +1,5 @@
 class Office < ActiveRecord::Base
+	include Formatable
 
 	has_many :employees
 	belongs_to :city

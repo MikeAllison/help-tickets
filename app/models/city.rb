@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
+  include Formatable
 
   has_many :offices
   belongs_to :state

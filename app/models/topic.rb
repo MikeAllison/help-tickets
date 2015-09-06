@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  include Formatable
 
   has_many :tickets
 
