@@ -13,50 +13,28 @@
 * Indexes (WIP)
 * 404s
 * Check technician functionality
-* Allow employees to update their passwords - DONE
-* Allow technicians to update employee info without requiring a password change - DONE
 * Employee show?
 * Method to automatically set employee user name
-* Assigning tickets to technicians - DONE
-* Ticket comments - DONE
-* Office City/State Model - DONE
 * Use Ajax to add topics and offices right from index view
 * Create an technician section to change settings?
-* Pagination - DONE
 * Search
 * Ability to sort
-* Color-coding based on ticket state - DONE
-* Auto-select current user when creating new ticket - DONE
 * Escalations
 * Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
 * Responsive design
-* Active/inactive employees - DONE
-* Toggle between pagination and listing all tickets with a filter option - DONE
 * Employee search for new tickets
-* Check responsiveness for forms - DONE
-* Reset all closing_comments to false on ticket re-open - DONE (REQUIRED RE-OPENING COMMENT)
 * Attachments
 * Ajax on offices/new
 * Fix bug with redirection after sorting non-ticket items
-* Bug with technicians being able to see status dropdown on tickets/edit form - FIXED
 * Automatically close tickets for employees made inactive (and "deleted/hidden")
-* Be able to toggle between viewing active/inactive employees -DONE
 * Link titles on hover
-* Fix bug with updating user info without resetting password - DONE
 * Cancel button has a bug after flash error
-* Add clear button to filter - DONE
 * When deleting topics, offices, etc....no nil classes
-* Show updated_at column on closed tickets and label column "Closed" - DONE
-* Fix nil class bug on ticket show for tickets with no technician_id - FIXED
-* Fix bug where you can close a ticket without assigning it to anyone - FIXED
-* Fix bug where reopening a ticket doesn't reset technician_id - FIXED
 * Fix bug where a non-technician may be able to assign a ticket to themself
 * Fix bug where a non-technician may be able to change ticket assignment status by passing in params
-* Link to show tickets for a specific employee - DONE
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
 * Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets
 * Remove Assigned to from employee/:id/tickets list
-* Dependent: :destroy to delete all tickets from a deleted employee - DONE
 * File upload size and type validations
 * IMPORTANT - Use :select when querying tickets on index views so that attachments aren't being pulled (R4W: 170)
 * Add on_behalf_of to tickets created by another employee
@@ -71,7 +49,6 @@
 * What to do about deleting your own account?
 * Can you set an index on hidden field for faster querying for non-hidden records? (Partial Index - Discussed in R4W)
 * Tickets created on behalf-of another employee
-* Reopening a ticket should redirect to the same ticket - FIXED
 * Current method to close/reopen tickets is probably not the best way to handle those actions
 * Check use of && and || vs 'and' and 'or'
 * Simplify routes.rb with 'collection' or 'member'
