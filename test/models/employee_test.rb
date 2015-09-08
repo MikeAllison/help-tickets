@@ -19,7 +19,7 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a password on create' do
-    employee = Employee.new(first_name: 'Mike', last_name: 'Allison', office_id: 1)
+    employee = Employee.new(first_name: 'A', last_name: 'User', office_id: 1)
     assert_not employee.save
   end
 
@@ -38,27 +38,27 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should create user_name before_create' do
-    employee = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
-    assert_equal 'mallison', employee.user_name
+    employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
+    assert_equal 'auser', employee.user_name
   end
 
   test 'should auto-increment user_name' do
-    employee1 = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
-    employee2 = Employee.create(first_name: 'Matthew', last_name: 'Allison', password: 'asdfasdf', office_id: 2)
-    assert_equal 'mallison1', employee2.user_name
+    employee1 = Employee.create(first_name: 'A', last_name: 'User', password: 'asdfasdf', office_id: 1)
+    employee2 = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 2)
+    assert_equal 'auser1', employee2.user_name
   end
 
   test 'testing last_first' do
-    assert_equal 'Allison, Mike', employees(:mallison).last_first
+    assert_equal 'Allison, Mike', @e.last_first
   end
 
   test 'testing first_last' do
-    assert_equal 'Mike Allison', employees(:mallison).first_last
+    assert_equal 'Mike Allison', @e.first_last
   end
 
   test 'set_user_name should strip whitespace' do
-    employee = Employee.create(first_name:  '  Jennifer  ', last_name: '  Van Allen  ', password: 'asdfasdf', office_id: 1)
-    assert_equal 'jvanallen', employee.user_name
+    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
+    assert_equal 'flastname', employee.user_name
   end
 
   test 'should close tickets after employee is hidden' do

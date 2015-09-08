@@ -28,4 +28,8 @@ class CityTest < ActiveSupport::TestCase
     assert city2.save
   end
 
+  test 'city_state_abbr' do
+    assert_equal 'Orlando, FL', @c.city_state_abbr
+  end
+
 end
