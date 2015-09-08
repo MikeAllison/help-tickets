@@ -10,10 +10,9 @@ class CityTest < ActiveSupport::TestCase
     assert_not_blank(@c, :name)
   end
 
-  test 'should not have duplicate city/states' do
-    city1 = cities(:orlando)
+  test 'should not allow save of duplicate city/states' do
     city2 = City.new(name: 'Orlando', state_id: states(:florida).id)
-    assert_not city2.save
+    assert_not city2.save, 'Allowed save of duplicate city/state'
   end
 
   test 'should be able to save same city with different state' do
