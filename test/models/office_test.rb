@@ -4,7 +4,7 @@ class OfficeTest < ActiveSupport::TestCase
 
   test 'name cannot be blank' do
     office = offices(:maitland)
-    office.name = nil
+    office.name = ''
     assert_not office.save
   end
 

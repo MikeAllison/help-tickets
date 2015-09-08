@@ -4,13 +4,13 @@ class EmployeeTest < ActiveSupport::TestCase
 
   test 'should not save without a first name' do
     employee = employees(:mallison)
-    employee.first_name = nil
+    employee.first_name = ''
     assert_not employee.save
   end
 
   test 'should not save without a last name' do
     employee = employees(:mallison)
-    employee.last_name = nil
+    employee.last_name = ''
     assert_not employee.save
   end
 

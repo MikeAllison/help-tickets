@@ -4,7 +4,7 @@ class CityTest < ActiveSupport::TestCase
 
   test 'should not save without a name' do
     city = cities(:orlando)
-    city.name = nil
+    city.name = ''
     assert_not city.save
   end
 

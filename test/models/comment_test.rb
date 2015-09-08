@@ -4,7 +4,7 @@ class CommentTest < ActiveSupport::TestCase
 
   test 'comment cannot be blank' do
     comment = comments(:comment1)
-    comment.body = nil
+    comment.body = ''
     assert_not comment.save
   end
 

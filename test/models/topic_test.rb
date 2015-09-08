@@ -5,7 +5,7 @@ class TopicTest < ActiveSupport::TestCase
   topic = Topic.new(name: 'Operating System')
 
   test 'should not save without a name' do
-    topic.name = nil
+    topic.name = ''
     assert_not topic.save
   end
 
