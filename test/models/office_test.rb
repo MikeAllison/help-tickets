@@ -2,27 +2,28 @@ require 'test_helper'
 
 class OfficeTest < ActiveSupport::TestCase
 
+  def setup
+    @o = offices(:maitland)
+    @o2 = offices(:fishermans)
+  end
+
   test 'name cannot be blank' do
-    office = offices(:maitland)
-    office.name = ''
-    assert_not office.save
+    @o.name = ''
+    assert_not @o.save
   end
 
   test 'city_id cannot be blank' do
-    office = offices(:maitland)
-    office.city_id = nil
-    assert_not office.save
+    @o.city_id = nil
+    assert_not @o.save
   end
 
   test 'office_city_state_abbr' do
-    office = offices(:maitland)
-    assert_equal 'Maitland - Orlando, FL', office.office_city_state_abbr
+    assert_equal 'Maitland - Orlando, FL', @o.office_city_state_abbr
   end
 
   test 'create_slug' do
-    office = offices(:fishermans)
-    office.save
-    assert_equal 'fishermans-wharf-san-francisco-ca', office.slug
+    @o2.save
+    assert_equal 'fishermans-wharf-san-francisco-ca', @o2.slug
   end
 
 end

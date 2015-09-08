@@ -2,22 +2,23 @@ require 'test_helper'
 
 class EmployeeTest < ActiveSupport::TestCase
 
+  def setup
+    @e = employees(:mallison)
+  end
+
   test 'should not save without a first name' do
-    employee = employees(:mallison)
-    employee.first_name = ''
-    assert_not employee.save
+    @e.first_name = ''
+    assert_not @e.save
   end
 
   test 'should not save without a last name' do
-    employee = employees(:mallison)
-    employee.last_name = ''
-    assert_not employee.save
+    @e.last_name = ''
+    assert_not @e.save
   end
 
   test 'should not save without an office id' do
-    employee = employees(:mallison)
-    employee.office_id = nil
-    assert_not employee.save
+    @e.office_id = nil
+    assert_not @e.save
   end
 
   test 'should not save without a password on create' do
@@ -26,10 +27,9 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should allow save without password on update' do
-    employee = employees(:mallison)
-    employee.first_name = 'Michael'
-    employee.password_digest = nil
-    assert employee.save
+    @e.first_name = 'Michael'
+    @e.password_digest = nil
+    assert @e.save
   end
 
   test 'should create user_name before_create' do
@@ -38,7 +38,7 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should auto-increment user names' do
-    employee = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
+    employee1 = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
     employee2 = Employee.create(first_name: 'Matthew', last_name: 'Allison', password: 'asdfasdf', office_id: 2)
     assert_equal 'mallison1', employee2.user_name
   end
@@ -56,12 +56,11 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_equal 'jvanallen', employee.user_name
   end
 
-  test 'hide' do
-    employee = employees(:mallison)
-    ticket = Ticket.create(creator_id: employee.id, description: 'Words', topic_id: 1)
-    ticket2 = Ticket.create(creator_id: employee.id, description: 'Words 2', topic_id: 2)
-    employee.hide
-    assert_equal true, employee.hidden
+  test 'should close tickets after employee is hidden' do
+    ticket = Ticket.create(creator_id: @e.id, description: 'Words', topic_id: 1)
+    ticket2 = Ticket.create(creator_id: @e.id, description: 'Words 2', topic_id: 2)
+    @e.hide
+    assert_equal true, @e.hidden
     assert_equal true, ticket.reload.closed?
     assert_equal true, ticket2.reload.closed?
   end

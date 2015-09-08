@@ -2,22 +2,24 @@ require 'test_helper'
 
 class TopicTest < ActiveSupport::TestCase
 
-  topic = Topic.new(name: 'Operating System')
+  def setup
+    @t = topics(:os)
+  end
 
   test 'should not save without a name' do
-    topic.name = ''
-    assert_not topic.save
+    @t.name = ''
+    assert_not @t.save
   end
 
   test 'create_slug' do
-    topic.save
-    assert_equal 'operating-system', topic.slug
+    @t.save
+    assert_equal 'operating-system', @t.slug
   end
 
   test 'strip extra whitespace before save' do
-    topic.name = '   Operating   System   '
-    topic.save
-    assert_equal 'Operating System', topic.name
+    @t.name = '   Operating   System   '
+    @t.save
+    assert_equal 'Operating System', @t.name
   end
 
 end

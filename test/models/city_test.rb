@@ -2,10 +2,13 @@ require 'test_helper'
 
 class CityTest < ActiveSupport::TestCase
 
+  def setup
+    @c = cities(:orlando)
+  end
+
   test 'should not save without a name' do
-    city = cities(:orlando)
-    city.name = ''
-    assert_not city.save
+    @c.name = ''
+    assert_not @c.save
   end
 
   test 'should not have duplicate city/states' do
@@ -15,15 +18,13 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'should be able to save same city with different state' do
-    city1 = cities(:orlando)
     city2 = City.new(name: 'Orlando', state_id: states(:texas).id)
     assert city2.save
   end
 
   test 'should not save without a state_id' do
-    city = cities(:orlando)
-    city.state_id = nil
-    assert_not city.save
+    @c.state_id = nil
+    assert_not @c.save
   end
 
 end

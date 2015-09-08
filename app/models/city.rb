@@ -12,8 +12,8 @@ class City < ActiveRecord::Base
 
   before_save :create_slug
 
-  scope :inactive,      -> { where(active: false) }
-  scope :not_hidden,    -> { where(hidden: false) }
+  scope :inactive,   -> { where(active: false) }
+  scope :not_hidden, -> { where(hidden: false) }
 
   def to_param
     slug

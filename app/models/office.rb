@@ -9,8 +9,8 @@ class Office < ActiveRecord::Base
 
 	before_save :create_slug
 
-	scope :active,        -> { where(active: true) }
-  scope :not_hidden,    -> { where(hidden: false) }
+	scope :active,     -> { where(active: true) }
+  scope :not_hidden, -> { where(hidden: false) }
 
 	set_whitespace_stripable_attributes :name
 

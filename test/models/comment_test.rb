@@ -2,10 +2,13 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
 
+  def setup
+    @c = comments(:comment1)
+  end
+
   test 'comment cannot be blank' do
-    comment = comments(:comment1)
-    comment.body = ''
-    assert_not comment.save
+    @c.body = ''
+    assert_not @c.save
   end
 
   test 'default status_type should be normal' do
