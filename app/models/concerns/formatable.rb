@@ -14,7 +14,7 @@ module Formatable
 
   private
 
-  def strip_whitespace()
+  def strip_whitespace
     self.whitespace_stripped_attributes.each do |attr|
       self.send("#{attr}=", self.send(attr).squish)
     end

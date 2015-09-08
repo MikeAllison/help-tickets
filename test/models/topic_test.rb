@@ -15,15 +15,13 @@ class TopicTest < ActiveSupport::TestCase
     assert_not t.save, 'Allowed save of duplicate topic'
   end
 
+  test 'should strip whitespace in name before save' do
+    should_strip_whitespace(@t, :name)
+  end
+
   test 'create_slug' do
     @t.save
     assert_equal 'operating-system', @t.slug
-  end
-
-  test 'strip extra whitespace before save' do
-    @t.name = '   Operating   System   '
-    @t.save
-    assert_equal 'Operating System', @t.name
   end
 
 end

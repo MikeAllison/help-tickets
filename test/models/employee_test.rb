@@ -6,21 +6,29 @@ class EmployeeTest < ActiveSupport::TestCase
     @e = employees(:mallison)
   end
 
-  test 'should not save without a first name' do
+  test 'should not save without a first_name' do
     assert_not_blank(@e, :first_name)
   end
 
-  test 'should not save without a last name' do
+  test 'should not save without a last_name' do
     assert_not_blank(@e, :last_name)
   end
 
-  test 'should not save without an office id' do
+  test 'should not save without an office_id' do
     assert_not_blank(@e, :office_id)
   end
 
   test 'should not save without a password on create' do
     employee = Employee.new(first_name: 'Mike', last_name: 'Allison', office_id: 1)
     assert_not employee.save
+  end
+
+  test 'should strip whitespace in first_name' do
+    should_strip_whitespace(@e, :first_name)
+  end
+
+  test 'should strip whitespace in last_name' do
+    should_strip_whitespace(@e, :last_name)
   end
 
   test 'should allow save without password on update' do
@@ -34,7 +42,7 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_equal 'mallison', employee.user_name
   end
 
-  test 'should auto-increment user names' do
+  test 'should auto-increment user_name' do
     employee1 = Employee.create(first_name: 'Mike', last_name: 'Allison', password: 'asdfasdf', office_id: 1)
     employee2 = Employee.create(first_name: 'Matthew', last_name: 'Allison', password: 'asdfasdf', office_id: 2)
     assert_equal 'mallison1', employee2.user_name

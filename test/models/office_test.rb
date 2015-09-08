@@ -15,6 +15,10 @@ class OfficeTest < ActiveSupport::TestCase
     assert_not_blank(@o, :city_id)
   end
 
+  test 'should strip whitespace in name before save' do
+    should_strip_whitespace(@o, :name)
+  end
+
   test 'office_city_state_abbr' do
     assert_equal 'Maitland - Orlando, FL', @o.office_city_state_abbr
   end

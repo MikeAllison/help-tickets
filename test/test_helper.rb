@@ -16,4 +16,10 @@ class ActiveSupport::TestCase
     assert_not model.save, "Saved #{model.class.name.upcase} with a blank #{attr.upcase}."
   end
 
+  def should_strip_whitespace(model, attr)
+    model.send("#{attr}=", '   Test   Data   ')
+    model.save
+    assert_equal 'Test Data', model.send(attr), "Did not strip whitespace on #{model.class.name}.#{attr}"
+  end
+
 end
