@@ -7,18 +7,15 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a first name' do
-    @e.first_name = ''
-    assert_not @e.save
+    assert_not_blank(@e, :first_name)
   end
 
   test 'should not save without a last name' do
-    @e.last_name = ''
-    assert_not @e.save
+    assert_not_blank(@e, :last_name)
   end
 
   test 'should not save without an office id' do
-    @e.office_id = nil
-    assert_not @e.save
+    assert_not_blank(@e, :office_id)
   end
 
   test 'should not save without a password on create' do

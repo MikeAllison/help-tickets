@@ -10,4 +10,10 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def assert_not_blank(model, attr)
+    model.send("#{attr}=", '')
+    assert_not model.save, "Saved #{model.class.name.upcase} with a blank #{attr.upcase}."
+  end
+
 end

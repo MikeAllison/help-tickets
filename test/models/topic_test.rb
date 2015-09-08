@@ -7,8 +7,7 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a name' do
-    @t.name = ''
-    assert_not @t.save
+    assert_not_blank(@t, :name)
   end
 
   test 'create_slug' do

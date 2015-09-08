@@ -7,8 +7,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a name' do
-    @c.name = ''
-    assert_not @c.save
+    assert_not_blank(@c, :name)
   end
 
   test 'should not have duplicate city/states' do
@@ -23,8 +22,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a state_id' do
-    @c.state_id = nil
-    assert_not @c.save
+    assert_not_blank(@c, :state_id)
   end
 
 end

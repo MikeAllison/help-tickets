@@ -7,14 +7,12 @@ class OfficeTest < ActiveSupport::TestCase
     @o2 = offices(:fishermans)
   end
 
-  test 'name cannot be blank' do
-    @o.name = ''
-    assert_not @o.save
+  test 'should not save without a name' do
+    assert_not_blank(@o, :name)
   end
 
-  test 'city_id cannot be blank' do
-    @o.city_id = nil
-    assert_not @o.save
+  test 'should not save without a city_id' do
+    assert_not_blank(@o, :city_id)
   end
 
   test 'office_city_state_abbr' do

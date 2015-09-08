@@ -6,9 +6,8 @@ class CommentTest < ActiveSupport::TestCase
     @c = comments(:comment1)
   end
 
-  test 'comment cannot be blank' do
-    @c.body = ''
-    assert_not @c.save
+  test 'should not save without a body' do
+    assert_not_blank(@c, :body)
   end
 
   test 'default status_type should be normal' do
