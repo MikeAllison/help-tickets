@@ -12,20 +12,20 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'should not allow save of duplicate city/states' do
-    city2 = City.new(name: 'Orlando', state_id: states(:florida).id)
-    assert_not city2.save, 'Allowed save of duplicate city/state'
+    city = City.new(name: 'Orlando', state_id: states(:florida).id)
+    assert_not city.save, 'Allowed save of duplicate city/state'
   end
 
   test 'should be able to save same city with different state' do
-    city2 = City.new(name: 'Orlando', state_id: states(:texas).id)
-    assert city2.save
+    city = City.new(name: 'Orlando', state_id: states(:texas).id)
+    assert city.save
   end
 
   test 'should not save without a state_id' do
     assert_not_blank(@c, :state_id)
   end
 
-  test 'should strip whitespace in name before save' do
+  test 'should strip whitespace in name before saving' do
     should_strip_whitespace(@c, :name)
   end
 
@@ -34,9 +34,9 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'unhide' do
-    city2 = City.create(name: 'Tampa', state_id: states(:florida).id, hidden: true)
-    city2.unhide
-    assert_not city2.hidden
+    city = City.create(name: 'Tampa', state_id: states(:florida).id, hidden: true)
+    city.unhide
+    assert_not city.hidden
   end
 
   test 'create_slug' do

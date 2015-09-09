@@ -23,6 +23,12 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_not employee.save
   end
 
+  test 'should allow save without password on update' do
+    @e.first_name = 'Michael'
+    @e.password_digest = nil
+    assert @e.save
+  end
+
   test 'should strip whitespace in first_name' do
     should_strip_whitespace(@e, :first_name)
   end
@@ -31,15 +37,14 @@ class EmployeeTest < ActiveSupport::TestCase
     should_strip_whitespace(@e, :last_name)
   end
 
-  test 'should allow save without password on update' do
-    @e.first_name = 'Michael'
-    @e.password_digest = nil
-    assert @e.save
-  end
-
-  test 'should create user_name before_create' do
+  test 'should create user_name before saving' do
     employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
     assert_equal 'auser', employee.user_name
+  end
+
+  test 'set_user_name should strip whitespace' do
+    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
+    assert_equal 'flastname', employee.user_name
   end
 
   test 'should auto-increment user_name' do
@@ -48,25 +53,20 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_equal 'auser1', employee2.user_name
   end
 
-  test 'testing last_first' do
+  test 'last_first' do
     assert_equal 'Allison, Mike', @e.last_first
   end
 
-  test 'testing first_last' do
+  test 'first_last' do
     assert_equal 'Mike Allison', @e.first_last
   end
 
-  test 'set_user_name should strip whitespace' do
-    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
-    assert_equal 'flastname', employee.user_name
-  end
-
-  test 'should close tickets after employee is hidden' do
-    ticket = Ticket.create(creator_id: @e.id, description: 'Words', topic_id: 1)
+  test 'hide should close tickets after employee is hidden' do
+    ticket1 = Ticket.create(creator_id: @e.id, description: 'Words', topic_id: 1)
     ticket2 = Ticket.create(creator_id: @e.id, description: 'Words 2', topic_id: 2)
     @e.hide
     assert_equal true, @e.hidden
-    assert_equal true, ticket.reload.closed?
+    assert_equal true, ticket1.reload.closed?
     assert_equal true, ticket2.reload.closed?
   end
 
