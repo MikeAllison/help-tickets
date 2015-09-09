@@ -13,7 +13,7 @@ class CommentTest < ActiveSupport::TestCase
   test 'default status_type should be normal' do
     comment = Comment.new(body: 'Testing')
     comment.save
-    assert_equal true, comment.normal?
+    assert comment.normal?
   end
 
 end
