@@ -19,6 +19,12 @@ class TopicTest < ActiveSupport::TestCase
     should_strip_whitespace(@t, :name)
   end
 
+  test 'unhide' do
+    topic = Topic.create(name: 'Mouse', hidden: true)
+    topic.unhide
+    assert_not topic.hidden
+  end
+
   test 'create_slug' do
     @t.save
     assert_equal 'operating-system', @t.slug

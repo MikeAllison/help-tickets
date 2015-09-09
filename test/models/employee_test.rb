@@ -37,22 +37,6 @@ class EmployeeTest < ActiveSupport::TestCase
     should_strip_whitespace(@e, :last_name)
   end
 
-  test 'should create user_name before saving' do
-    employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
-    assert_equal 'auser', employee.user_name
-  end
-
-  test 'set_user_name should strip whitespace' do
-    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
-    assert_equal 'flastname', employee.user_name
-  end
-
-  test 'should auto-increment user_name' do
-    employee1 = Employee.create(first_name: 'A', last_name: 'User', password: 'asdfasdf', office_id: 1)
-    employee2 = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 2)
-    assert_equal 'auser1', employee2.user_name
-  end
-
   test 'last_first' do
     assert_equal 'Allison, Mike', @e.last_first
   end
@@ -68,6 +52,22 @@ class EmployeeTest < ActiveSupport::TestCase
     assert_equal true, @e.hidden
     assert_equal true, ticket1.reload.closed?
     assert_equal true, ticket2.reload.closed?
+  end
+
+  test 'should create user_name before saving' do
+    employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
+    assert_equal 'auser', employee.user_name
+  end
+
+  test 'set_user_name should strip whitespace' do
+    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
+    assert_equal 'flastname', employee.user_name
+  end
+
+  test 'should auto-increment user_name' do
+    employee1 = Employee.create(first_name: 'A', last_name: 'User', password: 'asdfasdf', office_id: 1)
+    employee2 = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 2)
+    assert_equal 'auser1', employee2.user_name
   end
 
 end

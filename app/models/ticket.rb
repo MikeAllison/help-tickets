@@ -2,8 +2,6 @@ class Ticket < ActiveRecord::Base
 
 	enum status: [:unassigned, :work_in_progress, :on_hold, :closed]
 
-	before_save :set_default_status
-
   has_many :attachments
   has_many :comments
   belongs_to :creator, class_name: 'Employee'
@@ -16,6 +14,8 @@ class Ticket < ActiveRecord::Base
 	validates_presence_of :topic_id, message: 'Please select a topic!'
 	validates_presence_of :description, message: 'Please enter a description of the problem!'
 
+	before_save :set_default_status
+	
   scope :no_descriptions, -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   scope :open,            -> { where.not('status = ?', 3) }
 
