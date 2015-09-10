@@ -26,6 +26,7 @@ group :development do
   gem 'lol_dba'
   gem 'bullet'
   gem 'meta_request'
+  gem 'minitest-reporters', '~> 1.1.0'
 end
 
 group :production do
