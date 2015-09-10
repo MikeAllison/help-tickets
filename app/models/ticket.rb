@@ -15,7 +15,7 @@ class Ticket < ActiveRecord::Base
 	validates_presence_of :description, message: 'Please enter a description of the problem!'
 
 	before_save :set_default_status
-	
+
   scope :no_descriptions, -> { select('id', 'creator_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   scope :open,            -> { where.not('status = ?', 3) }
 

@@ -3,3 +3,10 @@ mallison:
   last_name: Allison
   password_digest: asdfasdf
   office: orlando
+
+tech:
+  first_name: Technician
+  last_name: One
+  password_digest: asdfasdf
+  office: orlando
+  technician: true
