@@ -6,6 +6,10 @@ class CommentTest < ActiveSupport::TestCase
     @c = comments(:comment1)
   end
 
+  test 'test valid fixtures' do
+    assert @c.valid?
+  end
+
   test 'should not save without a body' do
     assert_not_blank(@c, :body)
   end

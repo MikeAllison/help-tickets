@@ -6,6 +6,10 @@ class TopicTest < ActiveSupport::TestCase
     @t = topics(:os)
   end
 
+  test 'test valid fixtures' do
+    assert @t.valid?
+  end
+
   test 'should not save without a name' do
     assert_not_blank(@t, :name)
   end

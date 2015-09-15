@@ -6,6 +6,10 @@ class EmployeeTest < ActiveSupport::TestCase
     @e = employees(:mallison)
   end
 
+  test 'test valid fixtures' do
+    assert @e.valid?
+  end
+
   test 'should not save without a first_name' do
     assert_not_blank(@e, :first_name)
   end

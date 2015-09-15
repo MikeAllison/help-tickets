@@ -7,6 +7,11 @@ class CityTest < ActiveSupport::TestCase
     @c2 = cities(:sanfran)
   end
 
+  test 'test valid fixtures' do
+    assert @c.valid?
+    assert @c2.valid?
+  end
+
   test 'should not save without a name' do
     assert_not_blank(@c, :name)
   end

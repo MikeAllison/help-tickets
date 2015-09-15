@@ -7,6 +7,11 @@ class OfficeTest < ActiveSupport::TestCase
     @o2 = offices(:fishermans)
   end
 
+  test 'test valid fixtures' do
+    assert @o.valid?
+    assert @o2.valid?
+  end
+
   test 'should not save without a name' do
     assert_not_blank(@o, :name)
   end

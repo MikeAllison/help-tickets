@@ -5,6 +5,9 @@ class TicketTest < ActiveSupport::TestCase
   def setup
     @t = tickets(:ticket1)
   end
+  test 'test valid fixtures' do
+    assert @t.valid?
+  end
 
   test 'should not save without a creator_id' do
     assert_not_blank(@t, :creator_id)
