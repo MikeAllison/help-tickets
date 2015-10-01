@@ -1,8 +1,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require "minitest/reporters"
-Minitest::Reporters.use!
+#require "minitest/reporters"
+#Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -12,6 +12,22 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def is_logged_in?
+    !session[:employee_id].nil?
+  end
+
+  def log_in(employee)
+    if integration_test?
+      post login_path, session: { user_name: employee.user_name, password: employee.password_digest }
+    else
+      session[:employee_id] = employee.id
+    end
+  end
+
+  def integration_test?
+    defined?(post_via_redirect)
+  end
 
   def assert_not_blank(model, attr)
     model.send("#{attr}=", '')

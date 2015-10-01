@@ -11,9 +11,6 @@ class TopicsController < ApplicationController
 		@topic = Topic.new
 	end
 
-	def edit
-	end
-
 	def create
 		@topic = Topic.new(topic_params)
 
@@ -29,6 +26,9 @@ class TopicsController < ApplicationController
 			@topic.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the topic.'
 			render 'new'
 		end
+	end
+
+	def edit
 	end
 
 	def update

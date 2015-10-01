@@ -1,10 +1,9 @@
 require 'test_helper'
 
-class TopicsControllerTest < ActionController::TestCase
+class EmployeesControllerTest < ActionController::TestCase
 
   def setup
-    @t = topics(:office)
-    @e = employees(:mallison)
+    @e = employees(:jvanallen)
   end
 
   test 'should require login to access' do
@@ -18,19 +17,19 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    get :edit, id: @t.slug
+    get :edit, id: @e.user_name
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    patch :update, id: @t.slug
+    patch :update, id: @e.user_name
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    put :update, id: @t.slug
+    put :update, id: @e.user_name
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    patch :hide, id: @t.slug
+    patch :hide, id: @e.user_name
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
   end
@@ -48,19 +47,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
 
-    get :edit, id: @t.slug
-    assert_redirected_to my_tickets_path
-    assert_equal 'That action requires technician rights!', flash[:danger]
-
-    patch :update, id: @t.slug
-    assert_redirected_to my_tickets_path
-    assert_equal 'That action requires technician rights!', flash[:danger]
-
-    put :update, id: @t.slug
-    assert_redirected_to my_tickets_path
-    assert_equal 'That action requires technician rights!', flash[:danger]
-
-    patch :hide, id: @t.slug
+    patch :hide, id: @e.user_name
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
   end

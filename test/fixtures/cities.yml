@@ -5,3 +5,8 @@ orlando:
 sanfran:
   name: San Francisco
   state: california
+
+miami:
+  name: Miami
+  state: florida
+  slug: miami

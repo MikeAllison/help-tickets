@@ -1,2 +1,6 @@
 os:
   name: 'Operating System'
+
+office:
+  name: 'Microsoft Office'
+  slug: 'microsoft-office'

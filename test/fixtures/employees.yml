@@ -4,6 +4,13 @@ mallison:
   password_digest: asdfasdf
   office: orlando
 
+jvanallen:
+  first_name: Jennifer
+  last_name: Van Allen
+  user_name: jvanallen
+  password_digest: asdfasdf
+  office: orlando
+
 tech:
   first_name: Technician
   last_name: One

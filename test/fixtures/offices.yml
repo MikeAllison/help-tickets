@@ -5,3 +5,8 @@ maitland:
 fishermans:
   name: Fisherman's Wharf
   city: sanfran
+
+downtownsf:
+  name: Downtown SF
+  city: sanfran
+  slug: downtown-sf
