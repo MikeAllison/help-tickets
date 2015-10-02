@@ -1,7 +1,10 @@
 mallison:
   first_name: Mike
   last_name: Allison
+  user_name: mallison
   password_digest: asdfasdf
+  active: true
+  technician: false
   office: orlando
 
 jvanallen:
@@ -9,11 +12,30 @@ jvanallen:
   last_name: Van Allen
   user_name: jvanallen
   password_digest: asdfasdf
+  active: true
+  technician: false
+  office: orlando
+
+inactive:
+  first_name: Inactive
+  last_name: Employee
+  user_name: iemployee
+  password_digest: asdfasdf
+  active: false
+  office: orlando
+
+nontech:
+  first_name: Non
+  last_name: Technician
+  user_name: ntechnician
+  password_digest: asdfasdf
+  technician: false
   office: orlando
 
 tech:
-  first_name: Technician
-  last_name: One
+  first_name: Yes
+  last_name: Technician
+  user_name: ytechnician
   password_digest: asdfasdf
-  office: orlando
   technician: true
+  office: orlando
