@@ -23,8 +23,6 @@ Rails.application.routes.draw do
 
     member do
       patch 'assign_to_me'
-      patch 'close'
-      patch 'reopen'
     end
 
     resources :comments, only: [:create]

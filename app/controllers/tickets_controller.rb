@@ -28,6 +28,9 @@ class TicketsController < ApplicationController
 		end
 	end
 
+	def edit
+  end
+
 	def update
 		if @ticket.update(ticket_params)
 			flash[:success] = 'Ticket was successfully updated!'

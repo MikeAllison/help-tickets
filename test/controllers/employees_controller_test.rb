@@ -38,7 +38,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    log_in(@nontech)
+    log_in(@nontech) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action
