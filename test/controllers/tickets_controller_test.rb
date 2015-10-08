@@ -54,38 +54,81 @@ class TicketsControllerTest < ActionController::TestCase
     assert_equal 'Please sign in.', flash[:danger]
   end
 
-  test 'should allow non-technician rights to access' do
-    log_in(@nontech) # test/test_helper.rb
-
-    get :my, status: 'my'
-    assert_response :success
-
-    get :new
-    assert_response :success
-
-    post :create, ticket: { creator: @nontech }
-    assert_response :success
-
-    get :edit, id: @t
-    assert_response :success
-
-    patch :update, id: @t, ticket: { description: 'Test' }
-    assert_redirected_to ticket_path
-
-    put :update, id: @t, ticket: { description: 'Test' }
-    assert_redirected_to ticket_path
-  end
-
-  test 'should require technician rights to access' do
-    log_in(@nontech) # test/test_helper.rb
+  test 'non-techs should be able to create a ticket for themself' do
 
   end
 
-  test 'should restrict to current employee or technician' do
-    log_in(@nontech) # test/test_helper.rb
+  test 'non-techs should be able to create on behalf of another person' do
 
-    # assert_redirected_to my_tickets_path
-    # assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
+
+  test 'non-techs should be able to see their own tickets' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to see others tickets' do
+
+  end
+
+  test 'non-techs SHOULD be able to edit their own ticket' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to edit others tickets' do
+
+  end
+
+  test 'non-techs should be able to close their own tickets' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to close their own tickets' do
+
+  end
+
+  test 'non-techs should be able to reopen their own closed tickets' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to reopen others closed tickets' do
+
+  end
+
+  test 'non-techs should be able to comment on their own tickets' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to comment on others tickets' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to access the assigned_to_me view' do
+
+  end
+
+  test 'techs should be able to access the assigned_to_me view' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to user assign_to_me' do
+
+  end
+
+  test 'non-techs SHOULD NOT be able to access any of the index views (Unassigned, Open, WIP, On Hold, Closed)' do
+
+  end
+
+  test 'techs should be able to see all tickets' do
+
+  end
+
+  test 'techs should be able to assign tickets to themself' do
+
+  end
+
+  test 'techs should be able to see their own tickets' do
+
+  end
+
 
 end

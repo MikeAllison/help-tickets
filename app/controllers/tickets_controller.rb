@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
 
 	before_action :restrict_to_technicians, only: [:index, :assigned_to_me, :assign_to_me]
-	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me, :close, :reopen]
+	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me]
 	before_action :restrict_to_technicians_or_creator, only: [:show]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 

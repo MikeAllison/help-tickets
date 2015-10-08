@@ -93,4 +93,25 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to new_employee_path
   end
 
+  test 'non-techs SHOULD NOT be able to edit other profiles' do
+    log_in(@nontech)
+    get :edit, id: @e
+    assert_redirected_to edit_employee_path(@nontech)
+    assert_equal 'You are not authorized to edit that employee!', flash[:danger]
+  end
+
+  test 'techs should be able to edit/update other profiles' do
+    log_in(@tech)
+    get :edit, id: @e
+    assert_response :success
+  end
+
+  test 'non-techs SHOULD NOT be able to update other profiles' do
+
+  end
+
+  test 'techs should be able to update other profiles' do
+
+  end
+
 end
