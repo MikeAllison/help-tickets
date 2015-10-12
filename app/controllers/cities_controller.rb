@@ -11,9 +11,6 @@ class CitiesController < ApplicationController
     @city = City.new
   end
 
-  def edit
-  end
-
   def create
     @city = City.new(city_params)
 
@@ -29,6 +26,9 @@ class CitiesController < ApplicationController
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
       render 'new'
     end
+  end
+
+  def edit
   end
 
   def update

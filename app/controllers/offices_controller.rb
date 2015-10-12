@@ -11,9 +11,6 @@ class OfficesController < ApplicationController
 		@office = Office.new
 	end
 
-	def edit
-	end
-
 	def create
 		@office = Office.new(office_params)
 
@@ -26,6 +23,9 @@ class OfficesController < ApplicationController
 		end
 	end
 
+	def edit
+	end
+	
 	def update
 		if @office.update(office_params)
 			flash[:success] = 'Office information updated!'

@@ -41,11 +41,13 @@ class CityTest < ActiveSupport::TestCase
   test 'unhide' do
     city = City.create(name: 'Tampa', state_id: states(:florida).id, hidden: true)
     city.unhide
+    city.reload
     assert_not city.hidden
   end
 
   test 'create_slug' do
     @c2.save
+    @c2.reload
     assert_equal 'san-francisco-ca', @c2.slug
   end
 

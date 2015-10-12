@@ -1,41 +1,35 @@
-mallison:
-  first_name: Mike
-  last_name: Allison
-  user_name: mallison
+tech_active:
+  first_name: Active
+  last_name: Technician
+  user_name: atechnician
   password_digest: asdfasdf
   active: true
-  technician: false
+  technician: true
   office: orlando
 
-jvanallen:
-  first_name: Jennifer
-  last_name: Van Allen
-  user_name: jvanallen
-  password_digest: asdfasdf
-  active: true
-  technician: false
-  office: orlando
-
-inactive:
+tech_inactive:
   first_name: Inactive
-  last_name: Employee
-  user_name: iemployee
+  last_name: Technician
+  user_name: itechnician
   password_digest: asdfasdf
   active: false
+  technician: true
   office: orlando
 
-nontech:
-  first_name: Non
-  last_name: Technician
-  user_name: ntechnician
+nontech_active:
+  first_name: Active
+  last_name: Nontech
+  user_name: anontech
   password_digest: asdfasdf
+  active: true
   technician: false
   office: orlando
 
-tech:
-  first_name: Yes
-  last_name: Technician
-  user_name: ytechnician
+nontech_inactive:
+  first_name: Inactive
+  last_name: Nontech
+  user_name: inontech
   password_digest: asdfasdf
-  technician: true
+  active: false
+  technician: false
   office: orlando

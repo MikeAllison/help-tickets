@@ -3,23 +3,23 @@ require 'test_helper'
 class EmployeeTest < ActiveSupport::TestCase
 
   def setup
-    @e = employees(:mallison)
+    @nontech_active = employees(:nontech_active)
   end
 
   test 'test valid fixtures' do
-    assert @e.valid?
+    assert @nontech_active.valid?
   end
 
   test 'should not save without a first_name' do
-    assert_not_blank(@e, :first_name)
+    assert_not_blank(@nontech_active, :first_name)
   end
 
   test 'should not save without a last_name' do
-    assert_not_blank(@e, :last_name)
+    assert_not_blank(@nontech_active, :last_name)
   end
 
   test 'should not save without an office_id' do
-    assert_not_blank(@e, :office_id)
+    assert_not_blank(@nontech_active, :office_id)
   end
 
   test 'should not save without a password on create' do
@@ -28,39 +28,46 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should allow save without password on update' do
-    @e.first_name = 'Michael'
-    @e.password_digest = nil
-    assert @e.save
+    @nontech_active.first_name = 'Test'
+    @nontech_active.password_digest = nil
+    assert @nontech_active.save
   end
 
   test 'should strip whitespace in first_name' do
-    should_strip_whitespace(@e, :first_name)
+    should_strip_whitespace(@nontech_active, :first_name)
   end
 
   test 'should strip whitespace in last_name' do
-    should_strip_whitespace(@e, :last_name)
+    should_strip_whitespace(@nontech_active, :last_name)
   end
 
   test 'last_first' do
-    assert_equal 'Allison, Mike', @e.last_first
+    assert_equal 'Nontech, Active', @nontech_active.last_first
   end
 
   test 'first_last' do
-    assert_equal 'Mike Allison', @e.first_last
+    assert_equal 'Active Nontech', @nontech_active.first_last
   end
 
   test 'hide should close tickets after employee is hidden' do
-    ticket1 = Ticket.create(creator_id: @e.id, description: 'Words', topic_id: 1)
-    ticket2 = Ticket.create(creator_id: @e.id, description: 'Words 2', topic_id: 2)
-    @e.hide
-    assert_equal true, @e.hidden
-    assert_equal true, ticket1.reload.closed?
-    assert_equal true, ticket2.reload.closed?
+    ticket1 = Ticket.create(creator_id: @nontech_active.id, description: 'Words', topic_id: 1)
+    ticket2 = Ticket.create(creator_id: @nontech_active.id, description: 'Words 2', topic_id: 2)
+    @nontech_active.hide
+    @nontech_active.reload
+    assert @nontech_active.hidden
+    assert ticket1.reload.closed?
+    assert ticket2.reload.closed?
   end
 
   test 'should create user_name before saving' do
     employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
     assert_equal 'auser', employee.user_name
+  end
+
+  test 'should not update user_name if it has not changed' do
+    @nontech_active.save
+    @nontech_active.reload
+    assert_equal 'anontech', @nontech_active.user_name
   end
 
   test 'set_user_name should strip whitespace' do

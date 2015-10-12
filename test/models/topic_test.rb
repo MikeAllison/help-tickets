@@ -26,11 +26,13 @@ class TopicTest < ActiveSupport::TestCase
   test 'unhide' do
     topic = Topic.create(name: 'Mouse', hidden: true)
     topic.unhide
+    topic.reload
     assert_not topic.hidden
   end
 
   test 'create_slug' do
     @t.save
+    @t.reload
     assert_equal 'operating-system', @t.slug
   end
 

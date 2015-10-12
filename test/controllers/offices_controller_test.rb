@@ -4,7 +4,7 @@ class OfficesControllerTest < ActionController::TestCase
 
   def setup
     @o = offices(:downtownsf)
-    @nontech = employees(:nontech)
+    @nontech_active = employees(:nontech_active)
   end
 
   test 'should require login to access' do
@@ -36,7 +36,7 @@ class OfficesControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    log_in(@nontech) # test/test_helper.rb
+    log_in(@nontech_active) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action

@@ -2,6 +2,7 @@ class EmployeesController < ApplicationController
 
   before_action :restrict_to_technicians, except: [:edit, :update]
   before_action :find_employee, only: [:edit, :update, :hide, :assigned_tickets]
+  before_action :restrict_to_technicians_or_current_employee, only: [:edit, :update]
   before_action :find_all_employees, only: [:new, :create]
 
   def index
@@ -24,15 +25,6 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
   end
 
-  def edit
-    if current_employee.technician? || @employee.id == current_employee.id
-      render 'edit'
-    else
-      flash[:danger] = 'You are not authorized to edit that employee!'
-      redirect_to edit_employee_path(current_employee)
-    end
-  end
-
   def create
     @employee = Employee.new(employee_params_technician)
 
@@ -45,9 +37,11 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
-    # This could probably be refactored
-    if current_employee.technician?
+    if technician?
       if @employee.update(employee_params_technician)
         flash[:success] = 'Employee profile updated!'
         redirect_to new_employee_path
@@ -60,7 +54,7 @@ class EmployeesController < ApplicationController
         flash[:success] = 'Employee profile updated!'
         redirect_to my_tickets_path
       else
-        flash.now[:danger] = 'There was a problem updating the employee.'
+        @employee.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem updating your profile.'
         render 'edit'
       end
     end
@@ -77,6 +71,13 @@ class EmployeesController < ApplicationController
   end
 
   private
+
+  def restrict_to_technicians_or_current_employee
+    unless technician? || @employee == current_employee
+      flash[:danger] = "You are not authorized to edit that employee's profile!"
+      redirect_to edit_employee_path(current_employee)
+    end
+  end
 
   def find_employee
     @employee = Employee.find_by!(user_name: params[:id])

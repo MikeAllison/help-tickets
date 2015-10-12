@@ -30,6 +30,7 @@ class OfficeTest < ActiveSupport::TestCase
 
   test 'create_slug' do
     @o2.save
+    @o2.reload
     assert_equal 'fishermans-wharf-san-francisco-ca', @o2.slug
   end
 
