@@ -3,24 +3,24 @@ require 'test_helper'
 class EmployeeTest < ActiveSupport::TestCase
 
   def setup
-    @nontech_active = employees(:nontech_active)
-    @nontech_inactive = employees(:nontech_inactive)
+    @active_nontech = employees(:nontech_active)
+    @inactive_nontech = employees(:nontech_inactive)
   end
 
   test 'test valid fixtures' do
-    assert @nontech_active.valid?
+    assert @active_nontech.valid?
   end
 
   test 'should not save without a fname' do
-    assert_not_blank(@nontech_active, :fname)
+    assert_not_blank(@active_nontech, :fname)
   end
 
   test 'should not save without a lname' do
-    assert_not_blank(@nontech_active, :lname)
+    assert_not_blank(@active_nontech, :lname)
   end
 
   test 'should not save without an office_id' do
-    assert_not_blank(@nontech_active, :office_id)
+    assert_not_blank(@active_nontech, :office_id)
   end
 
   test 'should not save without a password on create' do
@@ -29,33 +29,33 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should allow save without password on update' do
-    @nontech_active.fname = 'Test'
-    @nontech_active.password_digest = nil
-    assert @nontech_active.save
+    @active_nontech.fname = 'Test'
+    @active_nontech.password_digest = nil
+    assert @active_nontech.save
   end
 
   test 'should strip whitespace in fname' do
-    should_strip_whitespace(@nontech_active, :fname)
+    should_strip_whitespace(@active_nontech, :fname)
   end
 
   test 'should strip whitespace in lname' do
-    should_strip_whitespace(@nontech_active, :lname)
+    should_strip_whitespace(@active_nontech, :lname)
   end
 
   test 'last_first' do
-    assert_equal 'Nontech, Active', @nontech_active.last_first
+    assert_equal 'Nontech, Active', @active_nontech.last_first
   end
 
   test 'first_last' do
-    assert_equal 'Active Nontech', @nontech_active.first_last
+    assert_equal 'Active Nontech', @active_nontech.first_last
   end
 
   test 'hide should close tickets after employee is hidden' do
-    ticket1 = Ticket.create(creator_id: @nontech_active.id, description: 'Words', topic_id: 1)
-    ticket2 = Ticket.create(creator_id: @nontech_active.id, description: 'Words 2', topic_id: 2)
-    @nontech_active.hide
-    @nontech_active.reload
-    assert @nontech_active.hidden
+    ticket1 = Ticket.create(creator_id: @active_nontech.id, description: 'Words', topic_id: 1)
+    ticket2 = Ticket.create(creator_id: @active_nontech.id, description: 'Words 2', topic_id: 2)
+    @active_nontech.hide
+    @active_nontech.reload
+    assert @active_nontech.hidden
     assert ticket1.reload.closed?
     assert ticket2.reload.closed?
   end
