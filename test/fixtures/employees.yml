@@ -1,34 +1,34 @@
 tech_active:
-  first_name: Active
-  last_name: Technician
-  user_name: atechnician
+  fname: Active
+  lname: Technician
+  username: atechnician
   password_digest: asdfasdf
   active: true
   technician: true
   office: orlando
 
 tech_inactive:
-  first_name: Inactive
-  last_name: Technician
-  user_name: itechnician
+  fname: Inactive
+  lname: Technician
+  username: itechnician
   password_digest: asdfasdf
   active: false
   technician: true
   office: orlando
 
 nontech_active:
-  first_name: Active
-  last_name: Nontech
-  user_name: anontech
+  fname: Active
+  lname: Nontech
+  username: anontech
   password_digest: asdfasdf
   active: true
   technician: false
   office: orlando
 
 nontech_inactive:
-  first_name: Inactive
-  last_name: Nontech
-  user_name: inontech
+  fname: Inactive
+  lname: Nontech
+  username: inontech
   password_digest: asdfasdf
   active: false
   technician: false

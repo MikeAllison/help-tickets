@@ -4,18 +4,19 @@ class EmployeeTest < ActiveSupport::TestCase
 
   def setup
     @nontech_active = employees(:nontech_active)
+    @nontech_inactive = employees(:nontech_inactive)
   end
 
   test 'test valid fixtures' do
     assert @nontech_active.valid?
   end
 
-  test 'should not save without a first_name' do
-    assert_not_blank(@nontech_active, :first_name)
+  test 'should not save without a fname' do
+    assert_not_blank(@nontech_active, :fname)
   end
 
-  test 'should not save without a last_name' do
-    assert_not_blank(@nontech_active, :last_name)
+  test 'should not save without a lname' do
+    assert_not_blank(@nontech_active, :lname)
   end
 
   test 'should not save without an office_id' do
@@ -23,22 +24,22 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a password on create' do
-    employee = Employee.new(first_name: 'A', last_name: 'User', office_id: 1)
+    employee = Employee.new(fname: 'A', lname: 'User', office_id: 1)
     assert_not employee.save
   end
 
   test 'should allow save without password on update' do
-    @nontech_active.first_name = 'Test'
+    @nontech_active.fname = 'Test'
     @nontech_active.password_digest = nil
     assert @nontech_active.save
   end
 
-  test 'should strip whitespace in first_name' do
-    should_strip_whitespace(@nontech_active, :first_name)
+  test 'should strip whitespace in fname' do
+    should_strip_whitespace(@nontech_active, :fname)
   end
 
-  test 'should strip whitespace in last_name' do
-    should_strip_whitespace(@nontech_active, :last_name)
+  test 'should strip whitespace in lname' do
+    should_strip_whitespace(@nontech_active, :lname)
   end
 
   test 'last_first' do
@@ -59,26 +60,37 @@ class EmployeeTest < ActiveSupport::TestCase
     assert ticket2.reload.closed?
   end
 
-  test 'should create user_name before saving' do
-    employee = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 1)
-    assert_equal 'auser', employee.user_name
+  test 'should create username before saving' do
+    employee = Employee.create(fname: 'Another', lname: 'User', password: 'asdfasdf', office_id: 1)
+    assert_equal 'auser', employee.username
   end
 
-  test 'should not update user_name if it has not changed' do
-    @nontech_active.save
-    @nontech_active.reload
-    assert_equal 'anontech', @nontech_active.user_name
+  test 'username should strip whitespace' do
+    employee = Employee.create(fname:  '  First  ', lname: '  Last Name  ', password: 'asdfasdf', office_id: 1)
+    assert_equal 'flastname', employee.username
   end
 
-  test 'set_user_name should strip whitespace' do
-    employee = Employee.create(first_name:  '  First  ', last_name: '  Last Name  ', password: 'asdfasdf', office_id: 1)
-    assert_equal 'flastname', employee.user_name
+  test 'should auto-increment username' do
+    employee1 = Employee.create(fname: 'A', lname: 'User', password: 'asdfasdf', office_id: 1)
+    employee2 = Employee.create(fname: 'Another', lname: 'User', password: 'asdfasdf', office_id: 2)
+    assert_equal 'auser1', employee2.username
   end
 
-  test 'should auto-increment user_name' do
-    employee1 = Employee.create(first_name: 'A', last_name: 'User', password: 'asdfasdf', office_id: 1)
-    employee2 = Employee.create(first_name: 'Another', last_name: 'User', password: 'asdfasdf', office_id: 2)
-    assert_equal 'auser1', employee2.user_name
+  test 'should not update username if it has not changed' do
+    employee1 = Employee.create(fname: 'A', lname: 'User', password: 'asdfasdf', office_id: 1)
+    employee2 = Employee.create(fname: 'Another', lname: 'User', password: 'asdfasdf', office_id: 2)
+    employee2.active = true
+    employee2.save
+    employee2.reload
+    assert_equal 'auser1', employee2.username
+  end
+
+  test 'should not update username if it will stay the same after fname change' do
+    employee1 = Employee.create(fname: 'A', lname: 'User', password: 'asdfasdf', office_id: 1)
+    employee1.fname = 'Another'
+    employee1.save
+    employee1.reload
+    assert_equal 'auser', employee1.username
   end
 
 end

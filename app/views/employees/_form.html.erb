@@ -3,12 +3,12 @@
 <%= form_for @employee do |f| %>
 	<div class="row">
 		<div class="form-group col-md-4">
-			<%= f.label :first_name, 'First Name' %>
-		  <%= f.text_field :first_name, class: 'form-control', placeholder: 'Enter First Name' %>
+			<%= f.label :fname, 'First Name' %>
+		  <%= f.text_field :fname, class: 'form-control', placeholder: 'Enter First Name' %>
 		</div>
 		<div class="form-group col-md-4">
-		  <%= f.label :last_name, 'Last Name' %>
-		  <%= f.text_field :last_name, class: 'form-control', placeholder: 'Enter Last Name' %>
+		  <%= f.label :lname, 'Last Name' %>
+		  <%= f.text_field :lname, class: 'form-control', placeholder: 'Enter Last Name' %>
 		</div>
 		<div class="form-group col-md-4">
 		  <%= f.label :office_id %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808223337) do
+ActiveRecord::Schema.define(version: 20151013125636) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 20150808223337) do
   add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
 
   create_table "employees", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "fname"
+    t.string   "lname"
     t.integer  "office_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_name"
+    t.string   "username"
     t.string   "password_digest"
     t.boolean  "technician",      default: false
     t.boolean  "active",          default: false

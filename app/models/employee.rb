@@ -8,8 +8,8 @@ class Employee < ActiveRecord::Base
   has_many :comments
   belongs_to :office
 
-  validates_presence_of :first_name, message: 'Please enter a first name!'
-  validates_presence_of :last_name, message: 'Please enter a last name!'
+  validates_presence_of :fname, message: 'Please enter a first name!'
+  validates_presence_of :lname, message: 'Please enter a last name!'
   validates_presence_of :office_id, message: 'Please select an office!'
   validates_presence_of :password, message: 'Please enter a password!', on: :create
   #validates_presence_of :password_confirmation, message: 'Password Confirmation cannot be blank!', on: :create
@@ -19,20 +19,20 @@ class Employee < ActiveRecord::Base
   scope :technician, -> { where(technician: true) }
   scope :not_hidden, -> { where(hidden: false) }
 
-  set_whitespace_stripable_attributes :first_name, :last_name
+  set_whitespace_stripable_attributes :fname, :lname
 
-  before_save :set_user_name
+  before_save :set_username
 
   def to_param
-    user_name
+    username
   end
 
 	def last_first
-    "#{last_name}, #{first_name}"
+    "#{lname}, #{fname}"
 	end
 
 	def first_last
-    "#{first_name} #{last_name}"
+    "#{fname} #{lname}"
 	end
 
   def hide
@@ -44,17 +44,22 @@ class Employee < ActiveRecord::Base
 
   private
 
-  def set_user_name
-    first = first_name.gsub(/\s+/, '')
-    last = last_name.gsub(/\s+/, '')
-    user_name = f_last = "#{first[0]}#{last}".downcase
+  def username_may_change?
+    self.new_record? || self.fname_changed? || self.lname_changed?
+  end
+
+  def set_username
+    first = fname.gsub(/\s+/, '')
+    last = lname.gsub(/\s+/, '')
+    username = f_last = "#{first[0]}#{last}".downcase
     count = 0
 
-    while Employee.find_by(user_name: user_name).present?
-      user_name = "#{f_last}#{count += 1}"
+    if username_may_change?
+      while Employee.find_by(username: username).present? && (username != self.username)
+        username = "#{f_last}#{count += 1}"
+      end
+      self.username = username
     end
-
-    self.user_name = user_name
   end
 
 end

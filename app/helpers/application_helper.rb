@@ -39,9 +39,9 @@ module ApplicationHelper
     elsif params[:status] == 'work_in_progress'
       'Tickets In Progress'
     elsif params[:employee_id]
-      "Tickets for #{@employee.first_name} #{@employee.last_name}"
+      "Tickets for #{@employee.fname} #{@employee.lname}"
     elsif action_name == 'assigned_tickets'
-      "Tickets Assigned to #{@employee.first_name} #{@employee.last_name}"
+      "Tickets Assigned to #{@employee.fname} #{@employee.lname}"
     elsif controller_name == 'tickets' && action_name == 'edit'
       "Edit Ticket #{@ticket.id}"
     else

@@ -34,8 +34,8 @@ Topic.create([
 ])
 
 # Create standard user account
-Employee.create(last_name: 'Van Allen',
-                first_name: 'Jennifer',
+Employee.create(lname: 'Van Allen',
+                fname: 'Jennifer',
                 password: 'asdfasdf',
                 password_confirmation: 'asdfasdf',
                 office_id: 1,
@@ -45,24 +45,24 @@ Employee.create(last_name: 'Van Allen',
 # Create 4 specfic technician accounts
 Employee.create([
   {
-    last_name: 'Allison',
-    first_name: 'Mike',
+    lname: 'Allison',
+    fname: 'Mike',
     password: 'asdfasdf',
     password_confirmation: 'asdfasdf',
     office_id: 1,
     active: true,
     technician: true
   },{
-    last_name: 'Peyatt',
-    first_name: 'Justin',
+    lname: 'Peyatt',
+    fname: 'Justin',
     password: 'password',
     password_confirmation: 'password',
     office_id: 1,
     active: true,
     technician: true
   },{
-    last_name: 'Souza',
-    first_name: 'Carlos',
+    lname: 'Souza',
+    fname: 'Carlos',
     password: 'password',
     password_confirmation: 'password',
     office_id: 1,
@@ -73,8 +73,8 @@ Employee.create([
 
 # Create active technician users
 3.times do |i|
-  Employee.create(last_name: Faker::Name.last_name,
-                  first_name: Faker::Name.first_name,
+  Employee.create(lname: Faker::Name.last_name,
+                  fname: Faker::Name.first_name,
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -84,8 +84,8 @@ end
 
 # Create inactive technician users
 3.times do |i|
-  Employee.create(last_name: Faker::Name.last_name,
-                  first_name: Faker::Name.first_name,
+  Employee.create(lname: Faker::Name.last_name,
+                  fname: Faker::Name.first_name,
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(2..3),
@@ -95,11 +95,11 @@ end
 
 # Create active employees
 500.times do
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
+  lname = Faker::Name.last_name
+  fname = Faker::Name.first_name
 
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
+  Employee.create(lname: lname,
+                  fname: fname,
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),
@@ -109,11 +109,11 @@ end
 
 # Create inactive employees
 100.times do
-  last_name = Faker::Name.last_name
-  first_name = Faker::Name.first_name
+  lname = Faker::Name.last_name
+  fname = Faker::Name.first_name
 
-  Employee.create(last_name: last_name,
-                  first_name: first_name,
+  Employee.create(lname: lname,
+                  fname: fname,
                   password: 'password',
                   password_confirmation: 'password',
                   office_id: rand(1..4),

@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
 
   def log_in(employee)
     if integration_test?
-      post login_path, session: { user_name: employee.user_name, password: employee.password_digest }
+      post login_path, session: { username: employee.username, password: employee.password_digest }
     else
       session[:employee_id] = employee.id
     end

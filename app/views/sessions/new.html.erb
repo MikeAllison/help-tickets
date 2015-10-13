@@ -12,7 +12,7 @@
 				</button>
 			<% else %>
 				<p>
-					Hello, <%= current_employee.first_name %>!
+					Hello, <%= current_employee.fname %>!
 				</p>
 				<%= button_to 'Log Out', logout_path, method: 'delete', class: 'btn btn-danger btn-lg' %>
 			<% end %>

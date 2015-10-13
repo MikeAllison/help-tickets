@@ -5,14 +5,14 @@
 			<tr>
 				<th><%= sort_column 'ID', 'id' %></th>
 				<% if params[:status] != 'my' %>
-					<th><%= sort_column 'Requested For', 'employees.last_name', 'creator' %></th>
+					<th><%= sort_column 'Requested For', 'employees.lname', 'creator' %></th>
 				<% end %>
 				<th><%= sort_column 'Topic', 'topics.name', 'topic' %></th>
 				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
 				<% end %>
 				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-					<th><%= sort_column 'Assigned To', 'employees.last_name', 'technician' %></th>
+					<th><%= sort_column 'Assigned To', 'employees.lname', 'technician' %></th>
 				<% end %>
 				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
 				<% if params[:status] == 'closed' %>

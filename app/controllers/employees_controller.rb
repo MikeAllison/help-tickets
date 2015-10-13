@@ -80,7 +80,7 @@ class EmployeesController < ApplicationController
   end
 
   def find_employee
-    @employee = Employee.find_by!(user_name: params[:id])
+    @employee = Employee.find_by!(username: params[:id])
   end
 
   def find_all_employees
@@ -90,11 +90,11 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params_technician
-    params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id, :technician, :active, :hidden)
+    params.require(:employee).permit(:fname, :lname, :username, :password, :password_confirmation, :office_id, :technician, :active, :hidden)
   end
 
   def employee_params_restricted
-    params.require(:employee).permit(:first_name, :last_name, :user_name, :password, :password_confirmation, :office_id)
+    params.require(:employee).permit(:fname, :lname, :username, :password, :password_confirmation, :office_id)
   end
 
 end

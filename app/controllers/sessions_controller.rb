@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    employee = Employee.find_by(user_name: params[:session][:user_name].downcase)
+    employee = Employee.find_by(username: params[:session][:username].downcase)
 
     if employee && employee.authenticate(params[:session][:password]) && employee.active
       log_in employee

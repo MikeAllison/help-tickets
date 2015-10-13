@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 		<%= f.label :creator_id, 'Select Employee' %>
-		<%= f.collection_select(:creator_id, Employee.active.order(:last_name), :id, :last_first, {}, { class: 'form-control' }) %>
+		<%= f.collection_select(:creator_id, Employee.active.order(:lname), :id, :last_first, {}, { class: 'form-control' }) %>
 		</div>
 		<div class="form-group col-md-6">
 			<%= f.label :topic_id, 'Select Topic' %>
@@ -18,7 +18,7 @@
 		</div>
 		<div class="form-group col-md-6">
 			<%= f.label :technician_id, 'Assigned To' %>
-			<%= f.collection_select(:technician_id, Employee.active.technician.order(:last_name), :id, :last_first, { prompt: true, include_blank: '< Technician Not Assigned >' }, { class: 'form-control' }) %>
+			<%= f.collection_select(:technician_id, Employee.active.technician.order(:lname), :id, :last_first, { prompt: true, include_blank: '< Technician Not Assigned >' }, { class: 'form-control' }) %>
 		</div>
 	</div>
 	<div class="row">

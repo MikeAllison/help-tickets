@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     when 'tickets'
       sort_column = 'created_at'
     when 'employees'
-      sort_column = 'last_name'
+      sort_column = 'lname'
     when 'offices'
       sort_column = 'name'
     when 'topics'

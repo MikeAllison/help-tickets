@@ -2,8 +2,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="col-md-2"><%= sort_column 'Name', 'last_name' %></th>
-				<th class="col-md-2"><%= sort_column 'User Name', 'user_name' %></th>
+				<th class="col-md-2"><%= sort_column 'Name', 'lname' %></th>
+				<th class="col-md-2"><%= sort_column 'User Name', 'username' %></th>
 				<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
 				<th class="col-md-2 hidden-xs">Tickets Created</th>
 				<% if params[:status] == 'admin' %>
@@ -20,7 +20,7 @@
 						&nbsp;
 						<%= employee.last_first %>
 					</td>
-					<td class="col-md-2"><%= employee.user_name %></td>
+					<td class="col-md-2"><%= employee.username %></td>
 					<td class="col-md-2"><%= employee.office.name %></td>
 					<td class="col-md-2 hidden-xs">
 						<%= link_to employee_tickets_path(employee), title: 'Employee\'s Created Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>

@@ -78,7 +78,7 @@
 			<!-- Start Right Menu -->
 			<ul class="nav navbar-nav navbar-right">
 				<% if logged_in? %>
-					<li class="navbar-text hidden-xs">Hello, <%= current_employee.first_name %>&#33;</li>
+					<li class="navbar-text hidden-xs">Hello, <%= current_employee.fname %>&#33;</li>
 					<li><%= link_to 'Log Out', logout_path, method: 'delete' %></li>
 				<% end %>
 			</ul> <!-- End Right Menu -->

@@ -44,10 +44,10 @@ class TicketsController < ApplicationController
 	# Technician-only actions
 	def index
 		if params[:employee_id]
-			@employee = Employee.find_by!(user_name: params[:employee_id])
+			@employee = Employee.find_by!(username: params[:employee_id])
 			@tickets = Ticket.no_descriptions.where('creator_id = ?', @employee.id)
 		elsif params[:technician_id]
-			@employee = Employee.find_by!(user_name: params[:technician_id])
+			@employee = Employee.find_by!(username: params[:technician_id])
 			@tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
 		else
 			case params[:status]

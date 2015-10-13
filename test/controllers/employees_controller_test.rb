@@ -20,19 +20,19 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    get :edit, id: @nontech_active.user_name
+    get :edit, id: @nontech_active.username
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    patch :update, id: @nontech_active.user_name
+    patch :update, id: @nontech_active.username
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    put :update, id: @nontech_active.user_name
+    put :update, id: @nontech_active.username
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    patch :hide, id: @nontech_active.user_name
+    patch :hide, id: @nontech_active.username
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
   end
@@ -50,7 +50,7 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
 
-    patch :hide, id: @nontech_active.user_name
+    patch :hide, id: @nontech_active.username
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
   end
@@ -108,20 +108,20 @@ class EmployeesControllerTest < ActionController::TestCase
 
   test 'non-techs SHOULD NOT be able to update other profiles' do
     log_in(@nontech_active)
-    patch :update, id: @tech_active, employee: { first_name: 'Test' }
+    patch :update, id: @tech_active, employee: { fname: 'Test' }
     @tech_active.save
     @tech_active.reload
     assert_redirected_to edit_employee_path(@tech_active)
-    assert_equal 'Active', @tech_active.first_name
+    assert_equal 'Active', @tech_active.fname
   end
 
   test 'techs should be able to update other profiles' do
     log_in(@tech_active)
-    patch :update, id: @nontech_active, employee: { first_name: 'Test' }
+    patch :update, id: @nontech_active, employee: { fname: 'Test' }
     @nontech_active.save
     @nontech_active.reload
     assert_redirected_to new_employee_path
-    assert_equal 'Test', @nontech_active.first_name
+    assert_equal 'Test', @nontech_active.fname
   end
 
 end
