@@ -5,6 +5,7 @@ class TopicsControllerTest < ActionController::TestCase
   def setup
     @t = topics(:office)
     @active_nontech = employees(:nontech_active)
+    @active_tech = employees(:tech_active)
   end
 
   test 'should require login to access' do
@@ -63,6 +64,15 @@ class TopicsControllerTest < ActionController::TestCase
     patch :hide, id: @t.slug
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
+  end
+
+  test 'technicians can create topics' do
+    log_in(@active_tech)
+    assert_difference('Topic.count') do
+      post :create, topic: { name: 'Misc' }
+      assert_redirected_to new_topic_path
+      assert_equal 'Topic added!', flash[:success]
+    end
   end
 
 end

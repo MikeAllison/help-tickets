@@ -55,6 +55,15 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_equal 'That action requires technician rights!', flash[:danger]
   end
 
+  test 'technicians can create employees' do
+    log_in(@active_tech)
+    assert_difference('Employee.count') do
+      post :create, employee: { fname: 'Employee', lname: 'One', password: 'asdfsadf', password_confirmation:'asdfsadf', office_id: offices(:maitland).id, active: true, technician: true }
+      assert_redirected_to new_employee_path
+      assert_equal 'Employee added!', flash[:success]
+    end
+  end
+
   ### MOVE TESTS BELOW TO INTEGRATION TESTS ###
 
   test 'restrict changes to technician field for non-technicians' do

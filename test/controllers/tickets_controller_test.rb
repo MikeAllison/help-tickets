@@ -54,7 +54,10 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'non-techs should be able to create a ticket for themself' do
-
+    log_in(@active_tech)
+    assert_difference('Ticket.count') do
+      post :create, ticket: { employee_id: @active_tech.id, topic_id: topics(:os).id, description: 'Broken.' }
+    end
   end
 
   test 'non-techs should be able to create on behalf of another person' do

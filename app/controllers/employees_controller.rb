@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params_technician)
 
     if @employee.save
-      flash[:success] = 'Employee created!'
+      flash[:success] = 'Employee added!'
       redirect_to new_employee_path
     else
       @employee.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the employee.'

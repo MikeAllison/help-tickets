@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
 		@topic = Topic.new(topic_params)
 
 		if @topic.save
-			flash[:success] = 'Topic created!'
+			flash[:success] = 'Topic added!'
 			redirect_to new_topic_path
 		elsif Topic.exists?(name: @topic.name, hidden: true)
       @topic = Topic.find_by(name: @topic.name)

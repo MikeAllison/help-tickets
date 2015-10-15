@@ -5,6 +5,7 @@ class OfficesControllerTest < ActionController::TestCase
   def setup
     @o = offices(:downtownsf)
     @active_nontech = employees(:nontech_active)
+    @active_tech = employees(:tech_active)
   end
 
   test 'should require login to access' do
@@ -63,6 +64,15 @@ class OfficesControllerTest < ActionController::TestCase
     patch :hide, id: @o.slug
     assert_redirected_to my_tickets_path
     assert_equal 'That action requires technician rights!', flash[:danger]
+  end
+
+  test 'technicians can create offices' do
+    log_in(@active_tech)
+    assert_difference('Office.count') do
+      post :create, office: { name: 'Downtown', city_id: cities(:orlando).id }
+      assert_redirected_to new_office_path
+      assert_equal 'Office added!', flash[:success]
+    end
   end
 
 end

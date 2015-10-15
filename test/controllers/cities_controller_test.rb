@@ -66,4 +66,13 @@ class CitiesControllerTest < ActionController::TestCase
     assert_equal 'That action requires technician rights!', flash[:danger]
   end
 
+  test 'technicians can create cities' do
+    log_in(@active_tech)
+    assert_difference('City.count') do
+      post :create, city: { name: 'Springfield', state_id: states(:florida).id }
+      assert_redirected_to new_city_path
+      assert_equal 'City added!', flash[:success]
+    end
+  end
+
 end
