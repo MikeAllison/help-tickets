@@ -2,12 +2,11 @@ class TicketsController < ApplicationController
 
 	before_action :restrict_to_technicians, only: [:index, :assigned_to_me, :assign_to_me]
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me]
-	before_action :restrict_to_technicians_or_creator, only: [:show]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
 
 	# Non-Technician actions
 	def my
-		@tickets = Ticket.no_descriptions.where('creator_id = ?', current_employee.id)
+		@tickets = Ticket.no_descriptions.where('originator:active_tech = ?', current_employee.id)
 		@tickets = apply_joins_and_order(@tickets)
 		@tickets = apply_pagination(@tickets)
 	end
@@ -45,7 +44,7 @@ class TicketsController < ApplicationController
 	def index
 		if params[:employee_id]
 			@employee = Employee.find_by!(username: params[:employee_id])
-			@tickets = Ticket.no_descriptions.where('creator_id = ?', @employee.id)
+			@tickets = Ticket.no_descriptions.where('originator:active_tech = ?', @employee.id)
 		elsif params[:technician_id]
 			@employee = Employee.find_by!(username: params[:technician_id])
 			@tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
@@ -78,7 +77,7 @@ class TicketsController < ApplicationController
 
 	def assign_to_me
 		flash[:success] = "Ticket was assigned to you and set to 'Work in Progress.'"
-		@ticket.update(status: :work_in_progress, technician_id: current_employee.id)
+		@ticket.update(status: :work_in_progress, technician: current_employee)
 		redirect_to ticket_path
 	end
 
@@ -89,8 +88,22 @@ class TicketsController < ApplicationController
 
 	private
 
-	def restrict_to_technicians_or_creator
-		unless technician? || @ticket.creator_id == current_employee.id
+	def restrict_to_technicians
+		unless technician?
+			flash[:danger] = 'You are not authorized to view that ticket!'
+			redirect_to my_tickets_path
+		end
+	end
+
+	def restrict_to_orinator
+		unless @ticket.originator == current_employee
+			flash[:danger] = 'You are not authorized to view that ticket!'
+			redirect_to my_tickets_path
+		end
+	end
+
+	def restrict_to_submitter
+		unless @ticket.submitter == current_employee
 			flash[:danger] = 'You are not authorized to view that ticket!'
 			redirect_to my_tickets_path
 		end
@@ -104,13 +117,13 @@ class TicketsController < ApplicationController
 	# This would ideally not let you save if this is the case but can't get that...
 	# ...to work at the moment
 	def check_for_unassigned
-		if @ticket.technician_id != nil && @ticket.unassigned? && technician?
+		if @ticket.technician != nil && @ticket.unassigned? && technician?
 			flash[:danger] = "Ticket is assigned to a technician but status is set to 'Unassigned!'"
 		end
 	end
 
 	def ticket_params
-		params.require(:ticket).permit(:creator_id, :topic_id, :description, :technician_id, :status)
+		params.require(:ticket).permit(:originator_id, :submitter_id, :topic_id, :description, :technician_id, :status)
 	end
 
 end

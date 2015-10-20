@@ -5,8 +5,9 @@ class TicketsControllerTest < ActionController::TestCase
   def setup
     @topic = topics(:os)
     @t = tickets(:ticket1)
-    @active_nontech = employees(:nontech_active)
-    @active_tech = employees(:tech_active)
+    @active_nontech = employees(:active_nontech)
+    @active_nontech_2 = employees(:active_nontech_2)
+    @active_tech = employees(:active_tech)
   end
 
   test 'should require login to access' do
@@ -54,14 +55,23 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'non-techs should be able to create a ticket for themself' do
-    log_in(@active_tech)
+    log_in(@active_nontech)
     assert_difference('Ticket.count') do
-      post :create, ticket: { employee_id: @active_tech.id, topic_id: topics(:os).id, description: 'Broken.' }
+      post :create, ticket: { originator_id: @active_nontech.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
     end
+    t = Ticket.last
+    assert_equal @active_nontech.username, t.originator.username
+    assert_equal @active_nontech.username, t.submitter.username
   end
 
   test 'non-techs should be able to create on behalf of another person' do
-
+    log_in(@active_nontech)
+    assert_difference('Ticket.count') do
+      post :create, ticket: { originator_id: @active_nontech_2.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
+    end
+    t = Ticket.last
+    assert_equal @active_nontech_2.username, t.originator.username
+    assert_equal @active_nontech.username, t.submitter.username
   end
 
   test 'non-techs should be able to see their own tickets' do

@@ -3,7 +3,8 @@ class Employee < ActiveRecord::Base
 
   has_secure_password validations: false
 
-  has_many :created_tickets, class_name: 'Ticket', foreign_key: 'creator_id'
+  has_many :originated_tickets, class_name: 'Ticket', foreign_key: 'originator_id'
+  has_many :submitted_tickets, class_name: 'Ticket', foreign_key: 'submitter_id'
   has_many :assigned_tickets, class_name: 'Ticket', foreign_key: 'technician_id'
   has_many :comments
   belongs_to :office
@@ -37,7 +38,7 @@ class Employee < ActiveRecord::Base
 
   def hide
     self.transaction do
-      self.created_tickets.each { |ticket| ticket.closed! }
+      self.originated_tickets.each { |ticket| ticket.closed! }
       self.update(hidden: true)
     end
   end

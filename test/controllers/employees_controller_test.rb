@@ -3,10 +3,10 @@ require 'test_helper'
 class EmployeesControllerTest < ActionController::TestCase
 
   def setup
-    @active_tech = employees(:tech_active)
-    @inactive_tech = employees(:tech_inactive)
-    @active_nontech = employees(:nontech_active)
-    @inactive_nontech = employees(:nontech_inactive)
+    @active_tech = employees(:active_tech)
+    @inactive_tech = employees(:inactive_tech)
+    @active_nontech = employees(:active_nontech)
+    @inactive_nontech = employees(:inactive_nontech)
   end
 
   test 'should require login to access' do

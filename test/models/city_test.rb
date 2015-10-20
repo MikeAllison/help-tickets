@@ -17,16 +17,16 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'should not allow save of duplicate city/states' do
-    city = City.new(name: 'Orlando', state_id: states(:florida).id)
+    city = City.new(name: 'Orlando', state: states(:florida))
     assert_not city.save, 'Allowed save of duplicate city/state'
   end
 
   test 'should be able to save same city with different state' do
-    city = City.new(name: 'Orlando', state_id: states(:texas).id)
+    city = City.new(name: 'Orlando', state: states(:texas))
     assert city.save
   end
 
-  test 'should not save without a state_id' do
+  test 'should not save without a state' do
     assert_not_blank(@c, :state_id)
   end
 
@@ -39,7 +39,7 @@ class CityTest < ActiveSupport::TestCase
   end
 
   test 'unhide' do
-    city = City.create(name: 'Tampa', state_id: states(:florida).id, hidden: true)
+    city = City.create(name: 'Tampa', state: states(:florida), hidden: true)
     city.unhide
     city.reload
     assert_not city.hidden

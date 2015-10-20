@@ -3,8 +3,9 @@ require 'test_helper'
 class EmployeeTest < ActiveSupport::TestCase
 
   def setup
-    @active_nontech = employees(:nontech_active)
-    @inactive_nontech = employees(:nontech_inactive)
+    @active_nontech = employees(:active_nontech)
+    @active_nontech_2 = employees(:active_nontech_2)
+    @inactive_nontech = employees(:inactive_nontech)
   end
 
   test 'test valid fixtures' do
@@ -51,8 +52,8 @@ class EmployeeTest < ActiveSupport::TestCase
   end
 
   test 'hide should close tickets after employee is hidden' do
-    ticket1 = Ticket.create(creator_id: @active_nontech.id, description: 'Words', topic_id: 1)
-    ticket2 = Ticket.create(creator_id: @active_nontech.id, description: 'Words 2', topic_id: 2)
+    ticket1 = Ticket.create(originator: @active_nontech, submitter: @active_nontech, description: 'Words', topic_id: 1)
+    ticket2 = Ticket.create(originator: @active_nontech, submitter: @active_nontech_2, description: 'Words 2', topic_id: 2)
     @active_nontech.hide
     @active_nontech.reload
     assert @active_nontech.hidden

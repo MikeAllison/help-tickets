@@ -1,4 +1,5 @@
 ticket1:
-  creator: mallison
+  originator: mallison
+  submitter: mallison
   topic: os
   description: 'I have a problem with this.'

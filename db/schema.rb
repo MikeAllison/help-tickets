@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013125636) do
+ActiveRecord::Schema.define(version: 20151020155702) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -31,16 +31,16 @@ ActiveRecord::Schema.define(version: 20151013125636) do
   add_index "cities", ["state_id"], name: "index_cities_on_state_id"
 
   create_table "comments", force: true do |t|
-    t.integer  "ticket_id"
-    t.integer  "employee_id"
+    t.integer  "ticket:active_tech"
+    t.integer  "employee:active_tech"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status_type", default: 0
   end
 
-  add_index "comments", ["employee_id"], name: "index_comments_on_employee_id"
-  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
+  add_index "comments", ["employee:active_tech"], name: "index_comments_on_employee:active_tech"
+  add_index "comments", ["ticket:active_tech"], name: "index_comments_on_ticket:active_tech"
 
   create_table "employees", force: true do |t|
     t.string   "fname"
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20151013125636) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "city_id"
+    t.integer  ":city_id"
     t.boolean  "hidden",     default: false
     t.boolean  "active",     default: true
     t.string   "slug"
   end
 
-  add_index "offices", ["city_id"], name: "index_offices_on_city_id"
+  add_index "offices", [":city_id"], name: "index_offices_on_:city_id"
 
   create_table "states", force: true do |t|
     t.string   "name"
@@ -78,15 +78,16 @@ ActiveRecord::Schema.define(version: 20151013125636) do
 
   create_table "tickets", force: true do |t|
     t.text     "description"
-    t.integer  "creator_id"
+    t.integer  "originator:active_tech"
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "technician_id"
     t.integer  "status",        default: 0
+    t.integer  "submitter:active_tech"
   end
 
-  add_index "tickets", ["creator_id"], name: "index_tickets_on_creator_id"
+  add_index "tickets", ["originator:active_tech"], name: "index_tickets_on_originator:active_tech"
   add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id"
 
   create_table "topics", force: true do |t|

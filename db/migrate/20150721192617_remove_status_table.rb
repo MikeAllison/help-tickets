@@ -1,7 +1,7 @@
 class RemoveStatusTable < ActiveRecord::Migration
   def change
-    remove_index :tickets, :status_id
+    remove_index :tickets, :status:active_tech
     drop_table :statuses
-    remove_column :tickets, :status_id
+    remove_column :tickets, :status:active_tech
   end
 end

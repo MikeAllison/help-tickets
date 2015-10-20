@@ -4,8 +4,8 @@ class TopicsControllerTest < ActionController::TestCase
 
   def setup
     @t = topics(:office)
-    @active_nontech = employees(:nontech_active)
-    @active_tech = employees(:tech_active)
+    @active_nontech = employees(:active_nontech)
+    @active_tech = employees(:active_tech)
   end
 
   test 'should require login to access' do

@@ -5,7 +5,7 @@
 			<tr>
 				<th><%= sort_column 'ID', 'id' %></th>
 				<% if params[:status] != 'my' %>
-					<th><%= sort_column 'Requested For', 'employees.lname', 'creator' %></th>
+					<th><%= sort_column 'Requested For', 'employees.lname', 'originator' %></th>
 				<% end %>
 				<th><%= sort_column 'Topic', 'topics.name', 'topic' %></th>
 				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
@@ -28,7 +28,7 @@
 				<tr>
 					<td><%= ticket.id %></td>
 					<% if params[:status] != 'my' %>
-						<td><%= ticket.creator.last_first %></td>
+						<td><%= ticket.originator.last_first %></td>
 					<% end %>
 					<td><%= ticket.topic.name %></td>
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>

@@ -1,4 +1,4 @@
-tech_active:
+active_tech:
   fname: Active
   lname: Technician
   username: atechnician
@@ -7,7 +7,7 @@ tech_active:
   technician: true
   office: orlando
 
-tech_inactive:
+inactive_tech:
   fname: Inactive
   lname: Technician
   username: itechnician
@@ -16,7 +16,7 @@ tech_inactive:
   technician: true
   office: orlando
 
-nontech_active:
+active_nontech:
   fname: Active
   lname: Nontech
   username: anontech
@@ -25,7 +25,16 @@ nontech_active:
   technician: false
   office: orlando
 
-nontech_inactive:
+active_nontech_2:
+  fname: Active
+  lname: Nontech2
+  username: anontech2
+  password_digest: asdfasdf
+  active: true
+  technician: false
+  office: sanfran
+
+inactive_nontech:
   fname: Inactive
   lname: Nontech
   username: inontech

@@ -16,7 +16,7 @@ class OfficeTest < ActiveSupport::TestCase
     assert_not_blank(@o, :name)
   end
 
-  test 'should not save without a city_id' do
+  test 'should not save without a :city_id' do
     assert_not_blank(@o, :city_id)
   end
 
