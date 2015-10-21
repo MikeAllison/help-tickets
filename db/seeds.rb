@@ -13,10 +13,10 @@ City.create([
 ])
 
 Office.create([
-  {name: 'Downtown Orlando', :city_id: 1},
-  {name: 'Metrowest', :city_id: 1},
-  {name: 'Fisherman\'s Wharf', :city_id: 2},
-  {name: 'Central Austin', :city_id: 3}
+  {name: 'Downtown Orlando', city_id: 1},
+  {name: 'Metrowest', city_id: 1},
+  {name: 'Fisherman\'s Wharf', city_id: 2},
+  {name: 'Central Austin', city_id: 3}
 ])
 
 Topic.create([
@@ -126,7 +126,7 @@ end
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
-                originator:active_tech: 1,
+                originator_id: 1,
                 topic_id: rand(1..10),
                 status: rand(1..3),
                 created_at: time,
@@ -139,7 +139,7 @@ end
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
-                originator:active_tech: rand(1..600),
+                originator_id: rand(1..600),
                 topic_id: rand(1..10),
                 status: 0,
                 created_at: time,
@@ -151,7 +151,7 @@ end
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
-                originator:active_tech: rand(1..600),
+                originator_id: rand(1..600),
                 topic_id: rand(1..10),
                 status: rand(1..3),
                 created_at: time,
@@ -164,8 +164,8 @@ end
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
-                originator:active_tech: rand(1..600),
-                submitter:active_tech: rand(1..600),
+                originator_id: rand(1..600),
+                submitter_id: rand(1..600),
                 topic_id: rand(1..10),
                 status: 0,
                 created_at: time,
@@ -177,8 +177,8 @@ end
   time = Faker::Time.between(7.days.ago, 5.days.ago)
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
-                originator:active_tech: rand(1..600),
-                submitter:active_tech: rand(1..600),
+                originator_id: rand(1..600),
+                submitter_id: rand(1..600),
                 topic_id: rand(1..10),
                 status: rand(1..3),
                 created_at: time,
@@ -191,8 +191,8 @@ end
   time = Faker::Time.between(4.days.ago, 3.days.ago)
 
   Comment.create(body: Faker::Hacker.say_something_smart,
-                 employee:active_tech: rand(2..11),
-                 ticket:active_tech: rand(1..1000),
+                 employee_id: rand(2..11),
+                 ticket_id: rand(1..1000),
                  created_at: time,
                  updated_at: time)
 end
@@ -202,8 +202,8 @@ end
   time = Faker::Time.between(2.days.ago, Time.now)
 
   Comment.create(body: Faker::Hacker.say_something_smart,
-                 employee:active_tech: rand(2..600),
-                 ticket:active_tech: i,
+                 employee_id: rand(2..600),
+                 ticket_id: i,
                  status_type: :reopening,
                  created_at: time,
                  updated_at: time)

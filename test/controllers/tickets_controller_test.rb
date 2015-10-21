@@ -75,14 +75,23 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test 'non-techs should be able to see their own tickets' do
-
+    log_in(@active_nontech)
+    post :create, ticket: { originator_id: @active_nontech.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
+    t = Ticket.last
+    get :my, status: :my
+    assert_includes(assigns(:tickets), t)
+    get :show, id: t.id
+    assert_response :success
+    assert_includes(assigns(:tickets), t)
   end
 
   test 'non-techs SHOULD NOT be able to see others tickets' do
-
+    log_in(@active_nontech)
+    get :show, id: @t.id
+    assert_redirected_to my_tickets_path
   end
 
-  test 'non-techs SHOULD be able to edit their own ticket' do
+  test 'non-techs SHOULD be able to edit their own tickets' do
 
   end
 

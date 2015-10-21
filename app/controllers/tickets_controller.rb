@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
 
 	# Non-Technician actions
 	def my
-		@tickets = Ticket.no_descriptions.where('originator:active_tech = ?', current_employee.id)
+		@tickets = Ticket.no_descriptions.where('originator_id = ?', current_employee.id)
 		@tickets = apply_joins_and_order(@tickets)
 		@tickets = apply_pagination(@tickets)
 	end
