@@ -3,6 +3,7 @@ class TicketsController < ApplicationController
 	before_action :restrict_to_technicians, only: [:index, :assigned_to_me, :assign_to_me]
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
+	before_action :restrict_to_originator_or_technicians, only: [:show]
 
 	# Non-Technician actions
 	def my
@@ -88,22 +89,37 @@ class TicketsController < ApplicationController
 
 	private
 
+	def ticket_originator?
+		@ticket.originator == current_employee
+	end
+
+	def ticket_submitter?
+		@ticket.submitter == current_employee
+	end
+
 	def restrict_to_technicians
-		unless technician?
-			flash[:danger] = 'You are not authorized to view that ticket!'
+		unless technician? # SessionsHelper
+			flash[:danger] = 'You are not authorized to view that!'
 			redirect_to my_tickets_path
 		end
 	end
 
-	def restrict_to_orinator
-		unless @ticket.originator == current_employee
+	def restrict_to_originator
+		unless ticket_originator? # SessionsHelper
 			flash[:danger] = 'You are not authorized to view that ticket!'
 			redirect_to my_tickets_path
 		end
 	end
 
 	def restrict_to_submitter
-		unless @ticket.submitter == current_employee
+		unless ticket_submitter? # SessionsHelper
+			flash[:danger] = 'You are not authorized to view that ticket!'
+			redirect_to my_tickets_path
+		end
+	end
+
+	def restrict_to_originator_or_technicians
+		unless ticket_originator? || technician? # SessionsHelper
 			flash[:danger] = 'You are not authorized to view that ticket!'
 			redirect_to my_tickets_path
 		end

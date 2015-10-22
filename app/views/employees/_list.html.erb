@@ -23,8 +23,8 @@
 					<td class="col-md-2"><%= employee.username %></td>
 					<td class="col-md-2"><%= employee.office.name %></td>
 					<td class="col-md-2 hidden-xs">
-						<%= link_to employee_tickets_path(employee), title: 'Employee\'s Created Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
-							<%= employee.created_tickets.count %>
+						<%= link_to employee_tickets_path(employee), title: 'Employee\'s Submitted Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
+							<%= employee.submitted_tickets.count %>
 						<% end %>
 					</td>
 					<% if params[:status] == 'admin' %>

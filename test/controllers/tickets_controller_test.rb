@@ -59,6 +59,7 @@ class TicketsControllerTest < ActionController::TestCase
     assert_difference('Ticket.count') do
       post :create, ticket: { originator_id: @active_nontech.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
     end
+    assert_equal 'Ticket was successfully submitted!', flash[:success]
     t = Ticket.last
     assert_equal @active_nontech.username, t.originator.username
     assert_equal @active_nontech.username, t.submitter.username
@@ -69,6 +70,7 @@ class TicketsControllerTest < ActionController::TestCase
     assert_difference('Ticket.count') do
       post :create, ticket: { originator_id: @active_nontech_2.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
     end
+    assert_equal 'Ticket was successfully submitted!', flash[:success]
     t = Ticket.last
     assert_equal @active_nontech_2.username, t.originator.username
     assert_equal @active_nontech.username, t.submitter.username
@@ -76,27 +78,47 @@ class TicketsControllerTest < ActionController::TestCase
 
   test 'non-techs should be able to see their own tickets' do
     log_in(@active_nontech)
-    post :create, ticket: { originator_id: @active_nontech.id, submitter_id: @active_nontech.id, topic_id: topics(:os).id, description: 'Broken.' }
-    t = Ticket.last
     get :my, status: :my
-    assert_includes(assigns(:tickets), t)
-    get :show, id: t.id
     assert_response :success
-    assert_includes(assigns(:tickets), t)
+    assert_includes(assigns(:tickets), @t)
+    get :show, id: @t.id
+    assert_response :success
+    assert_includes(assigns(:tickets), @t)
   end
 
   test 'non-techs SHOULD NOT be able to see others tickets' do
-    log_in(@active_nontech)
+    log_in(@active_nontech_2)
     get :show, id: @t.id
     assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
 
   test 'non-techs SHOULD be able to edit their own tickets' do
+    log_in(@active_nontech)
+    get :edit, id: @t.id
+    assert_response :success
+  end
 
+  test 'non-techs SHOULD be able to update their own tickets'
+    log_in(@active_nontech)
+    patch :update, id: @t.id, ticket: { description: 'Test' }
+    assert_equal 'Ticket was successfully updated!', flash[:success]
+    @t.reload
+    assert_equal 'Test', @t.description
   end
 
   test 'non-techs SHOULD NOT be able to edit others tickets' do
+    log_in(@active_nontech_2)
+    get :edit, id: @t.id
+    assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to view that ticket!', flash[:danger]
+  end
 
+  test 'non-techs SHOULD NOT be able to update others tickets'
+    log_in(@active_nontech_2)
+    patch :update, id: @t.id, ticket: { description: 'Test' }
+    assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
 
   test 'non-techs should be able to close their own tickets' do

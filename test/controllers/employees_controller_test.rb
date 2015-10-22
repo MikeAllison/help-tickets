@@ -6,6 +6,7 @@ class EmployeesControllerTest < ActionController::TestCase
     @active_tech = employees(:active_tech)
     @inactive_tech = employees(:inactive_tech)
     @active_nontech = employees(:active_nontech)
+    @active_nontech_2 = employees(:active_nontech_2)
     @inactive_nontech = employees(:inactive_nontech)
   end
 
@@ -66,39 +67,57 @@ class EmployeesControllerTest < ActionController::TestCase
 
   ### MOVE TESTS BELOW TO INTEGRATION TESTS ###
 
-  test 'restrict changes to technician field for non-technicians' do
+  test 'non-technicians cannot make themself a technician' do
     log_in(@active_nontech)
     patch :update, id: @active_nontech, employee: { technician: true }
-    @active_nontech.save
+    assert_redirected_to my_tickets_path
+    # employee_params_restricted causes a silent failure (CHANGE)  
     @active_nontech.reload
     assert_not @active_nontech.technician, 'Non-technicians can change their technician status to true'
-    assert_redirected_to my_tickets_path
   end
 
-  test 'technicians can change technician field' do
+  test 'non-technicians cannot make others a technician' do
+    log_in(@active_nontech)
+    patch :update, id: @active_nontech_2, employee: { technician: true }
+    # employee_params_restricted causes a silent failure (CHANGE)
+    @active_nontech_2.reload
+    assert_not @active_nontech_2.technician, 'Non-technicians can make others a technician'
+    assert_redirected_to edit_employee_path(@active_nontech)
+  end
+
+  test 'technicians can change others technician field' do
     log_in(@active_tech)
     patch :update, id: @active_nontech, employee: { technician: true }
-    @active_nontech.save
+    assert_equal 'Employee profile updated!', flash[:success]
     @active_nontech.reload
-    assert @active_nontech.technician, 'Technicians cannot change employee technician status'
+    assert @active_nontech.technician, 'Technicians cannot change others technician status'
     assert_redirected_to new_employee_path
   end
 
-  test 'non-technicians cannot change their active field' do
+  test 'non-technicians cannot change their active status' do
     log_in(@active_nontech)
     patch :update, id: @active_nontech, employee: { active: false }
-    @active_nontech.save
+    assert_redirected_to my_tickets_path
+    # employee_params_restricted causes a silent failure (CHANGE)
     @active_nontech.reload
     assert @active_nontech.active, 'Non-technicians can change their active status'
-    assert_redirected_to my_tickets_path
   end
 
-  test 'technicians can change active field' do
+  test 'non-technicians cannot change others active status' do
+    log_in(@active_nontech)
+    patch :update, id: @active_nontech_2, employee: { active: false }
+    # employee_params_restricted causes a silent failure (CHANGE)
+    @active_nontech_2.reload
+    assert @active_nontech_2.active, 'Non-technicians can change others active status'
+    assert_redirected_to edit_employee_path(@active_nontech)
+  end
+
+  test 'technicians can change others active field' do
     log_in(@active_tech)
     patch :update, id: @inactive_nontech, employee: { active: true }
-    @inactive_nontech.save
+    assert_equal 'Employee profile updated!', flash[:success]
     @inactive_nontech.reload
-    assert @inactive_nontech.active, 'Technicians cannot change employee active status'
+    assert @inactive_nontech.active, 'Technicians cannot change others active status'
     assert_redirected_to new_employee_path
   end
 
@@ -118,7 +137,7 @@ class EmployeesControllerTest < ActionController::TestCase
   test 'non-techs SHOULD NOT be able to update other profiles' do
     log_in(@active_nontech)
     patch :update, id: @active_tech, employee: { fname: 'Test' }
-    @active_tech.save
+    assert_equal "You are not authorized to edit that employee's profile!", flash[:danger]
     @active_tech.reload
     assert_redirected_to edit_employee_path(@active_nontech)
     assert_equal 'Active', @active_tech.fname
@@ -127,7 +146,7 @@ class EmployeesControllerTest < ActionController::TestCase
   test 'techs should be able to update other profiles' do
     log_in(@active_tech)
     patch :update, id: @active_nontech, employee: { fname: 'Test' }
-    @active_nontech.save
+    assert_equal 'Employee profile updated!', flash[:success]
     @active_nontech.reload
     assert_redirected_to new_employee_path
     assert_equal 'Test', @active_nontech.fname
