@@ -29,11 +29,11 @@ class CommentsController < ApplicationController
   private
 
   def find_ticket
-    @ticket = Ticket.find(params[:ticket:active_tech])
+    @ticket = Ticket.find(params[:ticket_id])
   end
 
   def comment_params
-    params.require(:comment).permit(:ticket:active_tech, :employee_id, :body, :status_type)
+    params.require(:comment).permit(:ticket_id, :employee_id, :body, :status_type)
   end
 
 end

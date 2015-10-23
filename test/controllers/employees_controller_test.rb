@@ -71,7 +71,7 @@ class EmployeesControllerTest < ActionController::TestCase
     log_in(@active_nontech)
     patch :update, id: @active_nontech, employee: { technician: true }
     assert_redirected_to my_tickets_path
-    # employee_params_restricted causes a silent failure (CHANGE)  
+    # Fails slilently using strong params
     @active_nontech.reload
     assert_not @active_nontech.technician, 'Non-technicians can change their technician status to true'
   end
@@ -79,7 +79,7 @@ class EmployeesControllerTest < ActionController::TestCase
   test 'non-technicians cannot make others a technician' do
     log_in(@active_nontech)
     patch :update, id: @active_nontech_2, employee: { technician: true }
-    # employee_params_restricted causes a silent failure (CHANGE)
+    # Fails slilently using strong params
     @active_nontech_2.reload
     assert_not @active_nontech_2.technician, 'Non-technicians can make others a technician'
     assert_redirected_to edit_employee_path(@active_nontech)
@@ -98,7 +98,7 @@ class EmployeesControllerTest < ActionController::TestCase
     log_in(@active_nontech)
     patch :update, id: @active_nontech, employee: { active: false }
     assert_redirected_to my_tickets_path
-    # employee_params_restricted causes a silent failure (CHANGE)
+    # Fails slilently using strong params
     @active_nontech.reload
     assert @active_nontech.active, 'Non-technicians can change their active status'
   end
@@ -106,7 +106,7 @@ class EmployeesControllerTest < ActionController::TestCase
   test 'non-technicians cannot change others active status' do
     log_in(@active_nontech)
     patch :update, id: @active_nontech_2, employee: { active: false }
-    # employee_params_restricted causes a silent failure (CHANGE)
+    # Fails slilently using strong params
     @active_nontech_2.reload
     assert @active_nontech_2.active, 'Non-technicians can change others active status'
     assert_redirected_to edit_employee_path(@active_nontech)

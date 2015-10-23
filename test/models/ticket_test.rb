@@ -4,7 +4,10 @@ class TicketTest < ActiveSupport::TestCase
 
   def setup
     @t = tickets(:ticket1)
+    @active_nontech = employees(:active_nontech)
+    @active_nontech_2 = employees(:active_nontech_2)
   end
+
   test 'test valid fixtures' do
     assert @t.valid?
   end

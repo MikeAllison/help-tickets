@@ -21,18 +21,18 @@ class Ticket < ActiveRecord::Base
   scope :no_descriptions, -> { select('id', 'originator_id', 'submitter_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
   scope :open,            -> { where.not('status = ?', 3) }
 
-	def reopen(current_employee)
-		if current_employee.technician?
-			self.update(status: :work_in_progress, technician: current_employee)
+	def reopen(employee)
+		if employee.technician?
+			self.update(status: :work_in_progress, technician: employee)
 		else
 			self.update(status: :unassigned, technician: nil)
 		end
 	end
 
-	def close(current_employee)
+	def close(employee)
 		self.transaction do
 			self.closed!
-			self.update(technician: current_employee)	if current_employee.technician?
+			self.update(technician: employee)	if employee.technician?
 		end
 	end
 
