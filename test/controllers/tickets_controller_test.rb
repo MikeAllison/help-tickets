@@ -144,6 +144,15 @@ class TicketsControllerTest < ActionController::TestCase
   # end
 
   test 'non-techs should be able to comment on their own tickets' do
+    log_in(@active_tech)
+    get :show, id: @t.id
+    c = @t.comments.new
+    c.body = 'Test'
+    c.save
+    assert_redirected_to ticket_path(@t)
+    assert_equal 'Comment added!', flash[:success]
+    @t.reload
+    assert_equal 'Test', @t.comments.first.body
   end
 
   test 'non-techs SHOULD NOT be able to comment on others tickets' do
