@@ -4,7 +4,8 @@ class TicketsControllerTest < ActionController::TestCase
 
   def setup
     @topic = topics(:os)
-    @t = tickets(:ticket1)
+    @ticket_new = tickets(:ticket_new)
+    @ticket_unassigned
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
     @active_tech = employees(:active_tech)
@@ -21,15 +22,15 @@ class TicketsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    get :edit, id: @t
+    get :edit, id: @ticket_unassigned
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    patch :update, id: @t
+    patch :update, id: @ticket_unassigned
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    put :update, id: @t
+    put :update, id: @ticket_new
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
@@ -78,9 +79,11 @@ class TicketsControllerTest < ActionController::TestCase
 
   test 'non-techs should be able to see their own tickets' do
     log_in(@active_nontech)
+
     get :my, status: :my
     assert_response :success
     assert_includes(assigns(:tickets), @t)
+
     get :show, id: @t.id
     assert_response :success
     assert_includes(assigns(:tickets), @t)
@@ -99,19 +102,19 @@ class TicketsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'non-techs SHOULD NOT be able to edit others tickets' do
+    log_in(@active_nontech_2)
+    get :edit, id: @t.id
+    assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to view that ticket!', flash[:danger]
+  end
+
   test 'non-techs SHOULD be able to update their own tickets' do
     log_in(@active_nontech)
     patch :update, id: @t.id, ticket: { description: 'Test' }
     assert_equal 'Ticket was successfully updated!', flash[:success]
     @t.reload
     assert_equal 'Test', @t.description
-  end
-
-  test 'non-techs SHOULD NOT be able to edit others tickets' do
-    log_in(@active_nontech_2)
-    get :edit, id: @t.id
-    assert_redirected_to my_tickets_path
-    assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
 
   test 'non-techs SHOULD NOT be able to update others tickets' do
@@ -143,19 +146,33 @@ class TicketsControllerTest < ActionController::TestCase
   # test 'non-techs SHOULD NOT be able to reopen others closed tickets' do
   # end
 
-  test 'non-techs should be able to comment on their own tickets' do
-  end
-
-  test 'non-techs SHOULD NOT be able to comment on others tickets' do
-  end
+  # test 'non-techs should be able to comment on their own tickets' do
+  # end
+  #
+  # test 'non-techs SHOULD NOT be able to comment on others tickets' do
+  # end
 
   test 'non-techs SHOULD NOT be able to access the assigned_to_me view' do
+    log_in(@active_nontech)
+    get :assigned_to_me, status: :assigned_to_me
+    assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to view that!', flash[:danger]
   end
 
   test 'techs should be able to access the assigned_to_me view' do
+    log_in(@active_tech)
+    get :assigned_to_me, status: :assigned_to_me
+    assert_response :success
   end
 
-  test 'non-techs SHOULD NOT be able to user assign_to_me' do
+  test 'non-techs SHOULD NOT be able to use assign_to_me' do
+    log_in(@active_nontech)
+    patch :assign_to_me, id: @t.id
+    assert_redirected_to my_tickets_path
+    assert_equal 'You are not authorized to do that!', flash[:danger]
+    @t.reload
+    assert_equal :unassigned, @t.status
+    assert_nil @t.technician_id
   end
 
   test 'non-techs SHOULD NOT be able to access any of the index views (Unassigned, Open, WIP, On Hold, Closed)' do

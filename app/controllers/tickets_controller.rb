@@ -3,15 +3,16 @@ class TicketsController < ApplicationController
 	before_action :restrict_to_technicians, only: [:index, :assigned_to_me, :assign_to_me]
 	before_action :find_ticket, only: [:show, :edit, :update, :assign_to_me]
 	before_action :check_for_unassigned, only: [:show, :edit, :update]
-	before_action :restrict_to_originator_or_technicians, only: [:show]
+	before_action :restrict_to_originator_or_technicians, only: [:show, :edit, :update]
 
-	# Non-Technician actions
+	# Employee-specific actions
 	def my
 		@tickets = Ticket.no_descriptions.where('originator_id = ?', current_employee.id)
 		@tickets = apply_joins_and_order(@tickets)
 		@tickets = apply_pagination(@tickets)
 	end
 
+	# Mixed-rights actions
 	def new
 		@ticket = Ticket.new
 	end
@@ -26,6 +27,10 @@ class TicketsController < ApplicationController
 			@ticket.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem submitting the ticket.'
 			render 'new'
 		end
+	end
+
+	def show
+		@comment = Comment.new
 	end
 
 	def edit
@@ -82,11 +87,6 @@ class TicketsController < ApplicationController
 		redirect_to ticket_path
 	end
 
-	# Mixed-rights
-	def show
-		@comment = Comment.new
-	end
-
 	private
 
 	def ticket_originator?
@@ -99,7 +99,7 @@ class TicketsController < ApplicationController
 
 	def restrict_to_technicians
 		unless technician? # SessionsHelper
-			flash[:danger] = 'You are not authorized to view that!'
+			flash[:danger] = 'You are not authorized to do that!'
 			redirect_to my_tickets_path
 		end
 	end
