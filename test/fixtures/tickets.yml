@@ -1,8 +1,3 @@
-ticket_new:
-  originator: active_nontech
-  topic: os
-  description: 'I have a problem.'
-
 ticket_unassigned:
   originator: active_nontech
   submitter: active_nontech

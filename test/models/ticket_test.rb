@@ -3,13 +3,13 @@ require 'test_helper'
 class TicketTest < ActiveSupport::TestCase
 
   def setup
-    @ticket_new = tickets(:ticket_new)
     @ticket_unassigned = tickets(:ticket_unassigned)
     @ticket_hold = tickets(:ticket_hold)
     @ticket_wip = tickets(:ticket_wip)
     @ticket_closed = tickets(:ticket_closed)
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
+    @os = topics(:os)
   end
 
   test 'test valid fixtures' do
@@ -22,19 +22,19 @@ class TicketTest < ActiveSupport::TestCase
   end
 
   test 'should not save without a originator_id' do
-    assert_not_blank(@ticket_new, :originator_id)
+    assert_not_blank(@ticket_unassigned, :originator_id)
   end
 
   test 'should not save without a submitter_id' do
-    assert_not_blank(@ticket_new, :submitter_id)
+    assert_not_blank(@ticket_unassigned, :submitter_id)
   end
 
   test 'should not save without a topic_id' do
-    assert_not_blank(@ticket_new, :topic_id)
+    assert_not_blank(@ticket_unassigned, :topic_id)
   end
 
   test 'should not save without a description' do
-    assert_not_blank(@ticket_new, :description)
+    assert_not_blank(@ticket_unassigned, :description)
   end
 
   test 'reopening a ticket as an employee' do
@@ -63,14 +63,6 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_wip.reload
     assert @ticket_wip.closed?, 'ticket was not set to closed'
     assert_equal employees(:active_tech), @ticket_wip.technician, 'technician_id did not changed to the id of the closing tech'
-  end
-
-  test 'should set a submitter_id when created' do
-    current_employee = @active_nontech
-    ticket = Ticket.new(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os))
-    ticket.save
-    ticket.reload
-    assert_equal @active_nontech, ticket.submitter
   end
 
   test 'should set default status to 0 (unassigned)' do

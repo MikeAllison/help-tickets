@@ -3,9 +3,10 @@ require 'test_helper'
 class TicketsControllerTest < ActionController::TestCase
 
   def setup
-    @topic = topics(:os)
-    @ticket_new = tickets(:ticket_new)
-    @ticket_unassigned
+    @ticket_unassigned = tickets(:ticket_unassigned)
+    @ticket_hold = tickets(:ticket_hold)
+    @ticket_wip = tickets(:ticket_wip)
+    @ticket_closed = tickets(:ticket_closed)
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
     @active_tech = employees(:active_tech)
@@ -30,7 +31,7 @@ class TicketsControllerTest < ActionController::TestCase
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    put :update, id: @ticket_new
+    put :update, id: @ticket_unassigned
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
@@ -46,13 +47,20 @@ class TicketsControllerTest < ActionController::TestCase
       assert_equal 'Please sign in.', flash[:danger]
     end
 
-    patch :assign_to_me, id: @t
+    patch :assign_to_me, id: @ticket_unassigned
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
 
-    get :show, id: @t
+    get :show, id: @ticket_unassigned
     assert_redirected_to login_path
     assert_equal 'Please sign in.', flash[:danger]
+  end
+
+  test 'should set a submitter_id when created' do
+    log_in(@active_nontech)
+    Ticket.create(originator: employees(:active_nontech_2), description: 'Testing', topic: topics(:os))
+    ticket = Ticket.last
+    assert_equal @active_nontech.id, ticket.submitter_id
   end
 
   test 'non-techs should be able to create a ticket for themself' do
@@ -82,44 +90,44 @@ class TicketsControllerTest < ActionController::TestCase
 
     get :my, status: :my
     assert_response :success
-    assert_includes(assigns(:tickets), @t)
+    assert_includes(assigns(:tickets), @ticket_hold)
 
-    get :show, id: @t.id
+    get :show, id: @ticket_hold.id
     assert_response :success
-    assert_includes(assigns(:tickets), @t)
+    assert_includes(assigns(:tickets), @ticket_hold)
   end
 
   test 'non-techs SHOULD NOT be able to see others tickets' do
     log_in(@active_nontech_2)
-    get :show, id: @t.id
+    get :show, id: @ticket_hold.id
     assert_redirected_to my_tickets_path
     assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
 
   test 'non-techs SHOULD be able to edit their own tickets' do
     log_in(@active_nontech)
-    get :edit, id: @t.id
+    get :edit, id: @ticket_hold.id
     assert_response :success
   end
 
   test 'non-techs SHOULD NOT be able to edit others tickets' do
     log_in(@active_nontech_2)
-    get :edit, id: @t.id
+    get :edit, id: @ticket_hold.id
     assert_redirected_to my_tickets_path
     assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
 
   test 'non-techs SHOULD be able to update their own tickets' do
     log_in(@active_nontech)
-    patch :update, id: @t.id, ticket: { description: 'Test' }
+    patch :update, id: @ticket_hold.id, ticket: { description: 'Test' }
     assert_equal 'Ticket was successfully updated!', flash[:success]
-    @t.reload
-    assert_equal 'Test', @t.description
+    @ticket_hold.reload
+    assert_equal 'Test', @ticket_hold.description
   end
 
   test 'non-techs SHOULD NOT be able to update others tickets' do
     log_in(@active_nontech_2)
-    patch :update, id: @t.id, ticket: { description: 'Test' }
+    patch :update, id: @ticket_unassigned.id, ticket: { description: 'Test' }
     assert_redirected_to my_tickets_path
     assert_equal 'You are not authorized to view that ticket!', flash[:danger]
   end
@@ -146,23 +154,24 @@ class TicketsControllerTest < ActionController::TestCase
   # test 'non-techs SHOULD NOT be able to reopen others closed tickets' do
   # end
 
-  test 'non-techs should be able to comment on their own tickets' do
-    log_in(@active_tech)
-    get :show, id: @t.id
-    c = @t.comments.new
-    c.body = 'Test'
-    c.save
-    assert_redirected_to ticket_path(@t)
-    assert_equal 'Comment added!', flash[:success]
-    @t.reload
-    assert_equal 'Test', @t.comments.first.body
-  end
+  # This should probably be in comments controller testing
+  # test 'non-techs should be able to comment on their own tickets' do
+  #   log_in(@active_nontech)
+  #   get :show, id: @ticket_wip.id
+  #   c = @ticket_wip.comments.new
+  #   c.body = 'Test'
+  #   c.save
+  #   assert_redirected_to ticket_path(@ticket_wip)
+  #   assert_equal 'Comment added!', flash[:success]
+  #   @ticket_wip.reload
+  #   assert_equal 'Test', @ticket_wip.comments.first.body
+  # end
 
   test 'non-techs SHOULD NOT be able to access the assigned_to_me view' do
     log_in(@active_nontech)
     get :assigned_to_me, status: :assigned_to_me
     assert_redirected_to my_tickets_path
-    assert_equal 'You are not authorized to view that!', flash[:danger]
+    assert_equal 'You are not authorized to do that!', flash[:danger]
   end
 
   test 'techs should be able to access the assigned_to_me view' do
@@ -173,12 +182,12 @@ class TicketsControllerTest < ActionController::TestCase
 
   test 'non-techs SHOULD NOT be able to use assign_to_me' do
     log_in(@active_nontech)
-    patch :assign_to_me, id: @t.id
+    patch :assign_to_me, id: @ticket_unassigned.id
     assert_redirected_to my_tickets_path
     assert_equal 'You are not authorized to do that!', flash[:danger]
-    @t.reload
-    assert_equal :unassigned, @t.status
-    assert_nil @t.technician_id
+    @ticket_unassigned.reload
+    assert_equal 'unassigned', @ticket_unassigned.status
+    assert_nil @ticket_unassigned.technician_id
   end
 
   test 'non-techs SHOULD NOT be able to access any of the index views (Unassigned, Open, WIP, On Hold, Closed)' do

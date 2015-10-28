@@ -38,10 +38,6 @@ class Ticket < ActiveRecord::Base
 
 	private
 
-	def set_submitter
-		self.submitter = current_employee
-	end
-
   # Tickets can be submitted without a status and are set to 'Unassigned'
   def set_default_status
     self.unassigned! if self.status.nil?

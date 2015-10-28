@@ -19,6 +19,7 @@ class TicketsController < ApplicationController
 
 	def create
 		@ticket = Ticket.new(ticket_params)
+		@ticket.submitter = current_employee
 
 		if @ticket.save
 			flash[:success] = 'Ticket was successfully submitted!'
@@ -139,7 +140,7 @@ class TicketsController < ApplicationController
 	end
 
 	def ticket_params
-		params.require(:ticket).permit(:originator_id, :submitter_id, :topic_id, :description, :technician_id)
+		params.require(:ticket).permit(:originator_id, :topic_id, :description, :technician_id)
 	end
 
 end
