@@ -57,6 +57,8 @@ class TicketsController < ApplicationController
 			@tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
 		else
 			case params[:status]
+			when 'all'
+				@tickets = Ticket.no_descriptions
 			when 'open'
 				@tickets = Ticket.no_descriptions.open
 			when 'unassigned'
@@ -67,8 +69,6 @@ class TicketsController < ApplicationController
 				@tickets = Ticket.no_descriptions.on_hold
 			when 'closed'
 				@tickets = Ticket.no_descriptions.closed
-			else
-				@tickets = Ticket.no_descriptions
 			end
 		end
 

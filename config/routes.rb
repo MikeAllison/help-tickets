@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     delete  'logout'  => :destroy
   end
 
-  resources :tickets do
+  resources :tickets, except: [:index] do
     collection do
       get 'all'              => :index,          status: 'all'
       get 'my'               => :my,             status: 'my'

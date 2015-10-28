@@ -7,17 +7,16 @@ class TicketsControllerTest < ActionController::TestCase
     @ticket_hold = tickets(:ticket_hold)
     @ticket_wip = tickets(:ticket_wip)
     @ticket_closed = tickets(:ticket_closed)
+    @tech_ticket = tickets(:tech_ticket)
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
     @active_tech = employees(:active_tech)
   end
 
   test 'should require login to access' do
-    %i(index new).each do |action|
-      get action
-      assert_redirected_to login_path
-      assert_equal 'Please sign in.', flash[:danger]
-    end
+    get :new
+    assert_redirected_to login_path
+    assert_equal 'Please sign in.', flash[:danger]
 
     post :create
     assert_redirected_to login_path
@@ -41,7 +40,7 @@ class TicketsControllerTest < ActionController::TestCase
       assert_equal 'Please sign in.', flash[:danger]
     end
 
-    %w(all open unassigned work_in_progress hold on_hold closed).each do |status|
+    %w(all open unassigned work_in_progress on_hold closed).each do |status|
       get :index, status: status
       assert_redirected_to login_path
       assert_equal 'Please sign in.', flash[:danger]
@@ -95,6 +94,13 @@ class TicketsControllerTest < ActionController::TestCase
     get :show, id: @ticket_hold.id
     assert_response :success
     assert_includes(assigns(:tickets), @ticket_hold)
+  end
+
+  test 'techs should be able to see their own tickets' do
+    log_in(@active_tech)
+    get :my, status: :my
+    assert_response :success
+    assert_includes(assigns(:tickets), @tech_ticket)
   end
 
   test 'non-techs SHOULD NOT be able to see others tickets' do
@@ -180,7 +186,7 @@ class TicketsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'non-techs SHOULD NOT be able to use assign_to_me' do
+  test 'non-techs SHOULD NOT be able to assign tickets to themself' do
     log_in(@active_nontech)
     patch :assign_to_me, id: @ticket_unassigned.id
     assert_redirected_to my_tickets_path
@@ -190,16 +196,31 @@ class TicketsControllerTest < ActionController::TestCase
     assert_nil @ticket_unassigned.technician_id
   end
 
-  test 'non-techs SHOULD NOT be able to access any of the index views (Unassigned, Open, WIP, On Hold, Closed)' do
-  end
-
-  test 'techs should be able to see all tickets' do
-  end
-
   test 'techs should be able to assign tickets to themself' do
+    log_in(@active_tech)
+    patch :assign_to_me, id: @ticket_unassigned.id
+    assert_redirected_to ticket_path
+    assert_equal "Ticket was assigned to you and set to 'Work in Progress.'", flash[:success]
+    @ticket_unassigned.reload
+    assert_equal 'work_in_progress', @ticket_unassigned.status
+    assert_equal @active_tech.id, @ticket_unassigned.technician_id
   end
 
-  test 'techs should be able to see their own tickets' do
+  test 'non-techs SHOULD NOT be able to access any of the index views (All, Unassigned, Open, WIP, On Hold, Closed)' do
+    log_in(@active_nontech)
+    %i(all unassigned open work_in_progress on_hold closed).each do |status|
+      get :index, status: status
+      assert_redirected_to my_tickets_path
+      assert_equal 'You are not authorized to do that!', flash[:danger]
+    end
+  end
+
+  test 'techs should be able to see all ticket views (All Unassigned, Open, WIP, On Hold, Closed)' do
+    log_in(@active_tech)
+    %i(all unassigned open work_in_progress on_hold closed).each do |status|
+      get :index, status: status
+      assert_response :success
+    end
   end
 
 end

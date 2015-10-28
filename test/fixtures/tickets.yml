@@ -28,3 +28,10 @@ ticket_closed:
   topic: os
   description: 'I have a problem.'
   status: :closed
+
+tech_ticket:
+  originator: active_tech
+  submitter: active_tech
+  topic: os
+  description: 'I have a problem.'
+  status: :unassigned
