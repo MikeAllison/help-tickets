@@ -37,7 +37,7 @@ class CitiesControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    log_in(@active_nontech) # test/test_helper.rb
+    testing_log_in(@active_nontech) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action
@@ -67,7 +67,7 @@ class CitiesControllerTest < ActionController::TestCase
   end
 
   test 'technicians can create cities' do
-    log_in(@active_tech)
+    testing_log_in(@active_tech)
     assert_difference('City.count') do
       post :create, city: { name: 'Springfield', state_id: states(:florida).id }
       assert_redirected_to new_city_path

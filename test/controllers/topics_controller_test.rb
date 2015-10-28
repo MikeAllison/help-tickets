@@ -37,7 +37,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    log_in(@active_nontech) # test/test_helper.rb
+    testing_log_in(@active_nontech) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action
@@ -67,7 +67,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test 'technicians can create topics' do
-    log_in(@active_tech)
+    testing_log_in(@active_tech)
     assert_difference('Topic.count') do
       post :create, topic: { name: 'Misc' }
       assert_redirected_to new_topic_path
