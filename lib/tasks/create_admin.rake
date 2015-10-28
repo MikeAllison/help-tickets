@@ -6,7 +6,7 @@ namespace :db do
       lname: 'Admin',
       password: 'asdfasdf',
       password_confirmation: 'asdfasdf',
-      office: 1,
+      office_id: 1,
       technician: true,
       active: true
     )
