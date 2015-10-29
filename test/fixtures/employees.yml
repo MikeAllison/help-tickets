@@ -2,7 +2,7 @@ active_tech:
   fname: Active
   lname: Technician
   username: atechnician
-  password_digest: asdfasdf
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   active: true
   technician: true
   office: orlando
@@ -11,7 +11,7 @@ inactive_tech:
   fname: Inactive
   lname: Technician
   username: itechnician
-  password_digest: asdfasdf
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   active: false
   technician: true
   office: orlando
@@ -20,7 +20,7 @@ active_nontech:
   fname: Active
   lname: Nontech
   username: anontech
-  password_digest: asdfasdf
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   active: true
   technician: false
   office: orlando
@@ -29,7 +29,7 @@ active_nontech_2:
   fname: Active
   lname: Nontech2
   username: anontech2
-  password_digest: asdfasdf
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   active: true
   technician: false
   office: sanfran
@@ -38,7 +38,7 @@ inactive_nontech:
   fname: Inactive
   lname: Nontech
   username: inontech
-  password_digest: asdfasdf
+  password_digest: <%= BCrypt::Password.create('password', cost: 4) %>
   active: false
   technician: false
   office: orlando

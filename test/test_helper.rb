@@ -13,13 +13,9 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  def is_logged_in?
-    !session[:employee_id].nil?
-  end
-
-  def testing_log_in(employee)
+  def log_in_testenv(employee, password='password')
     if integration_test?
-      post login_path, session: { username: employee.username, password: employee.password_digest }
+      post login_path, session: { username: employee.username, password: password }
     else
       session[:employee_id] = employee.id
     end

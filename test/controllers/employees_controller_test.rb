@@ -4,7 +4,6 @@ class EmployeesControllerTest < ActionController::TestCase
 
   def setup
     @active_tech = employees(:active_tech)
-    @inactive_tech = employees(:inactive_tech)
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
     @inactive_nontech = employees(:inactive_nontech)
@@ -39,7 +38,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    testing_log_in(@active_nontech) # test/test_helper.rb
+    log_in_testenv(@active_nontech) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action
@@ -57,7 +56,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'technicians can create employees' do
-    testing_log_in(@active_tech)
+    log_in_testenv(@active_tech)
     assert_difference('Employee.count') do
       post :create, employee: { fname: 'Employee', lname: 'One', password: 'asdfsadf', password_confirmation:'asdfsadf', office_id: offices(:maitland).id, active: true, technician: true }
       assert_redirected_to new_employee_path
@@ -68,7 +67,7 @@ class EmployeesControllerTest < ActionController::TestCase
   ### MOVE TESTS BELOW TO INTEGRATION TESTS ###
 
   test 'non-technicians cannot make themself a technician' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     patch :update, id: @active_nontech, employee: { technician: true }
     assert_redirected_to my_tickets_path
     # Fails slilently using strong params
@@ -77,7 +76,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'non-technicians cannot make others a technician' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     patch :update, id: @active_nontech_2, employee: { technician: true }
     # Fails slilently using strong params
     @active_nontech_2.reload
@@ -86,7 +85,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'technicians can change others technician field' do
-    testing_log_in(@active_tech)
+    log_in_testenv(@active_tech)
     patch :update, id: @active_nontech, employee: { technician: true }
     assert_equal 'Employee profile updated!', flash[:success]
     @active_nontech.reload
@@ -95,7 +94,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'non-technicians cannot change their active status' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     patch :update, id: @active_nontech, employee: { active: false }
     assert_redirected_to my_tickets_path
     # Fails slilently using strong params
@@ -104,7 +103,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'non-technicians cannot change others active status' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     patch :update, id: @active_nontech_2, employee: { active: false }
     # Fails slilently using strong params
     @active_nontech_2.reload
@@ -113,7 +112,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'technicians can change others active field' do
-    testing_log_in(@active_tech)
+    log_in_testenv(@active_tech)
     patch :update, id: @inactive_nontech, employee: { active: true }
     assert_equal 'Employee profile updated!', flash[:success]
     @inactive_nontech.reload
@@ -122,20 +121,20 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'non-techs SHOULD NOT be able to edit other profiles' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     get :edit, id: @active_tech
     assert_redirected_to edit_employee_path(@active_nontech)
     assert_equal "You are not authorized to edit that employee's profile!", flash[:danger]
   end
 
   test 'techs should be able to edit other profiles' do
-    testing_log_in(@active_tech)
+    log_in_testenv(@active_tech)
     get :edit, id: @active_nontech
     assert_response :success
   end
 
   test 'non-techs SHOULD NOT be able to update other profiles' do
-    testing_log_in(@active_nontech)
+    log_in_testenv(@active_nontech)
     patch :update, id: @active_tech, employee: { fname: 'Test' }
     assert_equal "You are not authorized to edit that employee's profile!", flash[:danger]
     @active_tech.reload
@@ -144,7 +143,7 @@ class EmployeesControllerTest < ActionController::TestCase
   end
 
   test 'techs should be able to update other profiles' do
-    testing_log_in(@active_tech)
+    log_in_testenv(@active_tech)
     patch :update, id: @active_nontech, employee: { fname: 'Test' }
     assert_equal 'Employee profile updated!', flash[:success]
     @active_nontech.reload

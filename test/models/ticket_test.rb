@@ -7,8 +7,6 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_hold = tickets(:ticket_hold)
     @ticket_wip = tickets(:ticket_wip)
     @ticket_closed = tickets(:ticket_closed)
-    @active_nontech = employees(:active_nontech)
-    @active_nontech_2 = employees(:active_nontech_2)
     @os = topics(:os)
   end
 
@@ -17,8 +15,6 @@ class TicketTest < ActiveSupport::TestCase
     assert @ticket_hold.valid?
     assert @ticket_wip.valid?
     assert @ticket_closed.valid?
-    assert @active_nontech.valid?
-    assert @active_nontech_2.valid?
   end
 
   test 'should not save without a originator_id' do
