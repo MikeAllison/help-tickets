@@ -3,7 +3,6 @@ require 'test_helper'
 class CommentsControllerTest < ActionController::TestCase
 
   def setup
-
   end
 
   # test 'non-techs should be able to comment on their own open tickets' do

@@ -27,6 +27,8 @@ group :development do
   gem 'bullet'
   gem 'meta_request'
   #gem 'minitest-reporters', '~> 1.1.0'
+  gem 'capybara', '~> 2.5'
+  gem 'selenium-webdriver', '~> 2.48', '>= 2.48.1'
 end
 
 group :production do
