@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
       @employees = Employee.active.not_hidden
     when 'inactive'
       @employees = Employee.inactive.not_hidden
-    when 'technician'
+    when 'technicians'
       @employees = Employee.technician.not_hidden
     else
       @employees = Employee.not_hidden

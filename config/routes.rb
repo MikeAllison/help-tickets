@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get 'all'        => :index
       get 'active'     => :index, status: 'active'
       get 'inactive'   => :index, status: 'inactive'
-      get 'technician' => :index, status: 'technician'
+      get 'technicians' => :index, status: 'technicians'
     end
 
     member do
