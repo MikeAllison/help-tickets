@@ -9,8 +9,13 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     @inactive_tech = employees(:inactive_tech)
   end
 
-  test 'active non-techs log in and out' do
+  test 'active non-techs can log in and out' do
     integration_login(@active_nontech)
+    click_link('Log Out')
+  end
+
+  test 'active techs can log in and out' do
+    integration_login(@active_tech)
     click_link('Log Out')
   end
 
@@ -19,19 +24,14 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert page.has_css?('.alert', /Invalid credentials!/)
   end
 
-  test 'inactive non-techs cannot log in' do
-    integration_login(@inactive_nontech)
-    assert page.has_css?('.alert', /Your account is currently inactive!/)
-  end
-
-  test 'active techs log in and out' do
-    integration_login(@active_tech)
-    click_link('Log Out')
-  end
-
   test 'active techs cannot log in with a bad password' do
     integration_login(@active_tech, 'badpassword')
     assert page.has_css?('.alert', /Invalid credentials!/)
+  end
+
+  test 'inactive non-techs cannot log in' do
+    integration_login(@inactive_nontech)
+    assert page.has_css?('.alert', /Your account is currently inactive!/)
   end
 
   test 'inactive techs cannot log in' do
