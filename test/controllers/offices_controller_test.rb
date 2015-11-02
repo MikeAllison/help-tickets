@@ -37,7 +37,7 @@ class OfficesControllerTest < ActionController::TestCase
   end
 
   test 'should require technician rights to access' do
-    log_in_testenv(@active_nontech) # test/test_helper.rb
+    functional_log_in(@active_nontech) # test/test_helper.rb
 
     %i(index new).each do |action|
       get action
@@ -67,7 +67,7 @@ class OfficesControllerTest < ActionController::TestCase
   end
 
   test 'technicians can create offices' do
-    log_in_testenv(@active_tech)
+    functional_log_in(@active_tech)
     assert_difference('Office.count') do
       post :create, office: { name: 'Downtown', city_id: cities(:orlando).id }
       assert_redirected_to new_office_path

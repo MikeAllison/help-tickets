@@ -10,6 +10,20 @@ class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   Capybara.default_driver = :selenium
+
+  def integration_login(user, password='password')
+    visit('/')
+
+    within('.jumbotron') do
+      click_button 'Log In'
+    end
+
+    within('#loginModal') do
+      fill_in 'User Name', with: user.username
+      fill_in 'Password', with: password
+      click_button 'Log In'
+    end
+  end
 end
 
 class ActiveSupport::TestCase
@@ -21,16 +35,8 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  def log_in_testenv(employee, password='password')
-    if integration_test?
-      post login_path, session: { username: employee.username, password: password }
-    else
-      session[:employee_id] = employee.id
-    end
-  end
-
-  def integration_test?
-    defined?(post_via_redirect)
+  def functional_log_in(employee)
+    session[:employee_id] = employee.id
   end
 
   def assert_not_blank(model, attr)

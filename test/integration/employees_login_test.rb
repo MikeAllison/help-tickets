@@ -10,17 +10,37 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   end
 
   test 'active non-techs log in and out' do
-    visit('/')
+    integration_login(@active_nontech)
+    click_link('Log Out')
+  end
 
-    within('.jumbotron') do
-      click_button 'Log In'
-    end
+  test 'active non-techs cannot log in with a bad password' do
+    integration_login(@active_nontech, 'badpassword')
+    assert page.has_css?('.alert', /Invalid credentials!/)
+  end
 
-    within('#loginModal') do
-      fill_in 'User Name', with: @active_nontech.username
-      fill_in 'Password', with: 'password'
-      click_button 'Log In'
-    end
+  test 'inactive non-techs cannot log in' do
+    integration_login(@inactive_nontech)
+    assert page.has_css?('.alert', /Your account is currently inactive!/)
+  end
+
+  test 'active techs log in and out' do
+    integration_login(@active_tech)
+    click_link('Log Out')
+  end
+
+  test 'active techs cannot log in with a bad password' do
+    integration_login(@active_tech, 'badpassword')
+    assert page.has_css?('.alert', /Invalid credentials!/)
+  end
+
+  test 'inactive techs cannot log in' do
+    integration_login(@inactive_tech)
+    assert page.has_css?('.alert', /Your account is currently inactive!/)
+  end
+
+  test 'non-techs are redirected correctly after login' do
+    integration_login(@active_nontech)
 
     assert page.has_css?('.alert', text: /You are logged in!/)
     assert page.has_text?(/My Tickets/)
@@ -29,23 +49,14 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert page.has_link?('My Tickets', href: /tickets\/my/)
     assert page.has_link?('My Account', href: /employees\/#{@active_nontech.username}\/edit/)
     assert page.has_link?('Create Ticket', href: /tickets\/new/)
+
     assert page.has_link?('Log Out', href: /logout/)
 
     click_link('Log Out')
   end
 
-  test 'active techs log in' do
-    visit('/')
-
-    within('.jumbotron') do
-      click_button 'Log In'
-    end
-
-    within('#loginModal') do
-      fill_in 'User Name', with: @active_tech.username
-      fill_in 'Password', with: 'password'
-      click_button 'Log In'
-    end
+  test 'active techs are redirected correctly after login' do
+    integration_login(@active_tech)
 
     assert page.has_css?('.alert', text: /You are logged in!/)
     assert page.has_text?(/Tickets Assigned To Me/)
@@ -65,7 +76,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?('Employees', href: /#/)
     click_link('Employees')
-    #assert page.has_link?('Add Employees', href: /employees\/add/)
+    assert page.has_link?('Add Employees', href: /employees\/new/)
     assert page.has_link?('All', href: /employees\/all/)
     assert page.has_link?('Active', href: /employees\/active/)
     assert page.has_link?('Inactive', href: /employees\/inactive/)
@@ -73,7 +84,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?('Topics', href: /#/)
     click_link('Topics')
-    #assert page.has_link?('Add Topics', href: /topics\/add/)
+    assert page.has_link?('Add Topics', href: /topics\/new/)
     assert page.has_link?('All Topics', href: /topics/)
 
     assert page.has_link?('Locations', href: /#/)

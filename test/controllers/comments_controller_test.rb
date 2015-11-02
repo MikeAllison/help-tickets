@@ -6,7 +6,7 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   # test 'non-techs should be able to comment on their own open tickets' do
-  #   log_in_testenv(@active_tech)
+  #   functional_log_in(@active_tech)
   #
   #   post :create, comment: { body: 'Test', ticket: @ticket_unassigned }
   #   assert_equal 'Comment added!', flash[:success]
@@ -20,14 +20,14 @@ class CommentsControllerTest < ActionController::TestCase
 
   # NOT CORRECT - Closing of a ticket is initiated in CommentsController
   # test 'non-techs should be able to close their own tickets' do
-  #   log_in_testenv(@active_tech)
+  #   functional_log_in(@active_tech)
   #   @t.close(@active_nontech)
   #   @t.reload
   #   assert @t.closed?
   # end
   #
   # test 'non-techs SHOULD NOT be able to close others tickets' do
-  #   log_in_testenv(@active_tech)
+  #   functional_log_in(@active_tech)
   #   @t.close(@active_nontech_2)
   #   @t.reload
   #   assert !@t.closed?
