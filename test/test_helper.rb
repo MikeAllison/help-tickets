@@ -9,7 +9,7 @@ require 'capybara/rails'
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  Capybara.default_driver = :selenium
+  #Capybara.default_driver = :selenium
 
   def integration_login(user, password='password')
     visit('/')
@@ -23,6 +23,10 @@ class ActionDispatch::IntegrationTest
       fill_in 'Password', with: password
       click_button 'Log In'
     end
+  end
+
+  def logout!
+    click_link 'Log Out'
   end
 end
 

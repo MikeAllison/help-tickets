@@ -11,32 +11,32 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
   test 'active non-techs can log in and out' do
     integration_login(@active_nontech)
-    click_link('Log Out')
+    logout!
   end
 
   test 'active techs can log in and out' do
     integration_login(@active_tech)
-    click_link('Log Out')
+    logout!
   end
 
   test 'active non-techs cannot log in with a bad password' do
     integration_login(@active_nontech, 'badpassword')
-    assert page.has_css?('.alert', /Invalid credentials!/)
+    assert page.has_css?('.alert', text: /Invalid credentials!/)
   end
 
   test 'active techs cannot log in with a bad password' do
     integration_login(@active_tech, 'badpassword')
-    assert page.has_css?('.alert', /Invalid credentials!/)
+    assert page.has_css?('.alert', text: /Invalid credentials!/)
   end
 
   test 'inactive non-techs cannot log in' do
     integration_login(@inactive_nontech)
-    assert page.has_css?('.alert', /Your account is currently inactive!/)
+    assert page.has_css?('.alert', text: /Your account is currently inactive!/)
   end
 
   test 'inactive techs cannot log in' do
     integration_login(@inactive_tech)
-    assert page.has_css?('.alert', /Your account is currently inactive!/)
+    assert page.has_css?('.alert', text: /Your account is currently inactive!/)
   end
 
   test 'non-techs are redirected correctly after login' do
@@ -52,7 +52,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?('Log Out', href: /logout/)
 
-    click_link('Log Out')
+    logout!
   end
 
   test 'active techs are redirected correctly after login' do
@@ -64,7 +64,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?('Tickets', href: /#/)
     click_link('Tickets')
-    assert page.has_link?('Create a Ticket', href: /tickets\/new/)
+    assert page.has_link?('Create Ticket', href: /tickets\/new/)
     assert page.has_link?('My Tickets', href: /tickets\/my/)
     assert page.has_link?('Assigned To Me', href: /tickets\/assigned_to_me/)
     assert page.has_link?('Open', href: /tickets\/open/)
@@ -96,7 +96,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     assert page.has_link?('Log Out')
 
-    click_link('Log Out')
+    logout!
   end
 
 end

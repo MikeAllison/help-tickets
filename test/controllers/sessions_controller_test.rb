@@ -14,14 +14,14 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'active non-techs cannot log in with a bad password' do
+  test 'active non-techs cannot log in with an incorrect password' do
     post :create, session: { username: @active_nontech.username, password: 'badpassword' }
     assert_nil session[:employee_id]
     assert_template :new
     assert_equal 'Invalid credentials!', flash[:danger]
   end
 
-  test 'active techs cannot log in with a bad password' do
+  test 'active techs cannot log in with an incorrect password' do
     post :create, session: { username: @active_tech.username, password: 'badpassword' }
     assert_nil session[:employee_id]
     assert_template :new
