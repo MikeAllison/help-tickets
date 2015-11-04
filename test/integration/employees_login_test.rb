@@ -19,12 +19,12 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     logout!
   end
 
-  test 'active non-techs cannot log in with a bad password' do
+  test 'active non-techs cannot log in with an incorrect password' do
     integration_login(@active_nontech, 'badpassword')
     assert page.has_css?('.alert', text: /Invalid credentials!/)
   end
 
-  test 'active techs cannot log in with a bad password' do
+  test 'active techs cannot log in with an incorrect password' do
     integration_login(@active_tech, 'badpassword')
     assert page.has_css?('.alert', text: /Invalid credentials!/)
   end
