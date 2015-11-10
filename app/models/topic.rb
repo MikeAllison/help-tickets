@@ -4,7 +4,7 @@ class Topic < ActiveRecord::Base
   has_many :tickets
 
   validates_presence_of :name, message: 'Please enter a topic name!'
-  validates_uniqueness_of :name, message: 'This topic already exists!'
+  validates_uniqueness_of :name, case_sensitive: false, message: "This topic already exists!"
 
   before_save :create_slug
 

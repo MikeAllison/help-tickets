@@ -4,6 +4,7 @@ class CitiesControllerTest < ActionController::TestCase
 
   def setup
     @c = cities(:miami)
+    @hidden = cities(:hidden)
     @active_nontech = employees(:active_nontech)
     @active_tech = employees(:active_tech)
   end
@@ -72,6 +73,22 @@ class CitiesControllerTest < ActionController::TestCase
       post :create, city: { name: 'Springfield', state_id: states(:florida).id }
       assert_redirected_to new_city_path
       assert_equal 'City added!', flash[:success]
+    end
+  end
+
+  test 'should not create a duplicate of a hidden city' do
+    functional_log_in(@active_tech)
+
+    assert_no_difference('City.count', 'A duplicate city was created') do
+      post :create, city: { name: 'Hidden', state_id: @hidden.state.id }
+      assert_redirected_to new_city_path
+      assert_equal 'This city had already existed but has now been unhidden!', flash[:success]
+    end
+
+    assert_no_difference('City.count', 'A duplicate city was created') do
+      post :create, city: { name: 'hidden', state_id: @hidden.state.id }
+      assert_redirected_to new_city_path
+      assert_equal 'This city had already existed but has now been unhidden!', flash[:success]
     end
   end
 

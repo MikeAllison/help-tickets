@@ -5,7 +5,7 @@ class City < ActiveRecord::Base
   belongs_to :state
 
   validates_presence_of :name, message: 'Please enter a city name!'
-  validates_uniqueness_of :name, scope: :state, message: 'This city/state already exists!'
+  validates_uniqueness_of :name, scope: :state, case_sensitive: false, message: 'This city/state already exists!'
   validates_presence_of :state_id, message: 'Please select a state!'
 
   set_whitespace_stripable_attributes :name

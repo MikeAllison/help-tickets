@@ -9,4 +9,10 @@ sanfran:
 miami:
   name: Miami
   state: florida
-  slug: miami
+  slug: miami-fl
+
+hidden:
+  name: Hidden
+  state: florida
+  slug: hidden-fl
+  hidden: true
