@@ -9,6 +9,7 @@ class Topic < ActiveRecord::Base
   before_save :create_slug
 
   scope :active,     -> { where(active: true) }
+  scope :hidden,     -> { where(hidden: true) }
   scope :not_hidden, -> { where(hidden: false) }
 
   set_whitespace_stripable_attributes :name

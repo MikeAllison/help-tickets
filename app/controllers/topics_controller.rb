@@ -14,6 +14,22 @@ class TopicsController < ApplicationController
 	def create
 		@topic = Topic.new(topic_params)
 
+		# hidden_topic = Topic.hidden.where("name LIKE ?", params[:topic][:name]).first
+
+		# unless hidden_topic.empty?
+			# flash a message to ask to unhide
+				# if 'ok'
+					# unhide it
+					# flash that it has been unhidden
+					# redirect_to new_topic_path
+				# else
+					# redirect_to new_topic_path
+				# end
+		# else
+			#
+
+		binding.pry
+
 		if @topic.save
 			flash[:success] = 'Topic added!'
 			redirect_to new_topic_path
