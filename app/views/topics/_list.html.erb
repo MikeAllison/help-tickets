@@ -2,7 +2,8 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="col-xs-5"><%= sort_column "System Name", "name" %></th>
+				<th class="col-xs-3"><%= sort_column "System Name", "name" %></th>
+				<th class="col-xs-2 hidden-xs">Status</th>
 				<th class="col-xs-2 hidden-xs">Open Tickets</th>
 				<th class="col-xs-2 hidden-xs">Closed Tickets</th>
 				<th class="col-xs-2 hidden-xs">Total Tickets</th>
@@ -12,7 +13,8 @@
 		<tbody>
 			<% @topics.each do |topic| %>
 				<tr>
-					<td class="col-xs-5"><%= topic.name %></td>
+					<td class="col-xs-3"><%= topic.name %></td>
+					<td class="col-xs-2 hidden-xs"><%= topic.active ? 'Active' : 'Inactive' %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.open.count %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>

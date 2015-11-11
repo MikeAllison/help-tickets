@@ -14,9 +14,9 @@ class TopicsController < ApplicationController
 	def create
 		@topic = Topic.new(topic_params)
 
-		if Topic.hidden.exists?(["name LIKE ?", params[:topic][:name]])
-			hidden_topic = Topic.hidden.where("name LIKE ?", params[:topic][:name]).first
-			hidden_topic.unhide
+		if Topic.hidden.exists?(["name LIKE ?", @topic.name])
+			hidden_topic = Topic.hidden.where("name LIKE ?", @topic.name).first
+			hidden_topic.unhide(@topic.active)
 			flash[:success] = 'This topic had already existed but has now been unhidden!'
 			redirect_to new_topic_path
 		elsif @topic.save

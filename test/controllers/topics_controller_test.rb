@@ -4,6 +4,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   def setup
     @t = topics(:office)
+    @hidden_inactive = topics(:hidden_inactive)
     @active_nontech = employees(:active_nontech)
     @active_tech = employees(:active_tech)
   end
@@ -68,10 +69,31 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'technicians can create topics' do
     functional_log_in(@active_tech)
+
     assert_difference('Topic.count') do
       post :create, topic: { name: 'Misc' }
       assert_redirected_to new_topic_path
       assert_equal 'Topic added!', flash[:success]
+    end
+  end
+
+  test 'should not create a duplicate of a hidden topic (case-sensitive)' do
+    functional_log_in(@active_tech)
+
+    assert_no_difference('Topic.count', 'A duplicate topic was created') do
+      post :create, topic: { name: 'Hidden Inactive' }
+      assert_redirected_to new_topic_path
+      assert_equal 'This topic had already existed but has now been unhidden!', flash[:success]
+    end
+  end
+
+  test 'should not create a duplicate of a hidden topic (case-insensitive)' do
+    functional_log_in(@active_tech)
+
+    assert_no_difference('Topic.count', 'A duplicate topic was created') do
+      post :create, topic: { name: 'hidden inactive' }
+      assert_redirected_to new_topic_path
+      assert_equal 'This topic had already existed but has now been unhidden!', flash[:success]
     end
   end
 

@@ -1,18 +1,23 @@
 orlando:
   name: Orlando
   state: florida
+  slug: orlando-fl
+  hidden: false
 
 sanfran:
   name: San Francisco
   state: california
+  slug: san-francisco-ca
+  hidden: false
 
 miami:
   name: Miami
   state: florida
   slug: miami-fl
+  hidden: false
 
-hidden:
-  name: Hidden
+hidden_city:
+  name: Hidden City
   state: florida
-  slug: hidden-fl
+  slug: hidden-city-fl
   hidden: true

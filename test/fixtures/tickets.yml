@@ -2,7 +2,7 @@ ticket_unassigned:
   originator: active_nontech
   submitter: active_nontech
   topic: os
-  description: 'I have a problem.'
+  description: I have a problem.
   status: :unassigned
 
 ticket_wip:
@@ -10,7 +10,7 @@ ticket_wip:
   submitter: active_nontech
   technician: active_tech
   topic: os
-  description: 'I have a problem.'
+  description: I have a problem.
   status: :work_in_progress
 
 ticket_hold:
@@ -18,7 +18,7 @@ ticket_hold:
   submitter: active_nontech
   technician: active_tech
   topic: os
-  description: 'I have a problem.'
+  description: I have a problem.
   status: :on_hold
 
 ticket_closed:
@@ -26,12 +26,12 @@ ticket_closed:
   submitter: active_nontech
   technician: active_tech
   topic: os
-  description: 'I have a problem.'
+  description: I have a problem.
   status: :closed
 
 tech_ticket:
   originator: active_tech
   submitter: active_tech
   topic: os
-  description: 'I have a problem.'
+  description: I have a problem.
   status: :unassigned

@@ -1,6 +1,17 @@
 os:
-  name: 'Operating System'
+  name: Operating System
+  slug: operating-system
+  active: true
+  hidden: false
 
 office:
-  name: 'Microsoft Office'
-  slug: 'microsoft-office'
+  name: Microsoft Office
+  slug: microsoft-office
+  active: true
+  hidden: false
+
+hidden_inactive:
+  name: Hidden Inactive
+  slug: hidden-inactive
+  active: false
+  hidden: true

@@ -18,8 +18,9 @@ class Topic < ActiveRecord::Base
     slug
   end
 
-  def unhide
+  def unhide(status)
     self.hidden = false
+    self.active = status
     self.save
   end
 
