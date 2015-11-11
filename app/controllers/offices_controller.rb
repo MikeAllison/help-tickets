@@ -14,7 +14,12 @@ class OfficesController < ApplicationController
 	def create
 		@office = Office.new(office_params)
 
-		if @office.save
+		if Office.hidden.exists?(["name LIKE ? AND city_id = ?", @office.name, @office.city_id])
+			hidden_office = Office.hidden.where("name LIKE ? and city_id = ?", @office.name, @office.city_id).first
+			hidden_office.unhide(@office.active)
+      flash[:success] = 'This office had already existed but has now been unhidden!'
+      redirect_to new_office_path
+		elsif @office.save
 			flash[:success] = 'Office added!'
 			redirect_to new_office_path
 		else
@@ -25,7 +30,7 @@ class OfficesController < ApplicationController
 
 	def edit
 	end
-	
+
 	def update
 		if @office.update(office_params)
 			flash[:success] = 'Office information updated!'

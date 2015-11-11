@@ -1,12 +1,27 @@
 maitland:
   name: Maitland
   city: orlando
+  slug: maitland
+  active: true
+  hidden: false
 
 fishermans:
   name: Fisherman's Wharf
   city: sanfran
+  slug: fishermans-wharf
+  active: true
+  hidden: false
 
 downtownsf:
   name: Downtown SF
   city: sanfran
   slug: downtown-sf
+  active: true
+  hidden: false
+
+hidden_office:
+  name: Hidden Office
+  city: orlando
+  slug: hidden-office
+  active: false
+  hidden: true

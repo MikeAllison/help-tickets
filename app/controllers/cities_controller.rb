@@ -14,8 +14,6 @@ class CitiesController < ApplicationController
   def create
     @city = City.new(city_params)
 
-    #binding.pry
-
     if City.hidden.exists?(["name LIKE ? AND state_id = ?", @city.name, @city.state_id])
 			hidden_city = City.hidden.where("name LIKE ? and state_id = ?", @city.name, @city.state_id).first
 			hidden_city.unhide
