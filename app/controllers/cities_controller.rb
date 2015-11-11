@@ -14,18 +14,20 @@ class CitiesController < ApplicationController
   def create
     @city = City.new(city_params)
 
-    if @city.save
-      flash[:success] = 'City added!'
-      redirect_to new_city_path
-    elsif City.exists?(name: @city.name, state: @city.state, hidden: true)
-      @city = City.find_by(name: @city.name, state: @city.state)
-      @city.unhide
+    #binding.pry
+
+    if City.hidden.exists?(["name LIKE ? AND state_id = ?", @city.name, @city.state_id])
+			hidden_city = City.hidden.where("name LIKE ? and state_id = ?", @city.name, @city.state_id).first
+			hidden_city.unhide
       flash[:success] = 'This city had already existed but has now been unhidden!'
       redirect_to new_city_path
-    else
+		elsif @city.save
+      flash[:success] = 'City added!'
+      redirect_to new_city_path
+		else
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
       render 'new'
-    end
+		end
   end
 
   def edit
