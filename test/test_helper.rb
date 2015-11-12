@@ -6,10 +6,23 @@ require 'rails/test_help'
 require 'pry'
 require 'capybara/rails'
 
+# Patch to make SQLite compatible with integration tests
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+# End of SQLite/integration test patch
+
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  #Capybara.default_driver = :selenium
+  Capybara.default_driver = :selenium
 
   def integration_login(user, password='password')
     visit('/')

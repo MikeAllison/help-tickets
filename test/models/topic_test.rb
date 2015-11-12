@@ -25,7 +25,7 @@ class TopicTest < ActiveSupport::TestCase
 
   test 'unhide' do
     topic = Topic.create(name: 'Mouse', hidden: true)
-    topic.unhide
+    topic.unhide(topic.hidden)
     topic.reload
     assert_not topic.hidden
   end

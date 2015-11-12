@@ -90,7 +90,7 @@ class OfficesControllerTest < ActionController::TestCase
   test 'should not create a duplicate of a hidden office (case-insensitive)' do
     functional_log_in(@active_tech)
 
-    assert_difference('Office.count', 'A duplicate office was created') do
+    assert_no_difference('Office.count', 'A duplicate office was created') do
       post :create, office: { name: 'hidden office', city_id: @hidden_office.city.id }
       assert_redirected_to new_office_path
       assert_equal 'This office had already existed but has now been unhidden!', flash[:success]
