@@ -10,14 +10,16 @@ class CityActionsTest < ActionDispatch::IntegrationTest
     integration_login(@active_tech)
     click_link 'Locations'
     click_link 'All Cities'
-    #assert page.has_text?(/All Cities/)
+    assert page.has_text?(/All Cities/)
     #assert assigns(:cities)
+    logout!
   end
 
   # test 'techs can add a city' do
   #   integration_login(@active_tech)
   #   click_link 'Locations'
   #   click_link 'All Cities'
+  #   assert_includes(col, obj)
   # end
 
 end
