@@ -44,6 +44,8 @@ module ApplicationHelper
       "Tickets Assigned to #{@employee.fname} #{@employee.lname}"
     elsif controller_name == 'tickets' && action_name == 'edit'
       "Edit Ticket #{@ticket.id}"
+    elsif controller_name == 'employees' && params[:status] == 'technicians'
+      'Technician Employees'
     else
       "#{action} #{model}".titleize
     end
