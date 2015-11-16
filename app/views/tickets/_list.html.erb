@@ -33,7 +33,7 @@
 					<td><%= ticket.topic.name %></td>
 					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
 						<td>
-							<%= status_icon(ticket) %> <!-- TicketsHelper -->
+							<%= ticket_status_icon(ticket) %> <!-- TicketsHelper -->
 							<%= ticket.status.titleize %>
 						</td>
 					<% end %>

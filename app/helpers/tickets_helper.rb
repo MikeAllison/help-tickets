@@ -1,7 +1,7 @@
 module TicketsHelper
 
   # Sets color of flag icon in tickets/list partial
-  def status_icon(ticket)
+  def ticket_status_icon(ticket)
     icon = 'glyphicon glyphicon-floppy-disk'
 
     case ticket.status.to_sym
@@ -17,7 +17,7 @@ module TicketsHelper
       style = 'alert-success'
     end
 
-    content_tag :span, '', class: icon + ' ' + style
+    content_tag :span, '', class: icon + ' ' + style, :'aria-hidden' => true
   end
 
 end

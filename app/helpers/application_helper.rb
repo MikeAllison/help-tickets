@@ -15,6 +15,19 @@ module ApplicationHelper
    content_tag :span, nil, class: "glyphicon glyphicon-#{glyph_type}-sign", :'aria-hidden' => true
   end
 
+  # Sets an icon for the status field for various items based on 'active' field in DB
+  def generic_status_icon(obj)
+    if obj.active?
+      icon = 'glyphicon glyphicon-ok alert-success'
+      title = 'Active'
+    else
+      icon = 'glyphicon glyphicon-remove alert-danger'
+      title = 'Inactive'
+    end
+
+    content_tag :span, '', class: icon, title: title, data: { toggle: 'tooltip', placement: 'left' }, :'aria-hidden' => true
+  end
+
   def submit_button_add_update(obj)
     submit_tag (obj.new_record? ? "Add" : "Update") + " #{obj.class}", class: 'btn btn-primary'
   end
