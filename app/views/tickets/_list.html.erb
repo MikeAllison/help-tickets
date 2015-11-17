@@ -15,11 +15,7 @@
 					<th><%= sort_column 'Assigned To', 'employees.lname', 'technician' %></th>
 				<% end %>
 				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
-				<% if params[:status] == 'closed' %>
-					<th class="hidden-xs"><%= sort_column 'Closed', 'updated_at' %></th>
-				<% else %>
-					<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
-				<% end %>
+				<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
 				<th>Actions</th>
 			</tr>
 		</thead>
