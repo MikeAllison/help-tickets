@@ -2,20 +2,20 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="col-md-2"><%= sort_column 'Name', 'lname' %></th>
+				<th class="col-md-3"><%= sort_column 'Name', 'lname' %></th>
 				<th class="col-md-2"><%= sort_column 'User Name', 'username' %></th>
 				<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
 				<th class="col-md-2 hidden-xs">Tickets Created</th>
 				<% if params[:status] == 'admin' %>
 					<th class="col-md-2 hidden-xs">Tickets Assigned</th>
 				<% end %>
-				<th class="col-md-2">Actions</th>
+				<th class="col-md-1">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @employees.each do |employee| %>
 				<tr>
-					<td class="col-md-2">
+					<td class="col-md-3">
 						<%= employee_status_icon(employee.active) %>
 						&nbsp;
 						<%= employee.last_first %>
@@ -34,7 +34,7 @@
 							<% end %>
 						</td>
 					<% end %>
-					<td class="col-md-2">
+					<td class="col-md-1">
 						<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
 							<span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
 							<span class="sr-only" title="Edit">Edit</span>
