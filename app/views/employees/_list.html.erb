@@ -6,7 +6,7 @@
 				<th class="col-md-2"><%= sort_column 'User Name', 'username' %></th>
 				<th class="col-md-2"><%= sort_column 'Office', 'offices.name', 'office' %></th>
 				<th class="col-md-2 hidden-xs">Tickets Created</th>
-				<% if params[:status] == 'admin' %>
+				<% if params[:status] == 'technicians' %>
 					<th class="col-md-2 hidden-xs">Tickets Assigned</th>
 				<% end %>
 				<th class="col-md-1">Actions</th>
@@ -27,7 +27,7 @@
 							<%= employee.submitted_tickets.count %>
 						<% end %>
 					</td>
-					<% if params[:status] == 'admin' %>
+					<% if params[:status] == 'technicians' %>
 						<td class="col-md-2 hidden-xs">
 							<%= link_to assigned_tickets_employee_path(employee), title: 'Technican\'s Assigned Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
 							  <%= employee.assigned_tickets.count %>
