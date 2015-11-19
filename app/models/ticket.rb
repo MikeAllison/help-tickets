@@ -25,7 +25,7 @@ class Ticket < ActiveRecord::Base
 		if employee.technician?
 			self.update(status: :work_in_progress, technician: employee, closed_at: nil)
 		else
-			self.update(status: :unassigned, technician: nil)
+			self.update(status: :unassigned, technician: nil, closed_at: nil)
 		end
 	end
 
@@ -34,6 +34,7 @@ class Ticket < ActiveRecord::Base
 			self.closed!
 			self.closed_at = Time.now
 			self.update(technician: employee)	if employee.technician?
+			self.save
 		end
 	end
 

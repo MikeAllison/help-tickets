@@ -37,6 +37,7 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_closed.reopen(employees(:active_nontech))
     @ticket_closed.reload
     assert_equal 'unassigned', @ticket_closed.status, 'ticket was not set to unassigned'
+    assert_nil @ticket_closed.closed_at, 'closed_at was not set to nil'
     assert_nil @ticket_closed.technician, 'technician_id was not set to nil'
   end
 
@@ -44,6 +45,7 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_closed.reopen(employees(:active_tech))
     @ticket_closed.reload
     assert_equal 'work_in_progress', @ticket_closed.status, 'ticket was not set to work_in_progress'
+    assert_nil @ticket_closed.closed_at, 'closed_at was not set to nil'
     assert_equal employees(:active_tech), @ticket_closed.technician, 'ticket was not assigned to the tech that reopened it'
   end
 
@@ -51,6 +53,8 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_hold.close(employees(:active_nontech))
     @ticket_hold.reload
     assert @ticket_hold.closed?, 'ticket was not set to closed'
+    assert_not_nil @ticket_hold.closed_at, 'closed_at was not set'
+    #assert_equal @ticket_hold.updated_at, @ticket_hold.closed_at, 'correct closed_at time was not set'
     assert_equal employees(:active_tech), @ticket_hold.technician, 'technician_id has changed'
   end
 
@@ -58,6 +62,8 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_wip.close(employees(:active_tech))
     @ticket_wip.reload
     assert @ticket_wip.closed?, 'ticket was not set to closed'
+    assert_not_nil @ticket_wip.closed_at, 'closed_at was not set'
+    assert_equal @ticket_wip.updated_at, @ticket_wip.closed_at, 'correct closed_at time was not set'
     assert_equal employees(:active_tech), @ticket_wip.technician, 'technician_id did not changed to the id of the closing tech'
   end
 

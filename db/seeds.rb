@@ -149,6 +149,7 @@ end
 200.times do
   time = Faker::Time.between(12.days.ago, 10.days.ago) + rand(-10000..10000)
   originator_submitter = rand(12..500)
+  closed_time = time + rand(1..32).hours
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
                 originator_id: originator_submitter,
@@ -157,7 +158,8 @@ end
                 topic_id: rand(1..10),
                 status: :closed,
                 created_at: time,
-                updated_at: time + rand(1..32).hours)
+                updated_at: closed_time,
+                closed_at: closed_time)
 end
 
 # Create unassigned tickets for inactive employees (Tickets 801-825)
@@ -193,6 +195,7 @@ end
 25.times do
   time = Faker::Time.between(9.days.ago, 7.days.ago) + rand(-10000..10000)
   originator_submitter = rand(501..600)
+  closed_time = time + rand(1..32).hours
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
                 originator_id: originator_submitter,
@@ -201,7 +204,8 @@ end
                 topic_id: rand(1..10),
                 status: :closed,
                 created_at: time,
-                updated_at: time + rand(1..32).hours)
+                updated_at: time + rand(1..32).hours,
+                closed_at: closed_time)
 end
 
 # Create unassigned tickets where the originator IS NOT the submitter (Tickets 901-950)
@@ -235,6 +239,7 @@ end
 100.times do
   time = Faker::Time.between(9.days.ago, 7.days.ago) + rand(-10000..10000)
   originator_submitter = rand(12..600)
+  closed_time = time + rand(1..32).hours
 
   Ticket.create(description: Faker::Hacker.say_something_smart,
                 originator_id: originator_submitter,
@@ -243,7 +248,8 @@ end
                 topic_id: rand(1..10),
                 status: :closed,
                 created_at: time,
-                updated_at: time + rand(1..32).hours)
+                updated_at: time + rand(1..32).hours,
+                closed_at: closed_time)
 end
 
 # Create technician comments on closed tickets
