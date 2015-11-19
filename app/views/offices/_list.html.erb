@@ -12,7 +12,7 @@
 		<tbody>
 			<% @offices.each do |office| %>
 				<tr>
-					<td class="col-md-3"><%= generic_status_icon(office) %>&nbsp;&nbsp;<%= office.name %></td>
+					<td class="col-md-3"><%= generic_status_icon(office) %><%= office.name %></td>
 					<td class="col-md-2"><%= office.city.name %></td>
 					<td class="col-md-2"><%= office.city.state.abbreviation %></td>
 					<td class="col-md-2 hidden-xs"><%= office.employees.count %></td>

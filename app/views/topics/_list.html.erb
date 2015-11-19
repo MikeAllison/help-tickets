@@ -12,7 +12,7 @@
 		<tbody>
 			<% @topics.each do |topic| %>
 				<tr>
-					<td class="col-xs-5"><%= generic_status_icon(topic) %>&nbsp;&nbsp;<%= topic.name %></td>
+					<td class="col-xs-5"><%= generic_status_icon(topic) %><%= topic.name %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.open.count %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
 					<td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>

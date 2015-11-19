@@ -14,7 +14,7 @@
 			<% @employees.each do |employee| %>
 				<tr>
 					<td class="col-md-3">
-						<%= employee_status_icon(employee.active) %>&nbsp;&nbsp;<%= employee.last_first %>
+						<%= employee_status_icon(employee.active) %><%= employee.last_first %>
 					</td>
 					<td class="col-md-2"><%= employee.username %></td>
 					<td class="col-md-2"><%= employee.office.name unless employee.office.nil? %></td>

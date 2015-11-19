@@ -3,16 +3,10 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<% if params[:status] != 'my' %>
-					<th>Requested For</th>
-				<% end %>
+				<th>Requested For</th>
 				<th>Topic</th>
-				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-					<th>Status</th>
-				<% end %>
-				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-					<th>Assigned To</th>
-				<% end %>
+				<th>Status</th>
+				<th>Assigned To</th>
 				<th class="hidden-xs">Created</th>
 				<th class="hidden-xs">Updated</th>
 				<th>Actions</th>
@@ -22,21 +16,14 @@
 			<% @tickets.each do |ticket| %>
 				<tr>
 					<td><%= ticket.id %></td>
-					<% if params[:status] != 'my' %>
-						<td><%= ticket.originator.last_first %></td>
-					<% end %>
+					<td><%= ticket.originator.last_first %></td>
 					<td><%= ticket.topic.name %></td>
-					<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-						<td>
-							<%= ticket_status_icon(ticket) %> <!-- TicketsHelper -->
-							<%= ticket.status.titleize %>
-						</td>
-					<% end %>
-					<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-						<td>
-							<%= ticket.technician.last_first unless ticket.technician.nil? %>
-						</td>
-					<% end %>
+					<td>
+						<%= ticket_status_icon(ticket) %><%= ticket.status.titleize %>
+					</td>
+					<td>
+						<%= ticket.technician.last_first unless ticket.technician.nil? %>
+					</td>
 					<td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 					<td class="hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
 					<td>

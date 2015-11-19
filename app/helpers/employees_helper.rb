@@ -12,7 +12,7 @@ module EmployeesHelper
       title = 'Inactive'
     end
 
-    content_tag :span, '', class: icon, title: title, data: { toggle: 'tooltip', placement: 'left' }, :'aria-hidden' => true
+    content_tag :span, '', class: "status-icon #{icon}", title: title, data: { toggle: 'tooltip', placement: 'left' }, :'aria-hidden' => true
   end
 
 end
