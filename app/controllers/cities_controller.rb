@@ -55,8 +55,6 @@ class CitiesController < ApplicationController
 
   def find_all_cities
     @cities = City.not_hidden
-    @cities = apply_joins_and_order(@cities)
-    @cities = apply_pagination(@cities)
   end
 
   def city_params

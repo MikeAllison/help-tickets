@@ -40,7 +40,4 @@ class Office < ActiveRecord::Base
 		self.slug = "#{office}-#{city}-#{state_abbr}".downcase
 	end
 
-  # Set pagination for will_paginate
-  self.per_page = 20
-
 end

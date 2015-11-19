@@ -55,8 +55,6 @@ class TopicsController < ApplicationController
 
 	def find_all_topics
 		@topics = Topic.not_hidden
-		@topics = apply_joins_and_order(@topics)
-		@topics = apply_pagination(@topics)
 	end
 
 	def topic_params

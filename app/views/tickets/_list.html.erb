@@ -1,21 +1,20 @@
-
 <div class="table-responsive">
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th><%= sort_column 'ID', 'id' %></th>
+				<th>ID</th>
 				<% if params[:status] != 'my' %>
-					<th><%= sort_column 'Requested For', 'employees.lname', 'originator' %></th>
+					<th>Requested For</th>
 				<% end %>
-				<th><%= sort_column 'Topic', 'topics.name', 'topic' %></th>
+				<th>Topic</th>
 				<% if !params[:status] || params[:status] == 'assigned_to_me' || params[:status] == 'all' || params[:status] == 'my' || params[:status] == 'open' %>
-					<th><%= sort_column 'Status', 'statuses.state', 'status' %></th>
+					<th>Status</th>
 				<% end %>
 				<% if params[:status] != 'unassigned' && params[:status] != 'assigned_to_me' && !params[:technician_id] %>
-					<th><%= sort_column 'Assigned To', 'employees.lname', 'technician' %></th>
+					<th>Assigned To</th>
 				<% end %>
-				<th class="hidden-xs"><%= sort_column 'Created', 'created_at' %></th>
-				<th class="hidden-xs"><%= sort_column 'Updated', 'updated_at' %></th>
+				<th class="hidden-xs">Created</th>
+				<th class="hidden-xs">Updated</th>
 				<th>Actions</th>
 			</tr>
 		</thead>

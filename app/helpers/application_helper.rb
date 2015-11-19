@@ -64,21 +64,4 @@ module ApplicationHelper
     end
   end
 
-  # Creates a link for table headers with params to sort
-  # :join_table is converted to symbol in ApplicationController
-  # Default sorting is set in ApplicationController
-  def sort_column(title, column, joins = nil)
-    if column == params[:sort_column] && params[:sort_direction] == 'ASC'
-      direction = 'DESC'
-    else
-      direction = 'ASC'
-    end
-
-    link_to title, { :sort_column => column, :sort_direction => direction, :join_table => joins }, { title: 'Click to Sort', data: { toggle: 'tooltip', placement: 'top' } }
-  end
-
-  def filter_link
-    link_to 'Filter', { :filter => true }, { class: 'btn btn-default', title: 'Load All Records & Enable Filter', data: { toggle: 'tooltip', placement: 'right' } }
-  end
-
 end

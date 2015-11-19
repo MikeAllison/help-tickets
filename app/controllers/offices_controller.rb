@@ -55,8 +55,6 @@ class OfficesController < ApplicationController
 
 	def find_all_offices
 		@offices = Office.not_hidden
-		@offices = apply_joins_and_order(@offices)
-		@offices = apply_pagination(@offices)
 	end
 
 	def office_params

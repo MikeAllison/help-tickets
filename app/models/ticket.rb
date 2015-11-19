@@ -43,7 +43,4 @@ class Ticket < ActiveRecord::Base
     self.unassigned! if self.status.nil?
 	end
 
-  # Set pagination for will_paginate
-  self.per_page = 20
-
 end

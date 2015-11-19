@@ -4,10 +4,7 @@
 		  <div class="panel-heading">
 		    <h3><%= page_header %></h3>
 		  </div>
-		  <div class="panel-body">
-		  	<%= filter_link %>
-		  </div>
-			<% if action_name == 'assigned_tickets' %>
+		  <% if action_name == 'assigned_tickets' %>
 				<%= render 'tickets/list' %>
 			<% else %>
 			  <%= render 'list' %>

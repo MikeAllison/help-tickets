@@ -16,9 +16,6 @@ class EmployeesController < ApplicationController
     else
       @employees = Employee.not_hidden
     end
-
-    @employees = apply_joins_and_order(@employees)
-    @employees = apply_pagination(@employees)
   end
 
   def new
@@ -85,8 +82,6 @@ class EmployeesController < ApplicationController
 
   def find_all_employees
     @employees = Employee.not_hidden
-    @employees = apply_joins_and_order(@employees)
-    @employees = apply_pagination(@employees)
   end
 
   def employee_params_technician
