@@ -23,7 +23,7 @@ class Ticket < ActiveRecord::Base
 
 	def reopen(employee)
 		if employee.technician?
-			self.update(status: :work_in_progress, technician: employee)
+			self.update(status: :work_in_progress, technician: employee, closed_at: nil)
 		else
 			self.update(status: :unassigned, technician: nil)
 		end
@@ -32,6 +32,7 @@ class Ticket < ActiveRecord::Base
 	def close(employee)
 		self.transaction do
 			self.closed!
+			self.closed_at = Time.now
 			self.update(technician: employee)	if employee.technician?
 		end
 	end
