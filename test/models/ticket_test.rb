@@ -79,4 +79,28 @@ class TicketTest < ActiveSupport::TestCase
     assert_equal 'unassigned', ticket.status
   end
 
+  test 'total_time_open for an open ticket' do
+    current_time = Time.now
+    time_in_past = current_time - 27.hours - 23.minutes
+    total_time = current_time - time_in_past
+
+    @ticket_hold.created_at = time_in_past
+
+    assert_equal total_time, @ticket_hold.total_time_open
+  end
+
+  test 'total_time_open for a closed ticket' do
+    current_time = Time.now
+    time_in_past = current_time - 27.hours - 23.minutes
+    time_created = time_in_past
+    time_closed = time_in_past + 16.hours + 39.minutes
+    total_time = time_closed - time_created
+
+    @ticket_closed.created_at = time_created
+    @ticket_closed.updated_at = time_closed
+    @ticket_closed.closed_at = time_closed
+
+    assert_equal total_time, @ticket_closed.total_time_open
+  end
+
 end

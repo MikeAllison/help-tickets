@@ -42,6 +42,10 @@ class Ticket < ActiveRecord::Base
 		!self.closed?
 	end
 
+	def total_time_open
+		self.open? ? Time.now - self.created_at : self.closed_at - self.created_at
+	end
+
 	private
 
   # Tickets can be submitted without a status and are set to 'Unassigned'
