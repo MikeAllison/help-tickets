@@ -1,12 +1,12 @@
 <div class="row">
 	<div class="col-xs-12">
-		<div class="jumbotron">
+		<div id="welcome" class="jumbotron">
 			<h1>Welcome to The Help Desk</h1>
-			<% if !logged_in? %>
+			<% unless logged_in? %>
 				<p>
 					Please log in to submit a ticket.
 				</p>
-				<!-- Button trigger modal -->
+				<!-- Button to trigger modal -->
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
 					Log In
 				</button>

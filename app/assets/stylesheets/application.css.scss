@@ -6,11 +6,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$error-red: #a94442;
+// Global styles
 
-#pagination {
-  margin-bottom: 2em;
-}
+$error-red: #a94442;
 
 .validation-errors {
   color: $error-red;
@@ -25,6 +23,23 @@ $error-red: #a94442;
   textarea { border-color: $error-red; }
 }
 
+#welcome {
+  h1 { margin-left: 0.1em; }
+  p { margin-left: 0.2em; }
+  button { margin-left: 0.2em; }
+}
+
 .status-icon {
   margin-right: 5px;
+}
+
+// Styles for ticket/:id/show
+
+#ticket-show-description {
+  margin-top: 1em;
+}
+
+#ticket-show-buttons {
+  a { margin-top: 1em; }
+  button { margin-top: 1em; }
 }
