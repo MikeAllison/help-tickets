@@ -253,7 +253,7 @@ end
 end
 
 # Create technician comments on closed tickets
-closed_tickets = Ticket.where(status: :closed)
+closed_tickets = Ticket.where(status: 3)
 
 closed_tickets.each do |ticket|
   time = ticket.updated_at
@@ -266,17 +266,34 @@ closed_tickets.each do |ticket|
                  updated_at: time)
 end
 
-# Set reopening comment on some closed tickets
-reopened_tickets = Ticket.where(id: 1001..1100)
+# Set reopening comment on some closed tickets by originator
+reopened_tickets = Ticket.where(id: 1001..1050)
 
 reopened_tickets.each do |ticket|
   time = ticket.updated_at + rand(1..12).hours
 
-  ticket.unassigned!
+  ticket.reopen(ticket.originator)
   ticket.updated_at = time
 
   Comment.create(body: Faker::Hacker.say_something_smart,
                  employee_id: ticket.originator_id,
+                 ticket_id: ticket.id,
+                 status_type: :reopening,
+                 created_at: time,
+                 updated_at: time)
+end
+
+# Set reopening comment on some closed tickets by technician
+reopened_tickets = Ticket.where(id: 1051..1100)
+
+reopened_tickets.each do |ticket|
+  time = ticket.updated_at + rand(1..12).hours
+
+  ticket.reopen(ticket.technician)
+  ticket.updated_at = time
+
+  Comment.create(body: Faker::Hacker.say_something_smart,
+                 employee_id: ticket.technician_id,
                  ticket_id: ticket.id,
                  status_type: :reopening,
                  created_at: time,

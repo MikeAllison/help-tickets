@@ -67,6 +67,13 @@ class TicketTest < ActiveSupport::TestCase
     assert_equal employees(:active_tech), @ticket_wip.technician, 'technician_id did not changed to the id of the closing tech'
   end
 
+  test 'open? method works' do
+    assert @ticket_unassigned.open?
+    assert @ticket_wip.open?
+    assert @ticket_hold.open?
+    assert_not @ticket_closed.open?
+  end
+
   test 'should set default status to 0 (unassigned)' do
     ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os))
     assert_equal 'unassigned', ticket.status

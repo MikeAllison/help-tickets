@@ -17,17 +17,28 @@
 						<ul class="list-unstyled">
 							<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
 							<li><strong>
-								<% if @ticket.closed? %>
-									Closed:
-								<% else %>
+								<% if @ticket.open? %>
 									Updated:
+								<% else %>
+									Closed:
 								<% end %>
 							</strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-							<li><strong>Assigned To: </strong><%= @ticket.technician.last_first unless @ticket.technician.blank? %></li>
+							<li><strong>
+								<% if @ticket.open? %>
+									Open For:
+								<% else %>
+									Closed In:
+								<% end %>
+							</strong></li>
 						</ul>
 					</div>
 				</div>
-		    <div id="ticket-show-description" class="row">
+				<div class="row">
+					<div class="col-md-12">
+						<p><strong>Assigned To: </strong><%= @ticket.technician.last_first unless @ticket.technician.blank? %></p>
+					</div>
+				</div>
+		    <div class="row">
 					<div class="col-xs-12">
 						<p>
 							<strong>Description:</strong>
@@ -38,7 +49,7 @@
 					</div>
 				</div>
 		  	<div id="ticket-show-buttons">
-		  		<% unless @ticket.closed? %>
+		  		<% if @ticket.open? %>
 		  			<% if technician? %>
 		  				<%= link_to 'Assign to Me', assign_to_me_ticket_path(@ticket), method: :patch, class: 'btn btn-primary' %>
 		  			<% end %>
@@ -68,7 +79,7 @@
 	</div>
 </div>
 
-<% unless @ticket.closed? %>
+<% if @ticket.open? %>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
@@ -87,7 +98,7 @@
 	</div>
 </div>
 
-<% unless @ticket.closed? %>
+<% if @ticket.open? %>
 	<%= render 'tickets/close_ticket_modal' %>
 <% else %>
 	<%= render 'tickets/reopen_ticket_modal' %>

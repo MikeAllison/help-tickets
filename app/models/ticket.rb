@@ -38,6 +38,10 @@ class Ticket < ActiveRecord::Base
 		end
 	end
 
+	def open?
+		!self.closed?
+	end
+
 	private
 
   # Tickets can be submitted without a status and are set to 'Unassigned'
