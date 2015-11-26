@@ -42,8 +42,9 @@ class Ticket < ActiveRecord::Base
 		!self.closed?
 	end
 
-	def total_time_open
-		self.open? ? Time.now - self.created_at : self.closed_at - self.created_at
+	def total_seconds_open_as_i
+		time_in_seconds = self.open? ? Time.now - self.created_at : self.closed_at - self.created_at
+		time_in_seconds.to_i
 	end
 
 	private

@@ -29,7 +29,7 @@
 								<% else %>
 									Closed In:
 								<% end %>
-							</strong><%= @ticket.total_time_open.strftime('%H:%M') %></li>
+							</strong><%= time_to_hours_minutes(@ticket.total_seconds_open_as_i) %></li>
 						</ul>
 					</div>
 				</div>

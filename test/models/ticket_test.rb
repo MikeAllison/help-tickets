@@ -63,7 +63,7 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_wip.reload
     assert @ticket_wip.closed?, 'ticket was not set to closed'
     assert_not_nil @ticket_wip.closed_at, 'closed_at was not set'
-    assert_equal @ticket_wip.updated_at, @ticket_wip.closed_at, 'correct closed_at time was not set'
+    assert_equal (@ticket_wip.updated_at).to_i, (@ticket_wip.closed_at).to_i, 'correct closed_at time was not set'
     assert_equal employees(:active_tech), @ticket_wip.technician, 'technician_id did not changed to the id of the closing tech'
   end
 
@@ -86,7 +86,7 @@ class TicketTest < ActiveSupport::TestCase
 
     @ticket_hold.created_at = time_in_past
 
-    assert_equal total_time, @ticket_hold.total_time_open
+    assert_equal total_time, @ticket_hold.total_seconds_open_as_i
   end
 
   test 'total_time_open for a closed ticket' do
@@ -100,7 +100,7 @@ class TicketTest < ActiveSupport::TestCase
     @ticket_closed.updated_at = time_closed
     @ticket_closed.closed_at = time_closed
 
-    assert_equal total_time, @ticket_closed.total_time_open
+    assert_equal total_time, @ticket_closed.total_seconds_open_as_i
   end
 
 end
