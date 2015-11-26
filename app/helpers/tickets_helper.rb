@@ -21,10 +21,20 @@ module TicketsHelper
   end
 
   def time_to_hours_minutes(time_in_seconds)
-    calculated_hours = time_in_seconds / 3600
     calculated_minutes = (time_in_seconds % 3600) / 60
     calculated_minutes += 1 if calculated_minutes > 0
-    "#{calculated_hours} hours #{calculated_minutes} minutes"
+    calculated_hours = (time_in_seconds % 86400) / 3600
+    calculated_days = time_in_seconds / 86400
+
+    formatted_time = "#{calculated_minutes} minutes"
+
+    if calculated_days > 0
+      formatted_time.insert(0, "#{calculated_days} days #{calculated_hours} hours ")
+    elsif calculated_hours > 0
+      formatted_time.insert(0,"#{calculated_hours} hours ")
+    else
+      formatted_time
+    end
   end
 
 end
