@@ -28,6 +28,7 @@ ticket_closed:
   topic: os
   description: I have a problem.
   status: 3
+  closed_at: <%= Time.now %>
 
 tech_ticket:
   originator: active_tech
