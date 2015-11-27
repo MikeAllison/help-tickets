@@ -16,20 +16,14 @@
 					<div class="col-md-6">
 						<ul class="list-unstyled">
 							<li><strong>Created: </strong><%= @ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-							<li><strong>
-								<% if @ticket.open? %>
-									Updated:
-								<% else %>
-									Closed:
-								<% end %>
-							</strong><%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></li>
-							<li><strong>
-								<% if @ticket.open? %>
-									Open For:
-								<% else %>
-									Closed In:
-								<% end %>
-							</strong><%= time_to_hours_minutes(@ticket.total_seconds_open_as_i) %></li>
+							<li>
+								<strong><%= @ticket.open? ? "Updated: " : "Closed: " %></strong>
+								<%= @ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %>
+							</li>
+							<li>
+								<strong><%= @ticket.open? ? "Open For: " : "Closed In: " %></strong>
+								<%= time_to_hours_minutes(@ticket.total_seconds_open_as_i) %>
+							</li>
 						</ul>
 					</div>
 				</div>

@@ -31,7 +31,7 @@ module TicketsHelper
     if calculated_days > 0
       formatted_time.insert(0, "#{calculated_days} days #{calculated_hours} hours ")
     elsif calculated_hours > 0
-      formatted_time.insert(0,"#{calculated_hours} hours ")
+      formatted_time.insert(0, "#{calculated_hours} hours ")
     else
       formatted_time
     end
