@@ -22,7 +22,7 @@ ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  Capybara.default_driver = :selenium
+  #Capybara.default_driver = :selenium
 
   def integration_login(user, password='password')
     visit('/')
