@@ -24,13 +24,7 @@
 						<% end %>
 					</td>
 					<td class="col-md-2 hidden-xs">
-						<% if employee.technician? %>
-							<%= link_to assigned_tickets_employee_path(employee), title: 'Technican\'s Assigned Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
-							  <%= employee.assigned_tickets.size %>
-							<% end %>
-						<% else %>
-							&mdash;
-						<% end %>
+						<%= assigned_tickets_link %>
 					</td>
 					<td class="col-md-1">
 						<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
