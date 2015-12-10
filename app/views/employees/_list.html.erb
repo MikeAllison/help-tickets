@@ -19,12 +19,10 @@
 					<td class="col-md-2"><%= employee.username %></td>
 					<td class="col-md-2"><%= employee.office.name unless employee.office.nil? %></td>
 					<td class="col-md-2 hidden-xs">
-						<%= link_to employee_tickets_path(employee), title: 'Employee\'s Submitted Tickets', data: { toggle: 'tooltip', placement: 'top' } do %>
-							<%= employee.originated_tickets.size %>
-						<% end %>
+						<%= tickets_created_link(employee) %>
 					</td>
 					<td class="col-md-2 hidden-xs">
-						<%= assigned_tickets_link(employee) %>
+						<%= tickets_assigned_link(employee) %>
 					</td>
 					<td class="col-md-1">
 						<%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
