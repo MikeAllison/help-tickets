@@ -59,6 +59,7 @@ class EmployeesController < ApplicationController
 
   def assigned_tickets
     @tickets = Ticket.no_descriptions.where('technician_id = ?', @employee.id)
+    render 'tickets/index'
   end
 
   def hide
