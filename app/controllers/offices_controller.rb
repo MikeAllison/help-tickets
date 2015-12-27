@@ -9,6 +9,7 @@ class OfficesController < ApplicationController
 
 	def new
 		@office = Office.new
+		@city = City.new
 	end
 
 	def create

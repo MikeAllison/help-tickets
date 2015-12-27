@@ -21,7 +21,13 @@ class CitiesController < ApplicationController
       redirect_to new_city_path
 		elsif @city.save
       flash[:success] = 'City added!'
-      redirect_to new_city_path
+      # If form submitted from #addCityModal in 'offices/new'
+      if params[:submitted_from] == 'add_city_modal'
+        redirect_to new_office_path
+      # If form submitted from 'cities/new' (the ususal way)
+      else
+        redirect_to new_city_path
+      end
 		else
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
       render 'new'
