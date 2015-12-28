@@ -14,25 +14,32 @@ class CitiesController < ApplicationController
   def create
     @city = City.new(city_params)
 
-    if City.hidden.exists?(["name LIKE ? AND state_id = ?", @city.name, @city.state_id])
-			hidden_city = City.hidden.where("name LIKE ? and state_id = ?", @city.name, @city.state_id).first
-			hidden_city.unhide
-      flash[:success] = 'This city had already existed but has now been unhidden!'
+    if City.hidden.exists?(['name LIKE ? AND state_id = ?', @city.name, @city.state_id])
+      hidden_city = City.hidden.where('name LIKE ? and state_id = ?', @city.name, @city.state_id).first
+      hidden_city.unhide
+      msg = 'This city had already existed but has now been unhidden!'
       respond_to do |format|
-        format.html { city_saved_redirect }
+        format.html do
+          flash[:success] = msg
+          city_saved_redirect
+        end
+        format.js { render 'unhide', locals: { msg: msg } }
       end
-		elsif @city.save
-      flash[:success] = 'City added!'
+    elsif @city.save
       respond_to do |format|
-        format.html { city_saved_redirect }
+        format.html do
+          flash[:success] = 'City added!'
+          city_saved_redirect
+        end
+        format.js
       end
-		else
+    else
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
       respond_to do |format|
         format.html { render 'new' }
         format.js { render 'append_errors' }
       end
-		end
+    end
   end
 
   def edit

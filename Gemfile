@@ -11,6 +11,7 @@ gem 'jquery-turbolinks', '~> 0.2.1'
 gem 'faker', '~> 1.4.3'
 gem 'bcrypt', '~> 3.1.10'
 gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'bootbox-rails', '~>0.4'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
@@ -24,7 +25,7 @@ group :development do
   gem 'lol_dba'
   gem 'bullet'
   gem 'meta_request'
-  #gem 'minitest-reporters', '~> 1.1.0'
+  # gem 'minitest-reporters', '~> 1.1.0'
   gem 'capybara', '~> 2.5'
   gem 'selenium-webdriver', '~> 2.48', '>= 2.48.1'
 end

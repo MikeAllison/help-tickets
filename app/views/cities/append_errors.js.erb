@@ -1,0 +1,2 @@
+$('.validation-errors').closest('.row').remove();
+$('#new_city .modal-body').prepend("<%= j render 'shared/validation_errors', obj: @city %>");
