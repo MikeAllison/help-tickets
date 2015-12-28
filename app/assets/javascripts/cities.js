@@ -1,4 +1,4 @@
-$(function () {
+$(function(){
   // Set first input focus on add city modal
   $('#addCityModal').on('shown.bs.modal', function () {
     $('#city_name').focus();
