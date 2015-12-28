@@ -18,19 +18,20 @@ class CitiesController < ApplicationController
 			hidden_city = City.hidden.where("name LIKE ? and state_id = ?", @city.name, @city.state_id).first
 			hidden_city.unhide
       flash[:success] = 'This city had already existed but has now been unhidden!'
-      redirect_to new_city_path
+      respond_to do |format|
+        format.html { city_saved_redirect }
+      end
 		elsif @city.save
       flash[:success] = 'City added!'
-      # If form submitted from #addCityModal in 'offices/new'
-      if params[:submitted_from] == 'add_city_modal'
-        redirect_to new_office_path
-      # If form submitted from 'cities/new' (the ususal way)
-      else
-        redirect_to new_city_path
+      respond_to do |format|
+        format.html { city_saved_redirect }
       end
 		else
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.js { render 'append_errors' }
+      end
 		end
   end
 
@@ -65,6 +66,14 @@ class CitiesController < ApplicationController
 
   def city_params
     params.require(:city).permit(:name, :state_id, :hidden)
+  end
+
+  def city_saved_redirect
+    if params[:submitted_from] == 'add_city_modal' # If form submitted from #addCityModal in 'offices/new'
+      redirect_to new_office_path
+    else # If form submitted from 'cities/new' (the ususal way)
+      redirect_to new_city_path
+    end
   end
 
 end
