@@ -26,12 +26,13 @@ class CitiesController < ApplicationController
         format.js { render 'unhide', locals: { msg: msg } }
       end
     elsif @city.save
+      msg = 'City added!'
       respond_to do |format|
         format.html do
-          flash[:success] = 'City added!'
+          flash[:success] = msg
           city_saved_redirect
         end
-        format.js
+        format.js { render 'create', locals: { msg: msg } }
       end
     else
       @city.errors.any? ? flash.now[:danger] = 'Please fix the following errors.' : 'There was a problem adding the city.'
