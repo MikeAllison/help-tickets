@@ -3,6 +3,7 @@ $ ->
   $('#addCityModal').on 'shown.bs.modal', ->
     $('#city_name').focus()
     return
+    
   # Remove any validation errors when modal is dismissed
   # and clear form fields
   $('#addCityModal').on 'hidden.bs.modal', ->
