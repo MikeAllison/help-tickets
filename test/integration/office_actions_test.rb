@@ -37,4 +37,18 @@ class OfficeActionsTest < ActionDispatch::IntegrationTest
     assert page.has_css?('table', text: /Downtown/)
   end
 
+  test 'techs can add a city from the offices/new page' do
+    click_link 'Locations'
+    click_link 'Add Offices'
+    within('#new_office') do
+      click_button 'Add City'
+    end
+    within('#new_city') do
+      fill_in 'City Name', with: 'Tampa'
+      select 'Florida', from: 'State'
+      click_button 'Add City'
+    end
+    assert page.has_css?('#office_city_id', text: /Tampa/)
+  end
+
 end
