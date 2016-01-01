@@ -111,6 +111,7 @@ end
                 submitter_id: originator_submitter,
                 topic_id: rand(1..10),
                 status: :unassigned,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time)
 end
@@ -126,6 +127,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: :work_in_progress,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..23).hours)
 end
@@ -141,6 +143,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: :on_hold,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours)
 end
@@ -157,6 +160,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: :closed,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: closed_time,
                 closed_at: closed_time)
@@ -172,6 +176,7 @@ end
                 submitter_id: originator_submitter,
                 topic_id: rand(1..10),
                 status: :unassigned,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours)
 end
@@ -187,6 +192,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: rand(1..2),
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours)
 end
@@ -203,6 +209,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: :closed,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours,
                 closed_at: closed_time)
@@ -217,6 +224,7 @@ end
                 submitter_id: rand(1..600),
                 topic_id: rand(1..10),
                 status: :unassigned,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time)
 end
@@ -231,6 +239,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: rand(1..3),
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours)
 end
@@ -247,6 +256,7 @@ end
                 technician_id: rand(3..6),
                 topic_id: rand(1..10),
                 status: :closed,
+                urgency: rand(0..1),
                 created_at: time,
                 updated_at: time + rand(1..32).hours,
                 closed_at: closed_time)

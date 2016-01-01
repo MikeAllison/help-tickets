@@ -4,6 +4,7 @@ ticket_unassigned:
   topic: os
   description: I have a problem.
   status: 0
+  urgency: 0
 
 ticket_wip:
   originator: active_nontech
@@ -12,6 +13,7 @@ ticket_wip:
   topic: os
   description: I have a problem.
   status: 1
+  urgency: 0
 
 ticket_hold:
   originator: active_nontech
@@ -20,6 +22,7 @@ ticket_hold:
   topic: os
   description: I have a problem.
   status: 2
+  urgency: 0
 
 ticket_closed:
   originator: active_nontech
@@ -28,6 +31,7 @@ ticket_closed:
   topic: os
   description: I have a problem.
   status: 3
+  urgency: 0
   closed_at: <%= Time.now %>
 
 tech_ticket:
@@ -36,3 +40,4 @@ tech_ticket:
   topic: os
   description: I have a problem.
   status: 0
+  urgency: 0

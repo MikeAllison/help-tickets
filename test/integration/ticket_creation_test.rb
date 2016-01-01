@@ -45,9 +45,38 @@ class TicketCreationTest < ActionDispatch::IntegrationTest
 
   test 'non-techs can create a ticket for themself' do
     integration_login(@active_nontech)
+    click_link 'Tickets'
     click_link 'Create Ticket'
     within('form') do
       select(@t.name, from: 'Select Topic')
+      fill_in 'Describe the Problem', with: 'Testing'
+      click_button 'Create Ticket'
+    end
+    assert page.has_css?('.alert', text: /Ticket was successfully submitted!/)
+    logout!
+  end
+
+  test 'non-techs can create an urgent ticket' do
+    integration_login(@active_nontech)
+    click_link 'Create Ticket'
+    within('form') do
+      select(@t.name, from: 'Select Topic')
+      select('Urgent', from: 'Urgency')
+      fill_in 'Describe the Problem', with: 'Testing'
+      click_button 'Create Ticket'
+    end
+    assert page.has_css?('.alert', text: /Ticket was successfully submitted!/)
+    logout!
+  end
+
+  test 'techs can create an urgent ticket' do
+    integration_login(@active_nontech)
+    click_link 'Tickets'
+    click_link 'Create Ticket'
+    within('form') do
+      select(@active_nontech.last_first, from: 'Select Employee')
+      select(@t.name, from: 'Select Topic')
+      select('Urgent', from: 'Urgency')
       fill_in 'Describe the Problem', with: 'Testing'
       click_button 'Create Ticket'
     end

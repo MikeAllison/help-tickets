@@ -79,6 +79,16 @@ class TicketTest < ActiveSupport::TestCase
     assert_equal 'unassigned', ticket.status
   end
 
+  test 'should set default urgency to 0 (normal)' do
+    ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os), status: 0)
+    assert_equal 'normal', ticket.urgency
+  end
+
+  test 'can create an urgent ticket' do
+    ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os), status: 0, urgency: 1)
+    assert_equal 'urgent', ticket.urgency
+  end
+
   test 'total_time_open for an open ticket' do
     current_time = Time.now
     time_in_past = current_time - 27.hours - 23.minutes
