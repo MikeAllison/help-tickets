@@ -39,6 +39,14 @@ $error-red: #a94442;
 
 // Styles for ticket/:id/show
 
+.h3 {
+  font-size: 24px;
+}
+
+.h4 {
+  font-size: 18px;
+}
+
 #ticket-show-buttons {
   a { margin-top: 1em; }
   button { margin-top: 1em; }

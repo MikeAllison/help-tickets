@@ -7,6 +7,13 @@ module TicketsHelper
     end
   end
 
+  # Shows urgent icon in panel heading of ticket#show
+  def ticket_priority_icon_heading(ticket)
+    content_tag :span, class: 'h4' do
+      raw "- #{ticket_priority_icon(ticket)} #{ticket.priority.capitalize}"
+    end
+  end
+
   # Sets color of flag icon in tickets/list partial
   def ticket_status_icon(ticket)
     icon = 'glyphicon glyphicon-floppy-disk'
