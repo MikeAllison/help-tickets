@@ -23,8 +23,8 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-md-6">
-			<%= f.label :urgency %>
-			<%= f.collection_select(:urgency, Ticket.urgencies.keys, :to_s, Proc.new { |p| p.titleize }, {}, { class: 'form-control' }) %>
+			<%= f.label :priority %>
+			<%= f.collection_select(:priority, Ticket.priorities.keys, :to_s, Proc.new { |p| p.titleize }, {}, { class: 'form-control' }) %>
 		</div>
 	</div>
 	<div class="row">

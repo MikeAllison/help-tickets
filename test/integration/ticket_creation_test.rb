@@ -61,7 +61,7 @@ class TicketCreationTest < ActionDispatch::IntegrationTest
     click_link 'Create Ticket'
     within('form') do
       select(@t.name, from: 'Select Topic')
-      select('Urgent', from: 'Urgency')
+      select('Urgent', from: 'Priority')
       fill_in 'Describe the Problem', with: 'Testing'
       click_button 'Create Ticket'
     end
@@ -76,7 +76,7 @@ class TicketCreationTest < ActionDispatch::IntegrationTest
     within('form') do
       select(@active_nontech.last_first, from: 'Select Employee')
       select(@t.name, from: 'Select Topic')
-      select('Urgent', from: 'Urgency')
+      select('Urgent', from: 'Priority')
       fill_in 'Describe the Problem', with: 'Testing'
       click_button 'Create Ticket'
     end

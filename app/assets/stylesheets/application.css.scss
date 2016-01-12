@@ -33,6 +33,10 @@ $error-red: #a94442;
   margin-right: 5px;
 }
 
+.priority-icon {
+  color: $error-red;
+}
+
 // Styles for ticket/:id/show
 
 #ticket-show-buttons {

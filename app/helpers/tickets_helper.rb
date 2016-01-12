@@ -1,5 +1,12 @@
 module TicketsHelper
 
+  # Sets icon for urgent tickets
+  def ticket_priority_icon(ticket)
+    if ticket.urgent?
+      content_tag :span, '', class: 'priority-icon glyphicon glyphicon-warning-sign', :'aria-hidden' => true
+    end
+  end
+
   # Sets color of flag icon in tickets/list partial
   def ticket_status_icon(ticket)
     icon = 'glyphicon glyphicon-floppy-disk'

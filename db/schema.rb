@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101213128) do
+ActiveRecord::Schema.define(version: 20160111232725) do
 
   create_table "attachments", force: true do |t|
     t.binary   "file"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20160101213128) do
     t.integer  "status",        default: 0
     t.integer  "submitter_id"
     t.datetime "closed_at"
-    t.integer  "urgency",       default: 0
+    t.integer  "priority",      default: 0
   end
 
   add_index "tickets", ["originator_id"], name: "index_tickets_on_originator_id"

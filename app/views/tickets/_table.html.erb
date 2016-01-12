@@ -3,6 +3,7 @@
 		<thead>
 			<tr>
 				<th>ID</th>
+				<th>Priority</th>
 				<th>Requested For</th>
 				<th>Topic</th>
 				<th>Status</th>
@@ -16,10 +17,11 @@
 			<% @tickets.each do |ticket| %>
 				<tr>
 					<td><%= ticket.id %></td>
+					<td><%= ticket_priority_icon(ticket) %> <%= ticket.priority.capitalize %></td>
 					<td><%= ticket.originator.last_first %></td>
 					<td><%= ticket.topic.name %></td>
 					<td>
-						<%= ticket_status_icon(ticket) %><%= ticket.status.titleize %>
+						<%= ticket_status_icon(ticket) %> <%= ticket.status.titleize %>
 					</td>
 					<td>
 						<%= ticket.technician.last_first unless ticket.technician.nil? %>

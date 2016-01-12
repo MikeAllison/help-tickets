@@ -79,14 +79,14 @@ class TicketTest < ActiveSupport::TestCase
     assert_equal 'unassigned', ticket.status
   end
 
-  test 'should set default urgency to 0 (normal)' do
+  test 'should set default priority to 0 (normal)' do
     ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os), status: 0)
-    assert_equal 'normal', ticket.urgency
+    assert_equal 'normal', ticket.priority
   end
 
   test 'can create an urgent ticket' do
-    ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os), status: 0, urgency: 1)
-    assert_equal 'urgent', ticket.urgency
+    ticket = Ticket.create(originator: employees(:active_nontech), description: 'Testing', topic: topics(:os), status: 0, priority: 1)
+    assert_equal 'urgent', ticket.priority
   end
 
   test 'total_time_open for an open ticket' do

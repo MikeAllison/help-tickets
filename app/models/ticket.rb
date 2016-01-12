@@ -1,7 +1,7 @@
 class Ticket < ActiveRecord::Base
 
 	enum status: [:unassigned, :work_in_progress, :on_hold, :closed]
-	enum urgency: [:normal, :urgent]
+	enum priority: [:normal, :urgent]
 
   has_many :attachments
   has_many :comments
@@ -18,9 +18,9 @@ class Ticket < ActiveRecord::Base
 	validates_presence_of :description, message: 'Please enter a description of the problem!'
 
 	before_save :set_default_status
-	before_save :set_default_urgency
+	before_save :set_default_priority
 
-  scope :no_descriptions, -> { select('id', 'originator_id', 'submitter_id', 'topic_id', 'technician_id', 'status', 'created_at', 'updated_at') }
+  scope :no_descriptions, -> { select('id', 'originator_id', 'submitter_id', 'topic_id', 'technician_id', 'status', 'priority', 'created_at', 'updated_at') }
   scope :open,            -> { where.not('status = ?', 3) }
 
 	def reopen(employee)
@@ -56,8 +56,8 @@ class Ticket < ActiveRecord::Base
     self.unassigned! if self.status.nil?
 	end
 
-	def set_default_urgency
-    self.normal! if self.urgency.nil?
+	def set_default_priority
+    self.normal! if self.priority.nil?
 	end
 
 end
