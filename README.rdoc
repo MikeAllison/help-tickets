@@ -1,15 +1,8 @@
 = README
 
-=== Ideas:
-
-* Custom Paths (like /mytickets)
-* Cube Numbers/Map
-* Remember Me - Hartl 8.4.1
-
 === To-Do:
 
 * Validations
-* Custom validation error messages
 * Indexes (WIP)
 * 404s
 * Check technician functionality
@@ -21,19 +14,15 @@
 * Ability to sort
 * Escalations
 * Email notices - http://www.sitepoint.com/fun-sending-mail-rails/
-* Responsive design
 * Employee search for new tickets
 * Attachments
 * Ajax on offices/new
-* Fix bug with redirection after sorting non-ticket items
 * Automatically close tickets for employees made inactive (and "deleted/hidden")
-* Link titles on hover
 * Cancel button has a bug after flash error
 * When deleting topics, offices, etc....no nil classes
 * Fix bug where a non-technician may be able to assign a ticket to themself
 * Fix bug where a non-technician may be able to change ticket assignment status by passing in params
 * Check to see if you can use .end_with?('y') method to simply panel header naming method
-* Not sure if params[:employee_id] == nil on tickets#index is the best way to direct request for employee/:id/tickets
 * Remove Assigned to from employee/:id/tickets list
 * File upload size and type validations
 * IMPORTANT - Use :select when querying tickets on index views so that attachments aren't being pulled (R4W: 170)
@@ -49,9 +38,7 @@
 * What to do about deleting your own account?
 * Can you set an index on hidden field for faster querying for non-hidden records? (Partial Index - Discussed in R4W)
 * Tickets created on behalf-of another employee
-* Current method to close/reopen tickets is probably not the best way to handle those actions
 * Check use of && and || vs 'and' and 'or'
-* Simplify routes.rb with 'collection' or 'member'
 
 === Querying (http://guides.rubyonrails.org/active_record_querying.html):
 

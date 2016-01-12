@@ -14,6 +14,7 @@ class OfficesController < ApplicationController
 
 	def create
 		@office = Office.new(office_params)
+		@city = City.new
 
 		if Office.hidden.exists?(["name LIKE ? AND city_id = ?", @office.name, @office.city_id])
 			hidden_office = Office.hidden.where("name LIKE ? and city_id = ?", @office.name, @office.city_id).first
