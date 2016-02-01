@@ -1,5 +1,4 @@
 class Comment < ActiveRecord::Base
-
   enum status_type: [:normal, :reopening, :closing]
 
   before_save :set_default_status_type
