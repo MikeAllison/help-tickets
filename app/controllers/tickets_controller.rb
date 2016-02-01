@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
       flash[:success] = 'Ticket was successfully updated!'
       redirect_to ticket_path
     else
-      @tcket.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the ticket.'
+      @ticket.errors.any? ? flash[:danger] = 'Please fix the following errors.' : 'There was a problem updating the ticket.'
       render 'edit'
     end
   end
