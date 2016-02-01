@@ -1,0 +1,43 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-2">User Name</th>
+        <th class="col-md-2">Office</th>
+        <th class="col-md-2 hidden-xs">Tickets Created</th>
+        <th class="col-md-2 hidden-xs">Tickets Assigned</th>
+        <th class="col-md-1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+      <tr>
+        <td class="col-md-3">
+          <%= employee_status_icon(employee.active) %><%= employee.last_first %>
+        </td>
+        <td class="col-md-2"><%= employee.username %></td>
+        <td class="col-md-2"><%= employee.office.name unless employee.office.nil? %></td>
+        <td class="col-md-2 hidden-xs">
+          <%= tickets_created_link(employee) %>
+        </td>
+        <td class="col-md-2 hidden-xs">
+          <%= tickets_assigned_link(employee) %>
+        </td>
+        <td class="col-md-1">
+          <%= link_to edit_employee_path(employee), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
+          <span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+          <span class="sr-only" title="Edit">Edit</span>
+          <% end %>
+          <%= link_to hide_employee_path(employee), method: :patch,
+          title: 'Hide',
+          data: { toggle: 'tooltip', placement: 'top', confirm: "WARNING!  This will close all tickets created by this employee.  Is is recommended that you mark an employee inactive rather than hiding them.\n\nAre you sure that you would like to hide this employee?" } do %>
+          <span class="glyphicon glyphicon-eye-close btn btn-default btn-xs" aria-hidden="true"></span>
+          <span class="sr-only" title="Hide">Hide</span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

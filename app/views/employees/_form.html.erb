@@ -1,0 +1,58 @@
+<%= render 'shared/validation_errors', obj: @employee %>
+
+<%= form_for @employee do |f| %>
+<div class="row">
+  <div class="form-group col-md-4">
+    <%= f.label :fname, 'First Name' %>
+    <%= f.text_field :fname, class: 'form-control', placeholder: 'Enter First Name' %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :lname, 'Last Name' %>
+    <%= f.text_field :lname, class: 'form-control', placeholder: 'Enter Last Name' %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :office_id %>
+    <%= f.collection_select(:office_id, Office.active.order(:name), :id, :office_city_state_abbr, { prompt: true }, { class: "form-control" }) %>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group col-md-4">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Enter Password', title: '8 Character Minimum', data: { toggle: 'tooltip', placement: 'bottom' } %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :password_confirmation, 'Password Confirmation' %>
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Again' %>
+  </div>
+</div>
+
+<% if technician? %>
+<div class="row">
+  <div class="form-group col-md-4">
+    <%= f.label :active, 'Account Status' %>
+    <br />
+    <%= f.radio_button(:active, 0, checked: @employee.active == false) %>
+    Inactive
+    <br />
+    <%= f.radio_button(:active, 1, checked: @employee.active == true) %>
+    Active
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.label :technician, 'User Rights' %>
+    <br />
+    <%= f.radio_button(:technician, 0, checked: @employee.technician == false) %>
+    Non-Technician
+    <br />
+    <%= f.radio_button(:technician, 1, checked: @employee.technician == true) %>
+    Technician
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="form-group col-md-12">
+    <%= submit_button_add_update(@employee) %>
+    <%= link_to 'Cancel', employees_path, class: 'btn btn-default' if action_name == 'edit' %>
+  </div>
+</div>
+<% end %>
