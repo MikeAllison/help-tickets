@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= page_header %></h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-xs-5">System Name</th>
+              <th class="col-xs-2 hidden-xs">Open Tickets</th>
+              <th class="col-xs-2 hidden-xs">Closed Tickets</th>
+              <th class="col-xs-2 hidden-xs">Total Tickets</th>
+              <th class="col-xs-1">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @topics.each do |topic| %>
+            <tr>
+              <td class="col-xs-5"><%= generic_status_icon(topic) %><%= topic.name %></td>
+              <td class="col-xs-2 hidden-xs"><%= topic.tickets.open.count %></td>
+              <td class="col-xs-2 hidden-xs"><%= topic.tickets.closed.count %></td>
+              <td class="col-xs-2 hidden-xs"><%= topic.tickets.count %></td>
+              <td class="col-xs-1">
+                <%= link_to edit_topic_path(topic), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
+                <span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+                <span class="sr-only" title="Edit">Edit</span>
+                <% end %>
+                <%= link_to hide_topic_path(topic), method: :patch, title: 'Hide', data: { toggle: 'tooltip', placement: 'top' } do %>
+                <span class="glyphicon glyphicon-eye-close btn btn-default btn-xs" aria-hidden="true"></span>
+                <span class="sr-only" title="Hide">Hide</span>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

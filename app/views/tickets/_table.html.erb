@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Priority</th>
+        <th>Requested For</th>
+        <th>Topic</th>
+        <th>Status</th>
+        <th>Assigned To</th>
+        <th class="hidden-xs">Created</th>
+        <th class="hidden-xs">Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.id %></td>
+        <td><%= ticket_priority_icon(ticket) %> <%= ticket.priority.capitalize %></td>
+        <td><%= ticket.originator.last_first %></td>
+        <td><%= ticket.topic.name %></td>
+        <td>
+          <%= ticket_status_icon(ticket) %> <%= ticket.status.titleize %>
+        </td>
+        <td>
+          <%= ticket.technician.last_first unless ticket.technician.nil? %>
+        </td>
+        <td class="hidden-xs"><%= ticket.created_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+        <td class="hidden-xs"><%= ticket.updated_at.strftime('%m/%d/%Y %I:%M %p') %></td>
+        <td>
+          <%= link_to ticket_path(ticket), title: 'Details', data: { toggle: 'tooltip', placement: 'right' } do %>
+          <span class="glyphicon glyphicon-info-sign btn btn-default btn-xs" aria-hidden="true"></span>
+          <span class="sr-only" title="Details">Details</span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
