@@ -22,6 +22,16 @@ class Ticket < ActiveRecord::Base
   scope :no_descriptions, -> { select('id', 'originator_id', 'submitter_id', 'topic_id', 'technician_id', 'status', 'priority', 'created_at', 'updated_at') }
   scope :open,            -> { where.not('status = ?', 3) }
 
+  # Pagination settings
+  def self.items_per_page
+    12
+  end
+
+  def self.default_scope
+    self.limit(self.items_per_page)
+  end
+  # End pagination settings
+
   def reopen(employee)
     if employee.technician?
       self.update(status: :work_in_progress, technician: employee, closed_at: nil)
