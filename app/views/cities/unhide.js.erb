@@ -1,0 +1,12 @@
+$('#addCityModal').modal('hide');
+
+// Update select element with newly added city
+$('#office_city_id').replaceWith('<%= j collection_select(:office,
+                                                          :city_id,
+                                                          City.not_hidden.order(:name),
+                                                          :id,
+                                                          :city_state_abbr,
+                                                          { prompt: true },
+                                                          { class: 'form-control' }) %>');
+
+bootbox.alert('<%= msg %>');
