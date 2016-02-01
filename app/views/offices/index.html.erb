@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= page_header %></h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-md-3">Office</th>
+              <th class="col-md-2">City</th>
+              <th class="col-md-2">State</th>
+              <th class="col-md-2 hidden-xs">Employees</th>
+              <th class="col-md-1">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @offices.each do |office| %>
+            <tr>
+              <td class="col-md-3"><%= generic_status_icon(office) %><%= office.name %></td>
+              <td class="col-md-2"><%= office.city.name %></td>
+              <td class="col-md-2"><%= office.city.state.abbreviation %></td>
+              <td class="col-md-2 hidden-xs"><%= office.employees.count %></td>
+              <td class="col-md-1">
+                <%= link_to edit_office_path(office), title: 'Edit', data: { toggle: 'tooltip', placement: 'top' } do %>
+                <span class="glyphicon glyphicon-wrench btn btn-default btn-xs" aria-hidden="true"></span>
+                <span class="sr-only" title="Edit">Edit</span>
+                <% end %>
+                <%= link_to hide_office_path(office), method: :patch, title: 'Hide', data: { toggle: 'tooltip', placement: 'top' } do %>
+                <span class="glyphicon glyphicon-eye-close btn btn-default btn-xs" aria-hidden="true"></span>
+                <span class="sr-only" title="Hide">Hide</span>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
