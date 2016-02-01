@@ -1,0 +1,6 @@
+<%= form_for [@ticket, @comment] do |f| %>
+<div class="form-group">
+  <%= f.text_area :body, class: 'form-control', placeholder: 'Enter Comment' %>
+</div>
+<%= f.submit 'Add Comment', class: 'btn btn-primary' %>
+<% end %>
