@@ -1,5 +1,4 @@
 class EmployeesController < ApplicationController
-
   before_action :restrict_to_technicians, except: [:edit, :update]
   before_action :find_employee, only: [:edit, :update, :hide, :assigned_tickets]
   before_action :restrict_to_technicians_or_current_employee, only: [:edit, :update]
