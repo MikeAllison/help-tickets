@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20160111232725) do
 
-  create_table "attachments", force: true do |t|
+  create_table "attachments", force: :cascade do |t|
     t.binary   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cities", force: true do |t|
+  create_table "cities", force: :cascade do |t|
     t.string   "name"
     t.integer  "state_id"
     t.datetime "created_at"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160111232725) do
 
   add_index "cities", ["state_id"], name: "index_cities_on_state_id"
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "employee_id"
     t.text     "body"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160111232725) do
   add_index "comments", ["employee_id"], name: "index_comments_on_employee_id"
   add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
 
-  create_table "employees", force: true do |t|
+  create_table "employees", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
     t.integer  "office_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160111232725) do
 
   add_index "employees", ["office_id"], name: "index_employees_on_office_id"
 
-  create_table "offices", force: true do |t|
+  create_table "offices", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,14 +69,14 @@ ActiveRecord::Schema.define(version: 20160111232725) do
 
   add_index "offices", ["city_id"], name: "index_offices_on_city_id"
 
-  create_table "states", force: true do |t|
+  create_table "states", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation", limit: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tickets", force: true do |t|
+  create_table "tickets", force: :cascade do |t|
     t.text     "description"
     t.integer  "originator_id"
     t.integer  "topic_id"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160111232725) do
   add_index "tickets", ["originator_id"], name: "index_tickets_on_originator_id"
   add_index "tickets", ["topic_id"], name: "index_tickets_on_topic_id"
 
-  create_table "topics", force: true do |t|
+  create_table "topics", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
