@@ -1,4 +1,6 @@
 class Ticket < ActiveRecord::Base
+  include Paginatable
+
   enum status: [:unassigned, :work_in_progress, :on_hold, :closed]
   enum priority: [:normal, :urgent]
 
