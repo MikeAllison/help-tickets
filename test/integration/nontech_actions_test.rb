@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class NontechActionsTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_nontech = employees(:active_nontech)
     integration_login(@active_nontech)
@@ -57,5 +56,4 @@ class NontechActionsTest < ActionDispatch::IntegrationTest
     end
     assert page.has_css?('.validation-errors', text: /Passwords must match!/)
   end
-
 end

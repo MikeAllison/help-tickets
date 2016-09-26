@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmployeeLoginTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_nontech = employees(:active_nontech)
     @active_tech = employees(:active_tech)
@@ -98,5 +97,4 @@ class EmployeeLoginTest < ActionDispatch::IntegrationTest
 
     logout!
   end
-
 end

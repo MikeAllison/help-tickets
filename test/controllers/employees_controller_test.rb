@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmployeesControllerTest < ActionController::TestCase
-
   def setup
     @active_tech = employees(:active_tech)
     @active_nontech = employees(:active_nontech)
@@ -150,5 +149,4 @@ class EmployeesControllerTest < ActionController::TestCase
     assert_redirected_to new_employee_path
     assert_equal 'Test', @active_nontech.fname
   end
-
 end

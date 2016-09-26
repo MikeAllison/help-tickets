@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TicketTest < ActiveSupport::TestCase
-
   def setup
     @ticket_unassigned = tickets(:ticket_unassigned)
     @ticket_hold = tickets(:ticket_hold)
@@ -112,5 +111,4 @@ class TicketTest < ActiveSupport::TestCase
 
     assert_equal total_time, @ticket_closed.total_seconds_open_as_i
   end
-
 end

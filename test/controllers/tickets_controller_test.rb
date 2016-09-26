@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TicketsControllerTest < ActionController::TestCase
-
   def setup
     @ticket_unassigned = tickets(:ticket_unassigned)
     @ticket_hold = tickets(:ticket_hold)
@@ -187,5 +186,4 @@ class TicketsControllerTest < ActionController::TestCase
       assert_response :success
     end
   end
-
 end

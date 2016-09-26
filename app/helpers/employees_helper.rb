@@ -1,5 +1,4 @@
 module EmployeesHelper
-
   # Sets color of employee icon in employee/list partial
   def employee_status_icon(status)
     icon = 'glyphicon glyphicon-'
@@ -26,5 +25,4 @@ module EmployeesHelper
       raw("&mdash;")
     end
   end
-
 end

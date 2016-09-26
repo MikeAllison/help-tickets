@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
-
   def setup
   end
 
@@ -39,5 +38,4 @@ class CommentsControllerTest < ActionController::TestCase
   #
   # test 'non-techs SHOULD NOT be able to reopen others closed tickets' do
   # end
-
 end

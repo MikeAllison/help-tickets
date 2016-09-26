@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TopicActionsTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_tech = employees(:active_tech)
     integration_login(@active_tech)
@@ -34,5 +33,4 @@ class TopicActionsTest < ActionDispatch::IntegrationTest
     assert page.has_css?('.alert', text: /Topic added!/)
     assert page.has_css?('table', text: /Excel/)
   end
-
 end

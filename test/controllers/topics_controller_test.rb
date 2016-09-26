@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
-
   def setup
     @t = topics(:office)
     @hidden_inactive = topics(:hidden_inactive)
@@ -96,5 +95,4 @@ class TopicsControllerTest < ActionController::TestCase
       assert_equal 'This topic had already existed but has now been unhidden!', flash[:success]
     end
   end
-
 end

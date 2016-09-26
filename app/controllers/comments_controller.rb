@@ -33,5 +33,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:ticket_id, :employee_id, :body, :status_type)
   end
-
 end

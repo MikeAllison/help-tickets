@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CitiesControllerTest < ActionController::TestCase
-
   def setup
     @c = cities(:miami)
     @hidden_city = cities(:hidden_city)
@@ -96,5 +95,4 @@ class CitiesControllerTest < ActionController::TestCase
       assert_equal 'This city had already existed but has now been unhidden!', flash[:success]
     end
   end
-
 end

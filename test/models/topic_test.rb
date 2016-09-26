@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TopicTest < ActiveSupport::TestCase
-
   def setup
     @t = topics(:os)
   end
@@ -35,5 +34,4 @@ class TopicTest < ActiveSupport::TestCase
     @t.reload
     assert_equal 'operating-system', @t.slug
   end
-
 end

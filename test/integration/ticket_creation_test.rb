@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TicketCreationTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_nontech = employees(:active_nontech)
     @active_tech = employees(:active_tech)
@@ -83,5 +82,4 @@ class TicketCreationTest < ActionDispatch::IntegrationTest
     assert page.has_css?('.alert', text: /Ticket was successfully submitted!/)
     logout!
   end
-
 end

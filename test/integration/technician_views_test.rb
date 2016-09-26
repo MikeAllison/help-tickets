@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TechnicianViewsTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_tech = employees(:active_tech)
     @active_nontech = employees(:active_nontech)
@@ -62,5 +61,4 @@ class TechnicianViewsTest < ActionDispatch::IntegrationTest
     assert page.has_css?('label', text: /Assigned To/)
     assert page.has_select?('ticket_technician_id')
   end
-
 end

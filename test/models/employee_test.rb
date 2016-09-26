@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmployeeTest < ActiveSupport::TestCase
-
   def setup
     @active_nontech = employees(:active_nontech)
     @active_nontech_2 = employees(:active_nontech_2)
@@ -93,5 +92,4 @@ class EmployeeTest < ActiveSupport::TestCase
     employee1.reload
     assert_equal 'auser', employee1.username
   end
-
 end

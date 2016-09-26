@@ -1,5 +1,4 @@
 module TicketsHelper
-
   # Sets icon for urgent tickets
   def ticket_priority_icon(ticket)
     if ticket.urgent?
@@ -50,5 +49,4 @@ module TicketsHelper
       formatted_time
     end
   end
-
 end

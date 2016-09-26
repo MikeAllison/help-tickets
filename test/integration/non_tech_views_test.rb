@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class NonTechViewsTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_nontech = employees(:active_nontech)
     integration_login(@active_nontech)
@@ -36,5 +35,4 @@ class NonTechViewsTest < ActionDispatch::IntegrationTest
     assert page.has_no_css?('label', text: /Assigned To/)
     assert page.has_no_select?('ticket_technician_id')
   end
-
 end

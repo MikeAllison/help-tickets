@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-
   def setup
     @active_nontech = employees(:active_nontech)
     @active_tech = employees(:active_tech)
@@ -41,5 +40,4 @@ class SessionsControllerTest < ActionController::TestCase
     assert_template :new
     assert_equal 'Your account is currently inactive!', flash[:danger]
   end
-
 end

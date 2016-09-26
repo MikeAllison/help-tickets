@@ -23,5 +23,4 @@ class ApplicationController < ActionController::Base
       redirect_to my_tickets_path
     end
   end
-
 end

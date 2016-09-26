@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   ### LAYOUT-RELATED HELPERS ###
 
   # Sets glyphicon in flash messages
@@ -63,5 +62,4 @@ module ApplicationHelper
       "#{action} #{model}".titleize
     end
   end
-
 end

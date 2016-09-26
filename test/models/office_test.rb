@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class OfficeTest < ActiveSupport::TestCase
-
   def setup
     @o = offices(:maitland)
     @o2 = offices(:fishermans)
@@ -33,5 +32,4 @@ class OfficeTest < ActiveSupport::TestCase
     @o2.reload
     assert_equal 'fishermans-wharf-san-francisco-ca', @o2.slug
   end
-
 end

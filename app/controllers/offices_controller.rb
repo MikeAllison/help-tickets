@@ -61,5 +61,4 @@ class OfficesController < ApplicationController
   def office_params
     params.require(:office).permit(:name, :city_id, :active, :hidden)
   end
-
 end

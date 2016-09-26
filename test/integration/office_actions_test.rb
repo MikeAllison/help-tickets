@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class OfficeActionsTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_tech = employees(:active_tech)
     @orlando = cities(:orlando)
@@ -50,5 +49,4 @@ class OfficeActionsTest < ActionDispatch::IntegrationTest
     end
     assert page.has_css?('#office_city_id', text: /Tampa/)
   end
-
 end

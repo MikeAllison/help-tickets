@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TicketShowTest < ActionDispatch::IntegrationTest
-
   def setup
     @active_tech = employees(:active_tech)
     @active_nontech = employees(:active_nontech)
@@ -74,5 +73,4 @@ class TicketShowTest < ActionDispatch::IntegrationTest
     assert page.has_css?('button', text: /Cancel/)
     logout!
   end
-
 end

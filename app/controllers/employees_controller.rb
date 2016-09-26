@@ -91,5 +91,4 @@ class EmployeesController < ApplicationController
   def employee_params_restricted
     params.require(:employee).permit(:fname, :lname, :username, :password, :password_confirmation, :office_id)
   end
-
 end

@@ -82,5 +82,4 @@ class CitiesController < ApplicationController
       redirect_to new_city_path
     end
   end
-
 end

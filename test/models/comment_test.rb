@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-
   def setup
     @c = comments(:comment1)
   end
@@ -20,5 +19,4 @@ class CommentTest < ActiveSupport::TestCase
     comment.reload
     assert comment.normal?
   end
-
 end

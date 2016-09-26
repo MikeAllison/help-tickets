@@ -134,5 +134,4 @@ class TicketsController < ApplicationController
   def ticket_params
     params.require(:ticket).permit(:originator_id, :topic_id, :description, :technician_id, :priority)
   end
-
 end

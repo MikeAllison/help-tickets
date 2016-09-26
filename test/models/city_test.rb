@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CityTest < ActiveSupport::TestCase
-
   def setup
     @c = cities(:orlando)
     @c2 = cities(:sanfran)
@@ -50,5 +49,4 @@ class CityTest < ActiveSupport::TestCase
     @c2.reload
     assert_equal 'san-francisco-ca', @c2.slug
   end
-
 end

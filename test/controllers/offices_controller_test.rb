@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class OfficesControllerTest < ActionController::TestCase
-
   def setup
     @o = offices(:downtownsf)
     @hidden_office = offices(:hidden_office)
@@ -96,5 +95,4 @@ class OfficesControllerTest < ActionController::TestCase
       assert_equal 'This office had already existed but has now been unhidden!', flash[:success]
     end
   end
-
 end
